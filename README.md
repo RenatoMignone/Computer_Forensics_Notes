@@ -30,9 +30,17 @@
 │
 ├── Chapters_MD/              # Per-chapter notes grouped by topic and professor
 │   ├── Atzeni/
-│   │   └── 01_IntroCF.md
+│   │   ├── 01_IntroCF.md
+│   │   ├── 01b_MorrisWorm.md
+│   │   ├── 02_terms.md
+│   │   ├── 03_investigation_phases.md
+│   │   ├── 03b_Forensic-USB-Drive-Acquisition.md
+│   │   └── Digital-Forensics-Case-Study.md
 │   └── Vaciago/
-│       └── 0_Introduction.md
+│       ├── 0_Introduction.md
+│       ├── 1_Definition.md
+│       ├── 2_Cybercrime_Convention.md
+│       └── 3_Law_48_08.md
 │
 ├── Lectures_txt/             # Raw transcriptions of lectures (source material, read-only)
 │   ├── Lecture_1_Atzeni.txt
@@ -91,17 +99,20 @@ Chapter notes aggregate content **across multiple lectures** per topic, using th
 | File | Status | Topic | Source Lectures |
 |------|--------|-------|------------------|
 | [Chapters_MD/Atzeni/01_IntroCF.md](Chapters_MD/Atzeni/01_IntroCF.md) | ✅ Complete | Introduction to Computer Forensics | Lecture 1 |
-| `Chapters_MD/Atzeni/02_terms.md` | ⏳ Pending | Digital Evidence & Chain of Custody | Lecture 2 |
-| `Chapters_MD/Atzeni/03_investigation_phases.md` | ⏳ Pending | Investigation Phases (all five) | Lectures 4 & 5 |
+| [Chapters_MD/Atzeni/01b_MorrisWorm.md](Chapters_MD/Atzeni/01b_MorrisWorm.md) | ✅ Complete | The Morris Worm – Case Study | Lecture 1 |
+| [Chapters_MD/Atzeni/02_terms.md](Chapters_MD/Atzeni/02_terms.md) | ✅ Complete | Digital Evidence, Chain of Custody & Data Acquisition | Lecture 2 |
+| [Chapters_MD/Atzeni/03_investigation_phases.md](Chapters_MD/Atzeni/03_investigation_phases.md) | ✅ Complete | Forensic Investigation Phases (all five) | Lectures 4 & 5 |
+| [Chapters_MD/Atzeni/03b_Forensic-USB-Drive-Acquisition.md](Chapters_MD/Atzeni/03b_Forensic-USB-Drive-Acquisition.md) | ✅ Complete | USB Drive Acquisition – Tools & Procedure | Lecture 5 |
+| [Chapters_MD/Atzeni/Digital-Forensics-Case-Study.md](Chapters_MD/Atzeni/Digital-Forensics-Case-Study.md) | ✅ Complete | Insider IP Exfiltration – End-to-End Case Study | Lecture 5 |
 
 ### Prof. Vaciago – Legal Track
 
 | File | Status | Topic | Source Lectures |
 |------|--------|-------|------------------|
 | [Chapters_MD/Vaciago/0_Introduction.md](Chapters_MD/Vaciago/0_Introduction.md) | ✅ Complete | Technology, Law & Digital Forensics | Lecture 3 |
-| `Chapters_MD/Vaciago/1_Definition.md` | ⏳ Pending | Forensic Definitions & Standards | Lecture 6 |
-| `Chapters_MD/Vaciago/2_Cybercrime_Convention.md` | ⏳ Pending | Data Retention, Jurisdiction & Budapest Convention | Lecture 6 |
-| `Chapters_MD/Vaciago/3_Law_48_08.md` | ⏳ Pending | Italian Law 48/2008 | Not yet covered |
+| [Chapters_MD/Vaciago/1_Definition.md](Chapters_MD/Vaciago/1_Definition.md) | ✅ Complete | Definitions, Standards & Evidence Location Model | Lecture 6 |
+| [Chapters_MD/Vaciago/2_Cybercrime_Convention.md](Chapters_MD/Vaciago/2_Cybercrime_Convention.md) | ✅ Complete | Data Retention, Jurisdiction & Budapest Convention | Lecture 6 |
+| [Chapters_MD/Vaciago/3_Law_48_08.md](Chapters_MD/Vaciago/3_Law_48_08.md) | ⏳ Placeholder | Italian Law 48/2008 | Not yet covered |
 
 ---
 
