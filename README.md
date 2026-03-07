@@ -20,7 +20,7 @@
 
 ```
 .
-├── Lectures_MD/          # Structured markdown lecture notes (primary study material)
+├── Lectures_MD/              # Per-lecture structured notes (chronological)
 │   ├── Lecture_1_Atzeni.md
 │   ├── Lecture_2_Atzeni.md
 │   ├── Lecture_3_Vaciago.md
@@ -28,7 +28,13 @@
 │   ├── Lecture_5_Atzeni.md
 │   └── Lecture_6_Vaciago.md
 │
-├── Lectures_txt/         # Raw transcriptions of lectures (source material)
+├── Chapters_MD/              # Per-chapter notes grouped by topic and professor
+│   ├── Atzeni/
+│   │   └── 01_IntroCF.md
+│   └── Vaciago/
+│       └── 0_Introduction.md
+│
+├── Lectures_txt/             # Raw transcriptions of lectures (source material, read-only)
 │   ├── Lecture_1_Atzeni.txt
 │   ├── Lecture_2_Atzeni.txt
 │   ├── Lecture_3_Vaciago.txt
@@ -36,7 +42,7 @@
 │   ├── Lecture_5_Atzeni.txt
 │   └── Lecture_6_Vaciago.txt
 │
-├── Slides/               # Official course slide decks
+├── Slides/                   # Official course slide decks
 │   ├── Atzeni/
 │   │   ├── 01_introCF.pdf
 │   │   ├── 01b_Cybersecurity-History-MorrisWorm.pdf
@@ -50,6 +56,7 @@
 │       ├── 2_Cybercrime_Convention.pdf
 │       └── 3_Law_48_08.pdf
 │
+├── AI_Context.md             # Persistent context file for AI assistants
 └── README.md
 ```
 
@@ -72,6 +79,29 @@
 |---|------|-------|------------|
 | 3 | [Lecture_3_Vaciago.md](Lectures_MD/Lecture_3_Vaciago.md) | Legal Introduction: Technology, Law & Digital Forensics | `0_Introduction.pdf` |
 | 6 | [Lecture_6_Vaciago.md](Lectures_MD/Lecture_6_Vaciago.md) | Legal Frameworks: Data Retention, Jurisdiction & Digital Evidence | `1_Definition.pdf`, `2_Cybercrime_Convention.pdf` |
+
+---
+
+## Chapter Index
+
+Chapter notes aggregate content **across multiple lectures** per topic, using the slide deck as the structural backbone. They are the recommended starting point for exam revision.
+
+### Prof. Atzeni – Technical Track
+
+| File | Status | Topic | Source Lectures |
+|------|--------|-------|------------------|
+| [Chapters_MD/Atzeni/01_IntroCF.md](Chapters_MD/Atzeni/01_IntroCF.md) | ✅ Complete | Introduction to Computer Forensics | Lecture 1 |
+| `Chapters_MD/Atzeni/02_terms.md` | ⏳ Pending | Digital Evidence & Chain of Custody | Lecture 2 |
+| `Chapters_MD/Atzeni/03_investigation_phases.md` | ⏳ Pending | Investigation Phases (all five) | Lectures 4 & 5 |
+
+### Prof. Vaciago – Legal Track
+
+| File | Status | Topic | Source Lectures |
+|------|--------|-------|------------------|
+| [Chapters_MD/Vaciago/0_Introduction.md](Chapters_MD/Vaciago/0_Introduction.md) | ✅ Complete | Technology, Law & Digital Forensics | Lecture 3 |
+| `Chapters_MD/Vaciago/1_Definition.md` | ⏳ Pending | Forensic Definitions & Standards | Lecture 6 |
+| `Chapters_MD/Vaciago/2_Cybercrime_Convention.md` | ⏳ Pending | Data Retention, Jurisdiction & Budapest Convention | Lecture 6 |
+| `Chapters_MD/Vaciago/3_Law_48_08.md` | ⏳ Pending | Italian Law 48/2008 | Not yet covered |
 
 ---
 
@@ -121,9 +151,11 @@
 
 ## Notes on the Material
 
-- **Markdown notes** in `Lectures_MD/` are synthesised from lecture transcriptions and official slides. They are structured with section headings, tables, key concept definitions, and bullet-point summaries.
-- **Raw transcriptions** in `Lectures_txt/` are unedited audio-to-text outputs. They are provided as a reference but may contain transcription artefacts.
-- **Slides** are the official material distributed by the professors.
+- **`Lectures_MD/`** — Per-lecture notes synthesised from transcriptions and slides. Structured with section headings, tables, key concept definitions, and bullet-point summaries. One file per lecture session.
+- **`Chapters_MD/`** — Thematic chapter notes that aggregate content from all relevant lectures per topic. Organised by professor. These are the primary revision resource.
+- **`Lectures_txt/`** — Unedited audio-to-text transcriptions. Provided as source material only; may contain transcription artefacts.
+- **`Slides/`** — Official slide PDFs distributed by the professors. Used as the structural skeleton for all notes.
+- **`AI_Context.md`** — Persistent context file describing the full project structure, naming conventions, and current state. Hand this file to an AI assistant when adding new lectures to continue work without prior conversation history.
 
 ---
 
