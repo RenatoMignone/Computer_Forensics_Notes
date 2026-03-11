@@ -26,6 +26,8 @@ An initiative from the **United States** that maintains a database of cryptograp
 ### Impact of Large Language Models
 LLMs can compare, synthesise, and highlight differences in **structured information** across terabytes of data — automating what would otherwise require extensive manual review. However, their outputs require expert verification.
 
+Beyond forensic automation, LLMs also enable new attack vectors — notably **voice cloning**: with as little as one to two minutes of recorded speech, an attacker can generate an acoustically accurate replica of a specific person's voice. This makes phone-based social engineering attacks (vishing) significantly more convincing and harder to detect.
+
 > 📎 *Slide reference: `Slides/Atzeni/02_terms.pdf`, slide: Milestones & Tools*
 
 ---
@@ -164,8 +166,8 @@ Switching off a running system causes **hundreds of metadata changes**: open fil
 ### Write Blockers
 **Write blockers** prevent any write operations to the target storage device during acquisition, ensuring the original evidence is not modified.
 
-- **Physical write blockers**: hardware devices that sit between the original drive and the acquisition system, preventing write bus signals from reaching the drive. Provide the most robust protection.
-- **Logical write blockers**: OS-level mechanisms that mount a device in read-only mode. Less robust but acceptable in lower-stakes investigations.
+- **Physical write blockers**: dedicated hardware that provides an exclusive channel to the source device and impedes any interference during the copy. Most robust protection; a professional forensic kit always includes at least one.
+- **Logical write blockers**: OS-level mechanisms that mount a device in read-only mode. Less robust but acceptable in lower-stakes investigations, provided the operating system itself is not compromised.
 
 A forensic investigator typically carries a **professional kit** containing physical write blockers.
 

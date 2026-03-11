@@ -28,6 +28,8 @@ A US government initiative maintaining a database of **cryptographic hashes of l
 
 **Impact of LLMs**: Large language models can now compare, synthesise, and highlight differences across terabytes of structured log data — automating tasks that previously required extensive manual review. All LLM outputs require expert verification before use in evidence.
 
+LLMs also enable new attack vectors — notably **voice cloning**: with as little as one to two minutes of recorded speech, an attacker can generate an acoustically accurate replica of a specific person's voice, making phone-based social engineering attacks (vishing) significantly more convincing. This is increasingly prevalent.
+
 > 📎 *Slide reference: `02_terms.pdf` — Milestones & Tools*
 
 ---
@@ -91,7 +93,7 @@ Each category of digital evidence requires the forensic examiner to hold **speci
 
 ### Network Forensics
 - Understanding **TLS session key** management and how to recover session keys for decryption
-  - Chrome and other browsers can be launched with the `SSLKEYLOGFILE` environment variable to dump session keys to a file — these can be imported into Wireshark to decrypt captured TLS traffic
+  - Chrome and other browsers can be launched with a flag that logs session keys to a file — these can be imported into Wireshark to decrypt captured TLS traffic
 - Network **flow analysis** to identify infection topologies (as in the Morris Worm ARPANET propagation graph)
 
 ### Cloud Forensics
@@ -134,9 +136,9 @@ If any handling event is undocumented or unclear, an adversarial party can argue
 ### Physical Chain of Custody
 Documents the **physical handling** of evidence items:
 - Who took possession of a device, when, and from where
-- How it was transported (sealed evidence bag, locked container, vehicle)
-- Under what conditions it was stored (temperature, humidity, access controls)
-- Every transfer between custodians, with signatures
+- How it was transported between locations (e.g., from one department or building to another)
+- Under what conditions it was stored
+- Every transfer between custodians
 
 ### Logical Chain of Custody
 Documents **digital operations** performed on evidence:
@@ -171,8 +173,8 @@ Data acquisition is the process of creating a **forensically sound copy** of evi
 
 | Type | Description | Trust Level |
 |------|-------------|-------------|
-| **Hardware write blocker** | Physical device placed between source drive and acquisition workstation; intercepts write signals at the hardware level | Highest — fully hardware-enforced |
-| **Software / logical write blocker** | OS-level mechanism mounting a device in read-only mode | Lower — can potentially be bypassed by a privileged process |
+| **Hardware write blocker** | Dedicated hardware providing an exclusive channel to the source drive and blocking all write operations from reaching it | Highest — fully hardware-enforced |
+| **Software / logical write blocker** | OS-level mechanism that mounts a device in read-only mode; relies on the OS not being compromised | Lower — can potentially be bypassed by a privileged process |
 
 Hardware write blockers are the professional standard. A forensic investigator's kit invariably contains at least one.
 
@@ -279,6 +281,7 @@ The output of forensic analysis is **dual-purpose**: it supports legal proceedin
 | **Static Acquisition** | Forensic acquisition performed on a powered-off device; captures only persistent storage |
 | **atime** | File system "last accessed" timestamp — modified whenever a file is read; forensically sensitive |
 | **Repeatable** | A forensic property: the same results can be independently produced from the same evidence by a third party |
+| **APT** | Advanced Persistent Threat — a sophisticated attack that may persist for a long time, using techniques such as lateral movement to spread through and maintain a presence in multiple nodes of a network |
 
 ---
 

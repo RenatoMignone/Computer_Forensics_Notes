@@ -6,7 +6,7 @@
 ---
 
 ## Introduction
-This chapter provides a hands-on, tool-level walkthrough of acquiring a forensic image from a USB drive. It covers the three primary command-line acquisition tools (`dd`, `dc3dd`, `dcfldd`), FTK Imager as a GUI alternative, the lab setup required, an eight-step acquisition procedure with annotated commands, chain of custody documentation at the point of acquisition, and a table of common pitfalls.
+This chapter provides a hands-on, tool-level walkthrough of acquiring a forensic image from a USB drive. It covers the primary command-line acquisition tools (`dd`, `dc3dd`) and FTK Imager as a GUI alternative, the lab setup required, an eight-step acquisition procedure with annotated commands, chain of custody documentation at the point of acquisition, and a table of common pitfalls.
 
 > 📝 *For the broader context of where acquisition fits within the five investigation phases, see [03_investigation_phases.md](03_investigation_phases.md).*
 
@@ -42,19 +42,18 @@ dd if=/dev/sdb of=/media/evidence/usb_image.dd bs=512
 
 ---
 
-## 2. `dc3dd` and `dcfldd` — Enhanced Forensic Copy Tools
+## 2. `dc3dd` — Enhanced Forensic Copy Tool
 
-These tools were created to address `dd`'s forensic shortcomings. Both are open-source and available in standard Linux forensic distributions (Kali, CAINE).
+`dc3dd` was created to address `dd`'s forensic shortcomings. It is open-source and available in standard Linux forensic distributions (Kali, CAINE).
 
-| Feature | `dd` | `dc3dd` | `dcfldd` |
-|---------|------|---------|---------|
-| Simultaneous hashing during copy | ❌ | ✅ (source + dest, multiple algorithms) | ✅ |
-| Hash log file output | ❌ | ✅ | ✅ |
-| Per-block error logging | ❌ | ✅ | ✅ |
-| Split output files | ❌ | ✅ | ✅ |
-| Progress display | Partial | ✅ | ✅ |
-| Scrubbing (wipe destination before write) | ❌ | ✅ | ❌ |
-| Origin | Unix standard | DC3 (US Defence Cyber Crime Center) | US Air Force AFOSI |
+| Feature | `dd` | `dc3dd` |
+|---------|------|----------|
+| Simultaneous hashing during copy | ❌ | ✅ (source + dest, multiple algorithms) |
+| Hash log file output | ❌ | ✅ |
+| Per-block error logging | ❌ | ✅ |
+| Split output files | ❌ | ✅ |
+| Progress display | Partial | ✅ |
+| Scrubbing (wipe destination before write) | ❌ | ✅ |
 
 ### `dc3dd` Example Command
 
@@ -74,23 +73,13 @@ dc3dd if=/dev/sdb hof=/media/evidence/usb_image.dd \
 | `log=` | Write all operational output, hash values, and error counts to a log file |
 | `verb=on` | Verbose output: percentage complete, bytes processed |
 
-### `dcfldd` Example Command
-
-```bash
-dcfldd if=/dev/sdb of=/media/evidence/usb_image.dd \
-  hash=sha256,md5 \
-  hashlog=/media/evidence/hash.log
-```
-
-> ⚠️ *`dcfldd` by default also computes MD5 — this is acceptable only when paired with SHA-256; never use MD5 alone as sufficient evidence of integrity.*
-
-> 📎 *Slide reference: `03b_Forensic-USB-Drive-Acquisition.pdf` — dc3dd / dcfldd*
+> 📎 *Slide reference: `03b_Forensic-USB-Drive-Acquisition.pdf` — dc3dd*
 
 ---
 
 ## 3. FTK Imager
 
-**FTK Imager** (AccessData / Exterro) is the leading GUI-based forensic acquisition and preview tool. It is widely accepted in courts and used by law enforcement agencies worldwide.
+**FTK Imager** is a widely-used GUI-based forensic acquisition and preview tool. It is widely accepted in courts and used by law enforcement agencies worldwide.
 
 ### Key Features
 
@@ -229,8 +218,7 @@ In addition to the general chain of custody fields (see [03_investigation_phases
 | Term | Definition |
 |------|------------|
 | **`dd`** | Standard Unix bit-copy utility; no built-in hashing or error logging |
-| **`dc3dd`** | Enhanced `dd` from the US Defence Cyber Crime Centre; adds integrated hashing, error logging, and split output |
-| **`dcfldd`** | Enhanced `dd` from US Air Force AFOSI; similar capabilities to `dc3dd`; different syntax |
+| **`dc3dd`** | Enhanced `dd` with integrated hashing, error logging, and split output; open-source |
 | **FTK Imager** | Commercial GUI forensic acquisition and preview tool; widely accepted in courts |
 | **Hardware write blocker** | Physical device that prevents any write commands from reaching the source evidence drive |
 | **`.dd` format** | Raw bit-for-bit image; no metadata container; simplest format; directly mountable |
@@ -244,7 +232,7 @@ In addition to the general chain of custody fields (see [03_investigation_phases
 ## Summary
 
 - **`dd`** is universal but requires manual, separate hashing steps — not recommended when specialised tools are available.
-- **`dc3dd`** and **`dcfldd`** perform integrated, simultaneous hashing of source and destination during the copy, making them significantly stronger forensic tools.
+- **`dc3dd`** performs integrated, simultaneous hashing of source and destination during the copy, making it a significantly stronger forensic tool than plain `dd`.
 - **FTK Imager** is the standard GUI tool; its chain of custody form, hash report, and non-mounting file browser make it practical for both field and lab use.
 - The **hardware write blocker** is non-negotiable — connecting evidence media directly to the OS without one will modify the source.
 - The eight-step procedure ensures: clean destination, confirmed device, pre-acquisition source hash, imaging, post-acquisition verification, source re-hash confirmation, and physical sealing.

@@ -16,13 +16,12 @@ Several bodies have published guidelines defining forensic investigation phases.
 
 | Standard | Organisation | Phases |
 |----------|-------------|--------|
-| **ACPO Guidelines** | UK Association of Chief Police Officers | 4 principles (not phases per se): integrity, auditability, responsibility, training |
+| **ACPO Guidelines** | UK Association of Chief Police Officers | Influential UK standard; widely adopted across Europe |
 | **NIST SP 800-86** | US National Institute of Standards & Technology | Collection → Examination → Analysis → Reporting |
 | **ISO/IEC 27037:2012** | International Organisation for Standardisation | Identification → Collection → Acquisition → Preservation |
-| **SWGDE** | US Scientific Working Group on Digital Evidence | Identification → Preservation → Collection → Examination → Analysis → Presentation |
 
-### The ACPO Principles
-The ACPO guidelines are particularly influential in UK and European courts. They define four overarching principles that apply to every action taken during an investigation: data must not be altered; any access to original data must be justified and documented; a full audit trail must exist so an independent third party can reproduce the same results; and the lead investigator is responsible for ensuring all of the above are observed.
+### ACPO Guidelines
+ACPO guidelines from the UK influenced the investigation methodology worldwide.
 
 > 📎 *Slide reference: `03_investigation_phases.pdf` — Investigation Frameworks*
 
@@ -41,10 +40,6 @@ Before touching any device, the investigator builds the fullest possible picture
 | **Maltego** | Graph-based link analysis; visualises relationships between entities (IPs, domains, persons, organisations) |
 | **Shodan** | Internet-facing device search engine; identifies open ports, service banners, and potential attack surfaces |
 
-**Passive vs. Active OSINT**:
-- **Passive OSINT**: Uses only publicly available data from third-party databases, cached resources, or archived content — does not interact with systems the subject controls. Preferred because it leaves no trace.
-- **Active OSINT**: Directly queries systems controlled by the subject (e.g., DNS lookups against the subject's server, banner grabbing). Generates log entries on the target — may tip off a suspect or contaminate evidence. Requires explicit legal authorisation in most jurisdictions.
-
 ### Volatility Order
 When deciding which evidence sources to handle first, follow the **volatility hierarchy** from most to least volatile. Higher-volatility items must be captured first because they are the most likely to be lost.
 
@@ -57,20 +52,10 @@ When deciding which evidence sources to handle first, follow the **volatility hi
 | Less volatile | **Persistent storage** (HDD, SSD, flash) | Survives power-off; the primary target of most forensic imaging |
 | Least volatile | **Remote logs**, CCTV, access badge records, physical media backups | Controlled by third parties; may require formal legal process to obtain |
 
-### Covert Commands
-When interacting with a running system, use commands that **minimise the forensic footprint** — i.e., do not write to disk, do not spawn unnecessary processes, do not modify metadata.
-
-| Recommended | Avoid | Reason |
-|-------------|-------|--------|
-| `cat /proc/net/tcp` | `netstat` | `netstat` reads the same kernel data but via a binary that may be compromised; `/proc` reads kernel directly |
-| Read directly from `/proc` filesystem | Any command using shared libraries from the suspect's installation | Shared libraries could be trojanised |
-| Investigator's static binaries from USB | Installed system binaries | System binaries may be replaced by rootkits |
-
 ### Insider Threat Identification Scenario
 Identifying an insider threat requires correlating multiple low-signal indicators:
 - **Behaviour analytics**: Abnormal access times, volumes, or file types accessed by a known account
-- **Endpoint monitoring**: Unusual process spawning, unexpected USB device insertions (recorded in Windows `usbstor` registry key), staging directories created in user profile
-- **Email and communication logs**: Large attachments, contact with personal email accounts, unusual recipients
+- **Email and communication logs**: Large attachments, contact with personal email addresses, unusual recipients
 - None of these alone constitutes evidence; the investigation hypothesis is formed from their correlation.
 
 > 📎 *Slide reference: `03_investigation_phases.pdf` — Phase 1: Identification*
@@ -99,8 +84,8 @@ As soon as collection begins, all devices must be **isolated from external netwo
 - Label all evidence items with a **unique identifier** (case number + item number) before handling
 - **Do not power off a running system immediately** — volatile evidence may be lost; assess the value of live acquisition first (see Phase 3)
 - Photograph every device **in situ** before any movement: exact position, cable connections, peripheral connections, on-screen state
-- Use **anti-static packaging** for hard drives and flash storage
-- **Do not stack magnetic storage** or place near audio speakers, strong magnets, or transmission equipment
+- **Protect magnetic drives from strong magnetic fields** — these can alter or erase stored bits
+- **RAM modules**: if capturing volatile memory, use a cryogenic container (below approximately −200°C) to preserve transistor charge for later lab extraction
 
 ### Chain of Custody Record Fields
 A chain of custody record must be started at the moment the first evidence item is seized. Minimum required fields:
@@ -152,17 +137,17 @@ Required when:
 
 ### Cold-Boot Attack for RAM Acquisition
 If a suspect machine is running but investigator tools cannot be safely installed:
-1. Use a **compressed air / liquid nitrogen spray** to rapidly cool the RAM modules (reduces electron diffusion, extends retention from seconds to minutes)
+1. Use a **cryogenic bag or container** to cool the RAM modules to well below −200°C (reduces electron diffusion, extends retention from seconds to minutes)
 2. Physically move the cooled RAM modules to an investigator-controlled machine
 3. Acquire RAM contents on the investigator's machine before thermal decay completes
 
 This technique is specialist and used only when software-based RAM capture is not feasible.
 
 ### Hashing Requirements
-- RFC/standard requires at least **SHA-256**
+- At least **SHA-256** is required
 - **MD5 alone is insufficient** (known collision attacks exist)
 - Best practice: compute **two hashes with different algorithms simultaneously** (e.g., SHA-256 + SHA-512) — simultaneous computation eliminates the argument that a hash was taken after undetected modification
-- Tools like `dc3dd` and `dcfldd` support simultaneous multi-algorithm hashing during acquisition
+- Tools like `dc3dd` support simultaneous multi-algorithm hashing during acquisition
 
 > 📎 *Slide reference: `03_investigation_phases.pdf` — Phase 3: Acquisition*
 
@@ -183,9 +168,9 @@ Two distinct concepts that must both be established:
 Integrity alone does not establish authenticity. A file can be unmodified since capture yet still be a planted document — authenticity requires independent corroboration.
 
 ### Deep Fakes and AI-Manipulated Evidence
-As generative AI advances, examiners must assess **deep fake risk** for:
-- **Images**: inconsistent metadata between file header and embedded timestamps; photo artefacts (blurring around edges, lighting inconsistencies, unnatural shadows); compression artefacts inconsistent with the claimed camera model; missing lens distortion (real photos have subtle barrel/pincushion distortion that AI-generated images often lack)
-- **Any digital media**: steganographic anomalies — differences in bit patterns between original and manipulated regions
+As generative AI advances, examiners must assess **deep fake risk** when evaluating digital media. AI-generated images may contain errors that a human would not produce. Additionally, metadata inconsistencies — such as a clock visible in an image showing a different time than the file metadata — can indicate manipulation.
+
+**Cross-correlation** with independent evidence sources is the primary defence: even a realistic-looking image can be shown to be fabricated when it contradicts witness testimony, access records, or other independent sources all pointing to a different fact.
 
 > *Deep fake detection is an emerging forensic specialisation — courts are increasingly encountering challenges to digital media authenticity on these grounds.*
 
@@ -208,12 +193,9 @@ Constructing a reliable timeline requires correlating timestamps from **multiple
 
 | Technique | Description | Forensic Counter-Technique |
 |-----------|-------------|---------------------------|
-| **File deletion** | Removes directory entry but typically leaves blocks in unallocated space | `Autopsy` / `Sleuth Kit` recover files from unallocated clusters |
-| **Secure deletion (software)** | Overwrites file blocks (e.g., `shred`, `sdelete`) | Check file system journal; metadata may remain; SSD wear-levelling may preserve copies |
-| **Timestamp manipulation** | `touch` (Linux) or `TimeStomp` (Windows) to alter MAC times | Corroborate with NTFS $MFT (Windows) or `ctime`/`inode change time` on Linux, which cannot normally be altered without root access |
-| **Encryption** | Full disk or per-file encryption renders data unreadable without keys | Live acquisition for keys in RAM; password attacks; key escrow |
-| **Steganography** | Data hidden within image/audio files | Statistical analysis of bit patterns; cross-correlate with other evidence sources |
-| **Log wiping** | Deletion or truncation of system logs | Logs may also exist on remote syslog servers; Windows Event Log deletion is itself logged in the Security log |
+| **Encryption at the OS level** | Storage encrypted by default in modern operating systems; data unreadable without decryption key | Live acquisition for keys in RAM while system is unlocked |
+| **HTTPS / TLS** | Application-layer network traffic encrypted; IDS and network-based monitoring cannot inspect payloads | Endpoint acquisition; server-side logs; DNS queries may still be visible |
+| **File deletion and data wiping** | Deliberate removal or overwriting of data before or during investigation | Recovery may still be possible from unallocated space or residual artefacts depending on media and method |
 
 ### Legal and Ethical Constraints on Examination
 - **Scope limitation**: The authority (warrant, consent) defines exactly which devices and which categories of data may be examined. An investigator who exceeds the scope commits a legal violation that can invalidate the investigation.
@@ -269,7 +251,7 @@ Before finalising:
 
 | Term | Definition |
 |------|------------|
-| **ACPO Principles** | UK guidelines establishing four foundational rules: no data alteration, justify all access, full audit trail, investigator responsibility |
+| **ACPO Principles** | UK guidelines that significantly influenced forensic investigation methodology worldwide |
 | **Volatility Order** | Hierarchy of evidence sources from most to least transient; volatile evidence must be captured first |
 | **OSINT** | Open Source Intelligence — intelligence gathered from publicly available sources without interacting with systems under investigation |
 | **Faraday Bag** | RF-shielded enclosure that blocks all wireless signals; used to prevent remote wipe of mobile devices post-seizure |
@@ -277,7 +259,7 @@ Before finalising:
 | **Live Acquisition** | Forensic acquisition of a running system's memory or state; requires careful documentation of any modifications made |
 | **Cold-Boot Attack** | Technique using temperature reduction to extend RAM data retention for analysis after power-off |
 | **Clock Skew** | Discrepancy between clocks on different systems; must be calculated and documented when correlating timestamps |
-| **Anti-Forensics** | Deliberate techniques to obstruct forensic investigation (deletion, encryption, timestamp manipulation, log wiping) |
+| **Anti-Forensics** | Deliberate techniques to obstruct forensic investigation; also arises inherently from modern OS features such as encryption and HTTPS |
 | **Authenticity** | The evidence genuinely represents the events or actions alleged; requires contextual corroboration beyond hash integrity |
 | **Scope Limitation** | Legal constraint that restricts examination to only the devices and data types specified in the authorising warrant or consent |
 
@@ -285,9 +267,9 @@ Before finalising:
 
 ## Summary
 
-- Multiple international frameworks (ACPO, NIST, ISO 27037, SWGDE) converge on the same five phases; adherence to a recognised framework is what makes results **legally defensible**.
-- **Phase 1 (Identification)**: Use OSINT (Spiderfoot, Maltego, Shodan) before touching any device; follow the **volatility order**; prefer passive OSINT; use covert commands from trusted binaries.
-- **Phase 2 (Collection)**: Immediately isolate all devices (Faraday bag for mobile); photograph in situ; start the **chain of custody record** at first contact.
+- Multiple international frameworks (ACPO, NIST, ISO 27037) converge on the same five phases; adherence to a recognised framework is what makes results **legally defensible**.
+- **Phase 1 (Identification)**: Use OSINT (Spiderfoot, Maltego, Shodan) before touching any device; follow the **volatility order**.
+- **Phase 2 (Collection)**: Immediately isolate all devices; photograph in situ; start the **chain of custody record** at first contact.
 - **Phase 3 (Acquisition)**: Never examine originals; use hardware write blockers; hash with SHA-256 or better; choose **live acquisition** when full-disk encryption is active.
 - **Phase 4 (Examination)**: Distinguish **integrity** (hash verification) from **authenticity** (contextual corroboration); reconstruct the **timeline** from multiple independent sources; identify and counter **anti-forensics** techniques; respect strict **scope limitations**.
 - **Phase 5 (Presentation)**: Tailor the report to the audience; preserve **all draft versions**; perform an independent QA technical review to establish repeatability before submission.

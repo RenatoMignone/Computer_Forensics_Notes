@@ -64,9 +64,9 @@ If a device's storage is **encrypted** and the system is **currently unlocked**,
 ### Cryogenic RAM Extraction
 In cases where the system is powered off but there is reason to believe critical data was in RAM:
 - Immediately after power-off, DRAM transistors retain charge for a period at room temperature
-- **Cooling to near −196°C** (liquid nitrogen — cryogenic temperatures) can extend retention significantly
-- The RAM modules are then physically transferred to a forensic workstation for extraction
-- This is expensive and rarely practical, but represents the most extreme application of the live acquisition principle
+- **Cryogenic cooling** (placing the RAM modules in a cryogenic bag — well below −200°C) can significantly extend this retention period
+- The cooled modules are then physically transferred to a forensic workstation for extraction
+- This technique requires specialist equipment (a cryogenic bag) but is viable when the resources are available
 
 ---
 
@@ -116,16 +116,15 @@ dd if=/dev/sdb of=usbimage.dd bs=512
 
 > 📎 *Slide reference: `Slides/Atzeni/03b_Forensic-USB-Drive-Acquisition.pdf`*
 
-### 5.2 `dc3dd` / `dcfldd` – Forensic Extensions of `dd`
+### 5.2 `dc3dd` – Forensic Extension of `dd`
 
-These tools were developed by the **US Department of Defense Cyber Crime Center (DC3)**. They add forensic capabilities on top of `dd`.
+`dc3dd` is a forensic evolution of `dd` that adds capabilities required for sound forensic acquisition.
 
-**Key improvements:**
-- Integrated hashing (SHA-256, SHA-1, MD5) computed during the copy operation
-- Automatic hash file generation
+**Key improvements over `dd`:**
+- Integrated hashing (SHA-256 and other algorithms) computed during the copy — no separate hash step needed
+- Automatic hash log file generation
 - Progress reporting
-- Split output (image can be split across multiple files of a given size)
-- Wiping functionality (zero-wiping with verification)
+- Documented handling of read errors
 
 **Example with hashing:**
 ```bash
@@ -140,7 +139,7 @@ This command:
 
 ### 5.3 FTK Imager
 
-**FTK Imager** is a GUI-based forensic imaging tool developed by **Exterro (formerly AccessData)**:
+**FTK Imager** is a widely-used GUI-based forensic imaging tool:
 - Runs on Windows
 - Creates forensic images in multiple formats (`.dd`, `.E01`, `.AFF`)
 - Computes hashes automatically
@@ -235,12 +234,9 @@ Hashing proves integrity. Authenticity is harder: it requires contextual corrobo
 ### 7.2 Deep Fake & Manufactured Evidence
 In the modern environment, AI-generated media (images, audio, video) represents a significant authenticity challenge.
 
-**Technical indicators of manipulation:**
-- **Inconsistent metadata** between file header and embedded timestamps
-- **Photo artifacts** (blurring around edges, lighting inconsistencies, unnatural shadows)
-- **Compression artifacts** inconsistent with claimed origin (e.g., a photo claimed to come from a specific camera model but with JPEG compression patterns inconsistent with that model)
-- **Missing lens distortion**: real photos have subtle barrel/pincushion distortion from the lens; AI-generated images often do not
-- **Steganographic anomalies**: differences in bit patterns between original and manipulated regions
+**Indicators of manipulation to look for:**
+- **Inconsistent metadata**: a file's embedded timestamps or internal data may contradict observable details (e.g., a clock visible in a photo showing a different time than the file's metadata states)
+- **Implausible or physically impossible details**: AI-generated images may contain errors a human would not produce (e.g., a person shown performing a physically impossible action)
 
 **Cross-correlation as a defence:**
 If a suspect claims: *"This meeting never took place"*, and investigators have:
@@ -273,12 +269,9 @@ Suspects and adversaries may take deliberate steps to hinder investigation:
 
 | Anti-forensic Technique | Effect | Investigator Response |
 |------------------------|--------|----------------------|
-| **Encryption of evidence** (VeraCrypt, FileVault, BitLocker) | Data is unreadable without key | Live acquisition to capture keys in RAM; or legal compulsion to provide key |
-| **Data wiping / overwriting** (DBAN, Eraser) | Data may be unrecoverable from storage | Partial recovery may still be possible; focus on other sources |
-| **Timestomping** | `mtime`/`atime`/`ctime` modified on specific files | Cross-correlate with $MFT journal, log files, backups |
-| **Using HTTPS / TLS everywhere** | Network traffic is encrypted; IDS and traffic-based evidence is blind | Endpoint acquisition; server-side logs; DNS queries may still be visible |
-| **Polymorphic/fileless malware** | No persistent binary on disk | RAM acquisition captures in-memory artefacts |
-| **Using Tor or VPN** | IP address masking | Endpoint correlation; Tor exit node identification; correlation with other sources |
+| **Encryption at the OS level** | Storage encrypted by default in modern OSes; data unreadable without the decryption key | Live acquisition to capture keys from RAM while the system is unlocked |
+| **HTTPS / TLS** | Application-layer network traffic is encrypted; IDS and traffic-based monitoring cannot inspect payloads | Endpoint acquisition; server-side logs; DNS queries may still be visible |
+| **File deletion and data wiping** | Deliberate removal or overwriting of data before investigators arrive | Recovery may still be possible from unallocated space or residual artefacts depending on the media and method used |
 
 > 📎 *Slide reference: `Slides/Atzeni/03_investigation_phases.pdf`, slide: Anti-Forensic Techniques*
 
@@ -327,42 +320,15 @@ Before finalising a report:
 
 ---
 
-## 9. Case Study: Insider IP Exfiltration
+## 9. Case Study Exercise (Introduced)
 
-*(Derived from `Digital-Forensics-Case-Study.pdf`)*
+Towards the end of the lecture, Atzeni briefly introduced a simplified forensic scenario for students to reflect on:
 
-A multinational company suspects an employee of exfiltrating proprietary engineering documents ahead of a move to a competitor.
+**Scenario (summary):** A suspect inside an organisation used a USB pen drive to exfiltrate sensitive financial spreadsheets. The scenario focuses on the acquisition phase — identifying the USB drive, deploying a write blocker, and creating a verified forensic image. This was framed as a simplified example; Atzeni noted that real investigations are almost never this straightforward.
 
-**Case setup:**
-- Employee has been connected to the corporate network and has access to a document management portal
-- Corporate IT monitoring flagged abnormally large downloads from the portal
+The full interactive case study was uploaded to the course portal (*Digital-Forensics-Case-Study.pdf*) as an exercise for the following session. Students were invited to reason through the investigation steps, hypothesise about evidence sources, and raise questions for group discussion.
 
-**Identification:**
-- OSINT reveals employee's LinkedIn profile has been updated with "new opportunities" language
-- Employee's workstation shows an external USB drive was connected (corporate endpoint monitoring log)
-- `lsusb`/`usbstor` registry keys retain records of connected USB devices even after removal
-
-**Collection:**
-- Workstation seized and isolated (network cable disconnected)
-- Employee escorted off premises
-- Other devices (personal laptop at home) identified via search warrant
-
-**Acquisition:**
-- Forensic image of workstation disk with `dc3dd`; hashes recorded
-- Live RAM acquisition performed first (BitLocker decryption key in RAM)
-- USB drive is not physically available — but metadata trail and portal logs exist
-
-**Examination:**
-- Browser and portal access logs confirm download of 4,000 documents in a 90-minute window
-- MFT journal shows USB mount/unmount at the same timeframe
-- Email investigation reveals encrypted ZIP attachment forwarded to a personal address the same afternoon
-- Deep fake / manipulation not applicable here; focus is timeline correlation
-
-**Outcome:**
-- Sufficient evidence for criminal referral under data exfiltration and trade secret statutes
-- Report prepared in three versions: technical, legal, executive
-
-> 📎 *Slide reference: `Slides/Atzeni/Digital-Forensics-Case-Study.pdf`*
+> 📎 *Slide reference: `Slides/Atzeni/Digital-Forensics-Case-Study.pdf` — Case Study*
 
 ---
 
@@ -375,14 +341,13 @@ A multinational company suspects an employee of exfiltrating proprietary enginee
 | **Live acquisition** | Acquiring data from a running device; captures RAM, network state, decrypted data |
 | **Trusted tool hierarchy** | The principle that tools used during investigation must be from a trusted source, not the suspect's system |
 | **`dd`** | Unix byte-for-byte disk copy utility; basic forensic imaging tool |
-| **`dc3dd` / `dcfldd`** | Forensic extensions of `dd` with integrated hashing, logging, and verification |
+| **`dc3dd`** | Forensic extension of `dd` with integrated hashing, log file output, and progress reporting |
 | **FTK Imager** | GUI-based Windows forensic imaging tool supporting multiple image formats |
 | **SHA-256** | Cryptographic hash function; preferred standard for forensic integrity verification |
 | **MD5** | Older hash function; insufficient alone due to known collision vulnerabilities |
 | **Cryogenic acquisition** | Preservation of RAM at near absolute-zero temperatures to extend transistor charge retention |
-| **Timestomping** | Anti-forensic technique of altering file system timestamps to mislead investigators |
 | **Timeline reconstruction** | Cross-correlation of evidence timestamps from multiple sources to produce a chronological narrative |
-| **Deep fake detection** | Analysis of metadata, compression patterns, and physical artefacts to verify media authenticity |
+| **Deep fake detection** | Assessment of whether digital media (images, video, audio) may have been synthetically generated or manipulated; requires both technical inspection and cross-correlation with independent evidence sources |
 | **Anti-forensics** | Deliberate techniques used to hinder, mislead, or prevent forensic investigation |
 | **Clock skew** | Difference between a device's internal clock and a trusted time reference; must be corrected in multi-system timelines |
 
@@ -393,8 +358,8 @@ A multinational company suspects an employee of exfiltrating proprietary enginee
 - **Acquisition** creates a forensically sound image of the original evidence; no analysis is ever performed on originals.
 - The choice between **live vs static acquisition** depends on whether critical data (e.g., encryption keys) resides in RAM.
 - All acquisitions require **hashing before and after** using SHA-256 (MD5 alone is insufficient).
-- `dd` provides raw copying; `dc3dd`/`dcfldd` add integrated hashing and logging; **FTK Imager** provides a GUI with chain-of-custody report generation.
+- `dd` provides raw copying; `dc3dd` adds integrated hashing and logging; **FTK Imager** provides a GUI with chain-of-custody report generation.
 - The **trusted tool hierarchy** ensures that investigator tools are not subject to manipulation by OS-level rootkits.
 - **Examination** involves timeline construction from multiple independent evidence sources; single-source evidence is always weaker.
-- **Anti-forensic techniques** (encryption, wiping, timestomping, HTTPS) must be anticipated; the response is multi-source correlation and live acquisition.
+- **Anti-forensic techniques** (encryption, HTTPS, data wiping) must be anticipated; the response is multi-source correlation and live acquisition.
 - Reports must be tailored to their audience and their integrity protected by the chain of custody.

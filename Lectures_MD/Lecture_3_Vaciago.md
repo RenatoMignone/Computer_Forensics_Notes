@@ -79,7 +79,7 @@ This creates fundamental problems for:
 The jurisdiction problem will be addressed in depth through:
 - **Article 32 of the Cybercrime Convention** (trans-border access to stored data)
 - **Data retention directive**
-- **The MLAT (Mutual Legal Assistance Treaty) system**
+- **Formal legal cooperation frameworks** (bilateral and multilateral mechanisms for cross-border evidence access)
 
 > 📎 *Slide reference: `Slides/Vaciago/0_Introduction.pdf`, slide: Jurisdiction Problem*
 
@@ -209,6 +209,158 @@ Corporate forensics is growing rapidly because:
 
 ---
 
+## 9. Terminology – "Digital" vs "Computer" Forensics
+
+Prof. Vaciago uses **"digital forensics"** rather than "computer forensics" because the term *computer* refers to only one type of device that can carry digital evidence. The course is titled "Computer Forensics" for historical reasons; both terms are used interchangeably with no conceptual distinction intended.
+
+> 📎 *Slide reference: `Slides/Vaciago/0_Introduction.pdf`, slide: Terminology [inferred]*
+
+---
+
+## 10. AI in Digital Forensics – Preliminary Assumption
+
+A key clarification from Prof. Vaciago before proceeding to formal definitions:
+
+> AI **cannot be used exclusively** in digital forensics. Both GDPR Article 22 and the EU AI Act, together with Italian law, require **human oversight** for any automated decision with significant legal effects.
+
+### The Human Oversight Challenge
+The practical difficulty is defining what "meaningful" oversight means:
+- If every AI output must be reviewed in full, the efficiency advantage is eliminated
+- But if oversight is reduced to a single confirmation click, it is meaningless
+
+Finding a verifiable, proportionate oversight methodology — using explainability frameworks such as **SHAP** or **LIME** — is an open problem in digital forensics. This is particularly acute when handling very large datasets (e.g., 45 GB of WhatsApp messages, or 2 TB of emails), where automation is necessary but must be rigorously controlled to avoid life-altering false positives.
+
+> 📎 *Slide reference: `Slides/Vaciago/0_Introduction.pdf`, slide: AI & Digital Forensics [inferred]*
+
+---
+
+## 11. Definitions of Digital Evidence
+
+Three widely-used definitions presented in the lecture:
+
+| Definition | Source |
+|------------|--------|
+| *"Any information of evidential value, whether memorized or sent in a digital format"* | **SWGDE** (Scientific Working Group for Digital Evidence) — Prof. Vaciago's preferred definition |
+| *"Any probative information stored or transmitted in a digital form that a party to a court case may use at trial"* | **Eugene Casey** |
+| *"Information generated, stored or transmitted using electronic devices that may be relied upon in court"* | General *electronic evidence* definition |
+
+The SWGDE definition is preferred because it is broader — it does not limit digital evidence to court use, acknowledging that digital evidence is also used in corporate and non-trial contexts. All three definitions convey the same core concept.
+
+> 📎 *Slide reference: `Slides/Vaciago/0_Introduction.pdf`, slide: Digital Evidence – Definitions [inferred]*
+
+---
+
+## 12. Characteristics and Legal Requirements of Digital Evidence
+
+### Key Characteristics
+
+| Characteristic | Description |
+|---------------|-------------|
+| **Invisible** | Cannot be directly perceived — requires specialist tools and interpretation |
+| **Alterable through normal use** | Normal interaction with a device (opening a file, starting a system) can modify or destroy evidence |
+| **Infinitely copyable** | Can be copied without limit and without degradation; both a forensic opportunity and a challenge for containment |
+
+### Legal Requirements
+
+For evidence to be usable in legal proceedings it must satisfy:
+
+| Requirement | Meaning |
+|-------------|---------|
+| **Admissible** | Gathered lawfully with appropriate legal grounds (e.g., a prosecutor or court order); without legal grounds, evidence gathered from a device is inadmissible even if it clearly incriminates the subject. Italian **Law 48/2008** explicitly provides that evidence gathered in violation of digital forensics procedure is inadmissible in court |
+| **Authentic** | Free from tampering; every handling step must guarantee the evidence has not been altered |
+| **Reliable and believable** | Must be understandable to the judge; the forensic expert's duty is to explain technical findings in plain, credible language — *"you must be able to explain the case to my mother"* |
+| **Proportional** | The investigation must be limited to what is relevant to the case; personal information outside the scope must be excluded and protected |
+
+### Proportionality – Practical Implications
+
+| Scenario | Rule |
+|---------|-----|
+| **Extramarital affair discovered during fraud investigation** | Unrelated to the case; must not be disclosed to the court |
+| **Social media screening in hiring** | Under **Article 8 of Law 300/1970** (the Workers' Statute), checking a job candidate's social media is a criminal offence (six months to one year); only CV information may be assessed |
+| **Credit scoring via social media** | Since 2023, a **CCD directive** (Consumer Credit Directive) prohibits banks from using social media or web-based information to assess creditworthiness |
+| **Social scoring risk** | Unchecked digital profiling leads to social scoring systems — threatening freedom of expression and democratic rights |
+| **Excessive evidence strategy** | US courts prohibit flooding proceedings with unnecessary digital evidence; in Italy, submitting terabytes of marginally relevant evidence to cause delays and reach prescription (prescrizione) is a known, if problematic, strategy |
+
+> 📎 *Slide reference: `Slides/Vaciago/0_Introduction.pdf`, slide: Legal Requirements of Digital Evidence [inferred]*
+
+---
+
+## 13. Categories of Digital Evidence (Stephen Mason)
+
+| Category | Description | Examples |
+|----------|-------------|---------|
+| **Human to human** | Created by a person for communication with another person | Emails, chat messages |
+| **Human to PC** | Created by a person using a computer | Word documents |
+| **Created by computer** | Automatically generated by a machine without human authorship | System logs, network flow records, IoT sensor data |
+| **Mixed (human + computer)** | Data entered by human; result calculated by machine | Electronic spreadsheet |
+
+The **computer-created evidence** category (logs) is the most important growing area of digital forensics — especially in complex systems such as autonomous vehicles, where multiple AI and software providers are involved and liability must be attributed based on log reconstruction. The **EU AI Act** requires AI providers to maintain clear log retention policies for this reason.
+
+> 📎 *Slide reference: `Slides/Vaciago/0_Introduction.pdf`, slide: Categories of Digital Evidence [inferred]*
+
+---
+
+## 14. Definition of Digital Forensics & The Big Five (Council of Europe)
+
+### Council of Europe Definition of Digital Forensics
+1. Get hold of evidence **without modifying** the IT system in which it is found
+2. Ensure evidence acquired in another medium is **identical to the original**
+3. **Analyse data without modifying it**
+
+### The Big Five – Council of Europe Principles
+
+| Principle | Description |
+|-----------|-------------|
+| **Data integrity** | Evidence must not be altered at any stage |
+| **Chain of custody** | Full, documented record of all evidence handling |
+| **Specialist support** | A digital forensics expert must be involved |
+| **Training** | First responders must be appropriately trained; an untrained person first on the scene (e.g., a bank employee or IT administrator) can inadvertently destroy evidence — some banks have begun providing basic digital forensics training to frontline staff |
+| **Legality** | The person or agency in charge is responsible for ensuring the law and the above principles are adhered to |
+
+> 📎 *Slide reference: `Slides/Vaciago/0_Introduction.pdf`, slide: Big Five – Council of Europe [inferred]*
+
+---
+
+## 15. NIST Standard and ISO 27037
+
+Two key certification references for professional digital forensics practice:
+
+### NIST – Four Phases
+
+| Phase | Description |
+|-------|-------------|
+| **Collection** | Gather relevant data while maintaining forensic soundness |
+| **Examination** | Extract and assess information from the collected data |
+| **Analysis** | Interpret findings to draw conclusions about the incident |
+| **Reporting** | Document results with a clear chain of custody and integrity verification |
+
+The **reporting phase** is particularly important in NIST: presenting evidence clearly — in court or in a corporate context — is a core competency, not an afterthought.
+
+NIST also incorporates a **risk management approach** (absent from ISO 27037): forensic experts working under a court-imposed deadline (e.g., two weeks) must make risk-based decisions about what to analyse in depth. Documenting the trade-off and its rationale is part of NIST compliance.
+
+### ISO 27037
+The primary European/international standard for digital evidence handling. For those wishing to work professionally in digital forensics, certification against ISO 27037 is recommended. Standards serve as "soft law" enabling cross-border professional recognition when formal legal frameworks are insufficient.
+
+*ISO 27037 was not covered in this lecture due to time — to be addressed in subsequent sessions.*
+
+> 📎 *Slide reference: `Slides/Vaciago/0_Introduction.pdf`, slide: NIST & ISO 27037 [inferred]*
+
+---
+
+## 16. CFI – Computer Forensics Italy
+
+The **CFI (Computer Forensics Italy)** newsletter is a community of approximately 1,000–1,500 digital forensics professionals in Italy. Prof. Vaciago recommends following it as a resource for staying current in the Italian digital forensics landscape.
+
+Two well-known Italian practitioners mentioned as examples of effective forensic communication:
+- **Paolo Dalchecco** — works with Mediaset; appears as a forensic commentator
+- **Stefano De Fratepietro** — also publicly known
+
+Their public profiles stem from their ability to explain complex forensic concepts clearly to non-expert audiences — demonstrating that communication skills are as important as technical ones in this field.
+
+> 📎 *Slide reference: `Slides/Vaciago/0_Introduction.pdf`, slide: CFI Community [inferred]*
+
+---
+
 ## Key Concepts & Definitions
 
 | Term | Definition |
@@ -219,10 +371,17 @@ Corporate forensics is growing rapidly because:
 | **COMPAS** | Risk assessment algorithm for recidivism prediction; found to exhibit racial bias |
 | **Lex Machina** | AI tool predicting litigation outcomes by profiling judges; banned in France |
 | **Jurisdiction** | The authority of a legal system over a person, entity, or digital activity |
-| **Cybercrime Convention** | Budapest Convention — the primary international framework for cybercrime law (to be covered in depth) |
+| **Budapest Convention** | The primary international framework for cybercrime law (to be covered in depth) |
 | **Corporate Forensics** | Digital forensic investigations conducted within organisations without formal legal proceedings |
-| **MLAT** | Mutual Legal Assistance Treaty — bilateral/multilateral mechanisms for cross-border legal cooperation |
 | **OSINT** | Open Source Intelligence — gathering information from publicly available sources |
+| **Digital Evidence** | Any information of evidential value, whether memorised or sent in digital format (SWGDE definition) |
+| **SWGDE** | Scientific Working Group for Digital Evidence — body that produced the preferred definition of digital evidence |
+| **Admissibility** | Legal requirement that evidence be gathered lawfully with appropriate legal authority; violated evidence may be excluded under Italian Law 48/2008 |
+| **Proportionality** | Legal requirement that a forensic investigation use only information relevant to the case |
+| **Big Five** | Council of Europe's five principles for digital forensics: data integrity, chain of custody, specialist support, training, legality |
+| **NIST** | US national standard defining the four phases of digital forensics: collection, examination, analysis, reporting |
+| **ISO 27037** | International standard for digital evidence handling; key certification for professional digital forensic practitioners |
+| **CFI** | Computer Forensics Italy — professional community of ~1,000–1,500 Italian digital forensics experts |
 
 ---
 
@@ -232,6 +391,9 @@ Corporate forensics is growing rapidly because:
 - Technology has evolved from being *between us* (tools) → *about us* (data collection) → *in us* (AI decision-making), each stage bringing new legal and forensic challenges.
 - The **jurisdiction problem** is a fundamental issue: digital activity crosses borders while users remain physically in one country.
 - **Legal design** aims to bridge the gap between legal complexity and user comprehension — engineers have a growing role in this process.
-- **Dark patterns** illustrate how technology can be intentionally designed to disadvantage users — relevant to evidence gathering and legal compliance analysis.
-- **GDPR Article 22** establishes a right to human oversight of automated decisions; this has direct implications for AI-assisted forensic analysis.
-- A **false positive** in digital forensics is not just a technical error — it can destroy a person's life; AI tools must be transparent and verifiable.
+- **Dark patterns** illustrate how technology can be intentionally designed to disadvantage users — relevant to evidence gathering and legal compliance.
+- **GDPR Article 22** and Italian law prohibit the **exclusive** use of AI in legal proceedings; meaningful human oversight is required, but defining what is "meaningful" is an open challenge.
+- A **false positive** in digital forensics can destroy a person's life; AI forensic tools must be explainable and verifiable.
+- Digital evidence must be **admissible** (lawfully gathered), **authentic** (untampered), **reliable** (believable to the judge), and **proportional** (limited to what is relevant to the case).
+- The **Big Five** principles (Council of Europe) and the **NIST phases** provide the technical and procedural framework for sound digital forensic practice.
+- **NIST** includes a risk management dimension absent from ISO 27037 — important when working under court-imposed time deadlines.

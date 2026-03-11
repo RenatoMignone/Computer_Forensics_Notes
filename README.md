@@ -26,7 +26,8 @@
 │   ├── Lecture_3_Vaciago.md
 │   ├── Lecture_4_Atzeni.md
 │   ├── Lecture_5_Atzeni.md
-│   └── Lecture_6_Vaciago.md
+│   ├── Lecture_6_Vaciago.md
+│   └── Lecture_7_Atzeni.md
 │
 ├── Chapters_MD/              # Per-chapter notes grouped by topic and professor
 │   ├── Atzeni/
@@ -35,7 +36,9 @@
 │   │   ├── 02_terms.md
 │   │   ├── 03_investigation_phases.md
 │   │   ├── 03b_Forensic-USB-Drive-Acquisition.md
-│   │   └── Digital-Forensics-Case-Study.md
+│   │   ├── Digital-Forensics-Case-Study.md
+│   │   ├── 04_Write-Blocker-Tools.md
+│   │   └── 05_Scene-Assessment-and-Data-Source-Identification.md
 │   └── Vaciago/
 │       ├── 0_Introduction.md
 │       ├── 1_Definition.md
@@ -48,7 +51,8 @@
 │   ├── Lecture_3_Vaciago.txt
 │   ├── Lecture_4_Atzeni.txt
 │   ├── Lecture_5_Atzeni.txt
-│   └── Lecture_6_Vaciago.txt
+│   ├── Lecture_6_Vaciago.txt
+│   └── Lecture_7_Atzeni.txt
 │
 ├── Slides/                   # Official course slide decks
 │   ├── Atzeni/
@@ -57,7 +61,9 @@
 │   │   ├── 02_terms.pdf
 │   │   ├── 03_investigation_phases.pdf
 │   │   ├── 03b_Forensic-USB-Drive-Acquisition.pdf
-│   │   └── Digital-Forensics-Case-Study.pdf
+│   │   ├── Digital-Forensics-Case-Study.pdf
+│   │   ├── 04_Write-Blocker-Tools.pdf
+│   │   └── 05_Scene-Assessment-and-Data-Source-Identification.pdf
 │   └── Vaciago/
 │       ├── 0_Introduction.pdf
 │       ├── 1_Definition.pdf
@@ -80,6 +86,7 @@
 | 2 | [Lecture_2_Atzeni.md](Lectures_MD/Lecture_2_Atzeni.md) | Digital Evidence, Chain of Custody & Data Acquisition | `02_terms.pdf` |
 | 4 | [Lecture_4_Atzeni.md](Lectures_MD/Lecture_4_Atzeni.md) | Investigation Phases – Part I: Identification & Collection | `03_investigation_phases.pdf` |
 | 5 | [Lecture_5_Atzeni.md](Lectures_MD/Lecture_5_Atzeni.md) | Investigation Phases – Part II: Acquisition & Examination | `03_investigation_phases.pdf`, `03b_Forensic-USB-Drive-Acquisition.pdf`, `Digital-Forensics-Case-Study.pdf` |
+| 7 | [Lecture_7_Atzeni.md](Lectures_MD/Lecture_7_Atzeni.md) | Write Blocker Tools & Scene Assessment | `04_Write-Blocker-Tools.pdf`, `05_Scene-Assessment-and-Data-Source-Identification.pdf` |
 
 ### Prof. Vaciago – Legal Track
 
@@ -104,6 +111,8 @@ Chapter notes aggregate content **across multiple lectures** per topic, using th
 | [Chapters_MD/Atzeni/03_investigation_phases.md](Chapters_MD/Atzeni/03_investigation_phases.md) | ✅ Complete | Forensic Investigation Phases (all five) | Lectures 4 & 5 |
 | [Chapters_MD/Atzeni/03b_Forensic-USB-Drive-Acquisition.md](Chapters_MD/Atzeni/03b_Forensic-USB-Drive-Acquisition.md) | ✅ Complete | USB Drive Acquisition – Tools & Procedure | Lecture 5 |
 | [Chapters_MD/Atzeni/Digital-Forensics-Case-Study.md](Chapters_MD/Atzeni/Digital-Forensics-Case-Study.md) | ✅ Complete | Insider IP Exfiltration – End-to-End Case Study | Lecture 5 |
+| [Chapters_MD/Atzeni/04_Write-Blocker-Tools.md](Chapters_MD/Atzeni/04_Write-Blocker-Tools.md) | ✅ Complete | Write Blocker Tools – Hardware, Software & Documentation | Lecture 7 |
+| [Chapters_MD/Atzeni/05_Scene-Assessment-and-Data-Source-Identification.md](Chapters_MD/Atzeni/05_Scene-Assessment-and-Data-Source-Identification.md) | ✅ Complete | Scene Assessment & Data Source Identification | Lecture 7 |
 
 ### Prof. Vaciago – Legal Track
 

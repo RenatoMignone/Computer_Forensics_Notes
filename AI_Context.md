@@ -58,6 +58,7 @@ The project generates two types of structured Markdown notes from raw lecture tr
 | `Lectures_txt/Lecture_2_Atzeni.txt` | Digital Evidence, Chain of Custody & Data Acquisition |
 | `Lectures_txt/Lecture_4_Atzeni.txt` | Investigation Phases – Part I: Identification & Collection |
 | `Lectures_txt/Lecture_5_Atzeni.txt` | Investigation Phases – Part II: Acquisition & Examination |
+| `Lectures_txt/Lecture_7_Atzeni.txt` | Write Blocker Tools & Scene Assessment |
 
 **Slide PDFs** (`Slides/Atzeni/`):
 | File | Topic |
@@ -68,6 +69,8 @@ The project generates two types of structured Markdown notes from raw lecture tr
 | `03_investigation_phases.pdf` | Five investigation phases (Identification → Presentation) |
 | `03b_Forensic-USB-Drive-Acquisition.pdf` | Practical USB acquisition walkthrough |
 | `Digital-Forensics-Case-Study.pdf` | Insider IP exfiltration case study |
+| `04_Write-Blocker-Tools.pdf` | Write blocker tools: hardware, software, documentation requirements |
+| `05_Scene-Assessment-and-Data-Source-Identification.pdf` | Scene assessment, OSINT, data source identification, volatility prioritisation |
 
 ---
 
@@ -112,6 +115,8 @@ Pattern: `[SlidePrefix]_[ShortTitle].md` — mirrors the slide PDF filename
 | `03_investigation_phases.pdf` | Atzeni | Lectures 4 & 5 |
 | `03b_Forensic-USB-Drive-Acquisition.pdf` | Atzeni | Lecture 5 |
 | `Digital-Forensics-Case-Study.pdf` | Atzeni | Lecture 5 |
+| `04_Write-Blocker-Tools.pdf` | Atzeni | Lecture 7 |
+| `05_Scene-Assessment-and-Data-Source-Identification.pdf` | Atzeni | Lecture 7 |
 | `0_Introduction.pdf` | Vaciago | Lecture 3 |
 | `1_Definition.pdf` | Vaciago | Lecture 6 |
 | `2_Cybercrime_Convention.pdf` | Vaciago | Lecture 6 |
@@ -131,23 +136,29 @@ Pattern: `[SlidePrefix]_[ShortTitle].md` — mirrors the slide PDF filename
 | `Lecture_4_Atzeni.md` | ✅ Complete | Investigation Phases – Part I: Identification & Collection |
 | `Lecture_5_Atzeni.md` | ✅ Complete | Investigation Phases – Part II: Acquisition & Examination |
 | `Lecture_6_Vaciago.md` | ✅ Complete | Legal Frameworks: Data Retention, Jurisdiction & Digital Evidence |
+| `Lecture_7_Atzeni.md` | ✅ Complete | Write Blocker Tools & Scene Assessment |
 
 ### `Chapters_MD/Atzeni/` — Atzeni Chapter Notes
 
 | File | Status | Corresponding Slide | Source Lectures |
 |------|--------|---------------------|-----------------|
-| `01_IntroCF.md` | ✅ Complete | `01_introCF.pdf`, `01b_Cybersecurity-History-MorrisWorm.pdf` | Lecture 1 |
-| `02_terms.md` | ❌ Not created | `02_terms.pdf` | Lecture 2 |
-| `03_investigation_phases.md` | ❌ Not created | `03_investigation_phases.pdf`, `03b_Forensic-USB-Drive-Acquisition.pdf`, `Digital-Forensics-Case-Study.pdf` | Lectures 4 & 5 |
+| `01_IntroCF.md` | ✅ Complete | `01_introCF.pdf` | Lecture 1 |
+| `01b_MorrisWorm.md` | ✅ Complete | `01b_Cybersecurity-History-MorrisWorm.pdf` | Lecture 1 |
+| `02_terms.md` | ✅ Complete | `02_terms.pdf` | Lecture 2 |
+| `03_investigation_phases.md` | ✅ Complete | `03_investigation_phases.pdf` | Lectures 4 & 5 |
+| `03b_Forensic-USB-Drive-Acquisition.md` | ✅ Complete | `03b_Forensic-USB-Drive-Acquisition.pdf` | Lecture 5 |
+| `Digital-Forensics-Case-Study.md` | ✅ Complete | `Digital-Forensics-Case-Study.pdf` | Lecture 5 |
+| `04_Write-Blocker-Tools.md` | ✅ Complete | `04_Write-Blocker-Tools.pdf` | Lecture 7 |
+| `05_Scene-Assessment-and-Data-Source-Identification.md` | ✅ Complete | `05_Scene-Assessment-and-Data-Source-Identification.pdf` | Lecture 7 |
 
 ### `Chapters_MD/Vaciago/` — Vaciago Chapter Notes
 
 | File | Status | Corresponding Slide | Source Lectures |
 |------|--------|---------------------|-----------------|
 | `0_Introduction.md` | ✅ Complete | `0_Introduction.pdf` | Lecture 3 |
-| `1_Definition.md` | ❌ Not created | `1_Definition.pdf` | Lecture 6 |
-| `2_Cybercrime_Convention.md` | ❌ Not created | `2_Cybercrime_Convention.pdf` | Lecture 6 |
-| `3_Law_48_08.md` | ❌ Not created | `3_Law_48_08.pdf` | Not yet covered |
+| `1_Definition.md` | ✅ Complete | `1_Definition.pdf` | Lecture 6 |
+| `2_Cybercrime_Convention.md` | ✅ Complete | `2_Cybercrime_Convention.pdf` | Lecture 6 |
+| `3_Law_48_08.md` | ⏳ Placeholder | `3_Law_48_08.pdf` | Not yet covered |
 
 ---
 
@@ -285,17 +296,25 @@ All Markdown files in this project follow a consistent format. New notes must ma
 
 ## Last Updated
 
-**Date:** 2026-03-07  
-**Changes:**
+**Date:** 2026-03-14  
+**Changes (initial session):**
 - Created all 6 `Lectures_MD/` files (Lectures 1–6, both professors)
 - Created `Chapters_MD/Atzeni/01_IntroCF.md` (Chapter 1: Introduction to Computer Forensics)
 - Created `Chapters_MD/Vaciago/0_Introduction.md` (Chapter 0: Technology, Law & Digital Forensics)
 - Created `README.md` (GitHub repository description)
 - Created `AI_Context.md` (this file)
 
+**Changes (follow-up session):**
+- Added `Lectures_txt/Lecture_7_Atzeni.txt` (raw transcript, read-only)
+- Added `Slides/Atzeni/04_Write-Blocker-Tools.pdf` and `Slides/Atzeni/05_Scene-Assessment-and-Data-Source-Identification.pdf`
+- Created `Lectures_MD/Lecture_7_Atzeni.md` (Write Blocker Tools & Scene Assessment)
+- Created `Chapters_MD/Atzeni/04_Write-Blocker-Tools.md`
+- Created `Chapters_MD/Atzeni/05_Scene-Assessment-and-Data-Source-Identification.md`
+- Updated `README.md` to reflect all new files
+- Updated `AI_Context.md` (this file)
+
 **Still pending:**
 - `Chapters_MD/Atzeni/02_terms.md`
-- `Chapters_MD/Atzeni/03_investigation_phases.md`
 - `Chapters_MD/Vaciago/1_Definition.md`
 - `Chapters_MD/Vaciago/2_Cybercrime_Convention.md`
 - `Chapters_MD/Vaciago/3_Law_48_08.md` (slides present; lecture not yet held)

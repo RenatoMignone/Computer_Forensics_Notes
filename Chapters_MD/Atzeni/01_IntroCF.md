@@ -55,6 +55,7 @@ These examples show that the idea of applying systematic, reproducible methods t
 | Early 1900s | Dedicated crime laboratories began to emerge, combining legal, technical, and field expertise |
 
 ### 20th Century Developments
+- **Fingerprints are not unique**: false positives and false negatives are possible; fingerprints can be affected by injuries. This limitation opened the search for more precise identification methods.
 - **DNA profiling** introduced — far more precise than fingerprints; essentially unique per individual.
 - Growth of **specialised forensic units** within police agencies, military organisations, and large corporations.
 - Integration of **artificial intelligence** for rapid sample analysis — always with mandatory human counter-check.
@@ -70,7 +71,7 @@ These examples show that the idea of applying systematic, reproducible methods t
 | **Morris Worm (1988)** | First major computer forensic case; analysis of logs, network traffic, and email |
 | **IACIS founding** | International Association of Computer Investigative Specialists — early body establishing investigative guidelines |
 | **IOCE** | International Organisation on Computer Evidence — developed foundational standards for digital evidence handling |
-| **EnCase tool** | First widely-usable forensic platform providing acquisition, storage, and analysis in one tool |
+| **EnCase tool** | First widely-usable forensic platform providing acquisition, storage, and analysis in one tool; very expensive, but still available in newer versions |
 | **Early 2000s** | Digital forensics became standard in legal proceedings; country-specific legislation enacted |
 | **Mobile & cloud era** | Dramatically changed acquisition methods and expanded the scope of evidence |
 | **Present** | Blockchain, LLMs, quantum cryptography, and highly organised cybercrime add new layers of complexity |
@@ -81,7 +82,6 @@ These examples show that the idea of applying systematic, reproducible methods t
 - Always carried by suspects — contain enormous volumes of personal, location, and communication data
 - Modern operating systems protect data even with user cooperation (full-disk encryption by default)
 - Highly fragmented device ecosystem (hundreds of models, firmware variants)
-- Specialised extraction tools required (e.g., Cellebrite UFED)
 
 **Cloud computing:**
 - Data is **off-device** — cannot be physically seized from the subject's premises
@@ -101,13 +101,14 @@ The field of computer forensics continues to evolve alongside emergent technolog
 
 | Challenge | Description |
 |-----------|-------------|
-| **Encryption** | Full-disk and end-to-end encryption make data inaccessible without keys; live acquisition of RAM may be necessary |
-| **Cloud forensics** | Evidence distributed across multi-tenant infrastructure in multiple jurisdictions |
-| **Mobile forensics** | Fragmented ecosystem; hardware-level encryption; short data retention by carriers |
-| **AI-generated evidence** | Deep fakes, synthetic audio/video; requires new authentication methodologies |
-| **Organised cybercrime** | State-sponsored groups and criminal organisations with resources matching or exceeding law enforcement |
-| **Blockchain** | Pseudonymous but traceable; forensic analysis of transaction graphs and wallet clustering |
-| **Quantum cryptography** | Future threat to current cryptographic assumptions used in forensic hashing and signatures |
+| **Cloud forensics** | Evidence distributed across multi-tenant infrastructure in multiple jurisdictions; provider cooperation required |
+| **Mobile forensics** | Fragmented ecosystem; operating systems protect data even with user cooperation |
+| **Generative AI** | New AI technologies are having a large impact on computer forensics |
+| **Organised cybercrime** | Highly structured groups and criminal organisations with billions in income; units working for states, terrorist organisations, and gangs with tens or hundreds of members |
+| **Blockchain** | Emerging complication for forensic analysis |
+| **Quantum cryptography** | May break existing cryptographic assumptions in the next 10–15 years |
+
+> 📎 *Slide reference: `01_introCF.pdf` — Digital Forensics: Modern Challenges [inferred]*
 
 ---
 

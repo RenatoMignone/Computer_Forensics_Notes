@@ -73,16 +73,14 @@ A recurring and fundamental theme throughout the course:
 
 ### Practical Consequences
 
-- **Criminal investigation**: Italian authorities cannot unilaterally compel a US platform to disclose data. They must rely on formal legal mechanisms (Mutual Legal Assistance Treaties, GDPR transfer provisions, or the US CLOUD Act).
-- **Content moderation**: defamation is a criminal offence in Italy (Article 595 Penal Code) but is broadly protected speech in the US under the First Amendment. A US platform may lawfully host content that is criminal under Italian law.
-- **Data retention**: an Italian court order to preserve data with a US provider may not be legally enforceable without going through MLAT procedures — which can take months.
+- **Criminal investigation**: Italian authorities cannot unilaterally compel a US platform to disclose data. They must rely on formal cross-border legal cooperation mechanisms.
+- **Content moderation**: what is lawful in the US may be illegal under Italian law; a platform governed by US law may host content that an Italian court would prohibit.
+- **Data retention**: cross-border preservation orders may not be enforceable through formal international legal channels — which can take considerable time.
 
 ### Mechanisms Addressing the Jurisdiction Gap
 These will be covered in detail in later chapters:
 - **Budapest Convention, Article 32** — trans-border access to stored computer data
-- **EU Data Retention Directive (and its national implementations)**
-- **MLAT (Mutual Legal Assistance Treaty)** system — formal bilateral/multilateral cooperation framework
-- **US CLOUD Act (2018)** — allows US law enforcement to compel US companies to produce data stored anywhere globally
+- **Formal bilateral/multilateral cooperation frameworks** — the mechanisms through which states can cooperate on cross-border evidence requests
 
 > 📎 *Slide reference: `0_Introduction.pdf` — Jurisdiction Problem*
 
@@ -133,17 +131,9 @@ The lecture walkthrough demonstrated that deleting an Amazon account requires na
 
 This pattern is known as a **"roach motel"**: easy to enter, deliberately difficult to leave.
 
-### Classification of Dark Patterns
-Dark patterns include (but are not limited to):
-- **Roach motel**: easy sign-up, deliberately obfuscated cancellation
-- **Hidden costs**: fees revealed only at the final checkout step
-- **Confirmshaming**: opt-out language designed to make refusal feel negative (e.g., "No thanks, I don't want to save money")
-- **Misdirection**: visually directing attention away from the option the user would prefer
-
 ### Relevance to Digital Forensics
 - Dark patterns create a **technology-law gap** that disadvantages users without technical or legal literacy.
 - In investigations, identifying whether a platform used dark patterns to obtain "consent" can affect the admissibility of data obtained under that consent.
-- Dark patterns may constitute **unfair commercial practices** under EU consumer protection law — forensic documentation of UI flows is sometimes required as evidence.
 
 > 📎 *Slide reference: `0_Introduction.pdf` — Dark Patterns*
 
@@ -178,7 +168,14 @@ This is a textbook **garbage in, garbage out** problem: the algorithm absorbed h
 |------|-------------|
 | **False positive** in forensic analysis | An innocent person may be convicted; AI-assisted forensic tools that produce unexplainable results are dangerous |
 | **Lack of explainability** | Forensic tools must be transparent; SHAP, LIME, or equivalent frameworks provide partial explanation |
-| **Current prohibition** | Generative AI outputs are currently **prohibited in formal legal proceedings** (criminal, civil, labour) because they cannot be sufficiently explained and verified under existing evidentiary standards |
+| **Current rule** | AI cannot be used **exclusively** in digital forensics; GDPR Article 22, the EU AI Act, and Italian law all require **human oversight**; AI can be used only where meaningful human review of its outputs is possible |
+
+### The Human Oversight Challenge
+The practical difficulty is defining what "meaningful" oversight means:
+- If every AI output must be reviewed in full by a human, the efficiency gain is eliminated
+- If oversight is reduced to a single confirmation click, it is meaningless
+
+Finding a verifiable, proportionate oversight methodology — using frameworks such as SHAP or LIME — is an open problem in digital forensics.
 
 > 📎 *Slide reference: `0_Introduction.pdf` — GDPR Article 22 & Automated Decision-Making*
 
@@ -226,6 +223,29 @@ Digital forensics is applied across three distinct legal contexts, each governed
 
 ---
 
+## 9. Terminology – "Digital" vs "Computer" Forensics
+
+Prof. Vaciago uses **"digital forensics"** rather than "computer forensics" throughout, because *computer* describes only one of many devices that can carry digital evidence. The course is titled "Computer Forensics" for historical reasons; both terms are used interchangeably and no conceptual distinction is implied.
+
+---
+
+## 10. Proportionality Principle – Practical Implications
+
+The proportionality principle requires that any forensic investigation be limited to what is strictly relevant to the case. Information uncovered that falls outside the scope of the investigation must be excluded and protected.
+
+### Concrete Examples
+| Scenario | Rule |
+|---------|-----|
+| **During a fraud investigation**, a forensic analyst discovers a suspect's extramarital affair | This information is unrelated to the case and must not be disclosed to the court or used as leverage |
+| **Hiring via social media screening** | Under Article 8 of Law 300/1970 (the Workers' Statute, 1970), an employer who checks a job candidate's social media profile to assess their opinions or character commits a crime (six months to one year imprisonment); only CV information may be assessed |
+| **Credit scoring via social media** | Since 2023, a CCD directive (Consumer Credit Directive) prohibits banks from using social media or open web information to evaluate creditworthiness |
+| **Social scoring risk** | If proportionality is not enforced, unrestricted digital profiling leads to social scoring systems — undermining free expression and fundamental rights |
+| **Excessive evidence strategy (Italy vs US)** | US courts forbid flooding proceedings with unnecessary digital evidence; in Italy, the strategy of submitting terabytes of marginally relevant evidence to cause delays and reach prescription (prescrizione) is observed |
+
+> 📎 *Slide reference: `0_Introduction.pdf` — Proportionality Principle [inferred]*
+
+---
+
 ## Key Concepts & Definitions
 
 | Term | Definition |
@@ -237,12 +257,12 @@ Digital forensics is applied across three distinct legal contexts, each governed
 | **Lex Machina** | AI tool predicting litigation outcomes by profiling judges; banned in France for undermining judicial independence |
 | **Jurisdiction** | The authority of a legal system over a person, entity, or digital activity |
 | **Budapest Convention** | Principal international framework for cybercrime law and cross-border digital evidence cooperation |
-| **MLAT** | Mutual Legal Assistance Treaty — bilateral/multilateral mechanism enabling cross-border legal cooperation |
-| **CLOUD Act** | US Clarifying Lawful Overseas Use of Data Act (2018) — allows US authorities to compel US companies to produce data stored anywhere in the world |
 | **Corporate Forensics** | Digital forensic investigations conducted within organisations prior to or instead of formal legal proceedings |
 | **Roach Motel** | Dark pattern where signing up is easy but cancellation is deliberately obfuscated |
 | **COMPAS bias** | Systematic error in which a risk-assessment algorithm reproduces historical racial inequities from training data |
 | **Garbage in, garbage out** | Principle that a biased or flawed training dataset produces biased or flawed model outputs regardless of methodological rigour |
+| **Proportionality** | Legal requirement that a forensic investigation only use information relevant to the case; irrelevant personal data must be excluded regardless of how it was discovered |
+| **Law 300/1970 Art. 8** | Italian Workers' Statute — prohibits employers from collecting information about a candidate's opinions or personal life (including via social media) when hiring |
 
 ---
 
@@ -254,5 +274,6 @@ Digital forensics is applied across three distinct legal contexts, each governed
 - **Dark patterns** demonstrate how technology deliberately exploits the technology-law gap to the detriment of users — relevant both to evidence gathering and GDPR compliance enforcement.
 - **GDPR Article 22** establishes a right to human oversight of automated consequential decisions; its application to forensic AI tools means such tools must be explainable and verifiable.
 - The **COMPAS** case shows that algorithmic bias at scale is more dangerous than individual human bias — it is reproducible, systematic, and laundered through the apparent objectivity of mathematics.
-- Current generative AI tools are **prohibited in formal legal proceedings** due to insufficient explainability.
+- AI cannot be used **exclusively** in digital forensics; GDPR Article 22, the EU AI Act, and Italian law require human oversight — but that oversight cannot be reduced to a formality.
+- The **proportionality principle** limits forensic investigations to what is relevant; violations (e.g., disclosing an extramarital affair found during a fraud investigation, or screening job candidates via social media) carry legal consequences including criminal liability under Italian law.
 - Digital forensics operates across three domains — criminal, civil, corporate — each with distinct rules, actors, and evidentiary standards.

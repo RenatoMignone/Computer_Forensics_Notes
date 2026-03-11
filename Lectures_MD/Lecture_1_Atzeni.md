@@ -30,12 +30,22 @@ The two parts are thematically linked and reflect the entanglement of technical 
 
 ### Optional Homework
 - Maximum **1 homework per student**, individually assigned.
+- Prof. Atzeni accepts **at most 10 students** for homework due to presentation time constraints.
 - Output: a **10–20 page report** + **10–15 minute presentation** during lecture hours.
 - Earns **0–2 bonus points** added to the written exam result.
-- Topics must be agreed upon with Prof. Atzeni.
-- Presentation must occur *after* the course covers the relevant topic.
+- Topics must be agreed upon with Prof. Atzeni; homework topics can be scheduled early in the course.
+- Presentation must occur *after* the course covers the relevant topic (e.g., file system forensics homework must be presented after that topic has been covered in class).
 
-> 📎 *Slide reference: `Slides/Atzeni/01_introCF.pdf`, slide: Course Introduction*
+### Oral Test
+- **Very optional**: only used when evaluators are in doubt about a student's understanding.
+- Held only twice in the previous academic year; not a standard part of the evaluation.
+- Under normal circumstances the written exam, optional labs, and optional homework constitute the full evaluation.
+
+### Contact & Email Convention
+- Email is the primary channel for questions, topic proposals, and thesis enquiries.
+- **Include a course identifier** in the subject line — this allows Prof. Atzeni to locate course-related emails quickly in a busy inbox and respond sooner.
+
+> 📎 *Slide reference: `Slides/Atzeni/01_introCF.pdf` — Course Introduction [inferred]*
 
 ---
 
@@ -87,6 +97,8 @@ The concept of forensic investigation is approximately **4,000 years old**:
 - **Babylon** (~2000 BCE): fingerprints used to identify individuals in business transactions.
 - **Xi Yuan Ji Lu** (China, Song Dynasty): a physician provided a structured methodology to distinguish between drowning and strangulation, used to resolve a murder case. The title translates poetically as *"Washing Away of Wrongs."*
 
+> 📎 *Slide reference: `Slides/Atzeni/01_introCF.pdf` — History of Forensics: Ancient Origins [inferred]*
+
 ### 19th Century Milestones
 | Year | Event |
 |------|-------|
@@ -95,12 +107,15 @@ The concept of forensic investigation is approximately **4,000 years old**:
 | Late 1800s | Sir Francis Galton – collected thousands of fingerprints; classified patterns as spirals, loops, and arches |
 | Early 1900s | Crime labs began to emerge, combining legal, technical, and field expertise |
 
-### 20th Century Developments
-- **DNA profiling** introduced – far more precise than fingerprints (essentially unique per individual)
-- Growth of **specialised forensic units** within police, military, and large organisations
-- Integration of **artificial intelligence** for rapid sample analysis (with mandatory human counter-check)
+> 📎 *Slide reference: `Slides/Atzeni/01_introCF.pdf` — History of Forensics: 19th Century [inferred]*
 
-> 📎 *Slide reference: `Slides/Atzeni/01_introCF.pdf`, slides: History of Forensics*
+### 20th Century Developments
+- **Fingerprints are not unique**: false positives and false negatives are possible; fingerprints can also be affected by injuries. This limitation opened the search for more precise identification methods.
+- **DNA profiling** introduced – far more precise than fingerprints; essentially unique per individual.
+- Growth of **specialised forensic units** within police, military, and large organisations.
+- Integration of **artificial intelligence** for rapid sample analysis (with mandatory human counter-check).
+
+> 📎 *Slide reference: `Slides/Atzeni/01_introCF.pdf` — History of Forensics: 20th Century [inferred]*
 
 ---
 
@@ -111,7 +126,7 @@ The concept of forensic investigation is approximately **4,000 years old**:
 | **Morris Worm (1988/1989)** | First major computer forensic case; involved analysis of logs, network traffic, and email |
 | **IACIS founding** | International Association of Computer Investigative Specialists – early body establishing guidelines |
 | **IOCE** | International Organisation on Computer Evidence – developed foundational standards |
-| **EnCase tool** | First widely-usable forensic tool providing acquisition, storage, and analysis in one platform |
+| **EnCase tool** | First widely-usable forensic tool providing acquisition, storage, and analysis in one platform; very expensive, but still available today in newer versions |
 | **Early 2000s** | Digital forensics became standard in legal proceedings; country-specific laws were enacted |
 | **Mobile & cloud era** | Dramatically changed acquisition methods and evidence scope |
 | **Present** | Blockchain, LLMs, quantum cryptography, and highly organised cybercrime add new complexity |
@@ -129,9 +144,11 @@ The concept of forensic investigation is approximately **4,000 years old**:
 > 📎 *Slide reference: `Slides/Atzeni/01b_Cybersecurity-History-MorrisWorm.pdf`*
 
 ### Context
-The Morris Worm (November 1988) is considered the **first major cybersecurity attack** and the **first significant computer forensic case**. It was created by **Robert Tappan Morris**, a graduate student at Cornell University and son of NSA cryptographer Robert Morris Sr.
+The Morris Worm (November 1988) is considered the **first major cybersecurity attack** and the **first significant computer forensic case**. It was created by **Robert Tappan Morris**, a graduate student at a prestigious US university and son of NSA cryptographer Robert Morris.
 
 Morris's stated intent was to *test* whether a self-propagating network worm was feasible — not to cause damage. The worm was released onto the ARPANET (the precursor to the internet), which at the time primarily connected US universities.
+
+> 📎 *Slide reference: `Slides/Atzeni/01b_Cybersecurity-History-MorrisWorm.pdf` — Context and Background [inferred]*
 
 ### Technical Details
 - Target system: **Unix BSD 4** (written in C)
@@ -167,14 +184,18 @@ This small probability, combined with exponential propagation across a densely c
 ### Legal Outcome
 Robert Tappan Morris was convicted under the **Computer Fraud and Abuse Act (CFAA)** — one of its earliest federal applications in US history:
 - 3 years' probation
-- 400 hours community service
-- $10,050 fine
+- 100 hours community service
+- $10,000 fine
+
+> 📎 *Slide reference: `Slides/Atzeni/01b_Cybersecurity-History-MorrisWorm.pdf` — Legal Outcome [inferred]*
 
 ### Lasting Impact
 1. **First CERT** (Computer Emergency Response Team) established at Carnegie Mellon University, funded by DARPA
 2. **Computer Fraud and Abuse Act** applied in a digital context for one of the first times
-3. **Popular culture**: referenced in several books; inspired the TV series *Mr. Robot*
-4. **Monoculture risk**: because all infected systems shared the same architecture and vulnerabilities, a single exploit could cascade globally — a lesson still relevant today
+3. **Popular culture**: referenced in several books
+4. **Monoculture risk**: all infected systems shared the same architecture and vulnerabilities, so a single exploit cascaded globally — a principle that applies to computer science, biology, and culture broadly
+
+> 📎 *Slide reference: `Slides/Atzeni/01b_Cybersecurity-History-MorrisWorm.pdf` — Lasting Impact [inferred]*
 
 ---
 

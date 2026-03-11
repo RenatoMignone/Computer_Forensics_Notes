@@ -41,10 +41,9 @@ The goal is to understand the **underlying concepts**, not to memorise a specifi
 | Standard | Notes |
 |----------|-------|
 | **ACPO Guidelines (UK)** | Highly influential historically; shaped investigations worldwide |
-| **NIST SP 800-86** | Open-source, freely accessible; 4-phase model: Collection, Examination, Analysis, Reporting |
-| **ISO/IEC 27037** | Structured but sometimes less practically useful; requires paid access |
+| **NIST SP 800-86** | Open-source, freely accessible; 4-phase model: Collection, Examination, Analysis, Reporting. Prof. Atzeni's preferred family — free access enables open debate and proposed improvements |
+| **ISO/IEC 27037** | Structured but less practically useful; requires paid access — limits open debate |
 | **Mobile Forensics Standards** | Specific standards for mobile device acquisition |
-| **SWGDE Guidelines** | Scientific Working Group for Digital Evidence |
 
 > 📎 *Slide reference: `Slides/Atzeni/03_investigation_phases.pdf`, slide: Forensic Standards*
 
@@ -187,10 +186,8 @@ Modern mobile devices support **remote wiping** — the ability to erase all con
 
 ### Physical Handling of Evidence
 Different physical media require different handling:
-- **Magnetic drives**: shield from strong magnetic fields (can alter stored bits)
-- **SSDs / NAND flash**: less susceptible to magnetic damage, but sensitive to electrical discharge
-- **Optical media (CD/DVD/Blu-ray)**: do not touch the reflective surface; fingerprints reduce optical readability
-- **RAM modules**: optionally place in a **cryogenic container** (at approx. −196°C) to preserve transistor charge and allow later extraction of RAM content in the lab
+- **Magnetic drives**: shield from strong magnetic fields — strong fields can partially alter or erase stored bits
+- **RAM modules**: place in a **cryogenic container** (below approximately −200°C) to preserve the charge of the transistor cells and allow later extraction of RAM content in the lab
 
 ### Chain of Custody – Starting the Record
 At the beginning of the collection phase, the **chain of custody record** must be initiated and maintained continuously:
