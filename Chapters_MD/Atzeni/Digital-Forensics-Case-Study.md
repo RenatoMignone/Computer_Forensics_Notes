@@ -1,7 +1,10 @@
 # Digital Forensics Case Study – Insider IP Exfiltration
 **Professor:** Atzeni  
-**Reference Slides:** [`Slides/Atzeni/Digital-Forensics-Case-Study.pdf`]  
-**Covered in Lectures:** Lecture 5
+**Reference Slides:**
+- [`Slides/Atzeni/Digital-Forensics-Case-Study.pdf`]
+- [`Slides/Atzeni/Digital-Forensics-Case-Study_partial.pdf`]
+
+**Covered in Lectures:** Lecture 5, Lecture 8
 
 ---
 
@@ -159,6 +162,88 @@ dc3dd if=/dev/sdb hof=/media/forensic_drive/LP0342_disk.dd \
 
 ---
 
+## Lecture 8 Debrief: Named Scenario, Prefetch Analysis & Investigative Conclusions
+
+*The following content is drawn from the Lecture 8 workshop and debrief session, in which Prof. Atzeni walked through one detailed reconstruction of the case study.*
+
+### Named Scenario
+
+| Element | Detail |
+|---------|--------|
+| **Victim organisation** | Shockwave Analytics — specialises in predictive threat detection tools for the finance sector |
+| **Central asset** | Project Triton — a machine learning engine representing a significant competitive advantage |
+| **Triggering event** | Competitor Basel Core System announced a new product with architectural similarities to Project Triton far beyond coincidence |
+| **Suspect** | John Matthews — senior software engineer at Shockwave Analytics |
+
+### Windows Prefetch Files
+
+**Prefetch files** are created by Windows to speed up application startup by pre-loading dependencies into memory. They are a key forensic artefact because they persist after the executable is deleted and record execution history, timestamps, and volume information.
+
+- **Location**: `C:\Windows\Prefetch\`
+- **Naming format**: `[PROGRAMNAME]-[HASH].pf` — the hash is derived from the full **executable path**
+- **Forensic content**:
+
+| Field | Forensic Value |
+|-------|----------------|
+| **Executable name** | Identifies which program was run |
+| **Execution count** | Number of launches |
+| **Last run timestamp** | Primary timeline artefact |
+| **Up to 8 recent timestamps** | Available in more recent Windows versions; enables finer reconstruction |
+| **Dependency list** | Files accessed at startup |
+| **Volume information** | Identifies the drive the executable was launched from — can reveal execution from a USB drive |
+
+- A prefetch file **persists after the executable is deleted**, providing evidence of tool use even when the tool has been removed
+- Volume information can confirm whether a tool was run from an **external USB drive**, a common attacker pattern to avoid leaving executables on the host
+
+> 📎 *Slide reference: `Digital-Forensics-Case-Study_partial.pdf` — Prefetch Files*
+
+### Detailed Timeline
+
+#### Pre-Exfiltration Phase
+
+| Event | Evidence Source | Interpretation |
+|-------|----------------|----------------|
+| John searches for external job opportunities | Laptop image — browser history | Establishes motivation and window of opportunity |
+| John searches for "non-compete enforceability" | Laptop image — browser history | Researching legal consequences of joining a competitor |
+| John submits formal resignation | HR records | Notice period begins — access still active |
+
+#### Reconnaissance and Testing
+
+| Date | Event | Evidence Source | Interpretation |
+|------|-------|----------------|----------------|
+| **8 March** | Unusual system access at after-work hours | Access logs | Anomalous timing |
+| **8 March** | Prefetch entry for `7zfm.exe` (7-Zip File Manager) created | Windows Prefetch | Testing compression tool — no actual compression; interpreted as a dry run |
+
+#### Exfiltration Phase
+
+| Event | Evidence Source | Interpretation |
+|-------|----------------|----------------|
+| **10 March** — large USB drive connected | USB / Windows device logs | First insertion of the exfiltration device |
+| **10 March** — operations on Project Triton on file server | File server logs | Access and staging of target IP |
+| **10 March** — suspect folder created | File server / laptop file system | Staging artefact — itself forensic evidence |
+| Encrypted archive created | Prefetch, MFT of NTFS, Windows registry | Project Triton data compressed and encrypted |
+| John searches "how to send large email with Gmail" | Laptop image — browser history | Researching email exfiltration channel |
+| Archive copied to USB drive | USB logs, file system | First exfiltration channel |
+| Archive sent to personal Gmail | Firewall logs, email server logs | Second exfiltration channel — redundant |
+| Just after midnight — firewall flags large outbound transfer (multiple gigabytes) | Firewall logs | Anomalous traffic volume; content encrypted but volume is suspicious |
+| `eraser.exe` run | Windows Prefetch | Attempted anti-forensic trace deletion — unsuccessful |
+
+### Investigative Conclusions
+
+| Question | Conclusion |
+|----------|------------|
+| **Who** | John Matthews, acting alone — no Basal Core log evidence, no malware, no C2 connections, all artefacts point to John's user profile |
+| **Where** | Physically present at company premises after working hours |
+| **When** | Two-day window in John's final work week; pre-reconnaissance (job searches, resignation) extends earlier |
+| **How** | Staged locally → compressed and encrypted with 7-Zip → exfiltrated via USB drive and personal Gmail |
+| **Why** | Financial motivation and career advancement — better salary at competitor |
+
+The attempt to destroy evidence using `eraser.exe` constitutes **consciousness of guilt** — it demonstrates awareness of wrongdoing and a deliberate effort to conceal it, which is itself legally significant.
+
+> 📎 *Slide reference: `Digital-Forensics-Case-Study_partial.pdf` — Timeline & Conclusions*
+
+---
+
 ## Key Concepts & Definitions
 
 | Term | Definition |
@@ -169,6 +254,11 @@ dc3dd if=/dev/sdb hof=/media/forensic_drive/LP0342_disk.dd \
 | **Staging Directory** | A temporary local directory used by the suspect to gather files before exfiltration; its creation and use is itself forensic evidence |
 | **`usbstor` Registry Key** | Windows registry path that records every USB storage device ever connected, including device serial number and timestamps |
 | **Legal Hold** | Preservation order directing that data be retained without modification or deletion pending litigation or investigation |
+| **Prefetch file** | Windows performance file recording application execution details; persists after executable deletion; stored in `C:\Windows\Prefetch\`; contains execution counts, timestamps, volume information, and dependency lists |
+| **7zfm.exe** | 7-Zip File Manager executable; used to compress and encrypt the exfiltrated archive |
+| **eraser.exe** | Secure deletion tool run as an attempted anti-forensic measure; unsuccessful — traces remained in prefetch, MFT, Windows registry, and firewall logs |
+| **Consciousness of guilt** | Legal concept: deliberate post-crime attempts to destroy evidence are themselves indicative of knowing wrongdoing |
+| **Anti-forensics** | Techniques used to hinder forensic investigation; in this case: file deletion and use of `eraser.exe` |
 
 ---
 
@@ -180,3 +270,7 @@ dc3dd if=/dev/sdb hof=/media/forensic_drive/LP0342_disk.dd \
 - The **timeline was internally consistent** across three independent evidence sources with negligible clock skew, making it robust against legal challenge.
 - The **three-version report structure** (technical / legal / executive) is essential for ensuring findings are communicated appropriately to each stakeholder.
 - **Remediation** (departing employee access controls, elevated IT monitoring, BitLocker key escrow) was derived directly from the investigation's findings — forensic investigations should always inform defensive improvements.
+- **Windows Prefetch files** are a key artefact class: they persist after deletion of the tools they reference and can reveal execution from external USB drives via volume information.
+- The Shockwave Analytics debrief (Lecture 8) established John Matthews as the sole actor — external involvement, malware, and proxy scenarios were all ruled out on the basis of log evidence.
+- The use of two redundant exfiltration channels (USB + personal Gmail) doubled the available forensic evidence instead of concealing the activity.
+- Attempted trace deletion with `eraser.exe` failed across multiple artefact classes and constitutes **consciousness of guilt** — a legally significant indicator of intentional wrongdoing.

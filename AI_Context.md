@@ -59,6 +59,7 @@ The project generates two types of structured Markdown notes from raw lecture tr
 | `Lectures_txt/Lecture_4_Atzeni.txt` | Investigation Phases – Part I: Identification & Collection |
 | `Lectures_txt/Lecture_5_Atzeni.txt` | Investigation Phases – Part II: Acquisition & Examination |
 | `Lectures_txt/Lecture_7_Atzeni.txt` | Write Blocker Tools & Scene Assessment |
+| `Lectures_txt/Lecture_8_Atzeni.txt` | Digital Forensics Case Study: Debrief & Prefetch Analysis |
 
 **Slide PDFs** (`Slides/Atzeni/`):
 | File | Topic |
@@ -69,6 +70,7 @@ The project generates two types of structured Markdown notes from raw lecture tr
 | `03_investigation_phases.pdf` | Five investigation phases (Identification → Presentation) |
 | `03b_Forensic-USB-Drive-Acquisition.pdf` | Practical USB acquisition walkthrough |
 | `Digital-Forensics-Case-Study.pdf` | Insider IP exfiltration case study |
+| `Digital-Forensics-Case-Study_partial.pdf` | Extended case study: named scenario, prefetch analysis, detailed timeline (Lecture 8) |
 | `04_Write-Blocker-Tools.pdf` | Write blocker tools: hardware, software, documentation requirements |
 | `05_Scene-Assessment-and-Data-Source-Identification.pdf` | Scene assessment, OSINT, data source identification, volatility prioritisation |
 
@@ -115,6 +117,7 @@ Pattern: `[SlidePrefix]_[ShortTitle].md` — mirrors the slide PDF filename
 | `03_investigation_phases.pdf` | Atzeni | Lectures 4 & 5 |
 | `03b_Forensic-USB-Drive-Acquisition.pdf` | Atzeni | Lecture 5 |
 | `Digital-Forensics-Case-Study.pdf` | Atzeni | Lecture 5 |
+| `Digital-Forensics-Case-Study_partial.pdf` | Atzeni | Lecture 8 |
 | `04_Write-Blocker-Tools.pdf` | Atzeni | Lecture 7 |
 | `05_Scene-Assessment-and-Data-Source-Identification.pdf` | Atzeni | Lecture 7 |
 | `0_Introduction.pdf` | Vaciago | Lecture 3 |
@@ -137,6 +140,7 @@ Pattern: `[SlidePrefix]_[ShortTitle].md` — mirrors the slide PDF filename
 | `Lecture_5_Atzeni.md` | ✅ Complete | Investigation Phases – Part II: Acquisition & Examination |
 | `Lecture_6_Vaciago.md` | ✅ Complete | Legal Frameworks: Data Retention, Jurisdiction & Digital Evidence |
 | `Lecture_7_Atzeni.md` | ✅ Complete | Write Blocker Tools & Scene Assessment |
+| `Lecture_8_Atzeni.md` | ✅ Complete | Digital Forensics Case Study: Debrief & Prefetch Analysis |
 
 ### `Chapters_MD/Atzeni/` — Atzeni Chapter Notes
 
@@ -147,7 +151,7 @@ Pattern: `[SlidePrefix]_[ShortTitle].md` — mirrors the slide PDF filename
 | `02_terms.md` | ✅ Complete | `02_terms.pdf` | Lecture 2 |
 | `03_investigation_phases.md` | ✅ Complete | `03_investigation_phases.pdf` | Lectures 4 & 5 |
 | `03b_Forensic-USB-Drive-Acquisition.md` | ✅ Complete | `03b_Forensic-USB-Drive-Acquisition.pdf` | Lecture 5 |
-| `Digital-Forensics-Case-Study.md` | ✅ Complete | `Digital-Forensics-Case-Study.pdf` | Lecture 5 |
+| `Digital-Forensics-Case-Study.md` | ✅ Complete | `Digital-Forensics-Case-Study.pdf`, `Digital-Forensics-Case-Study_partial.pdf` | Lectures 5 & 8 |
 | `04_Write-Blocker-Tools.md` | ✅ Complete | `04_Write-Blocker-Tools.pdf` | Lecture 7 |
 | `05_Scene-Assessment-and-Data-Source-Identification.md` | ✅ Complete | `05_Scene-Assessment-and-Data-Source-Identification.pdf` | Lecture 7 |
 
@@ -296,7 +300,7 @@ All Markdown files in this project follow a consistent format. New notes must ma
 
 ## Last Updated
 
-**Date:** 2026-03-14  
+**Date:** 2026-03-12  
 **Changes (initial session):**
 - Created all 6 `Lectures_MD/` files (Lectures 1–6, both professors)
 - Created `Chapters_MD/Atzeni/01_IntroCF.md` (Chapter 1: Introduction to Computer Forensics)
@@ -311,6 +315,13 @@ All Markdown files in this project follow a consistent format. New notes must ma
 - Created `Chapters_MD/Atzeni/04_Write-Blocker-Tools.md`
 - Created `Chapters_MD/Atzeni/05_Scene-Assessment-and-Data-Source-Identification.md`
 - Updated `README.md` to reflect all new files
+- Updated `AI_Context.md` (this file)
+
+**Changes (Lecture 8 session):**
+- Added `Lectures_txt/Lecture_8_Atzeni.txt` (raw transcript, read-only)
+- Added `Slides/Atzeni/Digital-Forensics-Case-Study_partial.pdf`
+- Created `Lectures_MD/Lecture_8_Atzeni.md` (Digital Forensics Case Study: Debrief & Prefetch Analysis)
+- Updated `Chapters_MD/Atzeni/Digital-Forensics-Case-Study.md` to add Lecture 8 content (named scenario, prefetch files, detailed timeline, investigative conclusions, extended Key Concepts and Summary)
 - Updated `AI_Context.md` (this file)
 
 **Still pending:**
