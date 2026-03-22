@@ -1,0 +1,19 @@
+# Ignore lecture processing folders and temporary files in Script/
+Script/*
+!Script/script.sh
+!Script/.gitkeep
+
+# Ignore OS-specific files
+.DS_Store
+Thumbs.db
+
+# Ignore editor/IDE specific files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Ignore temporary files
+*.tmp
+*.temp
