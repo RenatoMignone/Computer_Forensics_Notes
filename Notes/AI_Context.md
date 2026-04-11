@@ -54,12 +54,12 @@ The project generates two types of structured Markdown notes from raw lecture tr
 **Lectures:**
 | File | Topic |
 |------|-------|
-| `Lectures_txt/Lecture_1_Atzeni.txt` | Introduction to Computer Forensics & the Morris Worm |
-| `Lectures_txt/Lecture_2_Atzeni.txt` | Digital Evidence, Chain of Custody & Data Acquisition |
-| `Lectures_txt/Lecture_4_Atzeni.txt` | Investigation Phases – Part I: Identification & Collection |
-| `Lectures_txt/Lecture_5_Atzeni.txt` | Investigation Phases – Part II: Acquisition & Examination |
-| `Lectures_txt/Lecture_7_Atzeni.txt` | Write Blocker Tools & Scene Assessment |
-| `Lectures_txt/Lecture_8_Atzeni.txt` | Digital Forensics Case Study: Debrief & Prefetch Analysis |
+| `Lectures_txt/Lecture_01_Atzeni.txt` | Introduction to Computer Forensics & the Morris Worm |
+| `Lectures_txt/Lecture_02_Atzeni.txt` | Digital Evidence, Chain of Custody & Data Acquisition |
+| `Lectures_txt/Lecture_04_Atzeni.txt` | Investigation Phases – Part I: Identification & Collection |
+| `Lectures_txt/Lecture_05_Atzeni.txt` | Investigation Phases – Part II: Acquisition & Examination |
+| `Lectures_txt/Lecture_07_Atzeni.txt` | Write Blocker Tools & Scene Assessment |
+| `Lectures_txt/Lecture_08_Atzeni.txt` | Digital Forensics Case Study: Debrief & Prefetch Analysis |
 
 **Slide PDFs** (`Slides/Atzeni/`):
 | File | Topic |
@@ -70,7 +70,7 @@ The project generates two types of structured Markdown notes from raw lecture tr
 | `03_investigation_phases.pdf` | Five investigation phases (Identification → Presentation) |
 | `03b_Forensic-USB-Drive-Acquisition.pdf` | Practical USB acquisition walkthrough |
 | `Digital-Forensics-Case-Study.pdf` | Insider IP exfiltration case study |
-| `Digital-Forensics-Case-Study_partial.pdf` | Extended case study: named scenario, prefetch analysis, detailed timeline (Lecture 8) |
+| `Digital-Forensics-Case-Study_partial.pdf` | Extended case study: named scenario, prefetch analysis, detailed timeline (Lecture 08) |
 | `04_Write-Blocker-Tools.pdf` | Write blocker tools: hardware, software, documentation requirements |
 | `05_Scene-Assessment-and-Data-Source-Identification.pdf` | Scene assessment, OSINT, data source identification, volatility prioritisation |
 
@@ -81,8 +81,8 @@ The project generates two types of structured Markdown notes from raw lecture tr
 **Lectures:**
 | File | Topic |
 |------|-------|
-| `Lectures_txt/Lecture_3_Vaciago.txt` | Legal Introduction: Technology, Law & Digital Forensics |
-| `Lectures_txt/Lecture_6_Vaciago.txt` | Legal Frameworks: Data Retention, Jurisdiction & Digital Evidence |
+| `Lectures_txt/Lecture_03_Vaciago.txt` | Legal Introduction: Technology, Law & Digital Forensics |
+| `Lectures_txt/Lecture_06_Vaciago.txt` | Legal Frameworks: Data Retention, Jurisdiction & Digital Evidence |
 
 **Slide PDFs** (`Slides/Vaciago/`):
 | File | Topic |
@@ -97,10 +97,10 @@ The project generates two types of structured Markdown notes from raw lecture tr
 ## Naming Conventions
 
 ### Lecture files (`Lectures_txt/` and `Lectures_MD/`)
-Pattern: `Lecture_[N]_[Professor].txt` / `.md`
+Pattern: `Lecture_[NN]_[Professor].txt` / `.md`
 - `[N]` = sequential lecture number (globally across both professors)
 - `[Professor]` = `Atzeni` or `Vaciago`
-- Example: `Lecture_4_Atzeni.txt` = 4th lecture of the course, delivered by Atzeni
+- Example: `Lecture_04_Atzeni.txt` = 4th lecture of the course, delivered by Atzeni
 
 ### Chapter files (`Chapters_MD/`)
 Pattern: `[SlidePrefix]_[ShortTitle].md` — mirrors the slide PDF filename
@@ -111,18 +111,18 @@ Pattern: `[SlidePrefix]_[ShortTitle].md` — mirrors the slide PDF filename
 ### Slide → Lecture mapping (current)
 | Slide PDF | Professor | Used In |
 |-----------|-----------|---------|
-| `01_introCF.pdf` | Atzeni | Lecture 1 |
-| `01b_Cybersecurity-History-MorrisWorm.pdf` | Atzeni | Lecture 1 |
-| `02_terms.pdf` | Atzeni | Lecture 2 |
+| `01_introCF.pdf` | Atzeni | Lecture 01 |
+| `01b_Cybersecurity-History-MorrisWorm.pdf` | Atzeni | Lecture 01 |
+| `02_terms.pdf` | Atzeni | Lecture 02 |
 | `03_investigation_phases.pdf` | Atzeni | Lectures 4 & 5 |
-| `03b_Forensic-USB-Drive-Acquisition.pdf` | Atzeni | Lecture 5 |
-| `Digital-Forensics-Case-Study.pdf` | Atzeni | Lecture 5 |
-| `Digital-Forensics-Case-Study_partial.pdf` | Atzeni | Lecture 8 |
-| `04_Write-Blocker-Tools.pdf` | Atzeni | Lecture 7 |
-| `05_Scene-Assessment-and-Data-Source-Identification.pdf` | Atzeni | Lecture 7 |
-| `0_Introduction.pdf` | Vaciago | Lecture 3 |
-| `1_Definition.pdf` | Vaciago | Lecture 6 |
-| `2_Cybercrime_Convention.pdf` | Vaciago | Lecture 6 |
+| `03b_Forensic-USB-Drive-Acquisition.pdf` | Atzeni | Lecture 05 |
+| `Digital-Forensics-Case-Study.pdf` | Atzeni | Lecture 05 |
+| `Digital-Forensics-Case-Study_partial.pdf` | Atzeni | Lecture 08 |
+| `04_Write-Blocker-Tools.pdf` | Atzeni | Lecture 07 |
+| `05_Scene-Assessment-and-Data-Source-Identification.pdf` | Atzeni | Lecture 07 |
+| `0_Introduction.pdf` | Vaciago | Lecture 03 |
+| `1_Definition.pdf` | Vaciago | Lecture 06 |
+| `2_Cybercrime_Convention.pdf` | Vaciago | Lecture 06 |
 | `3_Law_48_08.pdf` | Vaciago | Not yet covered |
 
 ---
@@ -133,35 +133,35 @@ Pattern: `[SlidePrefix]_[ShortTitle].md` — mirrors the slide PDF filename
 
 | File | Status | Topic |
 |------|--------|-------|
-| `Lecture_1_Atzeni.md` | ✅ Complete | Introduction to Computer Forensics & the Morris Worm |
-| `Lecture_2_Atzeni.md` | ✅ Complete | Digital Evidence, Chain of Custody & Data Acquisition |
-| `Lecture_3_Vaciago.md` | ✅ Complete | Legal Introduction: Technology, Law & Digital Forensics |
-| `Lecture_4_Atzeni.md` | ✅ Complete | Investigation Phases – Part I: Identification & Collection |
-| `Lecture_5_Atzeni.md` | ✅ Complete | Investigation Phases – Part II: Acquisition & Examination |
-| `Lecture_6_Vaciago.md` | ✅ Complete | Legal Frameworks: Data Retention, Jurisdiction & Digital Evidence |
-| `Lecture_7_Atzeni.md` | ✅ Complete | Write Blocker Tools & Scene Assessment |
-| `Lecture_8_Atzeni.md` | ✅ Complete | Digital Forensics Case Study: Debrief & Prefetch Analysis |
+| `Lecture_01_Atzeni.md` | ✅ Complete | Introduction to Computer Forensics & the Morris Worm |
+| `Lecture_02_Atzeni.md` | ✅ Complete | Digital Evidence, Chain of Custody & Data Acquisition |
+| `Lecture_03_Vaciago.md` | ✅ Complete | Legal Introduction: Technology, Law & Digital Forensics |
+| `Lecture_04_Atzeni.md` | ✅ Complete | Investigation Phases – Part I: Identification & Collection |
+| `Lecture_05_Atzeni.md` | ✅ Complete | Investigation Phases – Part II: Acquisition & Examination |
+| `Lecture_06_Vaciago.md` | ✅ Complete | Legal Frameworks: Data Retention, Jurisdiction & Digital Evidence |
+| `Lecture_07_Atzeni.md` | ✅ Complete | Write Blocker Tools & Scene Assessment |
+| `Lecture_08_Atzeni.md` | ✅ Complete | Digital Forensics Case Study: Debrief & Prefetch Analysis |
 
 ### `Chapters_MD/Atzeni/` — Atzeni Chapter Notes
 
 | File | Status | Corresponding Slide | Source Lectures |
 |------|--------|---------------------|-----------------|
-| `01_IntroCF.md` | ✅ Complete | `01_introCF.pdf` | Lecture 1 |
-| `01b_MorrisWorm.md` | ✅ Complete | `01b_Cybersecurity-History-MorrisWorm.pdf` | Lecture 1 |
-| `02_terms.md` | ✅ Complete | `02_terms.pdf` | Lecture 2 |
+| `01_IntroCF.md` | ✅ Complete | `01_introCF.pdf` | Lecture 01 |
+| `01b_MorrisWorm.md` | ✅ Complete | `01b_Cybersecurity-History-MorrisWorm.pdf` | Lecture 01 |
+| `02_terms.md` | ✅ Complete | `02_terms.pdf` | Lecture 02 |
 | `03_investigation_phases.md` | ✅ Complete | `03_investigation_phases.pdf` | Lectures 4 & 5 |
-| `03b_Forensic-USB-Drive-Acquisition.md` | ✅ Complete | `03b_Forensic-USB-Drive-Acquisition.pdf` | Lecture 5 |
+| `03b_Forensic-USB-Drive-Acquisition.md` | ✅ Complete | `03b_Forensic-USB-Drive-Acquisition.pdf` | Lecture 05 |
 | `Digital-Forensics-Case-Study.md` | ✅ Complete | `Digital-Forensics-Case-Study.pdf`, `Digital-Forensics-Case-Study_partial.pdf` | Lectures 5 & 8 |
-| `04_Write-Blocker-Tools.md` | ✅ Complete | `04_Write-Blocker-Tools.pdf` | Lecture 7 |
-| `05_Scene-Assessment-and-Data-Source-Identification.md` | ✅ Complete | `05_Scene-Assessment-and-Data-Source-Identification.pdf` | Lecture 7 |
+| `04_Write-Blocker-Tools.md` | ✅ Complete | `04_Write-Blocker-Tools.pdf` | Lecture 07 |
+| `05_Scene-Assessment-and-Data-Source-Identification.md` | ✅ Complete | `05_Scene-Assessment-and-Data-Source-Identification.pdf` | Lecture 07 |
 
 ### `Chapters_MD/Vaciago/` — Vaciago Chapter Notes
 
 | File | Status | Corresponding Slide | Source Lectures |
 |------|--------|---------------------|-----------------|
-| `0_Introduction.md` | ✅ Complete | `0_Introduction.pdf` | Lecture 3 |
-| `1_Definition.md` | ✅ Complete | `1_Definition.pdf` | Lecture 6 |
-| `2_Cybercrime_Convention.md` | ✅ Complete | `2_Cybercrime_Convention.pdf` | Lecture 6 |
+| `0_Introduction.md` | ✅ Complete | `0_Introduction.pdf` | Lecture 03 |
+| `1_Definition.md` | ✅ Complete | `1_Definition.pdf` | Lecture 06 |
+| `2_Cybercrime_Convention.md` | ✅ Complete | `2_Cybercrime_Convention.pdf` | Lecture 06 |
 | `3_Law_48_08.md` | ⏳ Placeholder | `3_Law_48_08.pdf` | Not yet covered |
 
 ---
@@ -171,20 +171,20 @@ Pattern: `[SlidePrefix]_[ShortTitle].md` — mirrors the slide PDF filename
 When the user provides a new `.txt` transcription and/or a new slide PDF, follow these steps in order:
 
 ### Step 1 — Identify the professor
-- From the filename: `Lecture_[N]_Atzeni.txt` → Atzeni; `Lecture_[N]_Vaciago.txt` → Vaciago
+- From the filename: `Lecture_[NN]_Atzeni.txt` → Atzeni; `Lecture_[NN]_Vaciago.txt` → Vaciago
 - If ambiguous, ask the user
 
 ### Step 2 — Determine the next lecture number
 - Check the highest `[N]` in `Lectures_txt/` for that professor
-- New file should be `Lecture_[N+1]_[Professor].txt`
+- New file should be `Lecture_[NN+1]_[Professor].txt`
 - Note: numbering is global (Atzeni and Vaciago lectures share the same sequence)
 
 ### Step 3 — Place files
-- Transcript → `Lectures_txt/Lecture_[N]_[Professor].txt`
+- Transcript → `Lectures_txt/Lecture_[NN]_[Professor].txt`
 - Slide PDF → `Slides/[Professor]/[filename].pdf`
 
 ### Step 4 — Create the `Lectures_MD/` entry
-Read the `.txt` file and any matching slide PDF(s), then write `Lectures_MD/Lecture_[N]_[Professor].md` using the per-lecture format (see Note-Taking Style Guide below).
+Read the `.txt` file and any matching slide PDF(s), then write `Lectures_MD/Lecture_[NN]_[Professor].md` using the per-lecture format (see Note-Taking Style Guide below).
 
 ### Step 5 — Update or create `Chapters_MD/` entries
 - Identify which chapter(s) the new lecture contributes to (by matching its slide PDF to existing or new chapter files)
@@ -295,6 +295,7 @@ All Markdown files in this project follow a consistent format. New notes must ma
 | **Terminology** | Preserve all technical and legal terminology exactly as used in the source material |
 | **No invention** | Never add content that does not appear in the transcription or slide material |
 | **Summary bullets** | 6–10 bullet points; each capturing one distinct key idea; no sub-bullets |
+| **Lab Lectures** | If the transcript indicates a Laboratory/Lab session, compress the information heavily. Write much shorter `.md` files to reduce token usage. Strip out useless details. |
 
 ---
 
@@ -309,19 +310,19 @@ All Markdown files in this project follow a consistent format. New notes must ma
 - Created `AI_Context.md` (this file)
 
 **Changes (follow-up session):**
-- Added `Lectures_txt/Lecture_7_Atzeni.txt` (raw transcript, read-only)
+- Added `Lectures_txt/Lecture_07_Atzeni.txt` (raw transcript, read-only)
 - Added `Slides/Atzeni/04_Write-Blocker-Tools.pdf` and `Slides/Atzeni/05_Scene-Assessment-and-Data-Source-Identification.pdf`
-- Created `Lectures_MD/Lecture_7_Atzeni.md` (Write Blocker Tools & Scene Assessment)
+- Created `Lectures_MD/Lecture_07_Atzeni.md` (Write Blocker Tools & Scene Assessment)
 - Created `Chapters_MD/Atzeni/04_Write-Blocker-Tools.md`
 - Created `Chapters_MD/Atzeni/05_Scene-Assessment-and-Data-Source-Identification.md`
 - Updated `README.md` to reflect all new files
 - Updated `AI_Context.md` (this file)
 
-**Changes (Lecture 8 session):**
-- Added `Lectures_txt/Lecture_8_Atzeni.txt` (raw transcript, read-only)
+**Changes (Lecture 08 session):**
+- Added `Lectures_txt/Lecture_08_Atzeni.txt` (raw transcript, read-only)
 - Added `Slides/Atzeni/Digital-Forensics-Case-Study_partial.pdf`
-- Created `Lectures_MD/Lecture_8_Atzeni.md` (Digital Forensics Case Study: Debrief & Prefetch Analysis)
-- Updated `Chapters_MD/Atzeni/Digital-Forensics-Case-Study.md` to add Lecture 8 content (named scenario, prefetch files, detailed timeline, investigative conclusions, extended Key Concepts and Summary)
+- Created `Lectures_MD/Lecture_08_Atzeni.md` (Digital Forensics Case Study: Debrief & Prefetch Analysis)
+- Updated `Chapters_MD/Atzeni/Digital-Forensics-Case-Study.md` to add Lecture 08 content (named scenario, prefetch files, detailed timeline, investigative conclusions, extended Key Concepts and Summary)
 - Updated `AI_Context.md` (this file)
 
 **Still pending:**

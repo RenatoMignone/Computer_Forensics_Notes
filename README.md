@@ -18,41 +18,23 @@ This project welcomes contributions! Follow this step-by-step workflow to add ne
    - `Notes/Slides/Atzeni/` for Prof. Atzeni's materials
    - `Notes/Slides/Vaciago/` for Prof. Vaciago's materials
 
-### Step 2: Obtain Lecture Video
+### Step 2: Configure Transcription Pipeline
 1. In the Portale della Didattica, find the lecture video corresponding to the new material
-2. **Before downloading**: check [Notes/Lectures_MD/](Notes/Lectures_MD/) to identify which lectures have already been processed
-3. Right-click the lecture video and select *Save link as...*
-4. Save the `.mp4` file to the `Script/` folder in this repository
+2. Right-click the lecture video and select *Copy link address...*
+3. Open `Script/Transcription/data.json` and add the URL to the `Lecture_URLs` list
+4. Add the desired output filename (e.g., `Lecture_09_Atzeni.txt`) to the `File_Names` list, ensuring the lengths of both lists match
 
-### Step 3: Extract and Split Audio
-1. Open a terminal in the `Script/` directory
-2. **Make the script executable** (if not already):
+### Step 3: Run AI Transcription
+1. Open a terminal in the `Script/Transcription/` directory
+2. Run the python script:
    ```bash
-   chmod +x script.sh
+   python 01_AI_Model_Script.py
    ```
-3. Run the bash script:
-   ```bash
-   ./script.sh your_lecture.mp4
-   ```
-4. The script will:
-   - Create a folder named after the lecture
-   - Extract the audio and split it into **30-minute segments** as `.m4a` files
-   - Save all segments in the created folder
-
-### Step 4: Transcribe Audio
-1. Go to **[https://turboscribe.ai/dashboard](https://turboscribe.ai/dashboard)**
-   - Free plan: 3 transcriptions per day
-   - **Unlimited workaround**: Use Incognito Mode or Tor Browser to bypass daily limits (TurboscribeAI does not track across sessions)
-2. Upload each `.m4a` segment and transcribe to text
-3. Download all transcribed `.txt` files
-
-### Step 5: Consolidate Transcriptions
-1. Create a new file in `Notes/Lectures_txt/` named `Lecture_[N]_[Professor].txt` (e.g., `Lecture_9_Atzeni.txt`)
-2. **Remove TurboscribeAI watermarking**:
-   - Delete the parenthetical disclaimer at the **start** of the first segment
-   - Delete the parenthetical disclaimer at the **end** of the last segment
-3. Concatenate all transcribed segments into the single `.txt` file
-4. Review for obvious transcription errors (optional)
+3. The script will automatically:
+   - Download the video in the background thread
+   - Transcribe the audio using the `faster_whisper` GPU model
+   - Save the token-optimized `.txt` transcript directly into `Notes/Lectures_txt/`
+4. Review the generated `.txt` file for any obvious transcription errors (optional)
 
 ### Step 6: Generate Structured Notes (with AI Assistance)
 1. Prepare your AI assistant context:
@@ -61,12 +43,12 @@ This project welcomes contributions! Follow this step-by-step workflow to add ne
    - Use **Antigravity** client if available
 2. In your AI chat session:
    - Attach [Notes/AI_Context.md](Notes/AI_Context.md) to provide project context
-   - Attach the new `Lectures_txt/Lecture_[N]_[Professor].txt` file
+   - Attach the new `Lectures_txt/Lecture_[NN]_[Professor].txt` file
    - Attach the corresponding slide PDFs from `Notes/Slides/[Professor]/`
    - Attach any related existing chapter notes from `Notes/Chapters_MD/[Professor]/` for consistency
    - Provide this prompt to the AI:
      > Based on the attached `AI_Context.md`, transcription file, and slides, generate:
-     > 1. A per-lecture note file in `Notes/Lectures_MD/Lecture_[N]_[Professor].md`
+     > 1. A per-lecture note file in `Notes/Lectures_MD/Lecture_[NN]_[Professor].md`
      > 2. Updates to existing chapter files in `Notes/Chapters_MD/[Professor]/` by integrating new lecture content
      > Follow the existing structure, tone, and formatting conventions. Update the `AI_Context.md` mapping if this lecture introduces new slide materials.
 
@@ -97,20 +79,23 @@ This project welcomes contributions! Follow this step-by-step workflow to add ne
 .
 ├── README.md                 # This file
 ├── Script/
-│   └── script.sh             # Bash script to split lecture videos into 30-min audio segments
+│   ├── Transcription/
+│   │   ├── 01_AI_Model_Script.py  # Python script to download and transcribe lecture videos via GPU
+│   │   └── data.json              # Configuration file with video URLs and transcript filenames
+│   └── Old/                       # Deprecated shell scripts for manual audio splitting
 │
 └── Notes/
     ├── AI_Context.md         # Persistent context file for AI assistants working on this project
     │
     ├── Lectures_MD/          # Per-lecture structured Markdown notes (one file per lecture)
-    │   ├── Lecture_1_Atzeni.md
-    │   ├── Lecture_2_Atzeni.md
-    │   ├── Lecture_3_Vaciago.md
-    │   ├── Lecture_4_Atzeni.md
-    │   ├── Lecture_5_Atzeni.md
-    │   ├── Lecture_6_Vaciago.md
-    │   ├── Lecture_7_Atzeni.md
-    │   └── Lecture_8_Atzeni.md
+    │   ├── Lecture_01_Atzeni.md
+    │   ├── Lecture_02_Atzeni.md
+    │   ├── Lecture_03_Vaciago.md
+    │   ├── Lecture_04_Atzeni.md
+    │   ├── Lecture_05_Atzeni.md
+    │   ├── Lecture_06_Vaciago.md
+    │   ├── Lecture_07_Atzeni.md
+    │   └── Lecture_08_Atzeni.md
     │
     ├── Chapters_MD/          # Per-chapter notes grouped by topic and professor
     │   ├── Atzeni/
@@ -129,14 +114,14 @@ This project welcomes contributions! Follow this step-by-step workflow to add ne
     │       └── 3_Law_48_08.md
     │
     ├── Lectures_txt/         # Raw audio transcriptions (source material only)
-    │   ├── Lecture_1_Atzeni.txt
-    │   ├── Lecture_2_Atzeni.txt
-    │   ├── Lecture_3_Vaciago.txt
-    │   ├── Lecture_4_Atzeni.txt
-    │   ├── Lecture_5_Atzeni.txt
-    │   ├── Lecture_6_Vaciago.txt
-    │   ├── Lecture_7_Atzeni.txt
-    │   └── Lecture_8_Atzeni.txt
+    │   ├── Lecture_01_Atzeni.txt
+    │   ├── Lecture_02_Atzeni.txt
+    │   ├── Lecture_03_Vaciago.txt
+    │   ├── Lecture_04_Atzeni.txt
+    │   ├── Lecture_05_Atzeni.txt
+    │   ├── Lecture_06_Vaciago.txt
+    │   ├── Lecture_07_Atzeni.txt
+    │   └── Lecture_08_Atzeni.txt
     │
     └── Slides/               # Official course slide PDFs (organized by professor)
         ├── Atzeni/
@@ -160,7 +145,7 @@ This project welcomes contributions! Follow this step-by-step workflow to add ne
 
 | Folder | Purpose | Editable? | Source |
 |--------|---------|-----------|--------|
-| `Script/` | Utility script for video processing | No | Provided |
+| `Script/` | automated Python script for GPU transcription | No | Provided |
 | `Notes/Lectures_MD/` | Per-lecture chronological notes | **Yes** | Generated from transcriptions + slides |
 | `Notes/Chapters_MD/` | Per-topic thematic chapter notes | **Yes** | Aggregated & synthesized from lectures |
 | `Notes/Lectures_txt/` | Raw lecture transcriptions | **Yes** | Transcribed from video audio |
@@ -175,19 +160,19 @@ This project welcomes contributions! Follow this step-by-step workflow to add ne
 
 | # | File | Topic | Key Slides |
 |---|------|-------|------------|
-| 1 | [Lecture_1_Atzeni.md](Notes/Lectures_MD/Lecture_1_Atzeni.md) | Introduction to Computer Forensics & the Morris Worm | `01_introCF.pdf`, `01b_Cybersecurity-History-MorrisWorm.pdf` |
-| 2 | [Lecture_2_Atzeni.md](Notes/Lectures_MD/Lecture_2_Atzeni.md) | Digital Evidence, Chain of Custody & Data Acquisition | `02_terms.pdf` |
-| 4 | [Lecture_4_Atzeni.md](Notes/Lectures_MD/Lecture_4_Atzeni.md) | Investigation Phases – Part I: Identification & Collection | `03_investigation_phases.pdf` |
-| 5 | [Lecture_5_Atzeni.md](Notes/Lectures_MD/Lecture_5_Atzeni.md) | Investigation Phases – Part II: Acquisition & Examination | `03_investigation_phases.pdf`, `03b_Forensic-USB-Drive-Acquisition.pdf`, `Digital-Forensics-Case-Study.pdf` |
-| 7 | [Lecture_7_Atzeni.md](Notes/Lectures_MD/Lecture_7_Atzeni.md) | Write Blocker Tools & Scene Assessment | `04_Write-Blocker-Tools.pdf`, `05_Scene-Assessment-and-Data-Source-Identification.pdf` |
-| 8 | [Lecture_8_Atzeni.md](Notes/Lectures_MD/Lecture_8_Atzeni.md) | Digital Forensics Case Study: Debrief & Prefetch Analysis | `Digital-Forensics-Case-Study_partial.pdf` |
+| 1 | [Lecture_01_Atzeni.md](Notes/Lectures_MD/Lecture_01_Atzeni.md) | Introduction to Computer Forensics & the Morris Worm | `01_introCF.pdf`, `01b_Cybersecurity-History-MorrisWorm.pdf` |
+| 2 | [Lecture_02_Atzeni.md](Notes/Lectures_MD/Lecture_02_Atzeni.md) | Digital Evidence, Chain of Custody & Data Acquisition | `02_terms.pdf` |
+| 4 | [Lecture_04_Atzeni.md](Notes/Lectures_MD/Lecture_04_Atzeni.md) | Investigation Phases – Part I: Identification & Collection | `03_investigation_phases.pdf` |
+| 5 | [Lecture_05_Atzeni.md](Notes/Lectures_MD/Lecture_05_Atzeni.md) | Investigation Phases – Part II: Acquisition & Examination | `03_investigation_phases.pdf`, `03b_Forensic-USB-Drive-Acquisition.pdf`, `Digital-Forensics-Case-Study.pdf` |
+| 7 | [Lecture_07_Atzeni.md](Notes/Lectures_MD/Lecture_07_Atzeni.md) | Write Blocker Tools & Scene Assessment | `04_Write-Blocker-Tools.pdf`, `05_Scene-Assessment-and-Data-Source-Identification.pdf` |
+| 8 | [Lecture_08_Atzeni.md](Notes/Lectures_MD/Lecture_08_Atzeni.md) | Digital Forensics Case Study: Debrief & Prefetch Analysis | `Digital-Forensics-Case-Study_partial.pdf` |
 
 ### Prof. Vaciago – Legal Track
 
 | # | File | Topic | Key Slides |
 |---|------|-------|------------|
-| 3 | [Lecture_3_Vaciago.md](Notes/Lectures_MD/Lecture_3_Vaciago.md) | Legal Introduction: Technology, Law & Digital Forensics | `0_Introduction.pdf` |
-| 6 | [Lecture_6_Vaciago.md](Notes/Lectures_MD/Lecture_6_Vaciago.md) | Legal Frameworks: Data Retention, Jurisdiction & Digital Evidence | `1_Definition.pdf`, `2_Cybercrime_Convention.pdf` |
+| 3 | [Lecture_03_Vaciago.md](Notes/Lectures_MD/Lecture_03_Vaciago.md) | Legal Introduction: Technology, Law & Digital Forensics | `0_Introduction.pdf` |
+| 6 | [Lecture_06_Vaciago.md](Notes/Lectures_MD/Lecture_06_Vaciago.md) | Legal Frameworks: Data Retention, Jurisdiction & Digital Evidence | `1_Definition.pdf`, `2_Cybercrime_Convention.pdf` |
 
 ---
 
@@ -199,22 +184,22 @@ Chapter notes aggregate content **across multiple lectures** per topic, using th
 
 | File | Status | Topic | Source Lectures |
 |------|--------|-------|------------------|
-| [Chapters_MD/Atzeni/01_IntroCF.md](Notes/Chapters_MD/Atzeni/01_IntroCF.md) | ✅ Complete | Introduction to Computer Forensics | Lecture 1 |
-| [Chapters_MD/Atzeni/01b_MorrisWorm.md](Notes/Chapters_MD/Atzeni/01b_MorrisWorm.md) | ✅ Complete | The Morris Worm – Case Study | Lecture 1 |
-| [Chapters_MD/Atzeni/02_terms.md](Notes/Chapters_MD/Atzeni/02_terms.md) | ✅ Complete | Digital Evidence, Chain of Custody & Data Acquisition | Lecture 2 |
+| [Chapters_MD/Atzeni/01_IntroCF.md](Notes/Chapters_MD/Atzeni/01_IntroCF.md) | ✅ Complete | Introduction to Computer Forensics | Lecture 01 |
+| [Chapters_MD/Atzeni/01b_MorrisWorm.md](Notes/Chapters_MD/Atzeni/01b_MorrisWorm.md) | ✅ Complete | The Morris Worm – Case Study | Lecture 01 |
+| [Chapters_MD/Atzeni/02_terms.md](Notes/Chapters_MD/Atzeni/02_terms.md) | ✅ Complete | Digital Evidence, Chain of Custody & Data Acquisition | Lecture 02 |
 | [Chapters_MD/Atzeni/03_investigation_phases.md](Notes/Chapters_MD/Atzeni/03_investigation_phases.md) | ✅ Complete | Forensic Investigation Phases (all five) | Lectures 4 & 5 |
-| [Chapters_MD/Atzeni/03b_Forensic-USB-Drive-Acquisition.md](Notes/Chapters_MD/Atzeni/03b_Forensic-USB-Drive-Acquisition.md) | ✅ Complete | USB Drive Acquisition – Tools & Procedure | Lecture 5 |
-| [Chapters_MD/Atzeni/Digital-Forensics-Case-Study.md](Notes/Chapters_MD/Atzeni/Digital-Forensics-Case-Study.md) | ✅ Complete | Insider IP Exfiltration – End-to-End Case Study | Lecture 5 |
-| [Chapters_MD/Atzeni/04_Write-Blocker-Tools.md](Notes/Chapters_MD/Atzeni/04_Write-Blocker-Tools.md) | ✅ Complete | Write Blocker Tools – Hardware, Software & Documentation | Lecture 7 |
-| [Chapters_MD/Atzeni/05_Scene-Assessment-and-Data-Source-Identification.md](Notes/Chapters_MD/Atzeni/05_Scene-Assessment-and-Data-Source-Identification.md) | ✅ Complete | Scene Assessment & Data Source Identification | Lecture 7 |
+| [Chapters_MD/Atzeni/03b_Forensic-USB-Drive-Acquisition.md](Notes/Chapters_MD/Atzeni/03b_Forensic-USB-Drive-Acquisition.md) | ✅ Complete | USB Drive Acquisition – Tools & Procedure | Lecture 05 |
+| [Chapters_MD/Atzeni/Digital-Forensics-Case-Study.md](Notes/Chapters_MD/Atzeni/Digital-Forensics-Case-Study.md) | ✅ Complete | Insider IP Exfiltration – End-to-End Case Study | Lecture 05 |
+| [Chapters_MD/Atzeni/04_Write-Blocker-Tools.md](Notes/Chapters_MD/Atzeni/04_Write-Blocker-Tools.md) | ✅ Complete | Write Blocker Tools – Hardware, Software & Documentation | Lecture 07 |
+| [Chapters_MD/Atzeni/05_Scene-Assessment-and-Data-Source-Identification.md](Notes/Chapters_MD/Atzeni/05_Scene-Assessment-and-Data-Source-Identification.md) | ✅ Complete | Scene Assessment & Data Source Identification | Lecture 07 |
 
 ### Prof. Vaciago – Legal Track
 
 | File | Status | Topic | Source Lectures |
 |------|--------|-------|------------------|
-| [Chapters_MD/Vaciago/0_Introduction.md](Notes/Chapters_MD/Vaciago/0_Introduction.md) | ✅ Complete | Technology, Law & Digital Forensics | Lecture 3 |
-| [Chapters_MD/Vaciago/1_Definition.md](Notes/Chapters_MD/Vaciago/1_Definition.md) | ✅ Complete | Definitions, Standards & Evidence Location Model | Lecture 6 |
-| [Chapters_MD/Vaciago/2_Cybercrime_Convention.md](Notes/Chapters_MD/Vaciago/2_Cybercrime_Convention.md) | ✅ Complete | Data Retention, Jurisdiction & Budapest Convention | Lecture 6 |
+| [Chapters_MD/Vaciago/0_Introduction.md](Notes/Chapters_MD/Vaciago/0_Introduction.md) | ✅ Complete | Technology, Law & Digital Forensics | Lecture 03 |
+| [Chapters_MD/Vaciago/1_Definition.md](Notes/Chapters_MD/Vaciago/1_Definition.md) | ✅ Complete | Definitions, Standards & Evidence Location Model | Lecture 06 |
+| [Chapters_MD/Vaciago/2_Cybercrime_Convention.md](Notes/Chapters_MD/Vaciago/2_Cybercrime_Convention.md) | ✅ Complete | Data Retention, Jurisdiction & Budapest Convention | Lecture 06 |
 | [Chapters_MD/Vaciago/3_Law_48_08.md](Notes/Chapters_MD/Vaciago/3_Law_48_08.md) | ⏳ Placeholder | Italian Law 48/2008 | Not yet covered |
 
 ---
