@@ -89,56 +89,21 @@ This project welcomes contributions! Follow this step-by-step workflow to add ne
     │
     ├── Lectures_MD/          # Per-lecture structured Markdown notes (one file per lecture)
     │   ├── Lecture_01_Atzeni.md
-    │   ├── Lecture_02_Atzeni.md
-    │   ├── Lecture_03_Vaciago.md
-    │   ├── Lecture_04_Atzeni.md
-    │   ├── Lecture_05_Atzeni.md
-    │   ├── Lecture_06_Vaciago.md
-    │   ├── Lecture_07_Atzeni.md
-    │   └── Lecture_08_Atzeni.md
+    │   ├── ...
+    │   └── Lecture_17_Atzeni.md
     │
     ├── Chapters_MD/          # Per-chapter notes grouped by topic and professor
     │   ├── Atzeni/
-    │   │   ├── 01_IntroCF.md
-    │   │   ├── 01b_MorrisWorm.md
-    │   │   ├── 02_terms.md
-    │   │   ├── 03_investigation_phases.md
-    │   │   ├── 03b_Forensic-USB-Drive-Acquisition.md
-    │   │   ├── Digital-Forensics-Case-Study.md
-    │   │   ├── 04_Write-Blocker-Tools.md
-    │   │   └── 05_Scene-Assessment-and-Data-Source-Identification.md
     │   └── Vaciago/
-    │       ├── 0_Introduction.md
-    │       ├── 1_Definition.md
-    │       ├── 2_Cybercrime_Convention.md
-    │       └── 3_Law_48_08.md
     │
     ├── Lectures_txt/         # Raw audio transcriptions (source material only)
     │   ├── Lecture_01_Atzeni.txt
-    │   ├── Lecture_02_Atzeni.txt
-    │   ├── Lecture_03_Vaciago.txt
-    │   ├── Lecture_04_Atzeni.txt
-    │   ├── Lecture_05_Atzeni.txt
-    │   ├── Lecture_06_Vaciago.txt
-    │   ├── Lecture_07_Atzeni.txt
-    │   └── Lecture_08_Atzeni.txt
+    │   ├── ...
+    │   └── Lecture_17_Atzeni.txt
     │
     └── Slides/               # Official course slide PDFs (organized by professor)
         ├── Atzeni/
-        │   ├── 01_introCF.pdf
-        │   ├── 01b_Cybersecurity-History-MorrisWorm.pdf
-        │   ├── 02_terms.pdf
-        │   ├── 03_investigation_phases.pdf
-        │   ├── 03b_Forensic-USB-Drive-Acquisition.pdf
-        │   ├── Digital-Forensics-Case-Study.pdf
-        │   ├── Digital-Forensics-Case-Study_partial.pdf
-        │   ├── 04_Write-Blocker-Tools.pdf
-        │   └── 05_Scene-Assessment-and-Data-Source-Identification.pdf
         └── Vaciago/
-            ├── 0_Introduction.pdf
-            ├── 1_Definition.pdf
-            ├── 2_Cybercrime_Convention.pdf
-            └── 3_Law_48_08.pdf
 ```
 
 ### Directory Roles
@@ -160,19 +125,28 @@ This project welcomes contributions! Follow this step-by-step workflow to add ne
 
 | # | File | Topic | Key Slides |
 |---|------|-------|------------|
-| 1 | [Lecture_01_Atzeni.md](Notes/Lectures_MD/Lecture_01_Atzeni.md) | Introduction to Computer Forensics & the Morris Worm | `01_introCF.pdf`, `01b_Cybersecurity-History-MorrisWorm.pdf` |
-| 2 | [Lecture_02_Atzeni.md](Notes/Lectures_MD/Lecture_02_Atzeni.md) | Digital Evidence, Chain of Custody & Data Acquisition | `02_terms.pdf` |
-| 4 | [Lecture_04_Atzeni.md](Notes/Lectures_MD/Lecture_04_Atzeni.md) | Investigation Phases – Part I: Identification & Collection | `03_investigation_phases.pdf` |
-| 5 | [Lecture_05_Atzeni.md](Notes/Lectures_MD/Lecture_05_Atzeni.md) | Investigation Phases – Part II: Acquisition & Examination | `03_investigation_phases.pdf`, `03b_Forensic-USB-Drive-Acquisition.pdf`, `Digital-Forensics-Case-Study.pdf` |
-| 7 | [Lecture_07_Atzeni.md](Notes/Lectures_MD/Lecture_07_Atzeni.md) | Write Blocker Tools & Scene Assessment | `04_Write-Blocker-Tools.pdf`, `05_Scene-Assessment-and-Data-Source-Identification.pdf` |
-| 8 | [Lecture_08_Atzeni.md](Notes/Lectures_MD/Lecture_08_Atzeni.md) | Digital Forensics Case Study: Debrief & Prefetch Analysis | `Digital-Forensics-Case-Study_partial.pdf` |
+| 1 | [Lecture_01_Atzeni.md](Notes/Lectures_MD/Lecture_01_Atzeni.md) | Intro to CompForensics & Morris Worm | `01_introCF.pdf`, `01b_MorrisWorm.pdf` |
+| 2 | [Lecture_02_Atzeni.md](Notes/Lectures_MD/Lecture_02_Atzeni.md) | Evidence, Chain of Custody & Acquisition | `02_terms.pdf` |
+| 4 | [Lecture_04_Atzeni.md](Notes/Lectures_MD/Lecture_04_Atzeni.md) | Investigation Phases I: Identification | `03_investigation_phases.pdf` |
+| 5 | [Lecture_05_Atzeni.md](Notes/Lectures_MD/Lecture_05_Atzeni.md) | Investigation Phases II: Acquisition | `03_investigation_phases.pdf`, `03b_USB.pdf` |
+| 7 | [Lecture_07_Atzeni.md](Notes/Lectures_MD/Lecture_07_Atzeni.md) | Write Blockers & Scene Assessment | `04_Write-Blocker-Tools.pdf` |
+| 8 | [Lecture_08_Atzeni.md](Notes/Lectures_MD/Lecture_08_Atzeni.md) | Case Study: Prefetch & Timeline Analysis | `Digital-Forensics-Case-Study.pdf` |
+| 10 | [Lecture_10_Atzeni.md](Notes/Lectures_MD/Lecture_10_Atzeni.md) | Untrusted Domains & Malware Vectors | `07_untrusted_domain.pdf` |
+| 11 | [Lecture_11_Atzeni.md](Notes/Lectures_MD/Lecture_11_Atzeni.md) | Memory Exploitation & Supply Chain Attacks | `07_untrusted_domain.pdf` |
+| 13 | [Lecture_13_Atzeni.md](Notes/Lectures_MD/Lecture_13_Atzeni.md) | Forensic Lab Setup & Principles | `08_tools_and_labs.pdf` |
+| 14 | [Lecture_14_Atzeni.md](Notes/Lectures_MD/Lecture_14_Atzeni.md) | Advanced Lab Resilience & UFED | `08_tools_and_labs.pdf` |
+| 15 | [Lecture_15_Atzeni.md](Notes/Lectures_MD/Lecture_15_Atzeni.md) | File System Forensics: Device Types | `09_FS_forensics.pdf` |
+| 17 | [Lecture_17_Atzeni.md](Notes/Lectures_MD/Lecture_17_Atzeni.md) | File System Forensics: Metadata & FAT | `09_FS_forensics.pdf` |
 
 ### Prof. Vaciago – Legal Track
 
 | # | File | Topic | Key Slides |
 |---|------|-------|------------|
-| 3 | [Lecture_03_Vaciago.md](Notes/Lectures_MD/Lecture_03_Vaciago.md) | Legal Introduction: Technology, Law & Digital Forensics | `0_Introduction.pdf` |
-| 6 | [Lecture_06_Vaciago.md](Notes/Lectures_MD/Lecture_06_Vaciago.md) | Legal Frameworks: Data Retention, Jurisdiction & Digital Evidence | `1_Definition.pdf`, `2_Cybercrime_Convention.pdf` |
+| 3 | [Lecture_03_Vaciago.md](Notes/Lectures_MD/Lecture_03_Vaciago.md) | Legal Intro: Technology & Digital Forensics | `0_Introduction.pdf` |
+| 6 | [Lecture_06_Vaciago.md](Notes/Lectures_MD/Lecture_06_Vaciago.md) | Frameworks: Retention & Jurisdiction | `1_Definition.pdf`, `2_Convention.pdf` |
+| 9 | [Lecture_09_Vaciago.md](Notes/Lectures_MD/Lecture_09_Vaciago.md) | International Cooperation & Budapest Conv. | `2_Cybercrime_Convention.pdf` |
+| 12 | [Lecture_12_Vaciago.md](Notes/Lectures_MD/Lecture_12_Vaciago.md) | Italian Law 48/2008 & Corporate Liability | `3_Law_48_08.pdf` |
+| 16 | [Lecture_16_Vaciago.md](Notes/Lectures_MD/Lecture_16_Vaciago.md) | Experts Insights & Garlasco Case Study | `0_Introduction.pdf` (Part II) |
 
 ---
 
@@ -186,21 +160,24 @@ Chapter notes aggregate content **across multiple lectures** per topic, using th
 |------|--------|-------|------------------|
 | [Chapters_MD/Atzeni/01_IntroCF.md](Notes/Chapters_MD/Atzeni/01_IntroCF.md) | ✅ Complete | Introduction to Computer Forensics | Lecture 01 |
 | [Chapters_MD/Atzeni/01b_MorrisWorm.md](Notes/Chapters_MD/Atzeni/01b_MorrisWorm.md) | ✅ Complete | The Morris Worm – Case Study | Lecture 01 |
-| [Chapters_MD/Atzeni/02_terms.md](Notes/Chapters_MD/Atzeni/02_terms.md) | ✅ Complete | Digital Evidence, Chain of Custody & Data Acquisition | Lecture 02 |
-| [Chapters_MD/Atzeni/03_investigation_phases.md](Notes/Chapters_MD/Atzeni/03_investigation_phases.md) | ✅ Complete | Forensic Investigation Phases (all five) | Lectures 4 & 5 |
-| [Chapters_MD/Atzeni/03b_Forensic-USB-Drive-Acquisition.md](Notes/Chapters_MD/Atzeni/03b_Forensic-USB-Drive-Acquisition.md) | ✅ Complete | USB Drive Acquisition – Tools & Procedure | Lecture 05 |
-| [Chapters_MD/Atzeni/Digital-Forensics-Case-Study.md](Notes/Chapters_MD/Atzeni/Digital-Forensics-Case-Study.md) | ✅ Complete | Insider IP Exfiltration – End-to-End Case Study | Lecture 05 |
-| [Chapters_MD/Atzeni/04_Write-Blocker-Tools.md](Notes/Chapters_MD/Atzeni/04_Write-Blocker-Tools.md) | ✅ Complete | Write Blocker Tools – Hardware, Software & Documentation | Lecture 07 |
-| [Chapters_MD/Atzeni/05_Scene-Assessment-and-Data-Source-Identification.md](Notes/Chapters_MD/Atzeni/05_Scene-Assessment-and-Data-Source-Identification.md) | ✅ Complete | Scene Assessment & Data Source Identification | Lecture 07 |
+| [Chapters_MD/Atzeni/02_terms.md](Notes/Chapters_MD/Atzeni/02_terms.md) | ✅ Complete | Evidence & Chain of Custody | Lecture 02 |
+| [Chapters_MD/Atzeni/03_investigation_phases.md](Notes/Chapters_MD/Atzeni/03_investigation_phases.md) | ✅ Complete | Forensic Investigation Phases | Lectures 4 & 5 |
+| [Chapters_MD/Atzeni/Digital-Forensics-Case-Study.md](Notes/Chapters_MD/Atzeni/Digital-Forensics-Case-Study.md) | ✅ Complete | Insider IP Exfiltration Case Study | Lectures 5 & 8 |
+| [Chapters_MD/Atzeni/04_Write-Blocker-Tools.md](Notes/Chapters_MD/Atzeni/04_Write-Blocker-Tools.md) | ✅ Complete | Write Blocker Tools | Lecture 07 |
+| [Chapters_MD/Atzeni/05_Scene-Assessment...md](Notes/Chapters_MD/Atzeni/05_Scene-Assessment-and-Data-Source-Identification.md) | ✅ Complete | Scene Assessment & OSINT | Lecture 07 |
+| [Chapters_MD/Atzeni/07_untrusted_domain.md](Notes/Chapters_MD/Atzeni/07_untrusted_domain.md) | ✅ Complete | Untrusted Domains & Malware | Lectures 10 & 11 |
+| [Chapters_MD/Atzeni/08_tools_and_labs.md](Notes/Chapters_MD/Atzeni/08_tools_and_labs.md) | ✅ Complete | Forensic Lab Setup & UFED | Lectures 13 & 14 |
+| [Chapters_MD/Atzeni/09_FS_forensics.md](Notes/Chapters_MD/Atzeni/09_FS_forensics.md) | ✅ Complete | File System Forensics | Lectures 15 & 17 |
 
 ### Prof. Vaciago – Legal Track
 
 | File | Status | Topic | Source Lectures |
 |------|--------|-------|------------------|
-| [Chapters_MD/Vaciago/0_Introduction.md](Notes/Chapters_MD/Vaciago/0_Introduction.md) | ✅ Complete | Technology, Law & Digital Forensics | Lecture 03 |
-| [Chapters_MD/Vaciago/1_Definition.md](Notes/Chapters_MD/Vaciago/1_Definition.md) | ✅ Complete | Definitions, Standards & Evidence Location Model | Lecture 06 |
-| [Chapters_MD/Vaciago/2_Cybercrime_Convention.md](Notes/Chapters_MD/Vaciago/2_Cybercrime_Convention.md) | ✅ Complete | Data Retention, Jurisdiction & Budapest Convention | Lecture 06 |
-| [Chapters_MD/Vaciago/3_Law_48_08.md](Notes/Chapters_MD/Vaciago/3_Law_48_08.md) | ⏳ Placeholder | Italian Law 48/2008 | Not yet covered |
+| [Chapters_MD/Vaciago/0_Introduction.md](Notes/Chapters_MD/Vaciago/0_Introduction.md) | ✅ Complete | Technology, Law & Forensics | Lecture 03 |
+| [Chapters_MD/Vaciago/1_Definition.md](Notes/Chapters_MD/Vaciago/1_Definition.md) | ✅ Complete | Definitions & Standards | Lecture 06 |
+| [Chapters_MD/Vaciago/2_Cybercrime_Convention.md](Notes/Chapters_MD/Vaciago/2_Cybercrime_Convention.md) | ✅ Complete | Budapest Conv. & Jurisdiction | Lectures 06 & 09 |
+| [Chapters_MD/Vaciago/3_Law_48_08.md](Notes/Chapters_MD/Vaciago/3_Law_48_08.md) | ✅ Complete | Italian Law 48/2008 | Lecture 12 |
+| [Chapters_MD/Vaciago/4_Garlasco_Case.md](Notes/Chapters_MD/Vaciago/4_Garlasco_Case.md) | ✅ Complete | Garlasco Murder Case Study | Lecture 16 |
 
 ---
 

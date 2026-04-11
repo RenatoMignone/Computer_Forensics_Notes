@@ -376,15 +376,13 @@ In civil law systems (**Italy and most of Europe**), the equivalent principle is
 
 ## Summary
 
-- Digital forensics operates in three domains (criminal, civil, corporate), each with different legal frameworks and evidentiary standards.
-- Multiple forensic standards exist (ISO 27037, NIST SP 800-86, ACPO); no single global standard applies universally.
-- Suspect identification starts with digital identifiers (IP addresses) and requires ISP cooperation via **data retention** records. In Italy, **Article 132, D.Lgs. 196/2003** requires prosecutor and judge authorisation for serious crimes.
-- **Italy retains connection data for up to 5 years**; Germany, Ireland, and Romania declared the EU Data Retention Directive unconstitutional.
-- **Tor and anonymisation tools** have substantially eroded the evidential value of IP addresses; a 2012 Interpol-level convention acknowledged the technical impossibility of consistently blocking anonymisation.
-- The **jurisdiction problem** is the central challenge: data of EU users is routinely held by US companies under US law. Four key principles apply: territorial (most common), nationality, flag, and **power of disposal** (controversial — **exam question**).
-- **Freedom of speech divergence** between the US (First Amendment) and Italy (Article 595, criminal defamation) creates practical conflicts when defamatory content is hosted by US platforms.
-- **Mobile forensics** is expensive and requires specialised tools (UFED); continuously updated; only well-funded agencies can afford it.
-- The US's **adversarial, privately funded** legal system drives far greater forensics investment than Italy's compulsory prosecution, budget-constrained model.
-- **Key mandatory law** (compelling suspects to reveal passwords) has been declared unconstitutional everywhere it was attempted. The practical response was **remote forensics** (Hacking Team / RCS Galileo).
-- The **German Constitutional Court (2008)** recognised the *right to informational self-determination*. Italy eventually legalised limited mic/webcam wiretapping for organised crime (2017–2018).
-- **Fruit of the poisonous tree** is a strong exclusionary rule in US/UK law; much weaker in Italy's civil law system.
+- Digital forensics spans criminal, civil, and corporate domains, each governed by different legal frameworks and standards (ISO 27037, NIST).
+- Suspect identification relies on digital identifiers (IP addresses), OSINT, and **data retention** records from ISPs.
+- In Italy, obtaining IP data requires prosecutor/judge authorization and is only available for serious crimes under **Article 132**.
+- Data retention periods vary globally; Italy's 5-year requirement is exceptional compared to the declared unconstitutionality in other EU states.
+- The Rise of **Tor and anonymization tools** has significantly devalued the IP address as standalone reliable evidence.
+- The **jurisdiction problem** remains central: data of EU users is often held by US companies governed by US law, creating legal conflicts.
+- Four jurisdictional principles determine authority: territorial, nationality, flag, and the controversial **power of disposal**.
+- **Mobile forensics** requires expensive, specialized equipment like **UFED** to handle encryption and diverse connectivity interfaces.
+- US and EU/Italian investigation models differ significantly between **compulsory prosecution** and **prosecutorial discretion**.
+- **Remote forensics** and state-sponsored hacking (e.g., Hacking Team) emerged as responses to the unconstitutionality of mandatory password disclosure.

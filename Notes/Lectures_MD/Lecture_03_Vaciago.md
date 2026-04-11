@@ -387,13 +387,13 @@ Their public profiles stem from their ability to explain complex forensic concep
 
 ## Summary
 
-- Prof. Vaciago's part of the course focuses on the **legal dimension** of digital forensics, including international frameworks, Italian law, and real case studies.
-- Technology has evolved from being *between us* (tools) → *about us* (data collection) → *in us* (AI decision-making), each stage bringing new legal and forensic challenges.
-- The **jurisdiction problem** is a fundamental issue: digital activity crosses borders while users remain physically in one country.
-- **Legal design** aims to bridge the gap between legal complexity and user comprehension — engineers have a growing role in this process.
-- **Dark patterns** illustrate how technology can be intentionally designed to disadvantage users — relevant to evidence gathering and legal compliance.
-- **GDPR Article 22** and Italian law prohibit the **exclusive** use of AI in legal proceedings; meaningful human oversight is required, but defining what is "meaningful" is an open challenge.
-- A **false positive** in digital forensics can destroy a person's life; AI forensic tools must be explainable and verifiable.
-- Digital evidence must be **admissible** (lawfully gathered), **authentic** (untampered), **reliable** (believable to the judge), and **proportional** (limited to what is relevant to the case).
-- The **Big Five** principles (Council of Europe) and the **NIST phases** provide the technical and procedural framework for sound digital forensic practice.
-- **NIST** includes a risk management dimension absent from ISO 27037 — important when working under court-imposed time deadlines.
+- Prof. Vaciago's part of the course focuses on the **legal dimension** of digital forensics, including international frameworks and Italian case studies.
+- Technology evolution (Tools → Data Collection → AI Decision-making) brings new legal challenges at each stage, especially regarding jurisdiction.
+- **Legal design** and engineers play a critical role in translating complex legal intent into machine-readable, accessible logic.
+- **Dark patterns** illustrate how UI/UX can be intentionally designed to disadvantage users, requiring forensic and legal scrutiny.
+- **GDPR Article 22** and Italian law mandate **meaningful human oversight** for automated decisions to avoid life-altering false positives.
+- Digital evidence must satisfy the "Big Four": **admissible** (lawful), **authentic** (untampered), **reliable** (credible), and **proportional** (relevant).
+- The **Big Five** principles (Council of Europe) and **NIST phases** provide the technical and procedural foundation for sound forensic practice.
+- **NIST** uniquely includes a risk management dimension, essential for making documented trade-offs under court-imposed deadlines.
+- Corporate forensics is a rapidly growing domain where companies resolve issues (insider threats, data exfiltration) internally through HR and policy.
+- AI-assisted tools must be transparent and verifiable; current generative AI is generally prohibited from formal legal outputs due to explainability gaps.
