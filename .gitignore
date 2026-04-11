@@ -1,8 +1,3 @@
-# Ignore lecture processing folders and temporary files in Script/
-Script/*
-!Script/script.sh
-!Script/.gitkeep
-
 # Ignore OS-specific files
 .DS_Store
 Thumbs.db
