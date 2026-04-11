@@ -1,7 +1,7 @@
 # Chapter 9 – Fundamentals of File System Forensics
 **Professor:** Atzeni  
-**Reference Slides:** [`Slides/Atzeni/09_FS_forensics.pdf`](file:///home/ren/PERSONAL_DIRECTORY/CyberSecurity/Second_Year/Second_Semester/CFCCA/Notes/Lectures/Notes/Slides/Atzeni/09_FS_forensics.pdf)  
-**Covered in Lectures:** [Lecture 15](file:///home/ren/PERSONAL_DIRECTORY/CyberSecurity/Second_Year/Second_Semester/CFCCA/Notes/Lectures/Notes/Lectures_MD/Lecture_15_Atzeni.md), [Lecture 17](file:///home/ren/PERSONAL_DIRECTORY/CyberSecurity/Second_Year/Second_Semester/CFCCA/Notes/Lectures/Notes/Lectures_MD/Lecture_17_Atzeni.md)
+**Reference Slides:** [`Slides/Atzeni/09_FS_forensics.pdf`](Slides/Atzeni/09_FS_forensics.pdf)  
+**Covered in Lectures:** [Lecture 15](Lectures_MD/Lecture_15_Atzeni.md), [Lecture 17](Lectures_MD/Lecture_17_Atzeni.md)
 
 ---
 

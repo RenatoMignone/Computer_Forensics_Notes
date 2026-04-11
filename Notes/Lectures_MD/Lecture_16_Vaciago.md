@@ -5,6 +5,11 @@
 
 ---
 
+## Overview
+This guest lecture connects forensic practice with professional ethics by discussing the need to verify tools and results, then uses the Garlasco case as a concrete example of how digital evidence can be mishandled or misinterpreted. It also frames the discussion around the role and career path of a forensic expert.
+
+---
+
 ## 1. Professional Ethics and Tool Verification
 
 Paolo Dal Checco introduced the concept of **forensic curiosity** through an "April Fool's" case study:

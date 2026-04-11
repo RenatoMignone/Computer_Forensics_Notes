@@ -1,7 +1,7 @@
 # Chapter 4 – Case Study: The Garlasco Murder (Digital Evidence)
 **Professor:** Vaciago  
 **Guest Expert:** Paolo Dal Checco  
-**Covered in Lectures:** [Lecture 16](file:///home/ren/PERSONAL_DIRECTORY/CyberSecurity/Second_Year/Second_Semester/CFCCA/Notes/Lectures/Notes/Lectures_MD/Lecture_16_Vaciago.md)
+**Covered in Lectures:** [Lecture 16](Lectures_MD/Lecture_16_Vaciago.md)
 
 ---
 

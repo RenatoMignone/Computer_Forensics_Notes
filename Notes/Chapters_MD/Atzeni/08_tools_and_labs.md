@@ -1,7 +1,7 @@
 # Chapter 8 – Digital Forensics Laboratory and Toolsets
 **Professor:** Atzeni  
-**Reference Slides:** [`Slides/Atzeni/08_tools_and_labs.pdf`](file:///home/ren/PERSONAL_DIRECTORY/CyberSecurity/Second_Year/Second_Semester/CFCCA/Notes/Lectures/Notes/Slides/Atzeni/08_tools_and_labs.pdf)  
-**Covered in Lectures:** [Lecture 13](file:///home/ren/PERSONAL_DIRECTORY/CyberSecurity/Second_Year/Second_Semester/CFCCA/Notes/Lectures/Notes/Lectures_MD/Lecture_13_Atzeni.md), [Lecture 14](file:///home/ren/PERSONAL_DIRECTORY/CyberSecurity/Second_Year/Second_Semester/CFCCA/Notes/Lectures/Notes/Lectures_MD/Lecture_14_Atzeni.md)
+**Reference Slides:** [`Slides/Atzeni/08_tools_and_labs.pdf`](Slides/Atzeni/08_tools_and_labs.pdf)  
+**Covered in Lectures:** [Lecture 13](Lectures_MD/Lecture_13_Atzeni.md), [Lecture 14](Lectures_MD/Lecture_14_Atzeni.md)
 
 ---
 

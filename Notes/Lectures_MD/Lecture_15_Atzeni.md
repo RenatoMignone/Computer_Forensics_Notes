@@ -5,6 +5,11 @@
 
 ---
 
+## Overview
+This lecture introduces file system forensics by explaining the file system abstraction, the forensic implications of mounting and unmounting devices, and the main device types seen in Unix/Linux environments. The focus is on understanding how file systems mediate access to evidence and where traces of activity can persist.
+
+---
+
 ## 1. The File System Abstraction
 
 Operating systems interact with storage through an **abstraction layer** called the File System.

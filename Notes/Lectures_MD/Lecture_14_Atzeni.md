@@ -5,6 +5,11 @@
 
 ---
 
+## Overview
+This lecture continues the discussion of forensic laboratory requirements by focusing on resilience, logging, storage, access control, and the hardware needed to keep an investigation environment trustworthy. It also covers mobile forensic acquisition and specialized equipment used in advanced lab settings.
+
+---
+
 ## 1. Resilience and Disaster Recovery
 
 A forensic lab must be capable of recovering from incidents and maintaining availability under attack.

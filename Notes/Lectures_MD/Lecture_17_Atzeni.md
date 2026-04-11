@@ -5,6 +5,11 @@
 
 ---
 
+## Overview
+This lecture extends file system forensics into metadata, partitioning, and FAT internals. It highlights how EXIF data, magic numbers, MBR/GPT structures, and FAT allocation logic can all provide evidence or reveal attempts to conceal data.
+
+---
+
 ## 1. Advanced Metadata Analysis
 
 ### 1.1 EXIF Correlation and Integrity
