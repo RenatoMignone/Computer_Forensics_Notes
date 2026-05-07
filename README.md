@@ -47,7 +47,7 @@ This project welcomes contributions! Follow this step-by-step workflow to add ne
    - Attach the corresponding slide PDFs from `Notes/Slides/[Professor]/`
    - Attach any related existing chapter notes from `Notes/Chapters_MD/[Professor]/` for consistency
    - Provide this prompt to the AI:
-     > Based on the attached `AI_Context.md`, transcription file, and slides, generate:
+     > Based on the attached `AI_Context.md`, transcription file, and slides as structural references, generate:
      > 1. A per-lecture note file in `Notes/Lectures_MD/Lecture_[NN]_[Professor].md`
      > 2. Updates to existing chapter files in `Notes/Chapters_MD/[Professor]/` by integrating new lecture content
      > Follow the existing structure, tone, and formatting conventions. Update the `AI_Context.md` mapping if this lecture introduces new slide materials.
@@ -90,7 +90,7 @@ This project welcomes contributions! Follow this step-by-step workflow to add ne
     ├── Lectures_MD/          # Per-lecture structured Markdown notes (one file per lecture)
     │   ├── Lecture_01_Atzeni.md
     │   ├── ...
-    │   └── Lecture_17_Atzeni.md
+    │   └── Lecture_26_Vaciago.md
     │
     ├── Chapters_MD/          # Per-chapter notes grouped by topic and professor
     │   ├── Atzeni/
@@ -99,7 +99,7 @@ This project welcomes contributions! Follow this step-by-step workflow to add ne
     ├── Lectures_txt/         # Raw audio transcriptions (source material only)
     │   ├── Lecture_01_Atzeni.txt
     │   ├── ...
-    │   └── Lecture_17_Atzeni.txt
+    │   └── Lecture_26_Vaciago.txt
     │
     └── Slides/               # Official course slide PDFs (organized by professor)
         ├── Atzeni/
@@ -111,8 +111,8 @@ This project welcomes contributions! Follow this step-by-step workflow to add ne
 | Folder | Purpose | Editable? | Source |
 |--------|---------|-----------|--------|
 | `Script/` | automated Python script for GPU transcription | No | Provided |
-| `Notes/Lectures_MD/` | Per-lecture chronological notes | **Yes** | Generated from transcriptions + slides |
-| `Notes/Chapters_MD/` | Per-topic thematic chapter notes | **Yes** | Aggregated & synthesized from lectures |
+| `Notes/Lectures_MD/` | Per-lecture chronological notes | **Yes** | Generated from transcriptions; slides are structural references only |
+| `Notes/Chapters_MD/` | Per-topic thematic chapter notes | **Yes** | Aggregated & synthesized from lecture transcriptions |
 | `Notes/Lectures_txt/` | Raw lecture transcriptions | **Yes** | Transcribed from video audio |
 | `Notes/Slides/` | Official course slide PDFs | No | Downloaded from Portale della Didattica |
 | `Notes/AI_Context.md` | Project metadata and conventions | **Yes** | Updated as lectures are added |
@@ -137,6 +137,13 @@ This project welcomes contributions! Follow this step-by-step workflow to add ne
 | 14 | [Lecture_14_Atzeni.md](Notes/Lectures_MD/Lecture_14_Atzeni.md) | Advanced Lab Resilience & UFED | `08_tools_and_labs.pdf` |
 | 15 | [Lecture_15_Atzeni.md](Notes/Lectures_MD/Lecture_15_Atzeni.md) | File System Forensics: Device Types | `09_FS_forensics.pdf` |
 | 17 | [Lecture_17_Atzeni.md](Notes/Lectures_MD/Lecture_17_Atzeni.md) | File System Forensics: Metadata & FAT | `09_FS_forensics.pdf` |
+| 18 | [Lecture_18_Atzeni.md](Notes/Lectures_MD/Lecture_18_Atzeni.md) | File System Forensics: Slack Space & FAT Recovery | `09_FS_forensics.pdf` |
+| 19 | [Lecture_19_Atzeni.md](Notes/Lectures_MD/Lecture_19_Atzeni.md) | NTFS, Forensic Copying & Acquisition Tools | `09_FS_forensics.pdf` |
+| 21 | [Lecture_21_Atzeni.md](Notes/Lectures_MD/Lecture_21_Atzeni.md) | SSD Forensics & Deleted Data Recovery | `10_HDD-vs-SSD...pdf` |
+| 22 | [Lecture_22_Vaciago.md](Notes/Lectures_MD/Lecture_22_Vaciago.md) | SSD Acquisition, Sanitisation & Network Intro (Atzeni content; filename mismatch preserved) | `10_HDD-vs-SSD...pdf`, `11_Data-Sanitisation...pdf`, `12_Network.pdf` |
+| 24 | [Lecture_24_Atzeni.md](Notes/Lectures_MD/Lecture_24_Atzeni.md) | Network Forensics, OSINT & Social Media | `12_Network.pdf` |
+| 25 | [Lecture_25_Atzeni.md](Notes/Lectures_MD/Lecture_25_Atzeni.md) | Network Anti-Forensics & Attack Obfuscation | `12_Network.pdf` |
+| 26 | [Lecture_26_Vaciago.md](Notes/Lectures_MD/Lecture_26_Vaciago.md) | TOR & Cloud Forensics (Atzeni content; filename mismatch preserved) | `13_Digital-Forensics-in-the-TOR-Network.pdf`, `14_Cloud.pdf` |
 
 ### Prof. Vaciago – Legal Track
 
@@ -147,6 +154,8 @@ This project welcomes contributions! Follow this step-by-step workflow to add ne
 | 9 | [Lecture_09_Vaciago.md](Notes/Lectures_MD/Lecture_09_Vaciago.md) | International Cooperation & Budapest Conv. | `2_Cybercrime_Convention.pdf` |
 | 12 | [Lecture_12_Vaciago.md](Notes/Lectures_MD/Lecture_12_Vaciago.md) | Italian Law 48/2008 & Corporate Liability | `3_Law_48_08.pdf` |
 | 16 | [Lecture_16_Vaciago.md](Notes/Lectures_MD/Lecture_16_Vaciago.md) | Experts Insights & Garlasco Case Study | `0_Introduction.pdf` (Part II) |
+| 20 | [Lecture_20_Vaciago.md](Notes/Lectures_MD/Lecture_20_Vaciago.md) | The 10 Rules for a Digital Forensic Report | `5_Rules_Digital_Forensics.pdf` |
+| 23 | [Lecture_23_Vaciago.md](Notes/Lectures_MD/Lecture_23_Vaciago.md) | Digital Alibi Feedback & Hacking Team Case | `5_Rules_Digital_Forensics.pdf`, `6_Hacking_Team_Case.pdf` |
 
 ---
 
@@ -167,7 +176,12 @@ Chapter notes aggregate content **across multiple lectures** per topic, using th
 | [Chapters_MD/Atzeni/05_Scene-Assessment...md](Notes/Chapters_MD/Atzeni/05_Scene-Assessment-and-Data-Source-Identification.md) | ✅ Complete | Scene Assessment & OSINT | Lecture 07 |
 | [Chapters_MD/Atzeni/07_untrusted_domain.md](Notes/Chapters_MD/Atzeni/07_untrusted_domain.md) | ✅ Complete | Untrusted Domains & Malware | Lectures 10 & 11 |
 | [Chapters_MD/Atzeni/08_tools_and_labs.md](Notes/Chapters_MD/Atzeni/08_tools_and_labs.md) | ✅ Complete | Forensic Lab Setup & UFED | Lectures 13 & 14 |
-| [Chapters_MD/Atzeni/09_FS_forensics.md](Notes/Chapters_MD/Atzeni/09_FS_forensics.md) | ✅ Complete | File System Forensics | Lectures 15 & 17 |
+| [Chapters_MD/Atzeni/09_FS_forensics.md](Notes/Chapters_MD/Atzeni/09_FS_forensics.md) | ✅ Complete | File System Forensics | Lectures 15, 17, 18 & 19 |
+| [Chapters_MD/Atzeni/10_HDD-vs-SSD-in-Digital-Forensics.md](Notes/Chapters_MD/Atzeni/10_HDD-vs-SSD-in-Digital-Forensics.md) | ✅ Complete | HDD vs SSD Forensics | Lectures 21 & 22 |
+| [Chapters_MD/Atzeni/11_Data-Sanitisation-Techniques.md](Notes/Chapters_MD/Atzeni/11_Data-Sanitisation-Techniques.md) | ✅ Complete | Data Sanitisation Techniques | Lecture 22 |
+| [Chapters_MD/Atzeni/12_Network.md](Notes/Chapters_MD/Atzeni/12_Network.md) | ✅ Complete | Network Forensics | Lectures 22, 24 & 25 |
+| [Chapters_MD/Atzeni/13_Digital-Forensics-in-the-TOR-Network.md](Notes/Chapters_MD/Atzeni/13_Digital-Forensics-in-the-TOR-Network.md) | ✅ Complete | TOR Network Forensics | Lecture 26 |
+| [Chapters_MD/Atzeni/14_Cloud.md](Notes/Chapters_MD/Atzeni/14_Cloud.md) | ✅ Complete | Cloud Forensics | Lecture 26 |
 
 ### Prof. Vaciago – Legal Track
 
@@ -178,6 +192,8 @@ Chapter notes aggregate content **across multiple lectures** per topic, using th
 | [Chapters_MD/Vaciago/2_Cybercrime_Convention.md](Notes/Chapters_MD/Vaciago/2_Cybercrime_Convention.md) | ✅ Complete | Budapest Conv. & Jurisdiction | Lectures 06 & 09 |
 | [Chapters_MD/Vaciago/3_Law_48_08.md](Notes/Chapters_MD/Vaciago/3_Law_48_08.md) | ✅ Complete | Italian Law 48/2008 | Lecture 12 |
 | [Chapters_MD/Vaciago/4_Garlasco_Case.md](Notes/Chapters_MD/Vaciago/4_Garlasco_Case.md) | ✅ Complete | Garlasco Murder Case Study | Lecture 16 |
+| [Chapters_MD/Vaciago/5_Rules_Digital_Forensics.md](Notes/Chapters_MD/Vaciago/5_Rules_Digital_Forensics.md) | ✅ Complete | Forensic Report Writing Rules | Lectures 20 & 23 |
+| [Chapters_MD/Vaciago/6_Hacking_Team_Case.md](Notes/Chapters_MD/Vaciago/6_Hacking_Team_Case.md) | ✅ Complete | Hacking Team Case | Lecture 23 |
 
 ---
 
@@ -227,7 +243,7 @@ Chapter notes aggregate content **across multiple lectures** per topic, using th
 
 ## Notes on the Material
 
-- **`Notes/Lectures_MD/`** — Per-lecture notes synthesised from transcriptions and slides. Structured with section headings, tables, key concept definitions, and bullet-point summaries. One file per lecture session.
+- **`Notes/Lectures_MD/`** — Per-lecture notes synthesised from transcriptions, with slides used only as structural references. Structured with section headings, tables, key concept definitions, and bullet-point summaries. One file per lecture session.
 - **`Notes/Chapters_MD/`** — Thematic chapter notes that aggregate content from all relevant lectures per topic. Organised by professor. These are the primary revision resource.
 - **`Notes/Lectures_txt/`** — Unedited audio-to-text transcriptions. Provided as source material only; may contain transcription artefacts.
 - **`Notes/Slides/`** — Official slide PDFs distributed by the professors. Used as the structural skeleton for all notes.

@@ -1,7 +1,7 @@
 # Chapter 9 – Fundamentals of File System Forensics
 **Professor:** Atzeni  
 **Reference Slides:** [`Slides/Atzeni/09_FS_forensics.pdf`](Slides/Atzeni/09_FS_forensics.pdf)  
-**Covered in Lectures:** [Lecture 15](Lectures_MD/Lecture_15_Atzeni.md), [Lecture 17](Lectures_MD/Lecture_17_Atzeni.md)
+**Covered in Lectures:** [Lecture 15](Lectures_MD/Lecture_15_Atzeni.md), [Lecture 17](Lectures_MD/Lecture_17_Atzeni.md), [Lecture 18](Lectures_MD/Lecture_18_Atzeni.md), [Lecture 19](Lectures_MD/Lecture_19_Atzeni.md)
 
 ---
 
@@ -105,6 +105,51 @@ Metadata is "data about data" and is the primary target for timeline reconstruct
 
 ---
 
+## 8. Slack Space and Data Carving
+
+Slack space is created when the file content is smaller than the allocated physical unit. The unused portion of the sector or cluster may still contain fragments of older data.
+
+Forensic tools can inspect below the user-visible file abstraction and recover evidence from:
+- deleted-but-not-overwritten clusters;
+- unallocated space;
+- slack space;
+- file signatures or magic numbers;
+- residual application or file system metadata.
+
+Tools such as **Foremost** automate this process by scanning raw bytes for known file patterns and reconstructing recoverable content.
+
+---
+
+## 9. NTFS and the Master File Table
+
+NTFS is more robust than FAT because it is organised around the **Master File Table (MFT)** and an attribute-based model.
+
+| NTFS Component | Forensic Value |
+|----------------|----------------|
+| **MFT Record** | Stores file metadata and references to file content. |
+| **Resident Attribute** | Attribute stored inside the MFT record. |
+| **Non-Resident Attribute** | Attribute stored outside the MFT record, referenced by pointers. |
+| **Log File** | Supports transaction recovery and may reveal recent operations. |
+| **Bitmap** | Tracks allocated and unallocated clusters. |
+
+NTFS deletion marks records and clusters as not in use, but the data may remain available to forensic-level tools until overwritten.
+
+---
+
+## 10. Forensic Copying and System vs Forensic Views
+
+An ordinary file copy does not preserve all metadata. A forensic copy must preserve byte-level structure and be verified through hashes.
+
+Typical tools include:
+```bash
+dd if=/dev/sda of=image.dd
+dc3dd if=/dev/sda of=image.dd hash=sha256
+```
+
+Investigators should compare OS-mediated outputs such as `stat` or PowerShell `Get-Item` with forensic-level inspection such as `istat` or `fsutil`. Inconsistencies can reveal corruption, manipulation, or anti-forensic activity.
+
+---
+
 ## Key Concepts & Definitions
 
 | Term | Definition |
@@ -113,6 +158,9 @@ Metadata is "data about data" and is the primary target for timeline reconstruct
 | **Abstraction Layer** | The software (Operating System) that translates high-level file requests into low-level hardware commands. |
 | **Block Dev** | A Linux command-line utility used to call block device ioctls, such as setting a device to read-only. |
 | **Journaling** | A file system feature that logs changes before they are committed, used to prevent corruption after a crash. |
+| **Slack Space** | Unused bytes inside an allocated storage unit that may contain remnants of previous data. |
+| **MFT** | NTFS Master File Table, the main metadata structure describing files and file system objects. |
+| **File Carving** | Recovery technique that scans raw bytes for file signatures and reconstructs files outside normal file system metadata. |
 
 ---
 

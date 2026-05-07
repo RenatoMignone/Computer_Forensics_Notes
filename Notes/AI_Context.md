@@ -12,7 +12,7 @@ The course is taught by two professors covering complementary perspectives:
 - **Prof. Atzeni** — Computer Science / Technical track (forensic methodology, investigation phases, tools, acquisition)
 - **Prof. Vaciago** — Law / Legal track (cybercrime law, conventions, jurisdiction, data retention, digital evidence admissibility)
 
-The project generates two types of structured Markdown notes from raw lecture transcriptions and slide PDFs:
+The project generates two types of structured Markdown notes from raw lecture transcriptions. Slide PDFs are used only as structural/reference aids; substantive note content must be supported by the transcriptions.
 1. **Per-lecture notes** (`Lectures_MD/`) — one file per lecture, following the chronological lecture order
 2. **Per-chapter notes** (`Chapters_MD/`) — one file per slide deck / topic, aggregating relevant content across all lectures from that professor
 
@@ -67,6 +67,12 @@ The project generates two types of structured Markdown notes from raw lecture tr
 | `Lectures_txt/Lecture_14_Atzeni.txt` | Advanced Lab Resilience and Technical Requirements |
 | `Lectures_txt/Lecture_15_Atzeni.txt` | Fundamentals of File System Forensics |
 | `Lectures_txt/Lecture_17_Atzeni.txt` | File System Forensics II: Metadata & FAT |
+| `Lectures_txt/Lecture_18_Atzeni.txt` | File System Forensics III: Slack Space and FAT Recovery |
+| `Lectures_txt/Lecture_19_Atzeni.txt` | NTFS, Forensic Copying, and Low-Level Acquisition Tools |
+| `Lectures_txt/Lecture_21_Atzeni.txt` | SSD Forensics and Deleted Data Recovery |
+| `Lectures_txt/Lecture_22_Vaciago.txt` | SSD Acquisition, Data Sanitisation, and Network Forensics Introduction (content is Atzeni technical track despite filename) |
+| `Lectures_txt/Lecture_24_Atzeni.txt` | Network Forensics, OSINT, and Social Media Evidence |
+| `Lectures_txt/Lecture_25_Atzeni.txt` | Network Anti-Forensics and Attack Obfuscation |
 
 **Slide PDFs** (`Slides/Atzeni/`):
 | File | Topic |
@@ -85,6 +91,11 @@ The project generates two types of structured Markdown notes from raw lecture tr
 | `07b_Man-in-the-Disk-MitD-Vulnerability.pdf` | Storage vulnerabilities and MitD |
 | `08_tools_and_labs.pdf` | Forensic Lab Setup, Tool Requirements, Physical & Logical Security |
 | `09_FS_forensics.pdf` | File System Fundamentals, Mounting, Device Types |
+| `10_HDD-vs-SSD-in-Digital-Forensics.pdf` | HDD vs SSD forensic acquisition, TRIM, garbage collection, wear levelling |
+| `11_Data-Sanitisation-Techniques.pdf` | Data sanitisation, NIST Clear/Purge/Destroy, overwriting, crypto-erase, degaussing |
+| `12_Network.pdf` | Network forensics, OSINT, social media forensics, anti-forensics |
+| `13_Digital-Forensics-in-the-TOR-Network.pdf` | TOR architecture, daemon, guard nodes, relay identification, traffic correlation |
+| `14_Cloud.pdf` | Cloud forensics, cloud models, S3, logs, jurisdiction, volatility |
 
 ---
 
@@ -98,6 +109,9 @@ The project generates two types of structured Markdown notes from raw lecture tr
 | `Lectures_txt/Lecture_09_Vaciago.txt` | International Cooperation & The Budapest Convention |
 | `Lectures_txt/Lecture_12_Vaciago.txt` | Italian Law 48/2008 and Corporate Liability (Decree 231/2001) |
 | `Lectures_txt/Lecture_16_Vaciago.txt` | Forensic Expert Insights and the Garlasco Case Study |
+| `Lectures_txt/Lecture_20_Vaciago.txt` | The 10 Rules for a Digital Forensic Report |
+| `Lectures_txt/Lecture_23_Vaciago.txt` | Digital Alibi Feedback and the Hacking Team Case |
+| `Lectures_txt/Lecture_26_Vaciago.txt` | TOR and Cloud Forensics (content is Atzeni technical track despite filename) |
 
 **Slide PDFs** (`Slides/Vaciago/`):
 | File | Topic |
@@ -106,6 +120,8 @@ The project generates two types of structured Markdown notes from raw lecture tr
 | `1_Definition.pdf` | Digital forensics definitions, forensic standards, evidence location model |
 | `2_Cybercrime_Convention.pdf` | Budapest Convention, data retention directive, jurisdiction problem |
 | `3_Law_48_08.pdf` | Italian Law 48/2008 implementing the Budapest Convention |
+| `5_Rules_Digital_Forensics.pdf` | Rules for forensic expert reports and legal presentation |
+| `6_Hacking_Team_Case.pdf` | Hacking Team case, spyware, SoftHack search and seizure lab scenario |
 
 ---
 
@@ -144,6 +160,13 @@ Pattern: `[SlidePrefix]_[ShortTitle].md` — mirrors the slide PDF filename
 | `3_Law_48_08.pdf` | Vaciago | Lecture 12 |
 | `08_tools_and_labs.pdf` | Atzeni | Lectures 13 & 14 |
 | `09_FS_forensics.pdf` | Atzeni | Lectures 15 & 17 |
+| `10_HDD-vs-SSD-in-Digital-Forensics.pdf` | Atzeni | Lectures 21 & 22 (`Lecture_22_Vaciago.txt` filename mismatch) |
+| `11_Data-Sanitisation-Techniques.pdf` | Atzeni | Lecture 22 (`Lecture_22_Vaciago.txt` filename mismatch) |
+| `12_Network.pdf` | Atzeni | Lectures 22, 24 & 25 (`Lecture_22_Vaciago.txt` filename mismatch) |
+| `13_Digital-Forensics-in-the-TOR-Network.pdf` | Atzeni | Lecture 26 (`Lecture_26_Vaciago.txt` filename mismatch) |
+| `14_Cloud.pdf` | Atzeni | Lecture 26 (`Lecture_26_Vaciago.txt` filename mismatch) |
+| `5_Rules_Digital_Forensics.pdf` | Vaciago | Lectures 20 & 23 |
+| `6_Hacking_Team_Case.pdf` | Vaciago | Lecture 23 |
 
 ---
 
@@ -170,6 +193,15 @@ Pattern: `[SlidePrefix]_[ShortTitle].md` — mirrors the slide PDF filename
 | `Lecture_15_Atzeni.md` | ✅ Complete | Fundamentals of File System Forensics |
 | `Lecture_16_Vaciago.md` | ✅ Complete | Garlasco Case Study & Forensic Ethics |
 | `Lecture_17_Atzeni.md` | ✅ Complete | File System Forensics II: Metadata & FAT |
+| `Lecture_18_Atzeni.md` | ✅ Complete | File System Forensics: Slack Space and FAT Recovery |
+| `Lecture_19_Atzeni.md` | ✅ Complete | NTFS, Forensic Copying, and Low-Level Acquisition Tools |
+| `Lecture_20_Vaciago.md` | ✅ Complete | The 10 Rules for a Digital Forensic Report |
+| `Lecture_21_Atzeni.md` | ✅ Complete | SSD Forensics and Deleted Data Recovery |
+| `Lecture_22_Vaciago.md` | ✅ Complete | SSD Acquisition, Data Sanitisation, and Network Forensics Introduction (Atzeni technical content; filename mismatch preserved) |
+| `Lecture_23_Vaciago.md` | ✅ Complete | Digital Alibi Feedback and the Hacking Team Case |
+| `Lecture_24_Atzeni.md` | ✅ Complete | Network Forensics, OSINT, and Social Media Evidence |
+| `Lecture_25_Atzeni.md` | ✅ Complete | Network Anti-Forensics and Attack Obfuscation |
+| `Lecture_26_Vaciago.md` | ✅ Complete | TOR and Cloud Forensics (Atzeni technical content; filename mismatch preserved) |
 
 ### `Chapters_MD/Atzeni/` — Atzeni Chapter Notes
 
@@ -186,7 +218,12 @@ Pattern: `[SlidePrefix]_[ShortTitle].md` — mirrors the slide PDF filename
 | `06_Digital-Forensics-Case-Study.md` | ✅ Complete | `Digital-Forensics-Case-Study_partial.pdf` | Lecture 08 |
 | `07_untrusted_domain.md` | ✅ Complete | `07_untrusted_domain.pdf`, `07a_HTTPS-Session-Hijacking.pdf`, `07b_Man-in-the-Disk-MitD-Vulnerability.pdf` | Lectures 10 & 11 |
 | `08_tools_and_labs.md` | ✅ Complete | `08_tools_and_labs.pdf` | Lectures 13 & 14 |
-| `09_FS_forensics.md` | ✅ Complete | `09_FS_forensics.pdf` | Lectures 15 & 17 |
+| `09_FS_forensics.md` | ✅ Complete | `09_FS_forensics.pdf` | Lectures 15, 17, 18 & 19 |
+| `10_HDD-vs-SSD-in-Digital-Forensics.md` | ✅ Complete | `10_HDD-vs-SSD-in-Digital-Forensics.pdf` | Lectures 21 & 22 |
+| `11_Data-Sanitisation-Techniques.md` | ✅ Complete | `11_Data-Sanitisation-Techniques.pdf` | Lecture 22 |
+| `12_Network.md` | ✅ Complete | `12_Network.pdf` | Lectures 22, 24 & 25 |
+| `13_Digital-Forensics-in-the-TOR-Network.md` | ✅ Complete | `13_Digital-Forensics-in-the-TOR-Network.pdf` | Lecture 26 |
+| `14_Cloud.md` | ✅ Complete | `14_Cloud.pdf` | Lecture 26 |
 
 ### `Chapters_MD/Vaciago/` — Vaciago Chapter Notes
 
@@ -197,6 +234,8 @@ Pattern: `[SlidePrefix]_[ShortTitle].md` — mirrors the slide PDF filename
 | `2_Cybercrime_Convention.md` | ✅ Complete | `2_Cybercrime_Convention.pdf` | Lectures 06 & 09 |
 | `3_Law_48_08.md` | ✅ Complete | `3_Law_48_08.pdf` | Lecture 12 |
 | `4_Garlasco_Case.md` | ✅ Complete | N/A (Guest Lecture/Discussion) | Lecture 16 |
+| `5_Rules_Digital_Forensics.md` | ✅ Complete | `5_Rules_Digital_Forensics.pdf` | Lectures 20 & 23 |
+| `6_Hacking_Team_Case.md` | ✅ Complete | `6_Hacking_Team_Case.pdf` | Lecture 23 |
 
 ---
 
@@ -218,7 +257,7 @@ When the user provides a new `.txt` transcription and/or a new slide PDF, follow
 - Slide PDF → `Slides/[Professor]/[filename].pdf`
 
 ### Step 4 — Create the `Lectures_MD/` entry
-Read the `.txt` file and any matching slide PDF(s), then write `Lectures_MD/Lecture_[NN]_[Professor].md` using the per-lecture format (see Note-Taking Style Guide below).
+Read the `.txt` file and use any matching slide PDF(s) only as structural/reference aids, then write `Lectures_MD/Lecture_[NN]_[Professor].md` using the per-lecture format (see Note-Taking Style Guide below). Substantive claims must come from the transcription.
 
 ### Step 5 — Update or create `Chapters_MD/` entries
 - Identify which chapter(s) the new lecture contributes to (by matching its slide PDF to existing or new chapter files)
@@ -256,7 +295,7 @@ All Markdown files in this project follow a consistent format. New notes must ma
 ---
 
 ## [N]. [Section Title]
-[Content from transcript, cleaned and organised. Use slide structure as skeleton.]
+[Content from transcript, cleaned and organised. Use slide structure only as a skeleton/reference aid.]
 
 > 📎 *Slide reference: `filename.pdf` — [section or topic name]*
 
@@ -294,7 +333,7 @@ All Markdown files in this project follow a consistent format. New notes must ma
 ---
 
 ## [Section from slide structure]
-[Content aggregated from all relevant lectures. Slides define structure; transcripts provide depth.]
+[Content aggregated from all relevant lecture transcriptions. Slides define structure only; transcripts provide the substantive content.]
 
 > 📎 *Slide reference: `filename.pdf` — [section/topic name]*
 
@@ -327,7 +366,7 @@ All Markdown files in this project follow a consistent format. New notes must ma
 | **Section numbering** | Number top-level sections (`## 1.`, `## 2.`, ...) in per-lecture files; optional in chapter files |
 | **Horizontal rules** | Separate every top-level section with `---` |
 | **Terminology** | Preserve all technical and legal terminology exactly as used in the source material |
-| **No invention** | Never add content that does not appear in the transcription or slide material |
+| **No invention** | Never add substantive content that does not appear in the transcription. Slides may guide structure and reference labels only. |
 | **Summary bullets** | 6–10 bullet points; each capturing one distinct key idea; no sub-bullets |
 | **Lab Lectures** | If the transcript indicates a Laboratory/Lab session, compress the information heavily. Write much shorter `.md` files to reduce token usage. Strip out useless details. |
 
@@ -335,7 +374,7 @@ All Markdown files in this project follow a consistent format. New notes must ma
 
 ## Last Updated
 
-**Date:** 2026-03-12  
+**Date:** 2026-05-07
 **Changes (initial session):**
 - Created all 6 `Lectures_MD/` files (Lectures 1–6, both professors)
 - Created `Chapters_MD/Atzeni/01_IntroCF.md` (Chapter 1: Introduction to Computer Forensics)
@@ -381,3 +420,12 @@ All Markdown files in this project follow a consistent format. New notes must ma
 - Synced `Chapters_MD/Atzeni/08_tools_and_labs.md` with missing UFED/Mobile details.
 - Verified all cross-references in `Chapters_MD/` and updated `AI_Context.md` and `README.md` manifests.
 - **Repository status: 100% Audited and Verified.**
+
+**Changes (Batch 5 processing):**
+- Processed Lectures 18 through 26 from the newly added transcripts.
+- Created per-lecture notes for `Lecture_18_Atzeni.md` through `Lecture_26_Vaciago.md`.
+- Expanded `Chapters_MD/Atzeni/09_FS_forensics.md` with slack space, NTFS, carving, and forensic copy details.
+- Created Atzeni chapters `10_HDD-vs-SSD-in-Digital-Forensics.md`, `11_Data-Sanitisation-Techniques.md`, `12_Network.md`, `13_Digital-Forensics-in-the-TOR-Network.md`, and `14_Cloud.md`.
+- Created Vaciago chapters `5_Rules_Digital_Forensics.md` and `6_Hacking_Team_Case.md`.
+- Noted filename/content mismatches for `Lecture_22_Vaciago.txt` and `Lecture_26_Vaciago.txt`: both contain Atzeni technical-track material despite the filenames.
+- Updated `AI_Context.md` and `README.md` manifests for the new batch.
