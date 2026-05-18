@@ -96,6 +96,11 @@ This project welcomes contributions! Follow this step-by-step workflow to add ne
     │   ├── Atzeni/
     │   └── Vaciago/
     │
+    ├── Side_Events_MD/       # Dedicated notes for guest/non-slide side events
+    │   └── Lecture_16_Guest_Paolo_Dal_Checco_Garlasco.md
+    │
+    ├── Side_Events_Index.txt # Index of presentations, labs, guest sessions, and admin material
+    │
     ├── Lectures_txt/         # Raw audio transcriptions (source material only)
     │   ├── Lecture_01_Atzeni_24-02_.txt
     │   ├── ...
@@ -113,6 +118,8 @@ This project welcomes contributions! Follow this step-by-step workflow to add ne
 | `Script/` | automated Python script for GPU transcription | No | Provided |
 | `Notes/Lectures_MD/` | Per-lecture chronological notes | **Yes** | Generated from transcriptions; slides are structural references only |
 | `Notes/Chapters_MD/` | Per-topic thematic chapter notes | **Yes** | Aggregated & synthesized from lecture transcriptions |
+| `Notes/Side_Events_MD/` | Full notes for guest sessions and non-slide side events | **Yes** | Isolated from slide-backed chapter notes |
+| `Notes/Side_Events_Index.txt` | Quick map of presentations, labs, homework feedback, and admin material | **Yes** | Maintained during audits |
 | `Notes/Lectures_txt/` | Raw lecture transcriptions | **Yes** | Transcribed from video audio |
 | `Notes/Slides/` | Official course slide PDFs | No | Downloaded from Portale della Didattica |
 | `Notes/AI_Context.md` | Project metadata and conventions | **Yes** | Updated as lectures are added |
@@ -154,7 +161,7 @@ This project welcomes contributions! Follow this step-by-step workflow to add ne
 | 6 | [Lecture_06_Vaciago.md](Notes/Lectures_MD/Lecture_06_Vaciago.md) | Frameworks: Retention & Jurisdiction | `1_Definition.pdf`, `2_Cybercrime_Convention.pdf` |
 | 9 | [Lecture_09_Vaciago.md](Notes/Lectures_MD/Lecture_09_Vaciago.md) | International Cooperation & Budapest Conv. | `2_Cybercrime_Convention.pdf` |
 | 12 | [Lecture_12_Vaciago.md](Notes/Lectures_MD/Lecture_12_Vaciago.md) | Italian Law 48/2008 & Corporate Liability | `3_Law_48_08.pdf` |
-| 16 | [Lecture_16_Vaciago.md](Notes/Lectures_MD/Lecture_16_Vaciago.md) | Experts Insights & Garlasco Case Study | `0_Introduction.pdf` (Part II) |
+| 16 | [Lecture_16_Vaciago.md](Notes/Lectures_MD/Lecture_16_Vaciago.md) | Guest Expert Insights & Garlasco Case Study | N/A (side event) |
 | 19 | [Lecture_19_Vaciago.md](Notes/Lectures_MD/Lecture_19_Vaciago.md) | The 10 Rules for a Digital Forensic Report | `5_Rules_Digital_Forensics.pdf` |
 | 22 | [Lecture_22_Vaciago.md](Notes/Lectures_MD/Lecture_22_Vaciago.md) | Digital Alibi Feedback & Hacking Team Case | `5_Rules_Digital_Forensics.pdf`, `6_Hacking_Team_Case.pdf` |
 | 26 | [Lecture_26_Vaciago.md](Notes/Lectures_MD/Lecture_26_Vaciago.md) | Malware Production, Mens Rea & Criminal Liability | `Articoli_Codice_Penale.pdf` |
@@ -195,10 +202,18 @@ Chapter notes aggregate content **across multiple lectures** per topic, using th
 | [Chapters_MD/Vaciago/1_Definition.md](Notes/Chapters_MD/Vaciago/1_Definition.md) | ✅ Complete | Definitions & Standards | Lecture 06 |
 | [Chapters_MD/Vaciago/2_Cybercrime_Convention.md](Notes/Chapters_MD/Vaciago/2_Cybercrime_Convention.md) | ✅ Complete | Budapest Conv. & Jurisdiction | Lectures 06 & 09 |
 | [Chapters_MD/Vaciago/3_Law_48_08.md](Notes/Chapters_MD/Vaciago/3_Law_48_08.md) | ✅ Complete | Italian Law 48/2008 | Lecture 12 |
-| [Chapters_MD/Vaciago/4_Garlasco_Case.md](Notes/Chapters_MD/Vaciago/4_Garlasco_Case.md) | ✅ Complete | Garlasco Murder Case Study | Lecture 16 |
 | [Chapters_MD/Vaciago/5_Rules_Digital_Forensics.md](Notes/Chapters_MD/Vaciago/5_Rules_Digital_Forensics.md) | ✅ Complete | Forensic Report Writing Rules | Lectures 19 & 22 |
 | [Chapters_MD/Vaciago/6_Hacking_Team_Case.md](Notes/Chapters_MD/Vaciago/6_Hacking_Team_Case.md) | ✅ Complete | Hacking Team Case | Lecture 22 |
 | [Chapters_MD/Vaciago/Articoli_Codice_Penale.md](Notes/Chapters_MD/Vaciago/Articoli_Codice_Penale.md) | ✅ Complete | Articles 615-ter/615-quater & Malware Liability | Lecture 26 |
+
+### Side Events and Presentations
+
+These are indexed separately from chapter notes so that student presentations, homework feedback, lab logistics, guest sessions, and non-slide discussions remain traceable without polluting the slide-backed chapter structure.
+
+| File | Purpose |
+|------|---------|
+| [Side_Events_Index.txt](Notes/Side_Events_Index.txt) | Master list of side events and where they appear in lecture notes |
+| [Side_Events_MD/Lecture_16_Guest_Paolo_Dal_Checco_Garlasco.md](Notes/Side_Events_MD/Lecture_16_Guest_Paolo_Dal_Checco_Garlasco.md) | Dedicated note for the Paolo Dal Checco / Garlasco guest session |
 
 ---
 

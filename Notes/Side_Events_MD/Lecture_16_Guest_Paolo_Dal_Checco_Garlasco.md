@@ -1,7 +1,8 @@
-# Chapter 4 – Case Study: The Garlasco Murder (Digital Evidence)
+# Side Event – Lecture 16: Paolo Dal Checco and the Garlasco Case
 **Professor:** Vaciago  
 **Guest Expert:** Paolo Dal Checco  
-**Covered in Lectures:** [Lecture 16](../../Lectures_MD/Lecture_16_Vaciago.md)
+**Source Lecture:** [Lecture 16](../Lectures_MD/Lecture_16_Vaciago.md)  
+**Classification:** Guest expert lecture / professional case discussion
 
 ---
 
@@ -62,5 +63,5 @@ The case also serves as a study in expert behavior:
 ---
 
 > 📓 *Related Chapters:*
-> - [3_Law_48_08.md](3_Law_48_08.md) – The legal framework created partly as a response to errors in cases like Garlasco.
-> - [01_IntroCF.md](../Atzeni/01_IntroCF.md) – The basic principles of Chain of Custody that were violated here.
+> - [3_Law_48_08.md](../Chapters_MD/Vaciago/3_Law_48_08.md) – The legal framework created partly as a response to errors in cases like Garlasco.
+> - [01_IntroCF.md](../Chapters_MD/Atzeni/01_IntroCF.md) – The basic principles of Chain of Custody that were violated here.

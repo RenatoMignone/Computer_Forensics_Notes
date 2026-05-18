@@ -27,6 +27,8 @@ The project generates two types of structured Markdown notes from raw lecture tr
 ├── Chapters_MD/
 │   ├── Atzeni/                # Chapter notes for Prof. Atzeni, grouped by slide deck / topic
 │   └── Vaciago/               # Chapter notes for Prof. Vaciago, grouped by slide deck / topic
+├── Side_Events_MD/            # Dedicated notes for guest/non-slide side events
+├── Side_Events_Index.txt      # Index of presentations, labs, homework feedback, and admin material
 ├── Slides/
 │   ├── Atzeni/                # PDF slide decks from Prof. Atzeni
 │   └── Vaciago/               # PDF slide decks from Prof. Vaciago
@@ -42,6 +44,8 @@ The project generates two types of structured Markdown notes from raw lecture tr
 | `Lectures_MD/` | Chronological per-lecture notes; one file per lecture session | Yes (output) |
 | `Chapters_MD/Atzeni/` | Thematic chapter notes for Atzeni; aggregated across lectures | Yes (output) |
 | `Chapters_MD/Vaciago/` | Thematic chapter notes for Vaciago; aggregated across lectures | Yes (output) |
+| `Side_Events_MD/` | Full notes for guest sessions and non-slide side events | Yes (output) |
+| `Side_Events_Index.txt` | Master index of presentations, labs, homework feedback, guest sessions, and admin material | Yes (output) |
 | `Slides/Atzeni/` | Atzeni's slide PDFs — used as structural skeleton for notes | READ ONLY |
 | `Slides/Vaciago/` | Vaciago's slide PDFs — used as structural skeleton for notes | READ ONLY |
 
@@ -159,7 +163,7 @@ Pattern: `[SlidePrefix]_[ShortTitle].md` — mirrors the slide PDF filename
 | `07_untrusted_domain.pdf` | Atzeni | Lectures 10 & 11 |
 | `07a_HTTPS-Session-Hijacking.pdf` | Atzeni | Lecture 10 |
 | `07b_Man-in-the-Disk-MitD-Vulnerability.pdf` | Atzeni | Lecture 10 |
-| `0_Introduction.pdf` | Vaciago | Lectures 03 & 16 |
+| `0_Introduction.pdf` | Vaciago | Lecture 03 |
 | `1_Definition.pdf` | Vaciago | Lecture 06 |
 | `2_Cybercrime_Convention.pdf` | Vaciago | Lectures 06 & 09 |
 | `3_Law_48_08.pdf` | Vaciago | Lecture 12 |
@@ -244,10 +248,27 @@ Pattern: `[SlidePrefix]_[ShortTitle].md` — mirrors the slide PDF filename
 | `1_Definition.md` | ✅ Complete | `1_Definition.pdf` | Lecture 06 |
 | `2_Cybercrime_Convention.md` | ✅ Complete | `2_Cybercrime_Convention.pdf` | Lectures 06 & 09 |
 | `3_Law_48_08.md` | ✅ Complete | `3_Law_48_08.pdf` | Lecture 12 |
-| `4_Garlasco_Case.md` | ✅ Complete | N/A (Guest Lecture/Discussion) | Lecture 16 |
 | `5_Rules_Digital_Forensics.md` | ✅ Complete | `5_Rules_Digital_Forensics.pdf` | Lectures 19 & 22 |
 | `6_Hacking_Team_Case.md` | ✅ Complete | `6_Hacking_Team_Case.pdf` | Lecture 22 |
 | `Articoli_Codice_Penale.md` | ✅ Complete | `Articoli_Codice_Penale.pdf` | Lecture 26 |
+
+---
+
+## Side Events, Presentations, and Non-Slide Material
+
+Use `Side_Events_Index.txt` as the master map for material that happened during lectures but should not be treated as normal slide-backed chapter content. This includes student presentations, homework feedback, lab logistics, course administration, guest lectures, and professional/case digressions.
+
+Current dedicated side-event notes:
+
+| File | Source Lecture | Type |
+|------|----------------|------|
+| `Side_Events_MD/Lecture_16_Guest_Paolo_Dal_Checco_Garlasco.md` | Lecture 16 | Guest expert lecture / professional case discussion |
+
+Isolation rule:
+- `Lectures_MD/` may keep these items because they record the chronological lecture.
+- `Side_Events_Index.txt` must reference them so future AI sessions can identify them quickly.
+- `Chapters_MD/` should not absorb student presentations, homework feedback, exam/admin logistics, or non-slide guest/professional discussions.
+- If the user explicitly wants a full note for a side event, create it under `Side_Events_MD/`, not under `Chapters_MD/`.
 
 ---
 
@@ -381,6 +402,7 @@ All Markdown files in this project follow a consistent format. New notes must ma
 | **No invention** | Never add substantive content that does not appear in the transcription. Slides may guide structure and reference labels only. |
 | **Summary bullets** | 6–10 bullet points; each capturing one distinct key idea; no sub-bullets |
 | **Lab Lectures** | If the transcript indicates a Laboratory/Lab session, compress the information heavily. Write much shorter `.md` files to reduce token usage. Strip out useless details. |
+| **Side events** | Student presentations, homework feedback, admin logistics, and guest/non-slide discussions may remain in `Lectures_MD/`, but must be indexed in `Side_Events_Index.txt` and kept out of `Chapters_MD/` unless the user explicitly asks otherwise. |
 
 ---
 
@@ -420,7 +442,7 @@ All Markdown files in this project follow a consistent format. New notes must ma
 **Changes (Batch 4 processing):**
 - Processed Lectures 16 and 17.
 - Created `Lectures_MD/Lecture_16_Vaciago.md` and `Lectures_MD/Lecture_17_Atzeni.md`.
-- Created `Chapters_MD/Vaciago/4_Garlasco_Case.md` covering the Garlasco forensic analysis and expert ethics.
+- Created a dedicated side-event note for the Paolo Dal Checco / Garlasco guest discussion, now located at `Side_Events_MD/Lecture_16_Guest_Paolo_Dal_Checco_Garlasco.md`.
 - Expanded `Chapters_MD/Atzeni/09_FS_forensics.md` with MBR/GPT and FAT structure details from Lecture 17.
 - Updated `AI_Context.md` to reflect new files and mapping.
 
@@ -448,3 +470,9 @@ All Markdown files in this project follow a consistent format. New notes must ma
 - Normalized the volatile-memory slide filename to `Slides/Atzeni/16_volatile.pdf`.
 - Realigned old post-Lecture-18 professor/number assignments to match the dated `Lectures_txt/` filenames as the source of truth.
 - Updated `AI_Context.md`, `README.md`, per-lecture note filenames, and chapter cross-references for the corrected architecture.
+
+### 2026-05-18 — Side-Event Isolation Audit
+- Created `Side_Events_Index.txt` to track student presentations, homework feedback, lab/admin material, guest sessions, and non-slide professional/case discussions.
+- Moved the Paolo Dal Checco / Garlasco guest discussion out of `Chapters_MD/Vaciago/` and into `Side_Events_MD/`.
+- Confirmed that explicit student presentations from Lectures 23, 24, and 28 are present in lecture notes but not in chapter notes.
+- Documented the rule that future side-event material should be indexed separately and kept out of slide-backed chapter notes.

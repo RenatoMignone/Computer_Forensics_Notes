@@ -1,0 +1,125 @@
+CFCCA side-event and non-slide-course-material index
+Last updated: 2026-05-18
+
+Purpose
+This file lists lecture material that should remain traceable, but should not be treated as ordinary slide-backed chapter content unless explicitly stated. These items may appear in the per-lecture notes because they happened during the lecture. Student presentations, homework feedback, administrative explanations, and guest/professional digressions should generally not be merged into Chapters_MD topic notes.
+
+Chapter-note rule
+- Keep in Lectures_MD: chronological record of what happened in class.
+- Keep in this index: references to side events, presentations, labs, and administrative material.
+- Keep out of Chapters_MD: student presentations, homework feedback, exam logistics, informal administrative notes, and non-slide guest/professional discussions.
+- Exception: if a side event has an official slide deck or the user explicitly wants a dedicated note, place the full side-event note under Side_Events_MD rather than Chapters_MD.
+
+Confirmed isolation status
+- Explicit student presentations are currently isolated from Chapters_MD.
+- The Paolo Dal Checco / Garlasco guest discussion was moved out of Chapters_MD and into Side_Events_MD.
+- Lab/course exercises that are part of an official slide deck remain in Chapters_MD only when they directly explain the slide topic.
+
+Side events and references
+
+Lecture 01 - Atzeni - Course logistics, labs, optional homework, exam format
+- Transcript: Notes/Lectures_txt/Lecture_01_Atzeni_24-02_.txt
+- Lecture note: Notes/Lectures_MD/Lecture_01_Atzeni.md
+- Type: course administration
+- Relevant sections: Course Structure & Organisation; Lab Sessions; Optional Homework; Exam
+- Chapter handling: do not merge administrative rules into topic chapters.
+
+Lecture 03 - Vaciago - Legal-track logistics and laboratory format
+- Transcript: Notes/Lectures_txt/Lecture_03_Vaciago_27-02_.txt
+- Lecture note: Notes/Lectures_MD/Lecture_03_Vaciago.md
+- Type: course administration / lab framing
+- Relevant sections: Course Structure - Legal Component; Laboratory Format; Exam
+- Chapter handling: keep only substantive legal-design and forensic concepts in chapters.
+
+Lecture 05 - Atzeni - USB acquisition walkthrough and case-study exercise introduction
+- Transcript: Notes/Lectures_txt/Lecture_05_Atzeni_04-03_.txt
+- Lecture note: Notes/Lectures_MD/Lecture_05_Atzeni.md
+- Type: practical exercise / workshop setup
+- Relevant sections: Practical Walkthrough - USB Drive Acquisition; Case Study Exercise (Introduced)
+- Chapter handling: technical acquisition procedure may appear in chapter notes; classroom exercise logistics should stay lecture-only.
+
+Lecture 07 - Atzeni - ShockWave case-study brief session
+- Transcript: Notes/Lectures_txt/Lecture_07_Atzeni_10-03_.txt
+- Lecture note: Notes/Lectures_MD/Lecture_07_Atzeni.md
+- Type: case-study workshop / student hypothesis discussion
+- Relevant section: Case Study Brief Session - Recap & Hypotheses
+- Chapter handling: keep methodology that supports write-blocker/scene-assessment topics; do not merge student hypothesis discussion.
+
+Lecture 08 - Atzeni - ShockWave workshop and debrief
+- Transcript: Notes/Lectures_txt/Lecture_08_Atzeni_11-03_.txt
+- Lecture note: Notes/Lectures_MD/Lecture_08_Atzeni.md
+- Type: case-study workshop / debrief
+- Relevant sections: Case Study Scenario; Timeline Reconstruction; Investigative Conclusions
+- Chapter handling: slide-backed case-study content can remain in the dedicated Atzeni case-study chapter.
+
+Lecture 16 - Vaciago with Paolo Dal Checco - Guest expert lecture on Garlasco and professional practice
+- Transcript: Notes/Lectures_txt/Lecture_16_Vaciago_01-04_.txt
+- Lecture note: Notes/Lectures_MD/Lecture_16_Vaciago.md
+- Side-event note: Notes/Side_Events_MD/Lecture_16_Guest_Paolo_Dal_Checco_Garlasco.md
+- Type: guest lecture / professional case discussion
+- Relevant sections: Professional Ethics and Tool Verification; Advanced Investigative Techniques; Digital Alibi; Career Path of a Forensic Expert
+- Chapter handling: isolated under Side_Events_MD, not Chapters_MD.
+
+Lecture 17 - Atzeni - Practical lab preparation
+- Transcript: Notes/Lectures_txt/Lecture_17_Atzeni_10-04_.txt
+- Lecture note: Notes/Lectures_MD/Lecture_17_Atzeni.md
+- Type: lab preparation
+- Relevant section: Practical Lab Preparation
+- Chapter handling: keep only technical file-system concepts in chapter notes.
+
+Lecture 18 - Atzeni - Lab organisation and evaluation
+- Transcript: Notes/Lectures_txt/Lecture_18_Atzeni_14-04_.txt
+- Lecture note: Notes/Lectures_MD/Lecture_18_Atzeni.md
+- Type: lab administration
+- Relevant section: Lab Organisation and Evaluation
+- Chapter handling: do not merge evaluation/logistics into chapter notes.
+
+Lecture 20 - Atzeni - Lab requirements and reports
+- Transcript: Notes/Lectures_txt/Lecture_20_Atzeni_21-04_.txt
+- Lecture note: Notes/Lectures_MD/Lecture_20_Atzeni.md
+- Type: lab/reporting administration
+- Relevant section: Lab Requirements and Reports
+- Chapter handling: keep only substantive forensic-copying/reporting principles in chapter notes.
+
+Lecture 22 - Vaciago - Digital alibi presentation feedback and Hacking Team lab objective
+- Transcript: Notes/Lectures_txt/Lecture_22_Vaciago_24-04_.txt
+- Lecture note: Notes/Lectures_MD/Lecture_22_Vaciago.md
+- Type: student-presentation feedback / legal lab scenario
+- Relevant sections: Digital Alibi Presentation Feedback; Search and Seizure and Lab Objective
+- Chapter handling: feedback on student presentations stays lecture-only; Hacking Team substantive legal case material may remain in the Hacking Team chapter.
+
+Lecture 23 - Atzeni - Student homework presentation on Linux privilege escalation
+- Transcript: Notes/Lectures_txt/Lecture_23_Atzeni_28-04_.txt
+- Lecture note: Notes/Lectures_MD/Lecture_23_Atzeni.md
+- Type: student homework presentation
+- Relevant section: Homework Presentation: Linux Privilege Escalation
+- Chapter handling: do not merge the student presentation into Chapters_MD/Atzeni/12_Network.md.
+
+Lecture 24 - Atzeni - Continuation of Linux privilege-escalation homework presentation
+- Transcript: Notes/Lectures_txt/Lecture_24_Atzeni_05-05_.txt
+- Lecture note: Notes/Lectures_MD/Lecture_24_Atzeni.md
+- Type: student homework presentation continuation
+- Relevant section: Student Homework Continuation
+- Chapter handling: do not merge the student presentation into Chapters_MD/Atzeni/12_Network.md.
+
+Lecture 26 - Vaciago - Homework feedback, AI use, media pressure, and malware-producer lab scenario
+- Transcript: Notes/Lectures_txt/Lecture_26_Vaciago_08-05_.txt
+- Lecture note: Notes/Lectures_MD/Lecture_26_Vaciago.md
+- Type: homework feedback / media discussion / legal lab scenario
+- Relevant sections: Homework Feedback and Use of AI; Criminal Cases, Privacy, and Media Pressure; Laboratory Scenario: Malware Producers
+- Chapter handling: homework feedback and media-pressure discussion stay lecture-only; substantive Articles 615-ter/615-quater analysis can remain in the legal chapter.
+
+Lecture 28 - Atzeni - Student presentation on video carving
+- Transcript: Notes/Lectures_txt/Lecture_28_Atzeni_13-05_.txt
+- Lecture note: Notes/Lectures_MD/Lecture_28_Atzeni.md
+- Type: student presentation
+- Relevant sections: Student Presentation: File Carving for Video Recovery; Carving Approaches and Experimental Results
+- Chapter handling: do not merge into Chapters_MD/Atzeni/15_OS.md or 16_volatile.md.
+
+Lecture 28 - Atzeni - Student presentation on case studies and emerging evidence
+- Transcript: Notes/Lectures_txt/Lecture_28_Atzeni_13-05_.txt
+- Lecture note: Notes/Lectures_MD/Lecture_28_Atzeni.md
+- Type: student presentation
+- Relevant section: Student Presentation: Case Studies and Emerging Evidence
+- Topics mentioned: Garlasco, Meredith Kercher / Raffaele Sollecito laptop analysis, EncroChat, automotive forensics, AI-assisted forensics
+- Chapter handling: do not merge into OS or volatile-memory chapter notes.
