@@ -1,85 +1,95 @@
-# Lecture 26 – TOR and Cloud Forensics
-**Professor:** Atzeni (transcript filename labels Vaciago)
+# Lecture 26 – Malware Production, Mens Rea, and Criminal Liability
+**Professor:** Vaciago
 **Course:** Computer Forensics and Cybercrime Analysis (CFCCA)
-**Reference Slides:** `Slides/Atzeni/13_Digital-Forensics-in-the-TOR-Network.pdf`, `Slides/Atzeni/14_Cloud.pdf`
+**Reference Slides:** `Slides/Vaciago/Articoli_Codice_Penale.pdf`
 
 ---
 
 ## Overview
-Although the transcript filename labels this as a Vaciago lecture, the content is Atzeni's technical track. The lecture covers TOR as both privacy infrastructure and anti-forensic tool, then introduces the peculiarities of cloud forensics.
+This laboratory lecture reframes the Hacking Team discussion as a legal exercise about companies that produce malware or lawful-interception tooling. Vaciago asks students to argue either for the prosecution or the defence of a company accused under Articles 615-ter and 615-quater of the Italian Criminal Code.
+
+The lecture also contains methodological feedback on student homework and a broader reflection on media pressure in criminal cases, using the Garlasco case as an example of how public attention can distort justice.
 
 ---
 
-## 1. TOR as Privacy Tool and Anti-Forensic Infrastructure
+## 1. Homework Feedback and Use of AI
 
-> 📎 *Slide reference: `13_Digital-Forensics-in-the-TOR-Network.pdf` — TOR key characteristics*
+Vaciago begins by commenting on the first homework submissions. He accepts the use of generative AI, but insists that a forensic or legal analysis must show the student's own reasoning.
 
-TOR is an open-source anonymity network based on onion routing. It routes traffic through relays so that no single relay knows both the user's origin and the final destination.
-
-The lecture emphasises the dual nature of TOR:
-- legitimate privacy protection for free speech and safety;
-- possible concealment infrastructure for illegal activity.
+The key warning is qualitative rather than formal: producing many pages does not improve the work if the reasoning is weak or if the text contains unsupported claims. For later assignments, the evaluation will be stricter, and work done during class laboratories must normally be individual unless the professor gives prior approval.
 
 ---
 
-## 2. Onion Routing and the TOR Daemon
+## 2. Criminal Cases, Privacy, and Media Pressure
 
-The **TOR daemon** runs locally as a proxy-like component. Applications such as Tor Browser send traffic to the daemon, which handles routing, cryptography, relay selection, and circuit management.
+The lecture then discusses recent public attention around the Garlasco case. Vaciago distinguishes between public-interest political debate and criminal cases involving private persons.
 
-TOR circuits usually involve:
-1. **Guard node**, which sees the user's IP but not the destination.
-2. **Middle relay**, which forwards encrypted cells.
-3. **Exit node**, which connects to the destination and sees destination traffic not protected by end-to-end encryption.
+In his view, criminal proceedings should be judged through trial evidence and judicial decisions, not through newspapers, television anticipations, or social-media pressure. Media pressure can harm both suspects and the quality of justice because prosecutors, judges, lawyers, and experts may be forced to operate under external expectations rather than only on the evidence.
 
-Each layer is encrypted with a different symmetric key, and relays peel only their own layer.
+The forensic lesson is that digital evidence must be handled in a disciplined procedural setting. Public curiosity is understandable, but it is not a substitute for evidentiary method.
 
 ---
 
-## 3. Guard Nodes and Traffic Correlation
+## 3. The Laboratory Scenario: Malware Producers
 
-> 📎 *Slide reference: `13_Digital-Forensics-in-the-TOR-Network.pdf` — Guard nodes*
+> 📎 *Slide reference: `Articoli_Codice_Penale.pdf` — Articles 615-ter and 615-quater*
 
-Persistent guard nodes reduce the probability that an adversary eventually becomes the entry relay. Instead of choosing a new entry relay for every circuit, the client keeps a small guard set for an extended period.
+Vaciago changes the Hacking Team laboratory perspective from a mainly technical analysis to a legal analysis. Students must imagine a company that produces malware or a broader interception platform, similar in role to tools such as RCS Galileo.
 
-This mitigates cumulative intersection attacks but does not defeat:
-- malicious guards selected at the beginning;
-- adversaries observing both ends of the traffic;
-- network-level adversaries with broad visibility.
+The scenario distinguishes:
+- companies that produce malware as a standalone artifact;
+- companies that produce a broader operational package for remote access, interception, or surveillance;
+- companies that sell only to government agencies or public authorities;
+- companies whose research and development may require contact with vulnerability brokers, ethical hackers, or cybercriminal environments.
 
----
-
-## 4. Detecting TOR and Its Limits
-
-Forensic analysts can identify TOR use by cross-referencing captured IPs against known TOR relay lists. This approach becomes weaker when traffic uses non-public TOR nodes that do not appear in the ordinary public lists.
-
-The lecture also discusses international traffic-correlation concerns, especially where many relays fall within cooperative intelligence jurisdictions.
+The central legal problem is whether the production, possession, distribution, or use of these tools is criminal, and under what subjective conditions.
 
 ---
 
-## 5. Cloud Forensics Peculiarities
+## 4. Article 615-ter: Unauthorized Access
 
-> 📎 *Slide reference: `14_Cloud.pdf` — Cloud forensics peculiarities*
+Article 615-ter criminalizes unauthorized access to a protected computer or telecommunication system, or remaining in it against the will of the person entitled to exclude the actor.
 
-Cloud forensics applies digital forensics to cloud environments, where traditional assumptions about physical access and stable devices often fail.
+In the laboratory scenario, the prosecution can argue that a spyware platform is designed precisely to enter protected systems. The defence can argue that the company sells a tool, often to public authorities, and that the legality of a concrete access depends on authorization, purpose, and operational use.
 
-Key peculiarities include:
-- **multi-tenancy**, where multiple customers share physical resources;
-- **ephemeral resources**, such as containers, VMs, and serverless functions;
-- **provider dependency**, especially in SaaS and PaaS;
-- **jurisdictional fragmentation** across countries and legal regimes;
-- **log completeness and integrity** problems.
+The article is therefore not only a technical question of whether access occurred. It also requires attention to authorization, role, context, and the will of the system owner.
 
 ---
 
-## 6. Cloud Models and Evidence Access
+## 5. Article 615-quater: Access Codes and Means of Access
 
-| Model | Investigator Visibility |
-|-------|-------------------------|
-| **SaaS** | Mostly user-level and application-level logs; strong provider dependency. |
-| **PaaS** | Application-level visibility and some platform logs; no hardware control. |
-| **IaaS** | Better VM, storage, and network control, but still no physical hardware access. |
+Article 615-quater concerns the unlawful procurement, reproduction, dissemination, communication, or delivery of codes, passwords, or other means suitable for accessing protected systems, when done to obtain profit or cause damage.
 
-Cloud storage such as **Amazon S3** can be very valuable because it may provide versioning, WORM-like retention options, long-term storage classes, and provider-mediated access to stored data. However, the investigator often relies on the provider's APIs and trustworthiness.
+Vaciago connects this to the possession and distribution of malware or access-enabling tools. A company producing such tools may be accused not only of technical development but also of creating or distributing means suitable for unlawful access.
+
+For the defence, the difficult point is to show that the tool's production and delivery are framed by lawful purposes, lawful customers, and a lack of criminal intent.
+
+---
+
+## 6. Mens Rea
+
+The most important concept for the assignment is **mens rea**, the subjective element of the offence.
+
+Vaciago stresses that mens rea is not simply a bad moral purpose. The relevant question is awareness and will with respect to the criminal conduct. In the malware scenario, this means asking whether the accused was aware of producing or distributing a tool suitable for the prohibited activity, and whether the legal elements of the offence are satisfied.
+
+This creates a subtle distinction:
+- producing malware to attack a bank may involve both malware-related offences and the later offence against the bank;
+- producing malware for a law-enforcement investigation may have a legitimate declared purpose, but the legal analysis still must address awareness of producing the tool;
+- selling only to governments may be relevant for defence, but it does not automatically remove every legal risk.
+
+---
+
+## 7. Participation in a Crime
+
+The second major concept is **participation in a crime** (`concorso`).
+
+Even a researcher or company with cybersecurity aims can create legal risk by entering into operational contact with actors who commit crimes. If a malware producer obtains vulnerabilities, infrastructure, or access from a cybercriminal environment, the question becomes whether the producer participates in the criminal activity of others.
+
+For the laboratory, students must therefore discuss not only the tool itself but also the surrounding relationships:
+- who supplied vulnerabilities or access;
+- whether the company knew the supplier's illicit activity;
+- whether the company helped another actor commit an offence;
+- whether the company's customers were legitimate public bodies or illegitimate private actors.
 
 ---
 
@@ -87,21 +97,20 @@ Cloud storage such as **Amazon S3** can be very valuable because it may provide 
 
 | Term | Definition |
 |------|------------|
-| **TOR Daemon** | Local process that manages TOR circuits, cryptography, relay state, and proxy-like routing for applications. |
-| **Guard Node** | First relay in a TOR circuit; it knows the client IP but not the destination. |
-| **Non-Public TOR Node** | TOR node not available through ordinary public relay lists, making simple relay-list detection weaker. |
-| **Cloud Forensics** | Application of digital forensic methods to cloud environments. |
-| **Multi-Tenancy** | Cloud property where multiple users share physical or virtual infrastructure. |
-| **WORM-like Cloud Retention** | Contractual storage property that can prevent even the customer from deleting or modifying retained data for a configured period. |
+| **Article 615-ter c.p.** | Italian offence of unauthorized access to a protected computer or telecommunication system. |
+| **Article 615-quater c.p.** | Italian offence concerning unauthorized possession or distribution of access codes or other means suitable for access. |
+| **Mens rea** | Subjective element: awareness and will regarding the conduct that constitutes the offence. |
+| **Participation in a crime** | Liability risk arising from contribution to another actor's criminal conduct. |
+| **Lawful-interception tool** | A technical system intended to support authorized investigative interception or remote access. |
 
 ---
 
 ## Summary
-- TOR provides privacy but can also obstruct network attribution.
-- Onion routing separates knowledge of origin, path, and destination across relays.
-- Persistent guards reduce long-term exposure to malicious entry relays.
-- Relay-list detection works only against public relays, not non-public TOR nodes.
-- Cloud forensics breaks classic assumptions about physical seizure and direct imaging.
-- SaaS, PaaS, and IaaS provide different evidence visibility.
-- Cloud logs may be incomplete unless configured for the relevant data-plane events.
-- Provider trust, jurisdiction, and API-mediated access must be documented in any cloud investigation.
+- Vaciago warns that homework must show human reasoning, not only AI-generated volume.
+- Media pressure in criminal cases can damage justice and distort the evidentiary process.
+- The Hacking Team-style laboratory is reframed around legal liability for malware production.
+- Articles 615-ter and 615-quater are the main statutory references.
+- The assignment can be argued from either prosecution or defence.
+- The core analytical point is mens rea: awareness of the legally relevant conduct.
+- Contact with cybercriminal environments can raise participation-in-a-crime issues.
+- Selling only to public authorities is legally relevant but not a complete answer by itself.

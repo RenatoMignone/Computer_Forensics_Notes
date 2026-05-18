@@ -1,7 +1,7 @@
 # Chapter 12 – Network Forensics
 **Professor:** Atzeni
-**Reference Slides:** [`Slides/Atzeni/12_Network.pdf`](Slides/Atzeni/12_Network.pdf)
-**Covered in Lectures:** [Lecture 22](Lectures_MD/Lecture_22_Vaciago.md), [Lecture 24](Lectures_MD/Lecture_24_Atzeni.md), [Lecture 25](Lectures_MD/Lecture_25_Atzeni.md)
+**Reference Slides:** [`Slides/Atzeni/12_Network.pdf`](../../Slides/Atzeni/12_Network.pdf)
+**Covered in Lectures:** [Lecture 21](../../Lectures_MD/Lecture_21_Atzeni.md), [Lecture 23](../../Lectures_MD/Lecture_23_Atzeni.md), [Lecture 24](../../Lectures_MD/Lecture_24_Atzeni.md)
 
 ---
 

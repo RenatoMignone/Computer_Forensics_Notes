@@ -1,7 +1,7 @@
 # Chapter 11 – Data Sanitisation Techniques
 **Professor:** Atzeni
-**Reference Slides:** [`Slides/Atzeni/11_Data-Sanitisation-Techniques.pdf`](Slides/Atzeni/11_Data-Sanitisation-Techniques.pdf)
-**Covered in Lectures:** [Lecture 22](Lectures_MD/Lecture_22_Vaciago.md)
+**Reference Slides:** [`Slides/Atzeni/11_Data-Sanitisation-Techniques.pdf`](../../Slides/Atzeni/11_Data-Sanitisation-Techniques.pdf)
+**Covered in Lectures:** [Lecture 21](../../Lectures_MD/Lecture_21_Atzeni.md)
 
 ---
 

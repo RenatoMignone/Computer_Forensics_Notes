@@ -1,4 +1,4 @@
-# Lecture 19 – NTFS, Forensic Copying, and Low-Level Acquisition Tools
+# Lecture 20 – NTFS, Forensic Copying, and Low-Level Acquisition Tools
 **Professor:** Atzeni
 **Course:** Computer Forensics and Cybercrime Analysis (CFCCA)
 **Reference Slides:** `Slides/Atzeni/09_FS_forensics.pdf`
@@ -6,7 +6,7 @@
 ---
 
 ## Overview
-This lecture extends file system forensics from FAT to NTFS and explains why forensic copying differs from ordinary user-level copying. It also introduces the practical role of low-level acquisition commands, hashing, file signatures, and the first SSD-related complications.
+This lecture extends file system forensics from FAT to NTFS and explains why forensic copying differs from ordinary user-level copying. It also introduces slack space, data carving, sanitisation previews, low-level acquisition commands, hashing, file signatures, and the first SSD-related complications.
 
 ---
 

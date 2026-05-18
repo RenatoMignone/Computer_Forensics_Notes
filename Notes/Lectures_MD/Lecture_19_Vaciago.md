@@ -1,4 +1,4 @@
-# Lecture 20 – The 10 Rules for a Digital Forensic Report
+# Lecture 19 – The 10 Rules for a Digital Forensic Report
 **Professor:** Vaciago
 **Course:** Computer Forensics and Cybercrime Analysis (CFCCA)
 **Reference Slides:** `Slides/Vaciago/5_Rules_Digital_Forensics.pdf`
@@ -103,4 +103,3 @@ The lab then asks students to apply these rules to a digital alibi scenario insp
 - Facts must be separated from interpretation and conclusions.
 - Timelines should combine technical and real-world events.
 - Reports must be understandable to judges and robust under cross-examination.
-

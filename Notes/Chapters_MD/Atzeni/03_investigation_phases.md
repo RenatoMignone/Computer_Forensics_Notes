@@ -275,4 +275,4 @@ Before finalising:
 - **Phase 5 (Presentation)**: Tailor the report to the audience; preserve **all draft versions**; perform an independent QA technical review to establish repeatability before submission.
 
 > 📝 *The practical USB drive acquisition procedure is covered in [03b_Forensic-USB-Drive-Acquisition.md](03b_Forensic-USB-Drive-Acquisition.md).*  
-> 📝 *An end-to-end case study applying all five phases is in [Digital-Forensics-Case-Study.md](Digital-Forensics-Case-Study.md).*
+> 📝 *An end-to-end case study applying all five phases is in [Digital-Forensics-Case-Study.md](06_Digital-Forensics-Case-Study.md).*

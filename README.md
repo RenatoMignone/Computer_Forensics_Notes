@@ -22,7 +22,7 @@ This project welcomes contributions! Follow this step-by-step workflow to add ne
 1. In the Portale della Didattica, find the lecture video corresponding to the new material
 2. Right-click the lecture video and select *Copy link address...*
 3. Open `Script/Transcription/data.json` and add the URL to the `Lecture_URLs` list
-4. Add the desired output filename (e.g., `Lecture_09_Atzeni.txt`) to the `File_Names` list, ensuring the lengths of both lists match
+4. Add the desired output filename (e.g., `Lecture_09_Vaciago_13-03_.txt`) to the `File_Names` list, ensuring the lengths of both lists match
 
 ### Step 3: Run AI Transcription
 1. Open a terminal in the `Script/Transcription/` directory
@@ -43,7 +43,7 @@ This project welcomes contributions! Follow this step-by-step workflow to add ne
    - Use **Antigravity** client if available
 2. In your AI chat session:
    - Attach [Notes/AI_Context.md](Notes/AI_Context.md) to provide project context
-   - Attach the new `Lectures_txt/Lecture_[NN]_[Professor].txt` file
+   - Attach the new `Lectures_txt/Lecture_[NN]_[Professor]_[DD-MM]_.txt` file
    - Attach the corresponding slide PDFs from `Notes/Slides/[Professor]/`
    - Attach any related existing chapter notes from `Notes/Chapters_MD/[Professor]/` for consistency
    - Provide this prompt to the AI:
@@ -90,16 +90,16 @@ This project welcomes contributions! Follow this step-by-step workflow to add ne
     ├── Lectures_MD/          # Per-lecture structured Markdown notes (one file per lecture)
     │   ├── Lecture_01_Atzeni.md
     │   ├── ...
-    │   └── Lecture_26_Vaciago.md
+    │   └── Lecture_28_Atzeni.md
     │
     ├── Chapters_MD/          # Per-chapter notes grouped by topic and professor
     │   ├── Atzeni/
     │   └── Vaciago/
     │
     ├── Lectures_txt/         # Raw audio transcriptions (source material only)
-    │   ├── Lecture_01_Atzeni.txt
+    │   ├── Lecture_01_Atzeni_24-02_.txt
     │   ├── ...
-    │   └── Lecture_26_Vaciago.txt
+    │   └── Lecture_28_Atzeni_13-05_.txt
     │
     └── Slides/               # Official course slide PDFs (organized by professor)
         ├── Atzeni/
@@ -125,12 +125,12 @@ This project welcomes contributions! Follow this step-by-step workflow to add ne
 
 | # | File | Topic | Key Slides |
 |---|------|-------|------------|
-| 1 | [Lecture_01_Atzeni.md](Notes/Lectures_MD/Lecture_01_Atzeni.md) | Intro to CompForensics & Morris Worm | `01_introCF.pdf`, `01b_MorrisWorm.pdf` |
+| 1 | [Lecture_01_Atzeni.md](Notes/Lectures_MD/Lecture_01_Atzeni.md) | Intro to CompForensics & Morris Worm | `01_introCF.pdf`, `01b_Cybersecurity-History-MorrisWorm.pdf` |
 | 2 | [Lecture_02_Atzeni.md](Notes/Lectures_MD/Lecture_02_Atzeni.md) | Evidence, Chain of Custody & Acquisition | `02_terms.pdf` |
 | 4 | [Lecture_04_Atzeni.md](Notes/Lectures_MD/Lecture_04_Atzeni.md) | Investigation Phases I: Identification | `03_investigation_phases.pdf` |
-| 5 | [Lecture_05_Atzeni.md](Notes/Lectures_MD/Lecture_05_Atzeni.md) | Investigation Phases II: Acquisition | `03_investigation_phases.pdf`, `03b_USB.pdf` |
+| 5 | [Lecture_05_Atzeni.md](Notes/Lectures_MD/Lecture_05_Atzeni.md) | Investigation Phases II: Acquisition | `03_investigation_phases.pdf`, `03b_Forensic-USB-Drive-Acquisition.pdf` |
 | 7 | [Lecture_07_Atzeni.md](Notes/Lectures_MD/Lecture_07_Atzeni.md) | Write Blockers & Scene Assessment | `04_Write-Blocker-Tools.pdf` |
-| 8 | [Lecture_08_Atzeni.md](Notes/Lectures_MD/Lecture_08_Atzeni.md) | Case Study: Prefetch & Timeline Analysis | `Digital-Forensics-Case-Study.pdf` |
+| 8 | [Lecture_08_Atzeni.md](Notes/Lectures_MD/Lecture_08_Atzeni.md) | Case Study: Prefetch & Timeline Analysis | `06_Digital-Forensics-Case-Study.pdf` |
 | 10 | [Lecture_10_Atzeni.md](Notes/Lectures_MD/Lecture_10_Atzeni.md) | Untrusted Domains & Malware Vectors | `07_untrusted_domain.pdf` |
 | 11 | [Lecture_11_Atzeni.md](Notes/Lectures_MD/Lecture_11_Atzeni.md) | Memory Exploitation & Supply Chain Attacks | `07_untrusted_domain.pdf` |
 | 13 | [Lecture_13_Atzeni.md](Notes/Lectures_MD/Lecture_13_Atzeni.md) | Forensic Lab Setup & Principles | `08_tools_and_labs.pdf` |
@@ -138,24 +138,26 @@ This project welcomes contributions! Follow this step-by-step workflow to add ne
 | 15 | [Lecture_15_Atzeni.md](Notes/Lectures_MD/Lecture_15_Atzeni.md) | File System Forensics: Device Types | `09_FS_forensics.pdf` |
 | 17 | [Lecture_17_Atzeni.md](Notes/Lectures_MD/Lecture_17_Atzeni.md) | File System Forensics: Metadata & FAT | `09_FS_forensics.pdf` |
 | 18 | [Lecture_18_Atzeni.md](Notes/Lectures_MD/Lecture_18_Atzeni.md) | File System Forensics: Slack Space & FAT Recovery | `09_FS_forensics.pdf` |
-| 19 | [Lecture_19_Atzeni.md](Notes/Lectures_MD/Lecture_19_Atzeni.md) | NTFS, Forensic Copying & Acquisition Tools | `09_FS_forensics.pdf` |
-| 21 | [Lecture_21_Atzeni.md](Notes/Lectures_MD/Lecture_21_Atzeni.md) | SSD Forensics & Deleted Data Recovery | `10_HDD-vs-SSD...pdf` |
-| 22 | [Lecture_22_Vaciago.md](Notes/Lectures_MD/Lecture_22_Vaciago.md) | SSD Acquisition, Sanitisation & Network Intro (Atzeni content; filename mismatch preserved) | `10_HDD-vs-SSD...pdf`, `11_Data-Sanitisation...pdf`, `12_Network.pdf` |
-| 24 | [Lecture_24_Atzeni.md](Notes/Lectures_MD/Lecture_24_Atzeni.md) | Network Forensics, OSINT & Social Media | `12_Network.pdf` |
-| 25 | [Lecture_25_Atzeni.md](Notes/Lectures_MD/Lecture_25_Atzeni.md) | Network Anti-Forensics & Attack Obfuscation | `12_Network.pdf` |
-| 26 | [Lecture_26_Vaciago.md](Notes/Lectures_MD/Lecture_26_Vaciago.md) | TOR & Cloud Forensics (Atzeni content; filename mismatch preserved) | `13_Digital-Forensics-in-the-TOR-Network.pdf`, `14_Cloud.pdf` |
+| 20 | [Lecture_20_Atzeni.md](Notes/Lectures_MD/Lecture_20_Atzeni.md) | NTFS, Forensic Copying, Slack Space & SSD Intro | `09_FS_forensics.pdf`, `10_HDD-vs-SSD...pdf` |
+| 21 | [Lecture_21_Atzeni.md](Notes/Lectures_MD/Lecture_21_Atzeni.md) | SSD Acquisition, Sanitisation & Network Intro | `10_HDD-vs-SSD...pdf`, `11_Data-Sanitisation...pdf`, `12_Network.pdf` |
+| 23 | [Lecture_23_Atzeni.md](Notes/Lectures_MD/Lecture_23_Atzeni.md) | Network Forensics, OSINT & Social Media | `12_Network.pdf` |
+| 24 | [Lecture_24_Atzeni.md](Notes/Lectures_MD/Lecture_24_Atzeni.md) | Network Anti-Forensics & Attack Obfuscation | `12_Network.pdf` |
+| 25 | [Lecture_25_Atzeni.md](Notes/Lectures_MD/Lecture_25_Atzeni.md) | TOR & Cloud Forensics | `13_Digital-Forensics-in-the-TOR-Network.pdf`, `14_Cloud.pdf` |
+| 27 | [Lecture_27_Atzeni.md](Notes/Lectures_MD/Lecture_27_Atzeni.md) | Cloud Forensics: Effects & Acquisition Strategy | `14_Cloud.pdf` |
+| 28 | [Lecture_28_Atzeni.md](Notes/Lectures_MD/Lecture_28_Atzeni.md) | Video Carving, OS Forensics & Memory Acquisition | `15_OS.pdf`, `16_volatile.pdf` |
 
 ### Prof. Vaciago – Legal Track
 
 | # | File | Topic | Key Slides |
 |---|------|-------|------------|
 | 3 | [Lecture_03_Vaciago.md](Notes/Lectures_MD/Lecture_03_Vaciago.md) | Legal Intro: Technology & Digital Forensics | `0_Introduction.pdf` |
-| 6 | [Lecture_06_Vaciago.md](Notes/Lectures_MD/Lecture_06_Vaciago.md) | Frameworks: Retention & Jurisdiction | `1_Definition.pdf`, `2_Convention.pdf` |
+| 6 | [Lecture_06_Vaciago.md](Notes/Lectures_MD/Lecture_06_Vaciago.md) | Frameworks: Retention & Jurisdiction | `1_Definition.pdf`, `2_Cybercrime_Convention.pdf` |
 | 9 | [Lecture_09_Vaciago.md](Notes/Lectures_MD/Lecture_09_Vaciago.md) | International Cooperation & Budapest Conv. | `2_Cybercrime_Convention.pdf` |
 | 12 | [Lecture_12_Vaciago.md](Notes/Lectures_MD/Lecture_12_Vaciago.md) | Italian Law 48/2008 & Corporate Liability | `3_Law_48_08.pdf` |
 | 16 | [Lecture_16_Vaciago.md](Notes/Lectures_MD/Lecture_16_Vaciago.md) | Experts Insights & Garlasco Case Study | `0_Introduction.pdf` (Part II) |
-| 20 | [Lecture_20_Vaciago.md](Notes/Lectures_MD/Lecture_20_Vaciago.md) | The 10 Rules for a Digital Forensic Report | `5_Rules_Digital_Forensics.pdf` |
-| 23 | [Lecture_23_Vaciago.md](Notes/Lectures_MD/Lecture_23_Vaciago.md) | Digital Alibi Feedback & Hacking Team Case | `5_Rules_Digital_Forensics.pdf`, `6_Hacking_Team_Case.pdf` |
+| 19 | [Lecture_19_Vaciago.md](Notes/Lectures_MD/Lecture_19_Vaciago.md) | The 10 Rules for a Digital Forensic Report | `5_Rules_Digital_Forensics.pdf` |
+| 22 | [Lecture_22_Vaciago.md](Notes/Lectures_MD/Lecture_22_Vaciago.md) | Digital Alibi Feedback & Hacking Team Case | `5_Rules_Digital_Forensics.pdf`, `6_Hacking_Team_Case.pdf` |
+| 26 | [Lecture_26_Vaciago.md](Notes/Lectures_MD/Lecture_26_Vaciago.md) | Malware Production, Mens Rea & Criminal Liability | `Articoli_Codice_Penale.pdf` |
 
 ---
 
@@ -171,17 +173,19 @@ Chapter notes aggregate content **across multiple lectures** per topic, using th
 | [Chapters_MD/Atzeni/01b_MorrisWorm.md](Notes/Chapters_MD/Atzeni/01b_MorrisWorm.md) | ✅ Complete | The Morris Worm – Case Study | Lecture 01 |
 | [Chapters_MD/Atzeni/02_terms.md](Notes/Chapters_MD/Atzeni/02_terms.md) | ✅ Complete | Evidence & Chain of Custody | Lecture 02 |
 | [Chapters_MD/Atzeni/03_investigation_phases.md](Notes/Chapters_MD/Atzeni/03_investigation_phases.md) | ✅ Complete | Forensic Investigation Phases | Lectures 4 & 5 |
-| [Chapters_MD/Atzeni/Digital-Forensics-Case-Study.md](Notes/Chapters_MD/Atzeni/Digital-Forensics-Case-Study.md) | ✅ Complete | Insider IP Exfiltration Case Study | Lectures 5 & 8 |
+| [Chapters_MD/Atzeni/06_Digital-Forensics-Case-Study.md](Notes/Chapters_MD/Atzeni/06_Digital-Forensics-Case-Study.md) | ✅ Complete | Insider IP Exfiltration Case Study | Lectures 5 & 8 |
 | [Chapters_MD/Atzeni/04_Write-Blocker-Tools.md](Notes/Chapters_MD/Atzeni/04_Write-Blocker-Tools.md) | ✅ Complete | Write Blocker Tools | Lecture 07 |
 | [Chapters_MD/Atzeni/05_Scene-Assessment...md](Notes/Chapters_MD/Atzeni/05_Scene-Assessment-and-Data-Source-Identification.md) | ✅ Complete | Scene Assessment & OSINT | Lecture 07 |
 | [Chapters_MD/Atzeni/07_untrusted_domain.md](Notes/Chapters_MD/Atzeni/07_untrusted_domain.md) | ✅ Complete | Untrusted Domains & Malware | Lectures 10 & 11 |
 | [Chapters_MD/Atzeni/08_tools_and_labs.md](Notes/Chapters_MD/Atzeni/08_tools_and_labs.md) | ✅ Complete | Forensic Lab Setup & UFED | Lectures 13 & 14 |
-| [Chapters_MD/Atzeni/09_FS_forensics.md](Notes/Chapters_MD/Atzeni/09_FS_forensics.md) | ✅ Complete | File System Forensics | Lectures 15, 17, 18 & 19 |
-| [Chapters_MD/Atzeni/10_HDD-vs-SSD-in-Digital-Forensics.md](Notes/Chapters_MD/Atzeni/10_HDD-vs-SSD-in-Digital-Forensics.md) | ✅ Complete | HDD vs SSD Forensics | Lectures 21 & 22 |
-| [Chapters_MD/Atzeni/11_Data-Sanitisation-Techniques.md](Notes/Chapters_MD/Atzeni/11_Data-Sanitisation-Techniques.md) | ✅ Complete | Data Sanitisation Techniques | Lecture 22 |
-| [Chapters_MD/Atzeni/12_Network.md](Notes/Chapters_MD/Atzeni/12_Network.md) | ✅ Complete | Network Forensics | Lectures 22, 24 & 25 |
-| [Chapters_MD/Atzeni/13_Digital-Forensics-in-the-TOR-Network.md](Notes/Chapters_MD/Atzeni/13_Digital-Forensics-in-the-TOR-Network.md) | ✅ Complete | TOR Network Forensics | Lecture 26 |
-| [Chapters_MD/Atzeni/14_Cloud.md](Notes/Chapters_MD/Atzeni/14_Cloud.md) | ✅ Complete | Cloud Forensics | Lecture 26 |
+| [Chapters_MD/Atzeni/09_FS_forensics.md](Notes/Chapters_MD/Atzeni/09_FS_forensics.md) | ✅ Complete | File System Forensics | Lectures 15, 17, 18 & 20 |
+| [Chapters_MD/Atzeni/10_HDD-vs-SSD-in-Digital-Forensics.md](Notes/Chapters_MD/Atzeni/10_HDD-vs-SSD-in-Digital-Forensics.md) | ✅ Complete | HDD vs SSD Forensics | Lectures 20 & 21 |
+| [Chapters_MD/Atzeni/11_Data-Sanitisation-Techniques.md](Notes/Chapters_MD/Atzeni/11_Data-Sanitisation-Techniques.md) | ✅ Complete | Data Sanitisation Techniques | Lecture 21 |
+| [Chapters_MD/Atzeni/12_Network.md](Notes/Chapters_MD/Atzeni/12_Network.md) | ✅ Complete | Network Forensics | Lectures 21, 23 & 24 |
+| [Chapters_MD/Atzeni/13_Digital-Forensics-in-the-TOR-Network.md](Notes/Chapters_MD/Atzeni/13_Digital-Forensics-in-the-TOR-Network.md) | ✅ Complete | TOR Network Forensics | Lecture 25 |
+| [Chapters_MD/Atzeni/14_Cloud.md](Notes/Chapters_MD/Atzeni/14_Cloud.md) | ✅ Complete | Cloud Forensics | Lectures 25 & 27 |
+| [Chapters_MD/Atzeni/15_OS.md](Notes/Chapters_MD/Atzeni/15_OS.md) | ✅ Complete | Operating System Forensics | Lecture 28 |
+| [Chapters_MD/Atzeni/16_volatile.md](Notes/Chapters_MD/Atzeni/16_volatile.md) | ✅ Complete | Volatile Memory Forensics | Lecture 28 |
 
 ### Prof. Vaciago – Legal Track
 
@@ -192,8 +196,9 @@ Chapter notes aggregate content **across multiple lectures** per topic, using th
 | [Chapters_MD/Vaciago/2_Cybercrime_Convention.md](Notes/Chapters_MD/Vaciago/2_Cybercrime_Convention.md) | ✅ Complete | Budapest Conv. & Jurisdiction | Lectures 06 & 09 |
 | [Chapters_MD/Vaciago/3_Law_48_08.md](Notes/Chapters_MD/Vaciago/3_Law_48_08.md) | ✅ Complete | Italian Law 48/2008 | Lecture 12 |
 | [Chapters_MD/Vaciago/4_Garlasco_Case.md](Notes/Chapters_MD/Vaciago/4_Garlasco_Case.md) | ✅ Complete | Garlasco Murder Case Study | Lecture 16 |
-| [Chapters_MD/Vaciago/5_Rules_Digital_Forensics.md](Notes/Chapters_MD/Vaciago/5_Rules_Digital_Forensics.md) | ✅ Complete | Forensic Report Writing Rules | Lectures 20 & 23 |
-| [Chapters_MD/Vaciago/6_Hacking_Team_Case.md](Notes/Chapters_MD/Vaciago/6_Hacking_Team_Case.md) | ✅ Complete | Hacking Team Case | Lecture 23 |
+| [Chapters_MD/Vaciago/5_Rules_Digital_Forensics.md](Notes/Chapters_MD/Vaciago/5_Rules_Digital_Forensics.md) | ✅ Complete | Forensic Report Writing Rules | Lectures 19 & 22 |
+| [Chapters_MD/Vaciago/6_Hacking_Team_Case.md](Notes/Chapters_MD/Vaciago/6_Hacking_Team_Case.md) | ✅ Complete | Hacking Team Case | Lecture 22 |
+| [Chapters_MD/Vaciago/Articoli_Codice_Penale.md](Notes/Chapters_MD/Vaciago/Articoli_Codice_Penale.md) | ✅ Complete | Articles 615-ter/615-quater & Malware Liability | Lecture 26 |
 
 ---
 
@@ -214,6 +219,9 @@ Chapter notes aggregate content **across multiple lectures** per topic, using th
 - Forensic imaging: `dd`, `dc3dd`/`dcfldd`, FTK Imager
 - Hashing protocols: SHA-256 vs MD5
 - Anti-forensics: encryption, timestomping, Tor, fileless malware
+- Cloud forensics: provider dependency, snapshots, redundancy, volatile resources
+- Operating system and volatile memory forensics
+- Video carving and structure-aware recovery
 - Timeline construction and cross-source correlation
 - Report writing for technical, legal, and executive audiences
 
@@ -229,6 +237,8 @@ Chapter notes aggregate content **across multiple lectures** per topic, using th
 - Jurisdiction challenges in cross-border digital investigations
 - Data retention: EU Directive 2006/24/EC, national variations, Italy's 5-year retention
 - Freezing procedures and ISP cooperation
+- Malware-production liability under Articles 615-ter and 615-quater
+- Mens rea and participation in a crime
 - Tor and the erosion of IP address as evidence
 - GDPR vs the US CLOUD Act
 - Freedom of speech: First Amendment (US) vs Article 595 Italian Penal Code

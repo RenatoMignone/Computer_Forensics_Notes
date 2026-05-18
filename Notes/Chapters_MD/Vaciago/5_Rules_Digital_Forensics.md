@@ -1,7 +1,7 @@
 # Chapter 5 – The 10 Rules for a Perfect Digital Forensic Report
 **Professor:** Vaciago
-**Reference Slides:** [`Slides/Vaciago/5_Rules_Digital_Forensics.pdf`](Slides/Vaciago/5_Rules_Digital_Forensics.pdf)
-**Covered in Lectures:** [Lecture 20](Lectures_MD/Lecture_20_Vaciago.md), [Lecture 23](Lectures_MD/Lecture_23_Vaciago.md)
+**Reference Slides:** [`Slides/Vaciago/5_Rules_Digital_Forensics.pdf`](../../Slides/Vaciago/5_Rules_Digital_Forensics.pdf)
+**Covered in Lectures:** [Lecture 19](../../Lectures_MD/Lecture_19_Vaciago.md), [Lecture 22](../../Lectures_MD/Lecture_22_Vaciago.md)
 
 ---
 

@@ -1,7 +1,7 @@
 # Chapter 13 – Digital Forensics in the TOR Network
 **Professor:** Atzeni
-**Reference Slides:** [`Slides/Atzeni/13_Digital-Forensics-in-the-TOR-Network.pdf`](Slides/Atzeni/13_Digital-Forensics-in-the-TOR-Network.pdf)
-**Covered in Lectures:** [Lecture 26](Lectures_MD/Lecture_26_Vaciago.md)
+**Reference Slides:** [`Slides/Atzeni/13_Digital-Forensics-in-the-TOR-Network.pdf`](../../Slides/Atzeni/13_Digital-Forensics-in-the-TOR-Network.pdf)
+**Covered in Lectures:** [Lecture 25](../../Lectures_MD/Lecture_25_Atzeni.md)
 
 ---
 

@@ -1,7 +1,7 @@
 # Chapter 10 – HDD vs SSD in Digital Forensics
 **Professor:** Atzeni
-**Reference Slides:** [`Slides/Atzeni/10_HDD-vs-SSD-in-Digital-Forensics.pdf`](Slides/Atzeni/10_HDD-vs-SSD-in-Digital-Forensics.pdf)
-**Covered in Lectures:** [Lecture 21](Lectures_MD/Lecture_21_Atzeni.md), [Lecture 22](Lectures_MD/Lecture_22_Vaciago.md)
+**Reference Slides:** [`Slides/Atzeni/10_HDD-vs-SSD-in-Digital-Forensics.pdf`](../../Slides/Atzeni/10_HDD-vs-SSD-in-Digital-Forensics.pdf)
+**Covered in Lectures:** [Lecture 20](../../Lectures_MD/Lecture_20_Atzeni.md), [Lecture 21](../../Lectures_MD/Lecture_21_Atzeni.md)
 
 ---
 

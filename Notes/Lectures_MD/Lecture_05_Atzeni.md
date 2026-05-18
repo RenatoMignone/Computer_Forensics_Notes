@@ -4,7 +4,7 @@
 **Reference Slides:**  
 - `Slides/Atzeni/03_investigation_phases.pdf`  
 - `Slides/Atzeni/03b_Forensic-USB-Drive-Acquisition.pdf`  
-- `Slides/Atzeni/Digital-Forensics-Case-Study.pdf`
+- `Slides/Atzeni/06_Digital-Forensics-Case-Study.pdf`
 
 ---
 
@@ -326,9 +326,9 @@ Towards the end of the lecture, Atzeni briefly introduced a simplified forensic 
 
 **Scenario (summary):** A suspect inside an organisation used a USB pen drive to exfiltrate sensitive financial spreadsheets. The scenario focuses on the acquisition phase — identifying the USB drive, deploying a write blocker, and creating a verified forensic image. This was framed as a simplified example; Atzeni noted that real investigations are almost never this straightforward.
 
-The full interactive case study was uploaded to the course portal (*Digital-Forensics-Case-Study.pdf*) as an exercise for the following session. Students were invited to reason through the investigation steps, hypothesise about evidence sources, and raise questions for group discussion.
+The full interactive case study was uploaded to the course portal (*06_Digital-Forensics-Case-Study.pdf*) as an exercise for the following session. Students were invited to reason through the investigation steps, hypothesise about evidence sources, and raise questions for group discussion.
 
-> 📎 *Slide reference: `Slides/Atzeni/Digital-Forensics-Case-Study.pdf` — Case Study*
+> 📎 *Slide reference: `Slides/Atzeni/06_Digital-Forensics-Case-Study.pdf` — Case Study*
 
 ---
 

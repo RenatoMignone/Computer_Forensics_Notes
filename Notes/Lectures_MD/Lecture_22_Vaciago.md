@@ -1,88 +1,82 @@
-# Lecture 22 – SSD Acquisition, Data Sanitisation, and Network Forensics Introduction
-**Professor:** Atzeni (transcript filename labels Vaciago)
+# Lecture 22 – The Hacking Team Case and Offensive Surveillance Tools
+**Professor:** Vaciago
 **Course:** Computer Forensics and Cybercrime Analysis (CFCCA)
-**Reference Slides:** `Slides/Atzeni/10_HDD-vs-SSD-in-Digital-Forensics.pdf`, `Slides/Atzeni/11_Data-Sanitisation-Techniques.pdf`, `Slides/Atzeni/12_Network.pdf`
+**Reference Slides:** `Slides/Vaciago/5_Rules_Digital_Forensics.pdf`, `Slides/Vaciago/6_Hacking_Team_Case.pdf`
 
 ---
 
 ## Overview
-Although the transcript filename labels this as a Vaciago lecture, the content is Atzeni's technical track. The lecture closes the SSD discussion, introduces sanitisation standards and techniques, and starts the network forensics topic.
+This lecture first contains feedback on student digital-alibi presentations, then introduces the Hacking Team case as a legal and forensic scenario involving offensive surveillance software, export control, human rights, trade secrets, and search and seizure.
 
 ---
 
-## 1. Advanced SSD Acquisition
+## 1. Digital Alibi Presentation Feedback
 
-Atzeni completes the SSD discussion by explaining that some acquisition approaches try to bypass ordinary controller behaviour.
+The first part of the lecture is dedicated to student presentations on a digital alibi scenario. Vaciago comments on different strategies:
+- gateway, DHCP, RSSI, and volatile network-device logs;
+- a remote access Trojan theory involving webcam images in a hidden directory;
+- a timeline-based defence using laptop, mobile-phone, call, and alarm data.
 
-> 📎 *Slide reference: `10_HDD-vs-SSD-in-Digital-Forensics.pdf` — Advanced SSD acquisition*
-
-The lecture mentions:
-- **factory access mode**, which may reduce or disable mechanisms such as garbage collection, wear levelling, deletion, and remapping;
-- **chip-off forensics**, where NAND chips are physically extracted and read directly;
-- **over-provisioning**, where the device contains more physical memory than it exposes to the operating system.
-
-These approaches are risky, device-dependent, and may fail when self-encryption is active.
+His main feedback is methodological: start from the thesis, connect evidence to that thesis, use a glossary for technical terms, and express conclusions probabilistically.
 
 ---
 
-## 2. Sanitisation Levels
+## 2. Hacking Team Background
 
-Atzeni introduces data sanitisation as the legally and technically sound deletion of information from a file, storage device, or managed endpoint. He presents the NIST categories as a practical reference.
+> 📎 *Slide reference: `6_Hacking_Team_Case.pdf` — Background on Hacking Team*
 
-> 📎 *Slide reference: `11_Data-Sanitisation-Techniques.pdf` — Sanitisation levels*
+Hacking Team was an Italian company founded in Milan in 2003. It sold offensive intrusion and surveillance tools to governments and law enforcement agencies.
 
-| Level | Meaning |
-|-------|---------|
-| **Clear** | Logical techniques that defeat ordinary, non-invasive recovery. |
-| **Purge** | Stronger techniques intended to defeat laboratory-level recovery. |
-| **Destroy** | Physical destruction of the device when reuse is not intended. |
-
----
-
-## 3. Sanitisation Techniques
-
-The lecture compares several ways to remove recoverable data:
-- **overwriting**, including multi-pass procedures with zeros, ones, and random data;
-- **firmware-level erase commands**, preferred when the device supports them;
-- **degaussing**, useful for magnetic devices such as hard disks, floppy disks, and tapes;
-- **crypto-erase**, which deletes or changes the encryption key of a self-encrypting drive;
-- **remote wipe** through mobile-device-management systems;
-- **physical destruction**, such as shredding, incineration, or disintegration.
-
-Atzeni stresses that sanitisation must be verified. A procedure that writes data or issues an erase command must check that the expected operation succeeded.
+Its core technologies included:
+- **Remote Control System (RCS)** for monitoring communications and decrypting files;
+- mobile surveillance tools;
+- remote activation of microphones and cameras;
+- stealth and battery optimisation techniques;
+- data extraction capabilities.
 
 ---
 
-## 4. Important Terms
+## 3. Legal and Ethical Concerns
 
-Several technical terms shape the sanitisation discussion:
-- **Data Encryption Key (DEK)**: the key protecting data at rest.
-- **Self-Encrypting Drive (SED)**: a drive that encrypts and decrypts internally at hardware or firmware level.
-- **Coercivity**: magnetic resistance relevant to degaussing.
-- **NVMe**: a protocol for non-volatile memories that may expose low-level sanitisation commands.
-- **FIPS-approved random number generator**: relevant when crypto-erase depends on a key that must not be recomputable.
+The company became controversial because its software was allegedly sold or made available to governments with poor human-rights records, including Sudan, Bahrain, Saudi Arabia, and Egypt.
 
----
+> 📎 *Slide reference: `6_Hacking_Team_Case.pdf` — Ethical concerns and export ban*
 
-## 5. Network Forensics Introduction
+The lecture frames the central problem: offensive cyber tools may be useful for counter-terrorism and organised-crime investigations, but they can also become instruments of repression when sold without proper regulation.
 
-The lecture then begins network forensics. Atzeni defines the field through the acquisition and analysis of network traffic and related artifacts, often as a complement to host and file system evidence.
-
-> 📎 *Slide reference: `12_Network.pdf` — Network forensics*
-
-Modern network investigation must consider encryption through TLS, SSH, IPsec, and VPNs. Even when payload inspection is unavailable, packet captures may preserve useful lower-layer information, timing, addresses, and encrypted sessions that could become readable if keys are later recovered.
+Vaciago stresses the lack of a clear malware export control framework comparable to weapons export blacklists.
 
 ---
 
-## 6. Network Tools and Artifacts
+## 4. The 2015 Data Breach
 
-The lecture mentions practical tools and formats:
-- **PCAP** as a packet-capture format;
-- **Wireshark** for packet acquisition and analysis;
-- **Nmap** for service and port investigation;
-- **Xplico** and **NetworkMiner** for extracting application-level content from traffic.
+In 2015, Hacking Team itself was breached and a large quantity of internal data was leaked publicly. The leak exposed clients, operations, communications, and controversial sales.
 
-Network evidence can be correlated with host logs, file system artifacts, and service-provider information to refine investigative hypotheses.
+The lecture discusses the broader ethical consequences of such leaks: even when the breach is framed as ethical hacking, leaked intelligence relationships and operational details can endanger real people.
+
+---
+
+## 5. SoftHack Investigation
+
+> 📎 *Slide reference: `6_Hacking_Team_Case.pdf` — Milan Prosecutor's Investigation*
+
+The lab case focuses on a suspected payment from a Saudi company to SoftHack Srl, a Turin company associated with former Hacking Team employees.
+
+The accusation theory was that:
+- the payment may have been linked to the transfer of Galileo/RCS spyware source code;
+- this could involve unauthorised system access and industrial secret disclosure.
+
+SoftHack's defence denied the accusations and claimed willingness to cooperate.
+
+---
+
+## 6. Search and Seizure and Lab Objective
+
+Vaciago explains that the prosecutor started a search and seizure activity on the Turin-based company. The lab asks students to build a technical consultancy either:
+- against SoftHack, supporting the theory of stolen trade secrets and source-code transfer; or
+- in favour of SoftHack, challenging the accusation and the evidence.
+
+The legal side also includes discussion of Article 615-quater and whether creating or possessing offensive malware-like tools can be legally defended in a cybersecurity context.
 
 ---
 
@@ -90,19 +84,18 @@ Network evidence can be correlated with host logs, file system artifacts, and se
 
 | Term | Definition |
 |------|------------|
-| **Factory Access Mode** | SSD mode that may bypass or reduce ordinary controller mechanisms. |
-| **Crypto-Erase** | Sanitisation by deleting or replacing encryption key material. |
-| **Degaussing** | Use of a strong magnetic field to destroy data on magnetic media. |
-| **PCAP** | Packet capture format used to store network traffic. |
-| **Deep Packet Inspection** | Inspection of packet contents, limited when payloads are encrypted. |
+| **Remote Control System (RCS)** | Hacking Team's surveillance software used to control and monitor target devices. |
+| **Trade Secret** | Confidential business or technical information whose unauthorised disclosure can trigger civil or criminal liability. |
+| **Article 615-quater** | Legal issue raised by Vaciago for debating whether offensive cybersecurity tools can be criminally relevant or defensible. |
+| **Search and Seizure** | Investigative activity started on the Turin-based company in the SoftHack scenario. |
 
 ---
 
 ## Summary
-- SSD acquisition may require factory mode, chip-off, or over-provisioning analysis, but all are risky and device-dependent.
-- Self-encrypting drives can make chip-off recovery ineffective.
-- NIST distinguishes Clear, Purge, and Destroy levels of sanitisation.
-- Overwriting, degaussing, crypto-erase, firmware commands, remote wipe, and physical destruction apply to different media and assurance levels.
-- Sanitisation must be verified to be forensically defensible.
-- Network forensics starts from traffic captures, logs, and related network artifacts.
-- Encryption limits payload inspection but does not make network captures useless.
+- Hacking Team sold offensive surveillance technologies to governments and law enforcement.
+- The case raises cybersecurity, human-rights, export-control, and privacy issues.
+- Offensive tools can be legitimate investigative instruments but require strong regulation.
+- The 2015 breach exposed clients and operations, creating serious global consequences.
+- The SoftHack scenario centres on alleged source-code transfer and industrial secret disclosure.
+- The lab requires students to argue either prosecution or defence through a forensic expert report.
+- Vaciago also asks students to discuss the legal boundary around Article 615-quater.

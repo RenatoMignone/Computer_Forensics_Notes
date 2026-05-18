@@ -2,7 +2,7 @@
 
 **Professor:** Atzeni  
 **Course:** Computer Forensics and Cybercrime Analysis (CFCCA)  
-**Reference Slides:** `Slides/Atzeni/Digital-Forensics-Case-Study_partial.pdf`
+**Reference Slides:** `Slides/Atzeni/06_Digital-Forensics-Case-Study.pdf`
 
 ---
 
@@ -86,7 +86,7 @@ Evidence sources collected:
 - Prefetch entries from multiple tools, combined with timestamps, allow reconstruction of a **behavioural sequence** — identifying execution patterns consistent with a specific type of attack
 - Prefetch files are **not well known to casual users**, making them a reliable source of evidence against suspects who are not forensically aware
 
-> 📎 *Slide reference: `Digital-Forensics-Case-Study_partial.pdf` — Prefetch Files*
+> 📎 *Slide reference: `06_Digital-Forensics-Case-Study.pdf` — Prefetch Files*
 
 ---
 
@@ -124,7 +124,7 @@ Evidence sources collected:
 
 > *The use of both USB and email as exfiltration channels is interpreted as a redundancy measure — John wanted to ensure at least one delivery method succeeded. The practical effect was to double the forensic evidence available.*
 
-> 📎 *Slide reference: `Digital-Forensics-Case-Study_partial.pdf` — Timeline*
+> 📎 *Slide reference: `06_Digital-Forensics-Case-Study.pdf` — Timeline*
 
 ---
 

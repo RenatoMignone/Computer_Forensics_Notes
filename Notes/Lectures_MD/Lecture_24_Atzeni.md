@@ -1,4 +1,4 @@
-# Lecture 24 – Network Forensics, OSINT, and Social Media Evidence
+# Lecture 24 – Network Anti-Forensics and Attack Obfuscation
 **Professor:** Atzeni
 **Course:** Computer Forensics and Cybercrime Analysis (CFCCA)
 **Reference Slides:** `Slides/Atzeni/12_Network.pdf`
@@ -6,77 +6,66 @@
 ---
 
 ## Overview
-This lecture continues network forensics with a focus on OSINT, domain and IP investigation, social media traces, and the forensic value of public online activity. It also includes a short student homework presentation on a Linux local privilege escalation vulnerability.
+This lecture completes the network forensics discussion by focusing on anti-forensic techniques. The central theme is that the same technologies that protect privacy or ordinary security can also be used to hide malicious activity.
 
 ---
 
-## 1. Network Forensics as Complementary Evidence
+## 1. Student Homework Continuation
 
-Network forensics is often not sufficient by itself, but it is powerful when correlated with file system evidence, host logs, social media traces, and organisational context.
-
-> 📎 *Slide reference: `12_Network.pdf` — Evidence identification and collection*
-
-Atzeni stresses that online traces can help reconstruct motivation, behaviour, relationships, and timelines.
+The lecture begins with the conclusion of a homework presentation on an Ubuntu local privilege escalation attack involving `snap-confine` and `systemd-tmpfiles`. The presentation highlights the importance of live acquisition, process inspection, socket analysis, and kernel audit logs.
 
 ---
 
-## 2. OSINT Sources for Network Investigation
+## 2. Goals of Network Anti-Forensics
 
-Publicly available sources can support identification and collection.
+> 📎 *Slide reference: `12_Network.pdf` — Anti-forensics for network forensics*
 
-| Source | Forensic Use |
-|--------|--------------|
-| **IP info services** | Geolocation, ASN, hosting/provider information, abuse contacts. |
-| **Whois / RIPE** | Ownership, route, registry, creation and modification dates. |
-| **DNSDumpster** | Domain topology, subdomains, mail servers, DNS records. |
-| **Shodan / Censys / SpiderFoot** | Host exposure, services, scanned device metadata. |
-| **Pastebin / search dorks** | Leaked credentials, alerts, or incident mentions. |
-| **VirusTotal** | Threat intelligence and malicious infrastructure correlation. |
+Network anti-forensics aims to:
+- obscure the truth of network flows;
+- hide intent and payload;
+- wipe or alter logs;
+- create decoys and false flags;
+- make real-time detection and post-mortem reconstruction harder.
 
-> 📎 *Slide reference: `12_Network.pdf` — Network Forensics OSINT*
+Atzeni stresses that these techniques are not inherently illegitimate: encryption, VPNs, and anonymisation can be privacy-preserving tools as well as attacker tools.
 
 ---
 
-## 3. Domain and Service Analysis
+## 3. Encryption, VPNs, and Tunnelling
 
-Investigators can use DNS and service data to identify unusual behaviour:
-- freshly registered domains;
-- missing or inconsistent DNS records;
-- unexpected services on exposed hosts;
-- vulnerable versions;
-- infrastructure historically associated with suspicious campaigns.
+**Encryption** hides payload content through protocols such as TLS, SSH, VPNs, and IPsec.
 
-These are not final proof by themselves, but they are useful flags for deeper investigation.
+**Tunnelling** can encapsulate one protocol inside another, hiding not only the content but sometimes the nature of the communication. Examples include SSH tunnelling and DNS tunnelling.
+
+DNS tunnelling is especially relevant because DNS messages can carry enough data in fields that appear legitimate, enabling covert communication or exfiltration.
 
 ---
 
-## 4. Social Media Forensics
+## 4. Packet Manipulation and Traffic Shaping
 
-> 📎 *Slide reference: `12_Network.pdf` — Social Media Forensics*
+Attackers may manipulate packet metadata or timing.
 
-Social media analysis may reveal:
-- public profiles and aliases;
-- timing of activity;
-- relationships and recurring interactions;
-- GPS/EXIF metadata in images;
-- reverse-image-search clues;
-- emotional state, motivation, or affiliation;
-- fake profiles or coordinated activity.
-
-Atzeni connects this back to earlier case studies: online activity can reveal relationships, motivations, and links to competing organisations or other suspects.
+| Technique | Purpose |
+|-----------|---------|
+| **IP spoofing** | Hide or falsify the apparent origin. |
+| **Fragmentation** | Disrupt reconstruction or inspection. |
+| **Slow scanning** | Spread reconnaissance over long time windows to avoid detection. |
+| **Noise generation** | Blend malicious packets into large volumes of benign traffic. |
+| **Decoy traffic** | Overload analyst attention and monitoring systems. |
 
 ---
 
-## 5. Homework Presentation: Linux Privilege Escalation
+## 5. Malware, Anonymisation, and Countermeasures
 
-The final part begins a student presentation about a local privilege escalation attack involving `snap-confine`, `systemd-tmpfiles`, `/tmp`, sockets, and ephemeral artifacts.
+Polymorphic and metamorphic malware can alter its payload or code structure, weakening signature-based detection. Anonymisation infrastructures such as TOR can hide source and destination relationships by routing traffic through multiple nodes.
 
-The forensic lesson is that volatile artifacts require live acquisition:
-- RAM state;
-- `/tmp` filesystem entries;
-- active sockets;
-- process metadata under `/proc`;
-- system logs.
+Countermeasures include:
+- deep packet inspection where legally and technically possible;
+- encrypted traffic analysis;
+- behavioural analytics;
+- tamper-resistant logging such as WORM storage;
+- threat intelligence feeds;
+- correlation across host, network, and malware artifacts.
 
 ---
 
@@ -84,18 +73,19 @@ The forensic lesson is that volatile artifacts require live acquisition:
 
 | Term | Definition |
 |------|------------|
-| **OSINT** | Open Source Intelligence; use of publicly available information for investigation. |
-| **Whois** | Registry lookup method for domain and IP ownership information. |
-| **Threat Intelligence Feed** | Shared database or service describing known malicious infrastructure, malware, or indicators. |
-| **Live Acquisition** | Collection of evidence while a system is running, needed for volatile artifacts. |
+| **Tunnelling** | Encapsulation of one protocol or flow inside another protocol. |
+| **DNS Tunnelling** | Use of DNS queries/responses as a covert data channel. |
+| **Polymorphic Malware** | Malware that changes its appearance, often encryption or payload representation, to evade signatures. |
+| **Metamorphic Malware** | Malware that rewrites its own code structure while preserving behaviour. |
+| **WORM Storage** | Write-once-read-many storage used to make logs resistant to later alteration. |
 
 ---
 
 ## Summary
-- Network forensics is strongest when correlated with host and timeline evidence.
-- OSINT can reveal IP ownership, domains, services, leaks, and suspicious infrastructure.
-- DNS records and registration history can expose campaign-like behaviour.
-- Social media evidence can support attribution, geolocation, motivation, and relationship mapping.
-- Public tools remain useful even though commercial OSINT services are now often stronger.
-- Reverse image search and EXIF data can identify places or device behaviour.
-- Volatile attack artifacts must be collected live before they disappear.
+- Anti-forensics can target payload, flow metadata, logs, timing, and analyst attention.
+- Legitimate privacy technologies can also be abused for concealment.
+- Encryption prevents direct payload inspection unless endpoint evidence or keys are recovered.
+- Tunnelling can hide protocols and exfiltrate data through apparently legitimate traffic.
+- Slow, distributed activity is harder to detect than obvious high-volume attacks.
+- Decoy traffic can conceal a more important intrusion.
+- Behavioural analytics and threat intelligence are needed when signatures are insufficient.

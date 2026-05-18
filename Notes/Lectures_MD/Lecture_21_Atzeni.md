@@ -1,56 +1,88 @@
-# Lecture 21 – SSD Forensics and Deleted Data Recovery
+# Lecture 21 – SSD Acquisition, Data Sanitisation, and Network Forensics Introduction
 **Professor:** Atzeni
 **Course:** Computer Forensics and Cybercrime Analysis (CFCCA)
-**Reference Slides:** `Slides/Atzeni/10_HDD-vs-SSD-in-Digital-Forensics.pdf`
+**Reference Slides:** `Slides/Atzeni/10_HDD-vs-SSD-in-Digital-Forensics.pdf`, `Slides/Atzeni/11_Data-Sanitisation-Techniques.pdf`, `Slides/Atzeni/12_Network.pdf`
 
 ---
 
 ## Overview
-This lecture explains why SSDs change the forensic assumptions developed for magnetic disks. The central issue is that the operating system no longer has direct control over where data physically resides, because SSD firmware mediates access through controller-level mechanisms.
+The lecture closes the SSD discussion, introduces sanitisation standards and techniques, and starts the network forensics topic.
 
 ---
 
-## 1. SSD Firmware and Indirection
+## 1. Advanced SSD Acquisition
 
-SSDs introduce a controller layer between the operating system and the physical NAND cells. Atzeni describes this as a compatibility layer that lets operating systems keep using disk-like commands while the SSD internally translates and reorganises data.
+Atzeni completes the SSD discussion by explaining that some acquisition approaches try to bypass ordinary controller behaviour.
 
-> 📎 *Slide reference: `10_HDD-vs-SSD-in-Digital-Forensics.pdf` — HDD vs SSD forensic assumptions*
+> 📎 *Slide reference: `10_HDD-vs-SSD-in-Digital-Forensics.pdf` — Advanced SSD acquisition*
 
-The same logical address may correspond to different physical cells over time. This breaks the older assumption that a deleted sector remains in one stable physical place until overwritten.
+The lecture mentions:
+- **factory access mode**, which may reduce or disable mechanisms such as garbage collection, wear levelling, deletion, and remapping;
+- **chip-off forensics**, where NAND chips are physically extracted and read directly;
+- **over-provisioning**, where the device contains more physical memory than it exposes to the operating system.
 
----
-
-## 2. Flash Translation Layer and Wear Levelling
-
-The **Flash Translation Layer (FTL)** maps operating-system requests to real physical cells. The controller also performs **wear levelling**, distributing writes across the SSD so that some cells do not fail much earlier than others.
-
-This means that data can be moved even when the user and operating system did not explicitly rewrite the file. The physical evidence state can therefore change below the normal forensic interface.
+These approaches are risky, device-dependent, and may fail when self-encryption is active.
 
 ---
 
-## 3. TRIM and Garbage Collection
+## 2. Sanitisation Levels
 
-The **TRIM** command tells the SSD that some logical blocks are no longer needed. Depending on the implementation, later reads may return old content, deterministic content, or zeros, even if the physical cells have not yet been erased.
+Atzeni introduces data sanitisation as the legally and technically sound deletion of information from a file, storage device, or managed endpoint. He presents the NIST categories as a practical reference.
 
-Atzeni distinguishes this from the older HDD model: with SSDs, deleted data recovery can become extremely difficult as soon as TRIM and controller-level cleanup are active.
+> 📎 *Slide reference: `11_Data-Sanitisation-Techniques.pdf` — Sanitisation levels*
 
-Garbage collection may also continue the controller's internal work independently from the user's visible actions, and this affects the volatility of SSD evidence.
-
----
-
-## 4. Write Blockers and Hashing
-
-Traditional write blockers cannot fully freeze an SSD, because the firmware can continue internal operations below the interface protected by the write blocker.
-
-Hashing still remains meaningful at the logical level. Even if physical NAND locations change, the firmware should return the same logical data to the operating system, so a hash can still verify the acquired logical content.
+| Level | Meaning |
+|-------|---------|
+| **Clear** | Logical techniques that defeat ordinary, non-invasive recovery. |
+| **Purge** | Stronger techniques intended to defeat laboratory-level recovery. |
+| **Destroy** | Physical destruction of the device when reuse is not intended. |
 
 ---
 
-## 5. Recovery Limits
+## 3. Sanitisation Techniques
 
-Atzeni concludes that SSD deleted-file recovery is highly variable and often very hard when TRIM is enabled. The investigator must understand the specific device behaviour and should not automatically apply HDD recovery assumptions to SSDs.
+The lecture compares several ways to remove recoverable data:
+- **overwriting**, including multi-pass procedures with zeros, ones, and random data;
+- **firmware-level erase commands**, preferred when the device supports them;
+- **degaussing**, useful for magnetic devices such as hard disks, floppy disks, and tapes;
+- **crypto-erase**, which deletes or changes the encryption key of a self-encrypting drive;
+- **remote wipe** through mobile-device-management systems;
+- **physical destruction**, such as shredding, incineration, or disintegration.
 
-The key practical point is that storage technology changes the correct forensic procedure: evidence can be more volatile than expected, even after the device is switched off.
+Atzeni stresses that sanitisation must be verified. A procedure that writes data or issues an erase command must check that the expected operation succeeded.
+
+---
+
+## 4. Important Terms
+
+Several technical terms shape the sanitisation discussion:
+- **Data Encryption Key (DEK)**: the key protecting data at rest.
+- **Self-Encrypting Drive (SED)**: a drive that encrypts and decrypts internally at hardware or firmware level.
+- **Coercivity**: magnetic resistance relevant to degaussing.
+- **NVMe**: a protocol for non-volatile memories that may expose low-level sanitisation commands.
+- **FIPS-approved random number generator**: relevant when crypto-erase depends on a key that must not be recomputable.
+
+---
+
+## 5. Network Forensics Introduction
+
+The lecture then begins network forensics. Atzeni defines the field through the acquisition and analysis of network traffic and related artifacts, often as a complement to host and file system evidence.
+
+> 📎 *Slide reference: `12_Network.pdf` — Network forensics*
+
+Modern network investigation must consider encryption through TLS, SSH, IPsec, and VPNs. Even when payload inspection is unavailable, packet captures may preserve useful lower-layer information, timing, addresses, and encrypted sessions that could become readable if keys are later recovered.
+
+---
+
+## 6. Network Tools and Artifacts
+
+The lecture mentions practical tools and formats:
+- **PCAP** as a packet-capture format;
+- **Wireshark** for packet acquisition and analysis;
+- **Nmap** for service and port investigation;
+- **Xplico** and **NetworkMiner** for extracting application-level content from traffic.
+
+Network evidence can be correlated with host logs, file system artifacts, and service-provider information to refine investigative hypotheses.
 
 ---
 
@@ -58,18 +90,19 @@ The key practical point is that storage technology changes the correct forensic 
 
 | Term | Definition |
 |------|------------|
-| **FTL** | Flash Translation Layer; controller mechanism that maps logical addresses to physical NAND cells. |
-| **TRIM** | Command informing the SSD that logical blocks are no longer needed. |
-| **Wear Levelling** | SSD strategy that distributes writes across cells to prolong device life. |
-| **Garbage Collection** | Controller-level cleanup and reorganisation of NAND storage. |
-| **Write Blocker Limitation** | A write blocker can prevent host writes but cannot necessarily stop SSD firmware activity. |
+| **Factory Access Mode** | SSD mode that may bypass or reduce ordinary controller mechanisms. |
+| **Crypto-Erase** | Sanitisation by deleting or replacing encryption key material. |
+| **Degaussing** | Use of a strong magnetic field to destroy data on magnetic media. |
+| **PCAP** | Packet capture format used to store network traffic. |
+| **Deep Packet Inspection** | Inspection of packet contents, limited when payloads are encrypted. |
 
 ---
 
 ## Summary
-- SSDs use firmware-level indirection that hides physical NAND placement from the operating system.
-- Wear levelling may move data even without an explicit host-level rewrite.
-- TRIM changes deleted-data recovery assumptions and can make recovery effectively impossible.
-- SSD evidence can be volatile in ways closer to memory than to old magnetic disks.
-- Write blockers remain useful but cannot guarantee that internal SSD state is frozen.
-- Hashes remain meaningful for logical content even if physical placement changes.
+- SSD acquisition may require factory mode, chip-off, or over-provisioning analysis, but all are risky and device-dependent.
+- Self-encrypting drives can make chip-off recovery ineffective.
+- NIST distinguishes Clear, Purge, and Destroy levels of sanitisation.
+- Overwriting, degaussing, crypto-erase, firmware commands, remote wipe, and physical destruction apply to different media and assurance levels.
+- Sanitisation must be verified to be forensically defensible.
+- Network forensics starts from traffic captures, logs, and related network artifacts.
+- Encryption limits payload inspection but does not make network captures useless.

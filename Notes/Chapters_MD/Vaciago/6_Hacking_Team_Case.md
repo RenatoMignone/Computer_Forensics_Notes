@@ -1,7 +1,7 @@
 # Chapter 6 – Hacking Team Case
 **Professor:** Vaciago
-**Reference Slides:** [`Slides/Vaciago/6_Hacking_Team_Case.pdf`](Slides/Vaciago/6_Hacking_Team_Case.pdf)
-**Covered in Lectures:** [Lecture 23](Lectures_MD/Lecture_23_Vaciago.md)
+**Reference Slides:** [`Slides/Vaciago/6_Hacking_Team_Case.pdf`](../../Slides/Vaciago/6_Hacking_Team_Case.pdf)
+**Covered in Lectures:** [Lecture 22](../../Lectures_MD/Lecture_22_Vaciago.md)
 
 ---
 

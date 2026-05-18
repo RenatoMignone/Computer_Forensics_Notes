@@ -1,8 +1,8 @@
 # Chapter 6 Digital Forensics Case Study – Insider IP Exfiltration
 **Professor:** Atzeni  
 **Reference Slides:**
-- [`Slides/Atzeni/Digital-Forensics-Case-Study.pdf`]
-- [`Slides/Atzeni/Digital-Forensics-Case-Study_partial.pdf`]
+- [`Slides/Atzeni/06_Digital-Forensics-Case-Study.pdf`]
+- [`Slides/Atzeni/06_Digital-Forensics-Case-Study.pdf`]
 
 **Covered in Lectures:** Lecture 5, Lecture 8
 
@@ -195,7 +195,7 @@ dc3dd if=/dev/sdb hof=/media/forensic_drive/LP0342_disk.dd \
 - A prefetch file **persists after the executable is deleted**, providing evidence of tool use even when the tool has been removed
 - Volume information can confirm whether a tool was run from an **external USB drive**, a common attacker pattern to avoid leaving executables on the host
 
-> 📎 *Slide reference: `Digital-Forensics-Case-Study_partial.pdf` — Prefetch Files*
+> 📎 *Slide reference: `06_Digital-Forensics-Case-Study.pdf` — Prefetch Files*
 
 ### Detailed Timeline
 
@@ -240,7 +240,7 @@ dc3dd if=/dev/sdb hof=/media/forensic_drive/LP0342_disk.dd \
 
 The attempt to destroy evidence using `eraser.exe` constitutes **consciousness of guilt** — it demonstrates awareness of wrongdoing and a deliberate effort to conceal it, which is itself legally significant.
 
-> 📎 *Slide reference: `Digital-Forensics-Case-Study_partial.pdf` — Timeline & Conclusions*
+> 📎 *Slide reference: `06_Digital-Forensics-Case-Study.pdf` — Timeline & Conclusions*
 
 ---
 
