@@ -129,7 +129,7 @@ The standard approach when no volatile evidence is at risk:
 
 ### Live Acquisition
 Required when:
-- A system is running with **full-disk encryption** (BitLocker, FileVault, LUKS) — the decryption keys are only available while the system is unlocked and powered on
+- A system is running with storage encryption active — the decryption keys may still be available in memory while the system is unlocked and powered on
 - **Volatile data** (RAM, running processes, network connections) is specifically needed
 - A **virtual machine** is running and its live state (heap, active connections) is relevant
 
@@ -270,7 +270,7 @@ Before finalising:
 - Multiple international frameworks (ACPO, NIST, ISO 27037) converge on the same five phases; adherence to a recognised framework is what makes results **legally defensible**.
 - **Phase 1 (Identification)**: Use OSINT (Spiderfoot, Maltego, Shodan) before touching any device; follow the **volatility order**.
 - **Phase 2 (Collection)**: Immediately isolate all devices; photograph in situ; start the **chain of custody record** at first contact.
-- **Phase 3 (Acquisition)**: Never examine originals; use hardware write blockers; hash with SHA-256 or better; choose **live acquisition** when full-disk encryption is active.
+- **Phase 3 (Acquisition)**: Never examine originals; use hardware write blockers; hash with SHA-256 or better; choose **live acquisition** when encrypted storage or volatile data makes shutdown risky.
 - **Phase 4 (Examination)**: Distinguish **integrity** (hash verification) from **authenticity** (contextual corroboration); reconstruct the **timeline** from multiple independent sources; identify and counter **anti-forensics** techniques; respect strict **scope limitations**.
 - **Phase 5 (Presentation)**: Tailor the report to the audience; preserve **all draft versions**; perform an independent QA technical review to establish repeatability before submission.
 

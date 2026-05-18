@@ -276,14 +276,13 @@ Mobile devices present unique forensic challenges:
 - Internal flash storage architecture differs from conventional hard drives
 
 ### UFED (Universal Forensic Extraction Device)
-**Cellebrite UFED** is the industry-leading mobile forensics tool:
+**UFED** is presented as a specialized mobile-forensics tool:
 - Hardware device + companion software
 - Requires physical connection (and sometimes physically opening the device) for full extraction
-- Continuously updated to support new phone models
-- **Extremely expensive**: hardware kit, software licences, and update subscriptions
-- Primarily used by law enforcement agencies
+- Changes over time because mobile phones and mobile operating systems keep changing
+- Requires substantial budget compared with simpler laptop-focused acquisition
 
-**Budget implication**: the high cost of mobile forensics tools (particularly UFED) means that only well-funded agencies or large corporate security teams can perform comprehensive mobile investigations.
+**Budget implication**: mobile forensics is presented as one of the areas where proper digital-forensics work requires significant budget, time, tools, and computing capacity.
 
 ---
 
@@ -363,7 +362,7 @@ In civil law systems (**Italy and most of Europe**), the equivalent principle is
 | **Emergency Disclosure Procedure (EDP)** | 24/7 fast-track mechanism for law enforcement to obtain data from platforms in imminent-danger situations (terrorism, kidnapping) without a court order |
 | **Prosecutorial discretion** | Power of a US prosecutor to decline to pursue a case |
 | **Compulsory prosecution** | EU/Italian principle that investigators must formally respond to any properly filed criminal complaint |
-| **UFED (Cellebrite)** | Industry-standard mobile forensics extraction device and software; continuously updated; extremely expensive |
+| **UFED** | Hardware/software tool for mobile-phone forensic activity; highlighted as budget-intensive and continually changing with mobile devices |
 | **Territorial principle** | Jurisdiction of the country where the data is physically located (or managed) — most common principle |
 | **Power of disposal approach** | Jurisdictional principle: if a device is in your jurisdiction, you can access its data regardless of where that data is hosted; controversial |
 | **Key mandatory law** | Law compelling revelation of encryption keys; attempted in Australia, Belgium, France, Boucher (US/Canada); declared unconstitutional in all cases |

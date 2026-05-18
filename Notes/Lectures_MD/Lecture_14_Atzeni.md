@@ -60,23 +60,23 @@ Forensics is rarely a linear waterfall. It is often an **iterative process**:
 
 ---
 
-## 6. Mobile Forensic Acquisition
+## 5. Mobile Forensic Acquisition
 
 Traditional acquisition methods (standard USB connection) often fail to retrieve a complete forensic image or reach protected catalogs. Specialized tools like **UFED** are required.
 
-### 6.1 Universal Forensic Extraction Device (UFED)
-- **Nature:** High-end hardware suitcases (e.g., Cellebrite) with companion software.
+### 5.1 Universal Forensic Extraction Device (UFED)
+- **Nature:** High-end hardware suitcases with companion software.
 - **Process:** The investigator selects the specific device model; the tool then instructs the smartphone to perform a forensic extraction.
 - **Physical vs. Logical:** AIMS to achieve a "Bit-by-Bit" physical copy of the internal storage (including system memory and multimedia details) which is otherwise unreachable via operating system mediation.
 
-### 6.2 Advanced Capabilities
+### 5.2 Advanced Capabilities
 - **Cloud Interaction:** Modern UFEDs can use the device's credentials to legally retrieve data from cloud-based apps (iCloud, Google Drive, Telegram, WhatsApp, Snapchat).
 - **Lock/Encryption Bypass:** These tools exploit known mobile vulnerabilities to escalate privileges, effectively **jailbreaking** the device to bypass lock screens or decrypt the storage.
 - **Brute Force:** Capable of automated attempts to break device locking mechanisms.
 
 ---
 
-## 5. Specialized Forensic Equipment
+## 6. Specialized Forensic Equipment
 
 - **Network Forensics:**
     - **Packet Capture Appliances:** Must be "Forensic Grade," capable of capturing data at 10/100+ Gbps without packet loss, while indexing data and adding high-precision timestamps.

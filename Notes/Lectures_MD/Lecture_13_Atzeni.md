@@ -41,14 +41,14 @@ Analysis must be performed in a laboratory the investigator fully controls. One 
 Setting up a lab requires a rigorous **Threat Model** and risk analysis.
 - **Geomorphical Security:** Avoiding locations prone to natural disasters (floods, earthquakes, volcanic eruptions).
 - **Physical Barriers:** Secure, guarded buildings with biometric locks. However, biometrics should be part of a multi-factor system, as they can be counterfeited and cannot be "reset" if compromised.
-- **Fire Suppression:** Traditional water or chemical systems damage electronic devices. Specialized systems using clean agents like **Novec 1230** or **FM-200** are required to suppress fire without harming hardware.
+- **Fire Suppression:** Traditional water or chemical systems may damage electronic devices. The lab should use fire-suppression systems that do not harm electronic evidence.
 
 ---
 
 ## 4. Logical and Network Security
 
 ### 4.1 Air-Gaps and Faraday Cages
-- **Air-Gapping:** Critical systems should have no physical or wireless connection to the external internet. However, as the **Stuxnet** case proved, air-gapping alone is not enough to stop malware spread via physical tokens (USB drives).
+- **Air-Gapping:** Critical systems should have no physical or wireless connection to the external internet, while still accounting for physical-token risks such as USB media.
 - **Signal Shielding:** **Faraday Bags** (for small devices) and **Faraday Cages/Rooms** (for larger lab sections) are essential to prevent external signals from reaching or remotely wiping a suspect device during analysis.
 
 ### 4.2 Network Segregation
@@ -65,7 +65,7 @@ Setting up a lab requires a rigorous **Threat Model** and risk analysis.
 | **Reproducibility** | The requirement that a different forensic expert, using the same tools and original evidence, must arrive at the exact same conclusion. |
 | **Air-Gap** | A security measure where a computer or network is physically isolated from unsecured networks, such as the public internet. |
 | **Faraday Cage** | An enclosure used to block electromagnetic fields, preventing remote access, signals, or "kill commands" from reaching a suspect device. |
-| **Novec 1230 / FM-200** | Specialized fire suppression agents that do not conduct electricity or leave residue, making them safe for data centers and forensic labs. |
+| **Electronic-safe fire suppression** | Fire-suppression systems selected so that the response to a fire does not itself damage electronic evidence. |
 
 ---
 

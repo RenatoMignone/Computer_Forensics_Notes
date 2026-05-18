@@ -5,6 +5,12 @@
 
 ---
 
+## Introduction
+
+This chapter collects the laboratory and toolset material from Lectures 13 and 14. The focus is the construction of a trusted forensic environment: tools must be accurate, verifiable, reproducible, and controlled; the lab must resist physical, logical, environmental, and procedural risks; and the investigator must be able to acquire evidence quickly without introducing avoidable changes.
+
+---
+
 ## 1. Requirements for Forensic Tools (ISO Standard Principles)
 
 To be admissible in a legal trial, a digital forensics workspace must adhere to strict qualitative and procedural requirements.
@@ -21,7 +27,7 @@ Modern AI (Large Language Models) introduces significant risks to forensic stand
 - **Probabilistic Nature:** AI can give different answers to the same prompt.
 - **Mitigation Strategy:** 
     - Forced Determinism: Dropping the "temperature" of the LLM to zero.
-    - Multi-Tool Verification: Cross-checking AI outputs with traditional forensic tools (e.g., Autopsy, EnCase).
+    - Multi-Tool Verification: Cross-checking AI outputs with deterministic forensic tools and reproducible procedures.
 
 ---
 
@@ -57,7 +63,7 @@ Digital evidence is transient and disappears over time.
 ### 3.1 Physical Security
 - **Location Risk Analysis:** Analyzing geological hazards (earthquakes, floods) and social hazards (proximity to high-crime areas).
 - **Physical Barriers:** Armed guards, biometric scanners (multi-factor), and intrusion detection.
-- **Electronic-Safe Fire Suppression:** Traditional sprinklers destroy evidence. Labs use gas-based suppression like **Novec 1230** or **FM-200** which extinguish fires without leaving residue or moisture.
+- **Electronic-Safe Fire Suppression:** Traditional water-based systems may damage evidence. The lab must adopt fire-suppression measures compatible with electronic devices.
 
 ### 3.2 Logical Isolation
 - **Air-Gapping:** Disconnecting forensic workstations physically from all networks to prevent remote wiping or unauthorized "phoning home" by malware.
@@ -98,7 +104,7 @@ Forensics is not a linear waterfall. It follows a loop: **Acquisition → Analys
 
 ### 5.2 Hardware Accelerators
 - **GPU Clusters:** Essential for the time-consuming task of password cracking and large-scale data carving.
-- **Local LLMs:** Labs should run local instances of large language models (e.g., Llama, Mistral) rather than online APIs to prevent leaking sensitive evidence to third-party providers. This requires significant GPU memory but ensures full technical and legal control.
+- **Local LLMs:** Labs should prefer local language models rather than online services when sensitive evidence is involved. This requires significant GPU resources but keeps the analysis inside the controlled environment.
 
 ### 5.3 Forensic Kit Completeness
 A laboratory's effectiveness often depends on small details:
@@ -114,7 +120,7 @@ Mobile devices present the most frequent and complex challenge in modern labs du
 Traditional logical acquisition (via standard USB connection) only retrieves data that the OS "allows" the investigator to see. To get a full bit-by-bit physical image, specialized tools are required to bypass or jailbreak the system.
 
 ### 6.2 Universal Forensic Extraction Device (UFED)
-- **Cellebrite UFED:** The industry suitcase standard. It includes a hardware interface and a suite of software to interact with thousands of device models.
+- **UFED-style mobile acquisition tools:** Specialized suitcase-style tools provide hardware interfaces and software procedures for interacting with many smartphone models.
 - **Vulnerability-Based Access:** UFEDs leverage known and proprietary exploits to escalate privileges on the smartphone, effectively **jailbreaking** it to access locked filesystems.
 - **Credential Recovery:** These tools can extract authentication tokens for cloud services (Google, iCloud, WhatsApp, Snapchat), allowing for the legal retrieval of remote backups and live cloud data.
 
@@ -134,7 +140,7 @@ Traditional logical acquisition (via standard USB connection) only retrieves dat
 
 | Term | Definition |
 |------|------------|
-| **Novec 1230** | A clean agent fire suppressant that extinguishes fires without damaging electronic components or leaving residue. |
+| **Electronic-safe fire suppression** | Fire-suppression measures chosen so that the countermeasure itself does not destroy electronic evidence. |
 | **Air-Gap** | A security measure where a computer is physically isolated from any corporate or public network. |
 | **UFED** | Universal Forensic Extraction Device; specialized suitcase-style hardware/software for mobile device acquisition. |
 | **Physical Tap** | A hardware device that allows network signals to be intercepted at the electrical level without logical detection. |
@@ -143,7 +149,7 @@ Traditional logical acquisition (via standard USB connection) only retrieves dat
 
 ## Summary
 - A forensic lab must satisfy the "Big Three": Accuracy, Verifiability, and Reproducibility.
-- Physical security must include environmental protections (Novec suppression) and signal isolation (Faraday cages).
+- Physical security must include environmental protections and signal isolation (Faraday cages or Faraday bags).
 - Admissibility relies on a "Zero Trust" audit trail for both human investigators and AI assistants.
 - Mobile forensics mandate specialized tools like **UFED** to bypass encryption and retrieve cloud-synced app data.
 - High-performance hardware is not just for speed; it directly impacts the "freshness" of volatile evidence (Iterative Acquisition).

@@ -1,246 +1,113 @@
-# Chapter 6 Digital Forensics Case Study – Insider IP Exfiltration
+# Chapter 6 – Digital Forensics Case Study: Insider IP Exfiltration
 **Professor:** Atzeni  
-**Reference Slides:**
-- [`Slides/Atzeni/06_Digital-Forensics-Case-Study.pdf`]
-- [`Slides/Atzeni/06_Digital-Forensics-Case-Study.pdf`]
-
-**Covered in Lectures:** Lecture 5, Lecture 8
+**Reference Slides:** [`Slides/Atzeni/06_Digital-Forensics-Case-Study.pdf`](../../Slides/Atzeni/06_Digital-Forensics-Case-Study.pdf)  
+**Covered in Lectures:** [Lecture 5](../../Lectures_MD/Lecture_05_Atzeni.md), [Lecture 8](../../Lectures_MD/Lecture_08_Atzeni.md)
 
 ---
 
 ## Introduction
-This case study applies the five forensic investigation phases to a realistic scenario: an insider threat at a technology company involving intellectual property (IP) exfiltration. It is designed to show how the abstract procedures described in [03_investigation_phases.md](03_investigation_phases.md) and [03b_Forensic-USB-Drive-Acquisition.md](03b_Forensic-USB-Drive-Acquisition.md) translate into concrete investigative steps, decisions, and outcomes.
+
+This chapter summarizes the case-study exercise introduced in Lecture 5 and debriefed in Lecture 8. The scenario concerns a suspected insider exfiltration at **Shockwave Analytics**, after a competitor, **Basal Core System**, announced a product with strong similarities to Shockwave's **Project Triton** machine-learning engine.
+
+The case is used to apply the forensic investigation questions and to show how a timeline can be reconstructed by correlating file-system traces, prefetch artifacts, browser history, USB activity, firewall logs, and other logs discussed during the lecture.
 
 ---
 
-## Scenario Setup
+## 1. Scenario
 
-**Organisation**: A mid-sized software development company (approx. 350 employees).  
-**Incident trigger**: The IT security team detects an anomalously large transfer of files from an internal R&D file server to a personal email account.  
-**Suspect**: A senior software engineer (referred to as Subject A) who has announced resignation and is serving their notice period.  
-**Scope of potential theft**: Proprietary source code, design specifications, and unreleased product roadmap documents.  
-**Regulatory context**: The company is subject to standard IP law; no special sector-specific regulation (not healthcare, not finance, not government).
+| Element | Transcript-supported detail |
+|---------|-----------------------------|
+| **Victim organisation** | Shockwave Analytics, a company working on predictive threat-detection tools for the finance sector. |
+| **Central asset** | Project Triton, a machine-learning engine treated as a relevant competitive advantage. |
+| **Triggering event** | Basal Core System announced a product with similarities considered too strong to be simple coincidence. |
+| **Main suspect** | John Matthews, a senior software engineer identified by the internal review as a relevant suspect. |
 
----
-
-## Phase 1: Identification
-
-### Initial Alert
-The **corporate IT monitoring** system flagged:
-- Outbound email from Subject A's corporate account to a Gmail address containing a 240 MB ZIP attachment
-- The ZIP was attached at 22:47 on a Tuesday — outside normal working hours
-- Subject A's access badge records show they were **not in the building** at that time — the email was sent remotely via VPN
-
-### OSINT Reconnaissance
-Before any device seizure:
-- **LinkedIn**: Subject A's profile updated with a new employer — a direct competitor — effective the following Monday
-- **Pastebin / GitHub search (passive)**: No public postings of suspected stolen code identified, but the investigation notes this as a persistent monitoring objective
-- **Internal HR records**: Subject A submitted formal resignation 3 weeks prior; standard practice for departing employees should have included access restriction — this had not been applied
-
-### Endpoint and Infrastructure Review
-- **Email server logs**: Confirm the outbound message, its size, recipient, and timestamp
-- **VPN logs**: Confirm Subject A authenticated via VPN at 22:35 using a corporate laptop (asset tag recorded)
-- **Windows Event Logs on the corporate laptop**: Show the laptop was active from 22:35; `Security` log records user authentication; `PowerShell` log shows a script was run at 22:41
-- **`usbstor` registry key** (Windows USB device history): Records that a USB drive with a specific device serial number was inserted into the corporate laptop at **08:15 two days prior**, on the day Subject A had an in-person meeting to begin handover
-
-### Scope Definition
-The legal team confirms the investigation scope includes:
-- Subject A's **corporate laptop** (company-owned asset; employee agreement covers forensic inspection)
-- **Email server logs** (infrastructure asset)
-- **VPN logs** (infrastructure asset)
-- Subject A's **corporate email account** contents
-- The USB drive, if it can be located and seized with appropriate authority
+The exercise asks students to reason from evidence rather than from a single predetermined theory. During the debrief, Atzeni explicitly noted that some student hypotheses involved a larger role for Basal Core, but the timeline presented in class supported John acting alone.
 
 ---
 
-## Phase 2: Collection
+## 2. Relevant Evidence Sources
 
-### Isolation
-- Subject A's **VPN access is revoked** remotely to prevent further access
-- The **corporate email account is suspended** and its content archived under legal hold
-- IT confirms the **corporate laptop is currently in Subject A's possession** at home — a seizure must be arranged
+The lecture mentions or relies on several classes of evidence:
 
-### Seizure and Physical Collection
-- Legal counsel confirms that the employee agreement and company property policy provide the basis for demanding return of the corporate laptop before end of notice period
-- Subject A is contacted; the laptop is returned to the HR manager the following morning
-- **Before collection**: IT security photographs the laptop in the HR manager's office; the laptop is in sleep mode with the lid closed
-- **Decision on power state**: Rather than forcing a cold shutdown, the investigation team decides to perform **live acquisition** because BitLocker **full-disk encryption** is active and the laptop is in a BitLocker-unlocked sleep state from which the Volume Master Key (VMK) may be recoverable from RAM
-
-### Chain of Custody Initiated
-A formal chain of custody record is started:
-- Item 001: Corporate laptop, asset tag LP-0342, Make/Model Dell Latitude 7420, Serial No. [recorded]
-- Condition: Lid closed, sleep indicator light active, battery partially charged
-- Date/time of collection: [recorded]
-- Collected by: Senior forensic examiner; witnessed by HR Director
+| Evidence source | Forensic role in the case |
+|-----------------|---------------------------|
+| **File server / laptop artifacts** | Used to reconstruct operations on Project Triton and the creation of a staging folder. |
+| **Windows Prefetch** | Shows execution of tools even after those tools are removed. |
+| **NTFS Master File Table / file-system traces** | Supports reconstruction of file operations, archive creation, and deleted artifacts. |
+| **Windows Registry** | Contains traces of operations and connected devices. |
+| **USB traces** | Show insertion and use of a large pen drive. |
+| **Browser history** | Shows searches related to job opportunities, exfiltration, large Gmail attachments, and deletion of traces. |
+| **Firewall logs** | Show an unusual large outbound transfer after midnight. |
+| **Other logs** | Used to rule out malware, strange IP connections, and compromise by another agent. |
 
 ---
 
-## Phase 3: Acquisition
+## 3. Windows Prefetch Files
 
-### RAM Acquisition (Live)
-- The laptop lid is opened; the screen resumes without requesting a BitLocker PIN (indicating the VMK is loaded in memory)
-- The forensic examiner plugs a **forensic USB drive** (containing the investigator's trusted Linux live environment and static binaries) into the USB port
-- A live RAM dump is captured using a trusted acquisition tool run from the forensic USB drive, written to the forensic destination drive
-- The RAM dump is completed and its SHA-256 hash is recorded
+Atzeni paused on Windows Prefetch because not everyone knew it well.
 
-### Disk Acquisition
-- After RAM capture, the laptop is **shut down using the Windows shutdown command** (not a forced power-off, to allow the OS to complete the clean shutdown sequence)
-- The BitLocker VMK, identified within the RAM dump during forensic RAM analysis, is extracted and documented
-- The SSD is removed from the laptop; a **hardware write blocker is attached**; `dc3dd` is used to image the encrypted SSD:
+Prefetch files are useful because they can record that an executable was run and may persist even after the executable itself has been removed. In this case, prefetch artifacts help show tool execution and support the timeline of archive creation and attempted trace deletion.
 
-```bash
-dc3dd if=/dev/sdb hof=/media/forensic_drive/LP0342_disk.dd \
-  hash=sha256 hash=sha512 \
-  log=/media/forensic_drive/LP0342_acquisition_log.txt \
-  verb=on
-```
-
-- Pre- and post-acquisition hashes are recorded; Source pre-hash and image post-hash confirmed to match
-- SSD sealed in tamper-evident bag; hash recorded on bag label
-
-### Infrastructure Log Preservation
-- Email server logs and VPN logs are exported by the IT team and provided to the forensic examiner in read-only format
-- SHA-256 hashes of both log exports are computed and recorded
-- Copies are placed under the same chain of custody as the physical device
+Forensic value discussed in the lecture:
+- execution of specific programs;
+- timestamps useful for timeline reconstruction;
+- possible evidence that a program was run from an external drive;
+- persistence of traces after attempted deletion.
 
 ---
 
-## Phase 4: Examination and Analysis
+## 4. Timeline Reconstruction
 
-### BitLocker Decryption
-- The BitLocker VMK is used to decrypt the SSD image, which is then mounted read-only for examination with `Autopsy`
+### 4.1 Pre-Exfiltration Context
 
-### File System Examination
-
-**Key artefacts identified:**
-
-| Artefact | Location | Finding |
-|---------|---------|---------|
-| PowerShell history | `C:\Users\SubjectA\AppData\Roaming\Microsoft\Windows\PowerShell\PSReadLine\ConsoleHost_history.txt` | Contains commands that enumerate R&D share contents, copy files to a local staging directory, and compress the staging directory into a ZIP |
-| Staging directory | `C:\Users\SubjectA\Documents\HandoverDocs\` | Directory created 2 days before resignation; MFT record shows it contained 847 files over 230 MB; directory contents deleted after email was sent |
-| MFT entry for deleted staging directory | MFT journal (NTFS change journal) | Full record of file creation, modification, and deletion in the staging directory; files recovered from unallocated clusters |
-| Email client artefacts | Outlook `.pst` file | Shows the outbound email with attachment composed at 22:42, sent at 22:47 |
-| ZIP file | Recovered from unallocated clusters via `Autopsy` | Contents match the R&D source code repository structure; 847 source files, build configurations, design specs |
-
-### USB Device Examination
-- The `usbstor` registry entry identifies the USB by device serial number
-- A warrant is prepared to compel Subject A to produce the USB device
-
-### Portal and Remote Access Correlation
-- VPN log timestamp (22:35) → PowerShell command execution (22:41) → email composition (22:42) → email sent (22:47) → VPN disconnect (22:55)
-- Timeline is **internally consistent** and cross-corroborated across three independent evidence sources (endpoint logs, VPN logs, email server logs)
-
-### Clock Skew Check
-- VPN server and corporate email server are both synchronised to the same NTP source — **no clock delta**
-- Laptop clock is confirmed to match NTP time via Windows Time Service log — **clock skew: <1 second**
-
-### Anti-Forensics Indicators
-- **File deletion** of the staging directory was performed; files recovered from unallocated clusters — standard deletion does not securely erase
-- **MFT journal** (NTFS change journal) was not cleared by the suspect — full file operation history preserved
-- No evidence of timestamp manipulation detected
-
----
-
-## Phase 5: Presentation
-
-### Three-Version Report Structure
-
-| Version | Audience | Focus |
-|---------|---------|-------|
-| **Technical Report** | IT security team, forensic reviewers | Full technical methodology; tool names and versions; raw hash values; command-line output excerpts; complete artefact list with file system paths |
-| **Legal Brief Supplement** | Prosecution counsel; HR/legal department | Findings re-stated in terms of legal elements (access, intent, exfiltration, competitor link); technical detail in appendices; timeline diagram |
-| Executive Summary | Board; CISO | Business impact (IP at risk); scope of data exfiltrated; current status (criminal referral made); recommended remediation (offboarding controls, IT monitoring, BitLocker key escrow) |
-
-### Outcome
-- The matter was referred to police on the basis of the forensic evidence
-- Subject A's employment was terminated for cause during the notice period
-- The company implemented immediate remediation: departing employees' access is now restricted to email-only during their notice period, with monitoring elevated
-
-### Quality Assurance
-- A second forensic examiner independently verified the timeline by re-examining the same forensic images and produced the same hash matches and artefact identifications
-- All three report drafts were preserved; legal counsel confirmed conclusions were appropriately scoped
-
----
-
-## Lecture 8 Debrief: Named Scenario, Prefetch Analysis & Investigative Conclusions
-
-*The following content is drawn from the Lecture 8 workshop and debrief session, in which Prof. Atzeni walked through one detailed reconstruction of the case study.*
-
-### Named Scenario
-
-| Element | Detail |
-|---------|--------|
-| **Victim organisation** | Shockwave Analytics — specialises in predictive threat detection tools for the finance sector |
-| **Central asset** | Project Triton — a machine learning engine representing a significant competitive advantage |
-| **Triggering event** | Competitor Basel Core System announced a new product with architectural similarities to Project Triton far beyond coincidence |
-| **Suspect** | John Matthews — senior software engineer at Shockwave Analytics |
-
-### Windows Prefetch Files
-
-**Prefetch files** are created by Windows to speed up application startup by pre-loading dependencies into memory. They are a key forensic artefact because they persist after the executable is deleted and record execution history, timestamps, and volume information.
-
-- **Location**: `C:\Windows\Prefetch\`
-- **Naming format**: `[PROGRAMNAME]-[HASH].pf` — the hash is derived from the full **executable path**
-- **Forensic content**:
-
-| Field | Forensic Value |
+| Event | Interpretation |
 |-------|----------------|
-| **Executable name** | Identifies which program was run |
-| **Execution count** | Number of launches |
-| **Last run timestamp** | Primary timeline artefact |
-| **Up to 8 recent timestamps** | Available in more recent Windows versions; enables finer reconstruction |
-| **Dependency list** | Files accessed at startup |
-| **Volume information** | Identifies the drive the executable was launched from — can reveal execution from a USB drive |
+| John searches for better work opportunities and income. | Establishes a possible motive and context for the later actions. |
+| Students discuss whether Basal Core may have had deeper involvement. | Atzeni's reconstruction does not support this broader hypothesis. |
 
-- A prefetch file **persists after the executable is deleted**, providing evidence of tool use even when the tool has been removed
-- Volume information can confirm whether a tool was run from an **external USB drive**, a common attacker pattern to avoid leaving executables on the host
+### 4.2 Testing and Preparation
 
-> 📎 *Slide reference: `06_Digital-Forensics-Case-Study.pdf` — Prefetch Files*
+| Event | Interpretation |
+|-------|----------------|
+| A first test attempt occurs around 10 March. | Traces show insertion of a reasonably large pen drive and operations on Project Triton. |
+| A folder related to the operation is created. | The folder itself becomes a forensic artifact. |
+| Archive tooling is used. | Prefetch, MFT, and registry traces support the interpretation that John compressed and encrypted Project Triton data before exfiltration. |
 
-### Detailed Timeline
+### 4.3 Exfiltration and Anti-Forensics
 
-#### Pre-Exfiltration Phase
+| Event | Interpretation |
+|-------|----------------|
+| Archive copied to USB. | One exfiltration channel. |
+| Archive sent through personal Gmail. | Second exfiltration channel; Atzeni interprets this as redundancy from John's perspective. |
+| Firewall detects a large encrypted transfer shortly after midnight. | The content may be encrypted, but the volume and timing remain suspicious. |
+| `eraser.exe` is run after searches about deleting traces. | Attempted anti-forensics; the attempt itself becomes evidence of awareness and intent. |
 
-| Event | Evidence Source | Interpretation |
-|-------|----------------|----------------|
-| John searches for external job opportunities | Laptop image — browser history | Establishes motivation and window of opportunity |
-| John searches for "non-compete enforceability" | Laptop image — browser history | Researching legal consequences of joining a competitor |
-| John submits formal resignation | HR records | Notice period begins — access still active |
+---
 
-#### Reconnaissance and Testing
+## 5. Investigative Conclusions
 
-| Date | Event | Evidence Source | Interpretation |
-|------|-------|----------------|----------------|
-| **8 March** | Unusual system access at after-work hours | Access logs | Anomalous timing |
-| **8 March** | Prefetch entry for `7zfm.exe` (7-Zip File Manager) created | Windows Prefetch | Testing compression tool — no actual compression; interpreted as a dry run |
+| Question | Conclusion from the lecture reconstruction |
+|----------|--------------------------------------------|
+| **Who** | John Matthews. The artifacts point to his user profile. |
+| **Where** | Atzeni's reconstruction places the relevant activity in the company environment, with no support for a remote proxy or outside actor. |
+| **When** | Around the final work period, with a relevant two-day window and preparatory actions before exfiltration. |
+| **How** | Project Triton data was staged, compressed/encrypted, copied through USB, and also sent through Gmail. |
+| **Why** | Atzeni interprets the actions as linked to personal benefit, job/income motivation, and a move toward a competitor. |
 
-#### Exfiltration Phase
+The lecture also explicitly rules out several alternative explanations based on the presented logs:
+- no evidence of malware action;
+- no strange command-and-control connection;
+- no signs that another agent used John as a proxy;
+- no log evidence supporting direct Basal Core involvement in the exfiltration.
 
-| Event | Evidence Source | Interpretation |
-|-------|----------------|----------------|
-| **10 March** — large USB drive connected | USB / Windows device logs | First insertion of the exfiltration device |
-| **10 March** — operations on Project Triton on file server | File server logs | Access and staging of target IP |
-| **10 March** — suspect folder created | File server / laptop file system | Staging artefact — itself forensic evidence |
-| Encrypted archive created | Prefetch, MFT of NTFS, Windows registry | Project Triton data compressed and encrypted |
-| John searches "how to send large email with Gmail" | Laptop image — browser history | Researching email exfiltration channel |
-| Archive copied to USB drive | USB logs, file system | First exfiltration channel |
-| Archive sent to personal Gmail | Firewall logs, email server logs | Second exfiltration channel — redundant |
-| Just after midnight — firewall flags large outbound transfer (multiple gigabytes) | Firewall logs | Anomalous traffic volume; content encrypted but volume is suspicious |
-| `eraser.exe` run | Windows Prefetch | Attempted anti-forensic trace deletion — unsuccessful |
+---
 
-### Investigative Conclusions
+## 6. Presentation and Reporting Lessons
 
-| Question | Conclusion |
-|----------|------------|
-| **Who** | John Matthews, acting alone — no Basal Core log evidence, no malware, no C2 connections, all artefacts point to John's user profile |
-| **Where** | Physically present at company premises after working hours |
-| **When** | Two-day window in John's final work week; pre-reconnaissance (job searches, resignation) extends earlier |
-| **How** | Staged locally → compressed and encrypted with 7-Zip → exfiltrated via USB drive and personal Gmail |
-| **Why** | Financial motivation and career advancement — better salary at competitor |
+The case connects back to the general reporting principle introduced in Lecture 5: a forensic report must be adapted to its audience while preserving technical correctness.
 
-The attempt to destroy evidence using `eraser.exe` constitutes **consciousness of guilt** — it demonstrates awareness of wrongdoing and a deliberate effort to conceal it, which is itself legally significant.
-
-> 📎 *Slide reference: `06_Digital-Forensics-Case-Study.pdf` — Timeline & Conclusions*
+Atzeni stresses that the investigator should be ready to handle alternative explanations. For example, John might claim that the archive was made for backup or for the organization's interest. The forensic narrative must therefore connect artifacts, timing, and intent carefully rather than merely listing technical traces.
 
 ---
 
@@ -248,29 +115,19 @@ The attempt to destroy evidence using `eraser.exe` constitutes **consciousness o
 
 | Term | Definition |
 |------|------------|
-| **Insider Threat** | Security risk originating from within the organisation — current or former employees, contractors, or partners with authorised access |
-| **BitLocker VMK** | Volume Master Key — the symmetric encryption key that BitLocker uses to encrypt the drive; held in RAM while the drive is unlocked |
-| **MFT Journal** | NTFS file system structure that records file and directory change operations; persists after deletion and is a primary anti-deletion artefact |
-| **Staging Directory** | A temporary local directory used by the suspect to gather files before exfiltration; its creation and use is itself forensic evidence |
-| **`usbstor` Registry Key** | Windows registry path that records every USB storage device ever connected, including device serial number and timestamps |
-| **Legal Hold** | Preservation order directing that data be retained without modification or deletion pending litigation or investigation |
-| **Prefetch file** | Windows performance file recording application execution details; persists after executable deletion; stored in `C:\Windows\Prefetch\`; contains execution counts, timestamps, volume information, and dependency lists |
-| **7zfm.exe** | 7-Zip File Manager executable; used to compress and encrypt the exfiltrated archive |
-| **eraser.exe** | Secure deletion tool run as an attempted anti-forensic measure; unsuccessful — traces remained in prefetch, MFT, Windows registry, and firewall logs |
-| **Consciousness of guilt** | Legal concept: deliberate post-crime attempts to destroy evidence are themselves indicative of knowing wrongdoing |
-| **Anti-forensics** | Techniques used to hinder forensic investigation; in this case: file deletion and use of `eraser.exe` |
+| **Insider threat** | A risk or incident involving someone inside the organization or with legitimate access. |
+| **Project Triton** | The Shockwave Analytics machine-learning project at the center of the case scenario. |
+| **Prefetch file** | Windows artifact that can record program execution and remain useful even after the executable has been removed. |
+| **MFT** | NTFS Master File Table; relevant because it can preserve traces of file operations. |
+| **Staging folder** | A folder used to collect target data before compression or transfer. |
+| **Anti-forensics** | Attempts to hide, erase, or confuse traces; in this case, the use of `eraser.exe` is treated as an unsuccessful attempt. |
 
 ---
 
 ## Summary
 
-- The case illustrates how **multiple independent evidence sources** (endpoint logs, VPN logs, email server logs, file system artefacts, registry entries) must be corroborated to build a credible forensic narrative.
-- **Live acquisition** was the correct decision because BitLocker encryption made the disk unreadable after shutdown — the BitLocker VMK was only available while the device was in its live state.
-- Standard **file deletion did not erase the evidence**: the MFT journal and unallocated cluster recovery provided a complete picture of the staging directory operations.
-- The **timeline was internally consistent** across three independent evidence sources with negligible clock skew, making it robust against legal challenge.
-- The **three-version report structure** (technical / legal / executive) is essential for ensuring findings are communicated appropriately to each stakeholder.
-- **Remediation** (departing employee access controls, elevated IT monitoring, BitLocker key escrow) was derived directly from the investigation's findings — forensic investigations should always inform defensive improvements.
-- **Windows Prefetch files** are a key artefact class: they persist after deletion of the tools they reference and can reveal execution from external USB drives via volume information.
-- The Shockwave Analytics debrief (Lecture 8) established John Matthews as the sole actor — external involvement, malware, and proxy scenarios were all ruled out on the basis of log evidence.
-- The use of two redundant exfiltration channels (USB + personal Gmail) doubled the available forensic evidence instead of concealing the activity.
-- Attempted trace deletion with `eraser.exe` failed across multiple artefact classes and constitutes **consciousness of guilt** — a legally significant indicator of intentional wrongdoing.
+- The case-study scenario involves Shockwave Analytics, Project Triton, Basal Core System, and the suspect John Matthews.
+- The lecture reconstruction is based on timeline correlation across multiple artifacts and logs.
+- Prefetch, MFT traces, registry traces, browser history, USB traces, firewall logs, and other logs are used together rather than in isolation.
+- Atzeni's reconstruction supports John acting alone and rules out malware compromise, proxy use, and direct Basal Core involvement based on the available logs.
+- The attempted deletion of traces does not erase the case; instead, it strengthens the interpretation that John knew the action was improper.

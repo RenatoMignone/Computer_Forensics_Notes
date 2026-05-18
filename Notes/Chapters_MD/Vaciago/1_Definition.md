@@ -20,7 +20,7 @@ Digital forensics is not a monolithic discipline. It operates across three subst
 |--------|---------|------------------------|---------------------------|
 | **Criminal Forensics** | State prosecution of crimes | Criminal procedure law (varies by jurisdiction); evidence statutes; Convention on Cybercrime | Police; prosecutor's office |
 | **Civil Forensics** | Disputes between private parties; employment matters; IP litigation | Civil procedure; rules of evidence; employment law | Law firms; corporate legal departments |
-| **Corporate / Internal Forensics** | Incident response; insider threat; regulatory compliance | Employment contracts; internal policies; data protection law (GDPR) | CISO; HR; Compliance |
+| **Corporate / Internal Forensics** | Incident response; insider threat; regulatory compliance | Employment contracts; internal policies; data protection law (GDPR) | Company internal functions and external consultants |
 
 ### Key Differences in Practice
 - **Criminal forensics** has the most stringent chain of custody requirements and the strictest admissibility rules — evidence must meet criminal procedure standards. Results must be repeatable by a defence expert.
@@ -84,7 +84,7 @@ Where might the relevant evidence reside? Vaciago presents a **four-level hierar
 | Level | Location | Typical Evidence | Access Mechanism |
 |-------|---------|-----------------|-----------------|
 | **Level 1** | Personal computer / laptop (suspect's device) | Files, browsing history, email client data, installed software, registry, RAM | Physical seizure and forensic imaging |
-| **Level 2** | Mobile phone / tablet | Call logs, messages (WhatsApp, Signal, iMessage), location data, app data, cloud sync artefacts | Physical seizure; mobile forensic tools (UFED/Cellebrite) |
+| **Level 2** | Mobile phone / tablet | Call logs, messages, location data, app data, cloud sync artefacts | Physical seizure; mobile forensic tools such as UFED |
 | **Level 3** | ISP / network provider logs | Connection logs, IP assignment records, DNS queries, traffic metadata | Formal legal request (court order, data preservation notice); subject to retention law |
 | **Level 3b** | Bank and digital payment providers (Stripe, PayPal) | Transaction records, linked accounts, device/IP metadata | Formal legal request; "follow the money" — financial data can corroborate device and IP evidence |
 | **Level 4** | Cloud services | Email (Gmail, Outlook 365), cloud storage (Drive, OneDrive, iCloud), social media, collaborative tools | Formal cross-border legal procedures or compelled production via US parent company; complex and time-consuming |
@@ -112,14 +112,14 @@ Mobile devices represent one of the richest sources of digital evidence and one 
 | **Storage architecture** | Internal flash storage architecture differs from conventional hard drives; standard acquisition tools may not apply directly |
 
 ### UFED (Universal Forensic Extraction Device)
-Cellebrite's UFED is the leading mobile forensic extraction platform used by law enforcement worldwide:
+UFED is presented as a specialized mobile-forensics tool for phone acquisition:
 
 | Feature | Detail |
 |---------|--------|
-| **Extraction** | Requires physical connection for full extraction; continuously updated to support new phone models |
-| **Cost** | Extremely expensive: hardware unit, software licences, and annual update subscriptions required |
+| **Extraction** | Requires a hardware/software setup and may require physical interaction with the phone |
+| **Cost / effort** | Requires significant budget, time, tools, and technical capacity compared with simpler laptop acquisition |
 
-> *Cost is a significant barrier: only well-funded law enforcement agencies and large forensic firms can afford to maintain current UFED capability. This creates a two-tier forensic landscape.*
+> *The lecture frames mobile forensics as a budget-intensive area because phones, especially iPhones, require specialized tools and procedures.*
 
 > 📎 *Slide reference: `1_Definition.pdf` — Mobile Forensics*
 
@@ -157,7 +157,7 @@ The approach to criminal prosecution differs fundamentally between the United St
 | **OSINT** | Open Source Intelligence — intelligence gathered from publicly available sources |
 | **IP Tracing** | 4-step process: identify IP → resolve to ISP → obtain subscriber data (via court order) → identify individual |
 | **Evidence Location Model** | Multi-level hierarchy: personal device → mobile → ISP logs + financial providers → cloud; defines escalating access complexity |
-| **UFED** | Universal Forensic Extraction Device (Cellebrite); leading mobile forensic hardware platform |
+| **UFED** | Universal Forensic Extraction Device; specialized hardware/software tool for mobile-phone forensic acquisition |
 | **Remote Wipe** | Command sent over network to wipe a device's storage; requires immediate Faraday isolation on seizure |
 | **Follow the money** | Investigative principle: bank accounts and digital payment providers (Stripe, PayPal) often hold corroborating evidence |
 | **Compulsory Prosecution** | Legal system (e.g., Italy) in which prosecutors are obligated by law to open investigations for all reported crimes |

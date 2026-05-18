@@ -5,6 +5,12 @@
 
 ---
 
+## Introduction
+
+This chapter summarizes the file-system forensics material from Lectures 15, 17, 18, and 20. It focuses on how operating systems abstract storage through files and mount points, why that abstraction can modify evidence, and how investigators use low-level access, read-only protections, forensic images, metadata, and file-system structures to reconstruct user activity.
+
+---
+
 ## 1. The File System Hierarchy and Abstraction
 
 Digital forensics relies on understanding the layers between raw bits and user information.
@@ -161,6 +167,16 @@ Investigators should compare OS-mediated outputs such as `stat` or PowerShell `G
 | **Slack Space** | Unused bytes inside an allocated storage unit that may contain remnants of previous data. |
 | **MFT** | NTFS Master File Table, the main metadata structure describing files and file system objects. |
 | **File Carving** | Recovery technique that scans raw bytes for file signatures and reconstructs files outside normal file system metadata. |
+
+---
+
+## Summary
+
+- File systems hide physical storage complexity behind the file/folder metaphor, but forensic analysis often needs to reason below that abstraction.
+- Mounting and unmounting can change metadata, so investigators must use read-only protections, write blockers, and controlled procedures.
+- Forensic images preserve byte-level layout and allow analysis away from the original evidence.
+- Metadata, magic numbers, slack space, unallocated space, FAT structures, and NTFS MFT records all support timeline reconstruction and recovery.
+- Ordinary file copying is not equivalent to forensic copying because it does not preserve the full byte-level and metadata context.
 
 ---
 
