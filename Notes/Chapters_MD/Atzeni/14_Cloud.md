@@ -1,7 +1,7 @@
 # Chapter 14 – Cloud Forensics
 **Professor:** Atzeni
 **Reference Slides:** [`Slides/Atzeni/14_Cloud.pdf`](../../Slides/Atzeni/14_Cloud.pdf)
-**Covered in Lectures:** [Lecture 25](../../Lectures_MD/Lecture_25_Atzeni.md), [Lecture 27](../../Lectures_MD/Lecture_27_Atzeni.md)
+**Covered in Lectures:** [Lecture 25](../../Lectures_MD/Lecture_25_Atzeni.md)
 
 ---
 

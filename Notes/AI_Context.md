@@ -76,8 +76,6 @@ The project generates two types of structured Markdown notes from raw lecture tr
 | `Lectures_txt/Lecture_23_Atzeni_28-04_.txt` | Network forensics, OSINT, social media evidence, and homework presentation |
 | `Lectures_txt/Lecture_24_Atzeni_05-05_.txt` | Network anti-forensics and attack obfuscation |
 | `Lectures_txt/Lecture_25_Atzeni_06-05_.txt` | TOR and cloud forensics |
-| `Lectures_txt/Lecture_27_Atzeni_12-05_.txt` | Cloud forensics effects, provider dependency, redundancy, virtualisation, and volatility |
-| `Lectures_txt/Lecture_28_Atzeni_13-05_.txt` | Video carving, OS forensics, memory acquisition, and Volatility |
 
 **Slide PDFs** (`Slides/Atzeni/`):
 | File | Topic |
@@ -101,8 +99,6 @@ The project generates two types of structured Markdown notes from raw lecture tr
 | `12_Network.pdf` | Network forensics, OSINT, social media forensics, anti-forensics |
 | `13_Digital-Forensics-in-the-TOR-Network.pdf` | TOR architecture, daemon, guard nodes, relay identification, traffic correlation |
 | `14_Cloud.pdf` | Cloud forensics, cloud models, S3, logs, jurisdiction, redundancy, virtualisation, volatility |
-| `15_OS.pdf` | Operating system forensics, rootkit investigation, logs, processes, memory overview |
-| `16_volatile.pdf` | Volatile memory analysis workflow, Volatility plugins, process/network/timeline analysis |
 
 ---
 
@@ -118,7 +114,6 @@ The project generates two types of structured Markdown notes from raw lecture tr
 | `Lectures_txt/Lecture_16_Vaciago_01-04_.txt` | Forensic Expert Insights and the Garlasco Case Study |
 | `Lectures_txt/Lecture_19_Vaciago_17-04_.txt` | The 10 Rules for a Digital Forensic Report |
 | `Lectures_txt/Lecture_22_Vaciago_24-04_.txt` | Digital Alibi Feedback and the Hacking Team Case |
-| `Lectures_txt/Lecture_26_Vaciago_08-05_.txt` | Malware production, Articles 615-ter/615-quater, mens rea, and participation in crime |
 
 **Slide PDFs** (`Slides/Vaciago/`):
 | File | Topic |
@@ -129,7 +124,6 @@ The project generates two types of structured Markdown notes from raw lecture tr
 | `3_Law_48_08.pdf` | Italian Law 48/2008 implementing the Budapest Convention |
 | `5_Rules_Digital_Forensics.pdf` | Rules for forensic expert reports and legal presentation |
 | `6_Hacking_Team_Case.pdf` | Hacking Team case, spyware, SoftHack search and seizure lab scenario |
-| `Articoli_Codice_Penale.pdf` | Articles 615-ter and 615-quater in Italian and English |
 
 ---
 
@@ -173,18 +167,17 @@ Pattern: `[SlidePrefix]_[ShortTitle].md` — mirrors the slide PDF filename
 | `11_Data-Sanitisation-Techniques.pdf` | Atzeni | Lecture 21 |
 | `12_Network.pdf` | Atzeni | Lectures 21, 23 & 24 |
 | `13_Digital-Forensics-in-the-TOR-Network.pdf` | Atzeni | Lecture 25 |
-| `14_Cloud.pdf` | Atzeni | Lectures 25 & 27 |
-| `15_OS.pdf` | Atzeni | Lecture 28 |
-| `16_volatile.pdf` | Atzeni | Lecture 28 |
+| `14_Cloud.pdf` | Atzeni | Lecture 25 |
 | `5_Rules_Digital_Forensics.pdf` | Vaciago | Lectures 19 & 22 |
 | `6_Hacking_Team_Case.pdf` | Vaciago | Lecture 22 |
-| `Articoli_Codice_Penale.pdf` | Vaciago | Lecture 26 |
 
 ---
 
 ## Current State
 
 ### `Lectures_MD/` — Per-Lecture Notes
+
+Current active generated set is Lecture 01 through Lecture 25. Lecture 26, Lecture 27, and Lecture 28 transcript files may exist in `Lectures_txt/`, but they are intentionally out of scope until the user confirms those transcriptions are ready.
 
 | File | Status | Topic |
 |------|--------|-------|
@@ -213,9 +206,6 @@ Pattern: `[SlidePrefix]_[ShortTitle].md` — mirrors the slide PDF filename
 | `Lecture_23_Atzeni.md` | ✅ Complete | Network Forensics, OSINT, and Social Media Evidence |
 | `Lecture_24_Atzeni.md` | ✅ Complete | Network Anti-Forensics and Attack Obfuscation |
 | `Lecture_25_Atzeni.md` | ✅ Complete | TOR and Cloud Forensics |
-| `Lecture_26_Vaciago.md` | ✅ Complete | Malware Production, Mens Rea, and Criminal Liability |
-| `Lecture_27_Atzeni.md` | ✅ Complete | Cloud Forensics Effects and Acquisition Strategy |
-| `Lecture_28_Atzeni.md` | ✅ Complete | Video Carving, OS Forensics, and Memory Acquisition |
 
 ### `Chapters_MD/Atzeni/` — Atzeni Chapter Notes
 
@@ -236,9 +226,7 @@ Pattern: `[SlidePrefix]_[ShortTitle].md` — mirrors the slide PDF filename
 | `11_Data-Sanitisation-Techniques.md` | ✅ Complete | `11_Data-Sanitisation-Techniques.pdf` | Lecture 21 |
 | `12_Network.md` | ✅ Complete | `12_Network.pdf` | Lectures 21, 23 & 24 |
 | `13_Digital-Forensics-in-the-TOR-Network.md` | ✅ Complete | `13_Digital-Forensics-in-the-TOR-Network.pdf` | Lecture 25 |
-| `14_Cloud.md` | ✅ Complete | `14_Cloud.pdf` | Lectures 25 & 27 |
-| `15_OS.md` | ✅ Complete | `15_OS.pdf` | Lecture 28 |
-| `16_volatile.md` | ✅ Complete | `16_volatile.pdf` | Lecture 28 |
+| `14_Cloud.md` | ✅ Complete | `14_Cloud.pdf` | Lecture 25 |
 
 ### `Chapters_MD/Vaciago/` — Vaciago Chapter Notes
 
@@ -250,7 +238,6 @@ Pattern: `[SlidePrefix]_[ShortTitle].md` — mirrors the slide PDF filename
 | `3_Law_48_08.md` | ✅ Complete | `3_Law_48_08.pdf` | Lecture 12 |
 | `5_Rules_Digital_Forensics.md` | ✅ Complete | `5_Rules_Digital_Forensics.pdf` | Lectures 19 & 22 |
 | `6_Hacking_Team_Case.md` | ✅ Complete | `6_Hacking_Team_Case.pdf` | Lecture 22 |
-| `Articoli_Codice_Penale.md` | ✅ Complete | `Articoli_Codice_Penale.pdf` | Lecture 26 |
 
 ---
 
@@ -462,12 +449,9 @@ All Markdown files in this project follow a consistent format. New notes must ma
 - Created Atzeni chapters `10_HDD-vs-SSD-in-Digital-Forensics.md`, `11_Data-Sanitisation-Techniques.md`, and `12_Network.md`; later corrected TOR and Cloud chapter ownership back to Atzeni after the official slide packs were restored under `Slides/Atzeni/`.
 - Created Vaciago chapters `5_Rules_Digital_Forensics.md` and `6_Hacking_Team_Case.md`.
 
-### 2026-05-18 — Lecture 26-28 Generation and TOR/Cloud Ownership Fix
+### 2026-05-18 — Lecture 01-25 Refactor Scope Check and TOR/Cloud Ownership Fix
 - Corrected Lecture 25 generated material to Atzeni ownership: `Lecture_25_Atzeni.md`, transcript `Lecture_25_Atzeni_06-05_.txt`, and chapters `13_Digital-Forensics-in-the-TOR-Network.md` / `14_Cloud.md` under `Chapters_MD/Atzeni/`.
-- Created `Lecture_26_Vaciago.md` and `Chapters_MD/Vaciago/Articoli_Codice_Penale.md`.
-- Created `Lecture_27_Atzeni.md` and expanded `Chapters_MD/Atzeni/14_Cloud.md`.
-- Created `Lecture_28_Atzeni.md`, `Chapters_MD/Atzeni/15_OS.md`, and `Chapters_MD/Atzeni/16_volatile.md`.
-- Normalized the volatile-memory slide filename to `Slides/Atzeni/16_volatile.pdf`.
+- Set the active documentation scope to Lecture 01 through Lecture 25; Lectures 26, 27, and 28 are intentionally ignored until their transcriptions are ready.
 - Realigned old post-Lecture-18 professor/number assignments to match the dated `Lectures_txt/` filenames as the source of truth.
 - Updated `AI_Context.md`, `README.md`, per-lecture note filenames, and chapter cross-references for the corrected architecture.
 
