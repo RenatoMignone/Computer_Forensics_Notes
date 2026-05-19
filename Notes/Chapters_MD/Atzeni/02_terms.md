@@ -198,7 +198,7 @@ Cryptographic hash functions provide the **primary mechanism for proving evidenc
 |-----------|--------|--------|
 | **MD5** | ❌ Not sufficient alone | Collision attacks are feasible: two different files can be crafted to share the same MD5 hash; a defence team could argue the image was fabricated |
 | **SHA-256** | ✅ Current standard | No known feasible collision attacks; produces 256-bit digest |
-| **SHA-512** | ✅ Highest assurance | 512-bit digest; preferred in high-stakes investigations |
+| **SHA-512** | ✅ Stronger digest size | Example of a second modern hash algorithm that may be paired with SHA-256 in important cases |
 | **Multiple algorithms simultaneously** | ✅ Best practice | Some jurisdictions require or recommend using multiple algorithms concurrently |
 
 ### Command-line Hashing Tools
@@ -223,10 +223,10 @@ A **forensic image** is a bit-for-bit copy of a storage device, created using fo
 | Tool | Type | Key Features |
 |------|------|-------------|
 | **EnCase** | Commercial (GUI) | Industry standard; expensive; widely accepted in courts; integrated acquisition, analysis, and reporting |
-| **FTK Imager** | Commercial (GUI, free tier) | Multiple output formats (.dd, .E01, .AFF); integrated hashing; drive preview without mounting |
-| **`dd`** | Open-source (CLI) | Standard Unix bit-copy utility; available on any Linux/macOS system; no built-in hashing |
-| **`dc3dd` / `dcfldd`** | Open-source (CLI) | Enhanced `dd` with integrated hashing, progress reporting, split output, and log generation |
-| **Autopsy / Sleuth Kit** | Open-source (GUI+CLI) | Full forensic analysis platform; used for examination rather than acquisition |
+| **FTK Imager** | GUI tool | Famous and widely used; supports common forensic acquisition formats and integrated hashing |
+| **`dd`** | Command-line tool | Standard bit-by-bit copy utility; powerful but requires separate care around hashing and logging |
+| **`dc3dd` / similar `dd` evolutions** | Command-line tool | Enhanced bit-copy tools that embed hash calculation into the copy workflow |
+| **Autopsy / Sleuth Kit** | Analysis platform | Useful during examination rather than as the core example of acquisition in the lecture |
 
 > 📎 *Slide reference: `02_terms.pdf` — Forensic Imaging & Tools*
 
@@ -244,7 +244,7 @@ A forensic investigator must **never use tools found on the suspect's own system
 |-------|--------|-------------|
 | 1 | Tools from the **suspect's machine** using suspect's OS and libraries | Lowest |
 | 2 | **Investigator's binaries on a USB drive**, run under the suspect's OS | Partial — executables trusted but kernel may not be |
-| 3 | Full **forensic Linux distribution booted from investigator's media** (Kali, CAINE, Tsuruji) | Highest — suspect's kernel is bypassed entirely |
+| 3 | Full **trusted forensic system** booted or run under investigator control | Highest — suspect's kernel and libraries are bypassed as much as possible |
 
 > 📎 *Slide reference: `02_terms.pdf` — Tools & Trust*
 
@@ -287,7 +287,7 @@ The output of forensic analysis is **dual-purpose**: it supports legal proceedin
 
 ## Summary
 
-- Digital evidence is present in **virtually every modern investigation**: computer forensics skills are universally required.
+- Digital evidence is present in **most modern investigations** in some form, even when the original event is not purely digital.
 - All forensic work must be **sound, repeatable, documented, and non-altering** — failure in any dimension can invalidate evidence in court.
 - The six investigative questions (what, who, when, where, why, how) and **timeline reconstruction** are the structural backbone of any investigation.
 - **Digital evidence is fragile**: normal system interaction modifies metadata; physical threats (magnetic fields, fingerprints) can damage storage media.

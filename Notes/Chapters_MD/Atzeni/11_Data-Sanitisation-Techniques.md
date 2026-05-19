@@ -50,6 +50,10 @@ Investigators and administrators must verify that the command completed successf
 
 Sanitisation is incomplete without verification and documentation. The lecture stresses the use of appropriate procedures, certified tools where required, and checks during or after the sanitisation steps to confirm that writes or erasures succeeded.
 
+Verification may be statistical or complete depending on the required assurance level. For high-security contexts, a full check may be required; in other contexts, standards may accept a percentage of the device. When the expected post-sanitisation content is known, hash-based verification can check the whole device against the expected digest, for example an all-zero device of a known size.
+
+The audit trail must preserve what was done, by whom, when, with which equipment, and with what result. For physical destruction, the record may also include measurable outputs such as particle size after shredding or disintegration.
+
 ---
 
 ## Key Concepts & Definitions

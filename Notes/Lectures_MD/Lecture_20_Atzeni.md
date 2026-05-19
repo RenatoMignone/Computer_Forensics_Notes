@@ -24,26 +24,21 @@ FAT is portable and simple, but it lacks robustness, security, and performance f
 
 NTFS improves on FAT through:
 - richer metadata;
-- attribute-based file records;
+- an attribute-oriented organisation;
 - journaling and rollback mechanisms;
 - access control support;
 - better performance on large volumes and large file sets.
 
 ---
 
-## 3. Master File Table and Attribute Model
+## 3. NTFS as a Modern File System Example
 
-The **Master File Table (MFT)** is the central NTFS structure. Each file is represented as a record, typically 1 KB, containing a fixed header and a set of attributes.
+Atzeni refers to NTFS as an example of a modern, complex file system whose structures must be understood before analysis. The transcript does not go into a full NTFS field-by-field description, but it stresses the investigative approach:
+- understand where the file system stores allocation, logging, and metadata information;
+- compare normal OS-visible metadata with lower-level file-system information;
+- treat richer metadata as useful evidence, but still subject to manipulation, corruption, and misinterpretation.
 
-| NTFS Element | Forensic Meaning |
-|--------------|-----------------|
-| **MFT Header** | Contains essential record metadata and validity flags. |
-| **Resident Attribute** | Attribute value stored inside the MFT record itself. |
-| **Non-Resident Attribute** | Attribute value stored elsewhere, with the MFT pointing to its location. |
-| **Bitmap** | Tracks which clusters or records are allocated. |
-| **Log File** | Supports transaction recovery and may reveal recent file system activity. |
-
-NTFS deletion marks records and clusters as not in use, but the underlying data may remain recoverable until overwritten.
+The general point is portable beyond NTFS: modern file systems increasingly embed reliability, performance, access-control, and sometimes security mechanisms that affect what evidence remains and how it should be interpreted.
 
 ---
 
@@ -60,7 +55,6 @@ Get-Item file.txt
 Forensic-level examples:
 ```bash
 istat image.dd <inode-or-record>
-fsutil
 ```
 
 Discrepancies between these views can indicate corruption, manipulation, or anti-forensic behaviour.
@@ -92,7 +86,15 @@ Deleted or hidden files can be recovered by scanning the raw device for known he
 
 ## 7. First SSD Complications
 
-The lecture closes by previewing that SSDs complicate assumptions built around magnetic disks. Atzeni specifically flags **TRIM** and **wear levelling** as concepts to discuss in the following lecture.
+The lecture closes by explaining that SSDs complicate assumptions built around magnetic disks.
+
+Key differences include:
+- **Flash Translation Layer (FTL):** a firmware layer translates OS-visible addresses into physical NAND locations, so the operating system does not directly control the real storage position.
+- **Wear levelling:** the controller may move data to distribute cell usage, even when the OS-level file appears unchanged.
+- **TRIM and garbage collection:** after deletion, the controller may make data unavailable quickly, and some activity may continue after power-off.
+- **Different TRIM behaviours:** depending on implementation, reads after TRIM may return old content, deterministic values, or zeros rather than the real physical content.
+- **Write-blocker limits:** a write blocker cannot bypass the SSD controller, so it may not guarantee stability of SSD contents in the same way as with magnetic disks.
+- **Hashing still matters:** the firmware mapping should still return consistent logical content for allocated data, so hashes remain meaningful for integrity checks.
 
 ---
 
@@ -100,20 +102,21 @@ The lecture closes by previewing that SSDs complicate assumptions built around m
 
 | Term | Definition |
 |------|------------|
-| **MFT** | NTFS Master File Table; database-like structure containing records for files and metadata. |
-| **Resident Attribute** | NTFS attribute stored directly in the MFT record. |
-| **Non-Resident Attribute** | NTFS attribute whose content is stored outside the MFT record. |
+| **NTFS** | Modern Windows file system used here as an example of richer metadata, reliability, and access-control mechanisms. |
 | **Bitstream Copy** | A bit-for-bit forensic image of a device or partition. |
 | **Magic Number** | Initial byte sequence used to identify a file type independently of its extension. |
+| **Slack Space** | Unused bytes inside an allocated storage unit that may preserve remnants of previous data. |
+| **FTL** | Flash Translation Layer; SSD firmware mapping between OS-visible addresses and physical NAND cells. |
+| **TRIM** | Command informing the SSD controller that certain logical blocks are no longer needed. |
 
 ---
 
 ## Summary
 - NTFS was designed to overcome FAT's lack of robustness, metadata richness, and access control.
-- The MFT organises file information through headers and attributes.
-- NTFS supports rollback and journaling concepts similar to database transaction mechanisms.
-- Deletion in NTFS still leaves recoverable traces when data has not been overwritten.
+- NTFS is used as an example of a modern file system with richer internal structures that require specific investigative understanding.
+- Modern file systems may include reliability, rollback, metadata, indexing, access-control, and security mechanisms.
 - A forensic copy must preserve the complete byte structure, not only visible file contents.
 - `dd`, `dc3dd`, and `dcfldd` support bit-level acquisition workflows.
 - File signatures and carving help recover data outside ordinary file system views.
-- SSDs introduce firmware-level behaviour that changes classic recovery assumptions.
+- Slack space and byte-level analysis can reveal remnants that file-system metadata does not expose.
+- SSDs introduce firmware-level behaviour that changes classic recovery assumptions, especially around deletion and write blocking.

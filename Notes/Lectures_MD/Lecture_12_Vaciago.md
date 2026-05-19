@@ -6,7 +6,7 @@
 ---
 
 ## Overview
-This lecture examines the Italian implementation of the Budapest Convention via **Law 48/2008**. It highlights the three-tier innovation of the law: international harmonization, the reorganization of specific cybercrime offenses (including the "domicile" concept in digital systems), and the extension of corporate criminal liability (Legislative Decree 231/2001) to include IT crimes.
+This lecture examines the Italian implementation of the Budapest Convention via **Law 48/2008**. It highlights the three-tier innovation of the law: international harmonization, the reorganization of specific cybercrime offenses (including the "domicile" concept in digital systems), and the extension of corporate criminal liability (Legislative Decree 231/2001) to include IT crimes. Vaciago also stressed that the law states important principles, but does not provide the detailed technical procedures that digital evidence handling would need in practice.
 
 ---
 
@@ -47,13 +47,24 @@ Companies can avoid liability if they demonstrate **Accountability** through a "
 
 ## 3. Procedural Innovations and Cooperation
 
-### 3.1 Centralization of Investigations
+### 3.1 Legal Classification of Data
+
+The lecture emphasized that "data" is not a single legal category:
+
+- **Correspondence data** such as email has constitutional and criminal-law protection. Reading another person's email can itself be a crime under Article 616 of the Italian Criminal Code.
+- A document describing the content of an email is legally different from the email correspondence itself.
+- Traffic data, content data, email, and ordinary documents can trigger different investigative powers and safeguards.
+- Email accounts create special issues because they can contain an enormous record of a person's life and do not map neatly onto traditional sealed letters.
+
+### 3.2 Centralization of Investigations
 Because cybercrime is technically complex, Law 48/2008 centralized investigations at the **District Court of Appeal** level (e.g., Turin, Milan, Rome). This ensures that specialized units (like the Postal Police) and expert prosecutors handle these cases rather than smaller, local police stations.
 
-### 3.2 Search and Seizure
+### 3.3 Search, Seizure, and Inspection
 - **Physical vs. Digital Seizure:** Investigators can physically seize hardware or, more commonly, perform a bitstream copy of the server.
 - **Data Centers:** Law enforcement has the power to search and seize data within data centers (e.g., Aruba, AWS Italy), though they typically coordinate with the provider to avoid disrupting thousands of other innocent users.
 - **Preservation Orders:** Data can be "frozen" at a provider for 90 days (expandable to 6 months) to prevent deletion before a formal MLAT request is fulfilled.
+- **Digital Inspection:** Real-time inspection is distinct from search and seizure. It is riskier than a bitstream copy because the investigator works directly with evidence and can alter it without proper technical controls.
+- **Criminal Proceedings Only:** Vaciago stressed that the Italian digital-forensics rules on repeatability, bitstream copies, and evidence integrity apply directly to criminal proceedings. In tax, administrative, or data-protection inspections, similar practices may be followed voluntarily, but the public officer is not compelled by these rules in the same way.
 
 ---
 
@@ -65,14 +76,18 @@ Because cybercrime is technically complex, Law 48/2008 centralized investigation
 | **Decree 231/2001** | Legislation on the administrative liability of legal entities, allowing companies to be punished for crimes committed in their interest. |
 | **Compliance Program** | An internal organizational model (Modello 231) that a company implements to mitigate the risk of crimes and avoid corporate liability. |
 | **Bitstream Copy** | A forensic image that captures every bit of a storage device, ensuring the integrity and authenticity of the digital evidence. |
+| **Correspondence Data** | Communications such as email or instant messages; legally more protected than ordinary documents because they involve communication between parties. |
+| **Digital Inspection** | Real-time examination of a device or system, riskier than image-based analysis because the investigator interacts directly with evidence. |
 
 ---
 
 ## Summary
 - Law 48/2008 bridged a 7-year gap between the Budapest Convention and Italian law, modernizing the legal system for the digital age.
+- The law establishes principles but not detailed technical procedures; this lack of practical implementation guidance remains a major weakness.
 - Illegal access is defined by the "intent to exclude," meaning even public-facing systems without passwords can be "violated" if entry is unauthorized.
 - Modern "digital damage" includes temporary unavailability and the unauthorized deletion of data from company assets.
+- Legal handling depends on the type of data: correspondence, content data, traffic data, email, and ordinary documents do not receive identical treatment.
 - Companies are no longer immune to the crimes of their employees; they must implement thorough "Compliance Programs" involving IT policies and data security.
 - Investigations are centralized in specialized district units to ensure technical competence.
-- Procedural rules now mandate that digital evidence be acquired without alteration, primarily through hashing and verified bitstream copies.
+- Procedural rules in criminal cases require digital evidence to be acquired without alteration, primarily through repeatable acquisition and verified bitstream copies.
 - International cooperation is streamlined through MLATs and Interpol, though Article 32b remains a hurdle for mandatory cross-border data production.

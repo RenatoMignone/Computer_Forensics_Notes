@@ -156,30 +156,22 @@ This command:
 | Component | Purpose | Example |
 |-----------|---------|---------|
 | **Forensic workstation** | Trusted OS for running acquisition tools | Kali Linux, CAINE, Tsuruji |
-| **Write blocker** | Prevents *any* write commands from reaching the suspect device | Hardware write blocker (Tableau, Wiebetech) |
+| **Write blocker** | Prevents write commands from reaching the suspect device | Hardware write blocker from a recognised vendor |
 | **Suspect device** | The evidence to be imaged | USB drive seized from the scene |
-| **Forensic storage device** | Destination for the image; must be pre-wiped | Dedicated forensic hard drive |
+| **Forensic storage device** | Destination for the image | Dedicated forensic storage |
 
 ### Step-by-Step Procedure
 
-1. **Pre-wipe forensic storage** with verified zeros (ensures no contamination from prior cases)
-2. **Connect write blocker** between suspect USB and forensic workstation
-3. **Identify device node** of the suspect USB: `lsblk`, `dmesg | tail`
-4. **Hash the source before imaging**:
-   ```bash
-   sha256sum /dev/sdb > usbimage_pre_hash.txt
-   ```
-5. **Create the forensic image**:
+1. **Identify and document the USB drive**: model, manufacturer, serial number, and visible condition.
+2. **Connect the USB through a write blocker** to the forensic workstation.
+3. **Identify the device node** of the suspect USB using system commands, taking care to acquire the whole device rather than only one partition.
+4. **Create the forensic image** with a bit-by-bit tool:
    ```bash
    dc3dd if=/dev/sdb hof=usbimage.dd hash=sha256 log=acquisition.log
    ```
-6. **Hash the image after creation** (should match the pre-hash):
-   ```bash
-   sha256sum usbimage.dd > usbimage_post_hash.txt
-   diff usbimage_pre_hash.txt usbimage_post_hash.txt
-   ```
-7. **Document all chain of custody fields** (see below)
-8. **Seal original** in an evidence bag; label with case number and action performed
+5. **Keep the generated hash/log together with the image** so the image can be checked after later operations.
+6. **Repeat hash checks when needed**, especially after operations on the image or after time has passed.
+7. **Document all chain of custody fields** (see below).
 
 ### Chain of Custody Fields Required at Acquisition
 
@@ -188,12 +180,12 @@ This command:
 | Date and time | 2025-03-15 14:32:00 UTC+1 |
 | Operator name and role | Dr. Mario Rossi, Forensic Analyst |
 | Location | Forensic Lab, Room 104 |
-| Witnesses | Lt. Carla Bianchi (Carabinieri RIS) |
+| Personnel present | People present during the acquisition |
 | Evidence identifier | USB-01, Samsung FIT MUF-256AB, S/N: XXXXX |
 | Source hash (pre) | sha256:a4b3c2... |
 | Image hash (post) | sha256:a4b3c2... |
 | Tool name and version | dc3dd v7.2.641-dev |
-| Hardware write blocker | Tableau T8-R2, Firmware v1.03 |
+| Hardware write blocker | Make/model/firmware of the write blocker used |
 
 > 📎 *Slide reference: `Slides/Atzeni/03b_Forensic-USB-Drive-Acquisition.pdf`*
 
@@ -204,7 +196,6 @@ This command:
 | Mounting the drive without a write blocker | Access time metadata (atime) modified on every file read; integrity compromised |
 | Using MD5 alone for hashing | Theoretically forgeable; may be challenged in court |
 | Power failure during imaging | Corrupted or partial image; timestamp inconsistencies |
-| Imaging to a non-pre-wiped destination | Destination may contain data from a previous case; risks contamination claims |
 | Missing timezone in timestamps | Logs from different systems cannot be correlated without timezone |
 | Undocumented interruptions | If the acquisition was paused or restarted, this must be recorded |
 
@@ -239,13 +230,7 @@ In the modern environment, AI-generated media (images, audio, video) represents 
 - **Implausible or physically impossible details**: AI-generated images may contain errors a human would not produce (e.g., a person shown performing a physically impossible action)
 
 **Cross-correlation as a defence:**
-If a suspect claims: *"This meeting never took place"*, and investigators have:
-- A photo (could be faked)
-- A logged entry at an access-controlled building (harder to fake)
-- A cell tower ping for the involved phone (from ISP records)
-- Witness testimony
-
-...then the confluence of independent evidence sources all pointing to the same fact significantly raises the evidentiary weight even if any single piece could theoretically be manipulated.
+The lecture's example was deliberately simple: even a fully realistic image can be challenged by independent sources such as a class recording and witnesses showing that the person depicted was actually elsewhere. The point is that authenticity often depends on correlation across sources, not only on inspecting the media file itself.
 
 > 📎 *Slide reference: `Slides/Atzeni/03_investigation_phases.pdf`, slide: Examination Phase*
 
@@ -262,8 +247,6 @@ A timeline maps every recovered event to a timestamp, creating a **chronological
 - **Network traffic captures**: each packet has a timestamp from the capture device's clock
 - **Mobile device records**: call logs, SMS timestamps, location history
 
-**Note on clock skew**: different systems may have unsynchronised clocks. A key forensic task is to identify each system's clock offset against a trusted reference (e.g., NTP server) and apply corrections when constructing cross-system timelines.
-
 ### 7.4 Anti-Forensics
 Suspects and adversaries may take deliberate steps to hinder investigation:
 
@@ -278,7 +261,6 @@ Suspects and adversaries may take deliberate steps to hinder investigation:
 ### 7.5 Legal and Ethical Constraints During Examination
 Even once evidence is legally obtained, the **examination scope may be limited**:
 - In labour law disputes (e.g., corporate forensics), employees retain privacy rights; access to personal documents stored on company devices may require specific legal authorisation
-- Examining communications (emails, instant messages) may require a warrant beyond the initial seizure warrant
 - **Over-scoping** an examination (looking at areas not authorised by the warrant) can result in evidence being inadmissible
 
 ### 7.6 Iterative Hypothesis Formation
@@ -302,13 +284,13 @@ The same investigation findings must be communicated differently to different re
 | **Technical team** | Full technical detail, commands run, tool versions, raw hashes, technical timeline |
 | **Legal/prosecution team** | Evidence mapped to legal elements of the offence; chain of custody verification |
 | **Judge / jury** | Plain-language explanation of key findings; avoid jargon; visual aids |
-| **Corporate executive (C-suite)** | Business impact; what data was at risk; what actions are recommended |
+| **CEO / business manager** | Business impact, high-level consequences, and recommended actions |
 
 ### Report Integrity
 The report itself is part of the **chain of custody**:
-- Must be signed/dated by the forensic analyst(s)
-- Should include a version history if revised
-- Any subsequent corrections must be documented as addenda, not silent changes
+- Its integrity should be checked, for example by hashing the report and recording creation date/time.
+- It should remain linked to the underlying evidence and to any other reports produced at different abstraction levels.
+- The report must allow another expert to trace conclusions back to objective facts, not unsupported personal interpretation.
 
 ### Quality Assurance
 Before finalising a report:
@@ -349,7 +331,6 @@ The full interactive case study was uploaded to the course portal (*06_Digital-F
 | **Timeline reconstruction** | Cross-correlation of evidence timestamps from multiple sources to produce a chronological narrative |
 | **Deep fake detection** | Assessment of whether digital media (images, video, audio) may have been synthetically generated or manipulated; requires both technical inspection and cross-correlation with independent evidence sources |
 | **Anti-forensics** | Deliberate techniques used to hinder, mislead, or prevent forensic investigation |
-| **Clock skew** | Difference between a device's internal clock and a trusted time reference; must be corrected in multi-system timelines |
 
 ---
 

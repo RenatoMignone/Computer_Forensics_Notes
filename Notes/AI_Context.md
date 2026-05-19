@@ -167,9 +167,12 @@ Pattern: `[SlidePrefix]_[ShortTitle].md` — mirrors the slide PDF filename
 | `11_Data-Sanitisation-Techniques.pdf` | Atzeni | Lecture 21 |
 | `12_Network.pdf` | Atzeni | Lectures 21, 23 & 24 |
 | `13_Digital-Forensics-in-the-TOR-Network.pdf` | Atzeni | Lecture 25 |
-| `14_Cloud.pdf` | Atzeni | Lecture 25 |
+| `14_Cloud.pdf` | Atzeni | Lectures 25 & 27 |
+| `15_OS.pdf` | Atzeni | Lecture 28 |
+| `16_volatile.pdf` | Atzeni | Lecture 28 |
 | `5_Rules_Digital_Forensics.pdf` | Vaciago | Lectures 19 & 22 |
 | `6_Hacking_Team_Case.pdf` | Vaciago | Lecture 22 |
+| `Articoli_Codice_Penale.pdf` | Vaciago | Lecture 26 |
 
 ---
 
@@ -177,7 +180,7 @@ Pattern: `[SlidePrefix]_[ShortTitle].md` — mirrors the slide PDF filename
 
 ### `Lectures_MD/` — Per-Lecture Notes
 
-Current active generated set is Lecture 01 through Lecture 25. Lecture 26, Lecture 27, and Lecture 28 transcript files may exist in `Lectures_txt/`, but they are intentionally out of scope until the user confirms those transcriptions are ready.
+Current active generated set is Lecture 01 through Lecture 28. Lecture 26, Lecture 27, and Lecture 28 now have transcript-backed lecture notes and matching chapter material where applicable.
 
 | File | Status | Topic |
 |------|--------|-------|
@@ -206,6 +209,9 @@ Current active generated set is Lecture 01 through Lecture 25. Lecture 26, Lectu
 | `Lecture_23_Atzeni.md` | ✅ Complete | Network Forensics, OSINT, and Social Media Evidence |
 | `Lecture_24_Atzeni.md` | ✅ Complete | Network Anti-Forensics and Attack Obfuscation |
 | `Lecture_25_Atzeni.md` | ✅ Complete | TOR and Cloud Forensics |
+| `Lecture_26_Vaciago.md` | ✅ Complete | Malware Production, Mens Rea, and Criminal Liability |
+| `Lecture_27_Atzeni.md` | ✅ Complete | Cloud Forensics Effects and Acquisition Strategy |
+| `Lecture_28_Atzeni.md` | ✅ Complete | Video Carving, OS Forensics, and Memory Acquisition |
 
 ### `Chapters_MD/Atzeni/` — Atzeni Chapter Notes
 
@@ -226,7 +232,9 @@ Current active generated set is Lecture 01 through Lecture 25. Lecture 26, Lectu
 | `11_Data-Sanitisation-Techniques.md` | ✅ Complete | `11_Data-Sanitisation-Techniques.pdf` | Lecture 21 |
 | `12_Network.md` | ✅ Complete | `12_Network.pdf` | Lectures 21, 23 & 24 |
 | `13_Digital-Forensics-in-the-TOR-Network.md` | ✅ Complete | `13_Digital-Forensics-in-the-TOR-Network.pdf` | Lecture 25 |
-| `14_Cloud.md` | ✅ Complete | `14_Cloud.pdf` | Lecture 25 |
+| `14_Cloud.md` | ✅ Complete | `14_Cloud.pdf` | Lectures 25 & 27 |
+| `15_OS.md` | ✅ Complete | `15_OS.pdf` | Lecture 28 |
+| `16_volatile.md` | ✅ Complete | `16_volatile.pdf` | Lecture 28 |
 
 ### `Chapters_MD/Vaciago/` — Vaciago Chapter Notes
 
@@ -238,6 +246,7 @@ Current active generated set is Lecture 01 through Lecture 25. Lecture 26, Lectu
 | `3_Law_48_08.md` | ✅ Complete | `3_Law_48_08.pdf` | Lecture 12 |
 | `5_Rules_Digital_Forensics.md` | ✅ Complete | `5_Rules_Digital_Forensics.pdf` | Lectures 19 & 22 |
 | `6_Hacking_Team_Case.md` | ✅ Complete | `6_Hacking_Team_Case.pdf` | Lecture 22 |
+| `Articoli_Codice_Penale.md` | ✅ Complete | `Articoli_Codice_Penale.pdf` | Lecture 26 |
 
 ---
 

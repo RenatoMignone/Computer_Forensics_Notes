@@ -1,7 +1,7 @@
 # Chapter 2 – Data Retention, the Cybercrime Convention, and Jurisdiction
 **Professor:** Vaciago  
 **Reference Slides:** [`Slides/Vaciago/2_Cybercrime_Convention.pdf`]  
-**Covered in Lectures:** Lecture 6
+**Covered in Lectures:** Lectures 6 and 9
 
 ---
 
@@ -96,8 +96,8 @@ It also granted law enforcement several tools:
 
 This fundamental breakdown has left prosecutors deeply frustrated, frequently resorting to controversial "legal hacking" or the *power of disposal* approach to acquire foreign-hosted evidence, as providers regularly refuse to comply voluntarily.
 
-### The 2012 Convention and IP Devaluation
-In **2012**, an Interpol-level convention marked a crucial acknowledgment: **it is technically impossible to consistently prevent anonymisation of IP addresses**. The primary tool enabling this anonymisation is **Tor (The Onion Router)**, which routes traffic through a multi-layer overlay network of volunteer nodes:
+### IP Devaluation and Anonymisation
+Vaciago stresses that it is technically impossible to consistently prevent anonymisation of IP addresses. The primary tool used in the lecture example is **Tor (The Onion Router)**, which routes traffic through a multi-layer overlay network of volunteer nodes:
 - The **exit node's IP** is what appears in logs — it belongs to a volunteer with no connection to the criminal
 - Attribution requires correlating timing patterns across multiple nodes — a global traffic analysis attack requiring access to significant portions of the network
 - Tor substantially undermines the **4-step IP tracing model** described in Chapter 1
@@ -185,7 +185,7 @@ Major technology platforms publish **transparency reports** quantifying the volu
 | **Google** | ~1,000,000+ requests/year from governments worldwide; compliance rate varies by country and request type | Google discloses whether it challenged or complied; includes non-disclosure (gag) orders count |
 | **Meta (Facebook/Instagram)** | Hundreds of thousands of requests/year; publishes per-country breakdowns | Includes data on emergency disclosure requests (without court order) where there is imminent risk of harm |
 | **X (formerly Twitter)** | Significantly reduced cooperation with law enforcement after a change in ownership; X contests more requests and delays responses | Vaciago notes this as a specific development: X has become less cooperative with law enforcement |
-| **Telegram** | Prior to the **arrest of Pavel Durov** (Telegram founder, August 2024) in France, Telegram released almost zero data and cooperated with no government | Post-Durov arrest, Telegram began providing metadata in response to lawful requests from democratic governments — a significant shift in cooperative stance |
+| **Telegram** | Presented as an example of a platform whose cooperation choices can strongly affect investigations | The exact level of cooperation depends on platform policy and jurisdiction |
 
 ### Practical Implication for Investigators
 - A platform's policy on compliance fundamentally affects whether a data request will result in useful evidence
@@ -201,15 +201,15 @@ Major technology platforms publish **transparency reports** quantifying the volu
 A landmark case illustrating the extreme end of political pressure on digital forensics and corporate complicity:
 
 ### Background
-- A **Chinese journalist** used a **Yahoo email account** to send a government document about the Tiananmen anniversary to a US democracy website in 2004
-- **Yahoo's Chinese subsidiary** complied with a Chinese government demand and provided the journalist's account details (subscriber information, email metadata, and content) to Chinese authorities
-- The journalist was convicted of "leaking state secrets" and sentenced to **10 years in prison**
-- Similar cooperation by Yahoo allegedly led to the identification and imprisonment of at least two other Chinese dissidents and bloggers
+- A Chinese journalist used a Yahoo email account in a politically sensitive context.
+- Yahoo cooperated with Chinese authorities by providing identifying account information.
+- The cooperation helped identify the user and led to imprisonment.
+- Vaciago uses the case to show that provider cooperation can have serious human-rights consequences when the requesting state is authoritarian.
 
 ### Why It Matters for Forensic and Legal Practice
 - **Corporations can be compelled by authoritarian governments** to produce data in ways that violate the human rights of the data subject
 - The case prompted significant **reputational and legal consequences** for Yahoo in the US (Congressional hearings, shareholder pressure, eventual settlement with the journalists' families)
-- **Google's decision to exit China** in 2010 (following censorship requirements) was partly motivated by refusing to be put in a similar position
+- The case is contrasted with later choices by other platforms about whether to cooperate with authoritarian legal demands.
 - The case is a reference point in debates about **extraterritorial jurisdiction** and corporate responsibility: should a US company be legally liable in the US for complying with foreign government demands?
 
 > 📎 *Slide reference: `2_Cybercrime_Convention.pdf` — Cybercrime, Cross-Border Law & Freedom of Speech*
@@ -221,9 +221,8 @@ A landmark case illustrating the extreme end of political pressure on digital fo
 ### The Password Compulsion Problem
 The most direct path to accessing an encrypted device — compelling the suspect to reveal their password — is constitutionally prohibited in democratic systems.
 
-- **Right against self-incrimination** (Miranda principle): a suspected person has the right not to cooperate, including the right not to reveal passwords
-- **Boucher case (US/Canada)**: landmark legal battle over password compulsion; confirmed that no democratic system can validly compel a suspect to produce decryption keys
-- **Australia, Belgium, and France** each enacted mandatory key disclosure laws; all were declared unconstitutional
+- **Right against self-incrimination**: a suspected person has the right not to cooperate, including the right not to reveal passwords.
+- Vaciago frames forced password disclosure as constitutionally problematic in democratic systems.
 
 ### Remote Forensics and the German Constitutional Court (2008)
 With password compulsion ruled out, the practical response was **remote forensics** — covertly installing spyware on a suspect’s device.

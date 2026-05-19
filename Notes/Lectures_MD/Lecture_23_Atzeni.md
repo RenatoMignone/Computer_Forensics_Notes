@@ -27,7 +27,7 @@ Publicly available sources can support identification and collection.
 | Source | Forensic Use |
 |--------|--------------|
 | **IP info services** | Geolocation, ASN, hosting/provider information, abuse contacts. |
-| **Whois / RIPE** | Ownership, route, registry, creation and modification dates. |
+| **Whois / public registries** | Ownership, provider, network parameters, and registration history. |
 | **DNSDumpster** | Domain topology, subdomains, mail servers, DNS records. |
 | **Shodan / Censys / SpiderFoot** | Host exposure, services, scanned device metadata. |
 | **Pastebin / search dorks** | Leaked credentials, alerts, or incident mentions. |

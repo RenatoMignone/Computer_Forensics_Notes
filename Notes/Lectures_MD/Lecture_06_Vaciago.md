@@ -84,16 +84,15 @@ The obligation applies differently depending on the type of provider.
 
 | Provider Type | Description | Example |
 |---------------|-------------|---------|
-| **Network/Access provider** | Provides physical/logical access to the internet via infrastructure | Telecom Italia (TIM), Vodafone, mobile operators |
-| **Internet Service Provider (ISP) / Application layer** | Provides internet-based services (email, websites) | Gmail, Outlook, web hosting companies |
-| **Hosting provider** | Stores or hosts data on behalf of third parties | AWS, Google Cloud, OVH |
+| **Network/access provider** | Provides physical/logical access to the internet via infrastructure | Telecom Italia (TIM), Vodafone, mobile operators |
+| **Hosting provider** | Stores or hosts data or services on behalf of third parties | Aruba, Google services, cloud or web-hosting providers |
 
-**Important note**: a single company may occupy multiple roles (e.g., TIM provides both physical access and email hosting).
+**Important note**: the lecture treats "internet service provider" as the broad category, with network/access and hosting providers as important subtypes. A single company may occupy multiple roles.
 
-**What network/access providers must retain:**
-- All **IP addresses** assigned to subscribers
-- Source and destination IP addresses for all connections (in some jurisdictions)
-- **Start and end timestamps** of each connection/session
+**What providers retain, in the lecture's simplified explanation:**
+- IP address and connection data sufficient to reconstruct online activity for law-enforcement requests
+- Timing information connected with those connections
+- The amount and exact type of retained data varies by provider role and jurisdiction
 
 ### 3.3 Retention Periods Across Jurisdictions
 
@@ -121,8 +120,8 @@ Without freezing, data that lies just within the retention window may be deleted
 
 The **Tor anonymisation network** (and similar tools) fundamentally undermines the reliability of IP addresses as evidence:
 - Tor routing passes traffic through multiple relays in multiple countries, masking the originating IP
-- The **exit node's IP** is what the victim's server sees — this may be a volunteer's connection in a different country
-- Following the growing prevalence of Tor, a **2012 Convention** (referenced in the lecture as an Interpol-level agreement) effectively acknowledged the **technical impossibility** of consistently tracing IP addresses to individuals when anonymisation tools are used
+- The IP visible to the victim system may not identify the real originating person
+- The lecture describes a 2012 Interpol convention discussion with the Tor project as the moment when the practical impossibility of banning or reliably defeating IP anonymisation was accepted
 
 **Consequence**: IP address alone has been significantly **devalued as evidence** in many jurisdictions. A successful prosecution built on IP address alone is increasingly untenable.
 
@@ -196,15 +195,15 @@ Major platforms publish **transparency reports** disclosing how they respond to 
 **The policy spectrum** for platform cooperation:
 - **Meta (Facebook/Instagram)**: generally cooperative with law enforcement; detailed transparency reports
 - **X (formerly Twitter)**: significantly reduced cooperation with law enforcement after a change in ownership; reduced trust and safety team; transparency reports show declining compliance
-- **Telegram**: operated under a strong non-cooperation policy; CEO Pavel Durov was **arrested in France** in 2024, which led to a policy shift toward greater cooperation with authorities
+- **Telegram**: operated under a strong non-cooperation policy; after the arrest of its founder/leader, the lecture notes a limited shift toward greater cooperation with authorities
 
 ### 4.5 The China/Yahoo Case (2005–2008)
 
 A landmark case in the tension between platform cooperation and human rights:
-- **Yahoo** had operations in China and stored email data of Chinese users within China
-- Chinese authorities demanded the IP addresses and account information of **political bloggers** who had posted critically about the government
+- **Yahoo** had operations in China
+- Chinese authorities demanded IP addresses connected to **political bloggers** who had posted critically about the government
 - Yahoo complied under Chinese law
-- Chinese authorities **identified, prosecuted, and in some cases executed** the bloggers
+- Chinese authorities identified the bloggers; the lecture states that those people were killed under Chinese law
 - The case triggered global debate about the responsibility of technology companies operating in authoritarian jurisdictions
 - **Google** subsequently declined to continue operating a censored version of its search engine in China (`google.cn`) and withdrew from the Chinese market
 
@@ -270,10 +269,10 @@ Each level requires a progressively more complex legal process (search warrant �
 ## 6. Mobile Forensics
 
 Mobile devices present unique forensic challenges:
-- **Full-disk encryption** is on by default on modern iOS and Android devices
-- Remote wipe capability is standard (Faraday bag required — see Lecture 4)
-- Multiple connectivity interfaces (BlueTooth, WiFi, cellular, NFC) must all be blocked
-- Internal flash storage architecture differs from conventional hard drives
+- **Encryption** is common by default on modern mobile devices, with iOS used in the lecture as the example.
+- Remote wipe and remote encryption can limit or destroy access to evidence.
+- Mobile acquisition requires specialised and frequently updated tools.
+- Mobile work is more expensive and tool-dependent than simpler laptop-focused acquisition.
 
 ### UFED (Universal Forensic Extraction Device)
 **UFED** is presented as a specialized mobile-forensics tool:

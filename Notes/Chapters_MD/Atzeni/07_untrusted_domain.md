@@ -31,7 +31,7 @@ Attackers position themselves advantageously to intercept or manipulate data. Th
 ### 2.2 Advanced Man Variants
 - **Man-in-the-Browser:** Malware residing directly in the browser. It waits for the user to visit sensitive domains (like online banking) and seamlessly modifies the form data *before* it is submitted, allowing it to harvest credentials or bypass TLS encryption entirely.
 - **Man-in-the-Cloud:** Acquiring and reusing authentication tokens (like OAuth tokens) to autonomously access cloud storage (e.g., Google Drive) unnoticed. These tokens frequently violate the principle of least privilege, providing prolonged and far-reaching access.
-- **Man-in-the-Mobile:** Bypassing Multi-Factor Authentication (MFA). Malware like *Zipmode* continuously intercepts 2FA SMS codes to forward them to an attacker. AI agents are increasingly used to scale and automate this exploitation immediately.
+- **Man-in-the-Mobile:** Bypassing Multi-Factor Authentication (MFA). Malware such as the example named in lecture can intercept 2FA SMS codes and forward them to an attacker. Atzeni also notes that AI agents can speed up customised follow-on exploitation.
 - **Man-in-the-Memory:** A "file-less" malware execution technique that operates entirely in RAM. Because data and encryption keys must eventually be decrypted into memory to be utilized by the operating system, this malware reads sensitive data prior to encryption. It is famously leveraged by both intelligence/police agencies and advanced attackers.
 - **Man-on-the-Side:** A passive observation technique paired with brief injections (like statistical perturbations or overwhelming bandwidth usage) designed to blind or evade Intrusion Detection Systems (IDS).
 
@@ -55,7 +55,7 @@ An often-overlooked vector focusing entirely on insecure shared storage instead 
 ### 3.1 Supply Chain Compromise
 When organizations are heavily fortified, attackers target their less-secure partners or dependencies.
 - **Software:** Infiltrating development pipelines to patch malicious code into trusted vendor software updates (e.g., the SolarWinds Orion breach).
-- **Firmware/Hardware:** Manipulating devices physically during shipping (e.g., Israeli explosive implants in Hezbollah pagers).
+- **Firmware/Hardware:** Manipulating devices physically during production, shipment, or delivery. The lecture gives the Hezbollah communication-device case as a dramatic physical supply-chain example.
 
 ### 3.2 Advanced Persistent Threats (APTs)
 APTs are heavily funded, exceedingly patient cyber-espionage state or criminal groups. Typical campaigns span months to years without detection.
@@ -91,7 +91,7 @@ The `kill` system call sends critical instruction signals between processes. An 
 | **Man-in-the-Disk (MitD)** | Modifying files written to shared storage folders before legitimate actions use them, bypassing network security layers. |
 | **Atomic Operation** | A process that completes execution instantaneously without being interrupted by other scheduling tasks. |
 | **Supply Chain Attack** | Infiltrating an organization by compromising trusted external vendor software, libraries, or physical shipments. |
-| **APT28 (Fancy Bear)** | A prominent Russian state-sponsored espionage group identified by tools like the *X-Agent* rootkit and specific geopolitical targets. |
+| **APT28 (Fancy Bear)** | A prominent Russian state-sponsored group discussed in lecture; attributed through artefacts, working patterns, tools such as X-Agent, and targets aligned with strategic interests. |
 | **Loadable Kernel Module (LKM)** | Executable code built into the Linux kernel upon demand; frequently targeted to overwrite Syscall Tables with backdoors. |
 | **dmesg** | Linux utility tracing the kernel ring buffer, utilized to audit hardware connections and module events. |
 

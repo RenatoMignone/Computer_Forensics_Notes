@@ -6,7 +6,7 @@
 ---
 
 ## Introduction
-Digital forensic investigations are not freeform activities. They are structured into a defined sequence of phases, each with its own objectives, mandatory procedures, and documentation requirements. Adherence to a recognised model or standard is what transforms a technical examination into legally defensible evidence. This chapter covers the major international frameworks, then provides an in-depth treatment of each phase: Identification, Collection, Acquisition, Examination, and Presentation.
+Digital forensic investigations are not freeform activities. They are structured into phases, each with its own objectives and documentation expectations. Atzeni presents the five-phase model as a useful conceptual frame, while noting that recognised standards may merge or rename phases. This chapter covers the major framework examples mentioned in lecture, then provides an in-depth treatment of each phase: Identification, Collection, Acquisition, Examination, and Presentation.
 
 ---
 
@@ -17,8 +17,8 @@ Several bodies have published guidelines defining forensic investigation phases.
 | Standard | Organisation | Phases |
 |----------|-------------|--------|
 | **ACPO Guidelines** | UK Association of Chief Police Officers | Influential UK standard; widely adopted across Europe |
-| **NIST SP 800-86** | US National Institute of Standards & Technology | Collection → Examination → Analysis → Reporting |
-| **ISO/IEC 27037:2012** | International Organisation for Standardisation | Identification → Collection → Acquisition → Preservation |
+| **NIST family** | US National Institute of Standards & Technology | Open standards; Atzeni notes that NIST uses a four-phase model rather than his five-phase teaching model |
+| **ISO standards** | International Organisation for Standardisation | Respected and well structured, but described by Atzeni as less practically useful in some contexts |
 
 ### ACPO Guidelines
 ACPO guidelines from the UK influenced the investigation methodology worldwide.
@@ -45,12 +45,11 @@ When deciding which evidence sources to handle first, follow the **volatility hi
 
 | Volatility Level | Evidence Source | Notes |
 |-----------------|----------------|-------|
-| Most volatile | **CPU registers**, CPU cache | Milliseconds to seconds of retention; only capturable with specialised hardware tools |
-| Very volatile | **RAM (system memory)** | Survives seconds to a few hours after power loss (with cold-boot attack potential up to minutes) |
-| Volatile | **Running processes**, open network connections, logged-in sessions, clipboard | Lost immediately on shutdown |
-| Moderately volatile | **Virtual memory / swap file**, temporary files | May persist briefly after shutdown |
-| Less volatile | **Persistent storage** (HDD, SSD, flash) | Survives power-off; the primary target of most forensic imaging |
-| Least volatile | **Remote logs**, CCTV, access badge records, physical media backups | Controlled by third parties; may require formal legal process to obtain |
+| Very volatile | **RAM (system memory)** | Lost on shutdown unless specialist live or cold-acquisition techniques are used |
+| Volatile | **Running processes and active network connections** | Can disappear within seconds or minutes |
+| Moderately volatile | **Temporary files, deleted files, hidden/residual storage areas** | May be overwritten by normal system activity |
+| Less volatile | **Persistent storage** (HDD, SSD, flash) | Survives power-off, but normal use can still alter metadata and deleted areas |
+| External / remote | **Cloud data, logs, network devices, organisational systems** | May require cooperation from administrators, providers, or legal authorities |
 
 ### Insider Threat Identification Scenario
 Identifying an insider threat requires correlating multiple low-signal indicators:
@@ -68,17 +67,17 @@ Identifying an insider threat requires correlating multiple low-signal indicator
 
 ### Isolation
 As soon as collection begins, all devices must be **isolated from external networks** to prevent:
-- **Remote wipe commands**: Remotely triggered commands that overwrite storage (common for mobile phones and laptops enrolled in MDM — Mobile Device Management — systems)
+- **Remote wipe commands**: Remotely triggered commands that can destroy evidence on mobile or connected systems
 - **Synchronisation with cloud services**: Cloud sync clients may fetch updates or push deletions
 - **Command-and-Control callbacks**: Malware on a running system may receive new instructions or send data out
 
 | Method | Use Case |
 |--------|---------|
-| **Faraday bag** | Blocks all RF signals (Wi-Fi, 4G/5G, Bluetooth, NFC) for mobile devices and laptops with wireless capability |
+| **RF isolation / jammer where lawful and appropriate** | Prevents wireless or mobile-network communication, including remote wipe attempts |
 | **Network cable disconnection** | For wired-only systems; simple and effective |
 | **VLAN/firewall isolation** | For virtual machines or systems that cannot easily be physically disconnected |
 
-> *Practical note*: A mobile phone seized without immediate Faraday bagging may receive a remote wipe command while in the evidence room if cellular signal is available.
+> *Practical note*: Atzeni explicitly mentions remote wiping as a reason to prevent wireless or mobile-network communication as early as possible.
 
 ### Physical Handling of Media
 - Label all evidence items with a **unique identifier** (case number + item number) before handling
@@ -98,9 +97,8 @@ A chain of custody record must be started at the moment the first evidence item 
 | Date and time | UTC timestamp of collection |
 | Location collected | Physical address and specific location (e.g., drawer #2, third shelf) |
 | Collected by | Full name and badge/employee number of collecting officer |
-| Witness | Second officer or independent witness, if present |
 | Condition at collection | Observable physical state; powered on/off; damage; indicator lights |
-| Packaging details | Bag type, seal number, labelling |
+| Packaging / label details | Bag or box identifier, labels, and other information needed to distinguish similar devices |
 | Transfer record | Every subsequent custodian, date/time of transfer, and reason |
 
 > 📎 *Slide reference: `03_investigation_phases.pdf` — Phase 2: Collection*
@@ -144,9 +142,9 @@ If a suspect machine is running but investigator tools cannot be safely installe
 This technique is specialist and used only when software-based RAM capture is not feasible.
 
 ### Hashing Requirements
-- At least **SHA-256** is required
+- Use a currently sound hash algorithm such as **SHA-256**
 - **MD5 alone is insufficient** (known collision attacks exist)
-- Best practice: compute **two hashes with different algorithms simultaneously** (e.g., SHA-256 + SHA-512) — simultaneous computation eliminates the argument that a hash was taken after undetected modification
+- In important cases, compute **two hashes with different algorithms**, preferably as close to the copy operation as possible
 - Tools like `dc3dd` support simultaneous multi-algorithm hashing during acquisition
 
 > 📎 *Slide reference: `03_investigation_phases.pdf` — Phase 3: Acquisition*
@@ -181,13 +179,12 @@ Constructing a reliable timeline requires correlating timestamps from **multiple
 | Source | Timestamp Type | Reliability Notes |
 |--------|---------------|-------------------|
 | File system metadata | Created / Modified / Accessed / MFT record change | Can be modified by any user with write access to the file |
-| Windows Event Logs | System, Application, Security, PowerShell logs | Require admin rights to clear; clearing itself is logged |
-| Firewall and proxy logs | Connection timestamps, URL, bytes transferred | Controlled by infrastructure team; harder to tamper from an endpoint |
-| Email server logs | Send/receive timestamps per hop | Each relay adds a `Received:` header; timestamps cross-checkable |
-| Mobile phone records | Call/data metadata from carrier (via legal request) | Carrier-controlled; high reliability |
-| CCTV footage | Physical presence timestamps | External system; requires subpoena |
+| System and application logs | Local or server-side event traces | Must be correlated with other sources |
+| Firewall, proxy, or gateway logs | Connection timing and traffic patterns | Useful for reconstructing communication paths |
+| Email server logs and headers | Message path and timing information | Require domain knowledge of email protocols |
+| Physical or organisational records | Presence, HR, or access-context information where available | Useful for corroborating digital activity |
 
-**Clock skew**: Different systems may not have synchronised clocks. A ±30-second discrepancy between an endpoint event log and a firewall log is acceptable; a ±2-hour discrepancy may indicate a tampered system clock or a device in a different time zone. Always record the **clock delta** between evidence sources.
+**Clock consistency**: Different systems may not have synchronised clocks, so timestamp correlation must account for possible differences before drawing conclusions.
 
 ### Anti-Forensics Techniques
 
@@ -229,19 +226,11 @@ Different stakeholders require different report formats containing the same unde
 | **Technical IT/security team** | Technical report | Full technical detail; allows the organisation to understand attack vectors and patch vulnerabilities |
 | **Executive / board** | Executive summary | Non-technical language; business impact focus; recommendations |
 
-### Report Integrity — Versioning
-Reports go through multiple drafts and quality assurance reviews. All versions must be clearly labelled and preserved:
-- **Draft 1**: Initial examiner draft before any review
-- **Draft 2**: After senior examiner / QA peer review
-- **Final**: The version submitted to court or client
-
-In litigation, *all prior drafts may be discoverable*. Never delete draft reports.
-
 ### Quality Assurance Double-Check
 Before finalising:
-1. **Independent technical review**: A second examiner repeats key steps on the same forensic images and confirms that the same results are obtained (demonstrates repeatability)
-2. **Legal review**: Counsel confirms that conclusions are properly constrained and do not exceed what the evidence supports
-3. **Chain of custody audit**: Every item referenced in the report is verified to have a complete, unbroken chain of custody entry
+1. A second examiner or colleague checks that evidence, hashes, and referenced artefacts are properly identified.
+2. The report is checked against the underlying data so unsupported personal interpretation does not enter the record.
+3. The chain of custody and links between report claims and evidence are verified.
 
 > 📎 *Slide reference: `03_investigation_phases.pdf` — Phase 5: Presentation*
 
@@ -254,7 +243,7 @@ Before finalising:
 | **ACPO Principles** | UK guidelines that significantly influenced forensic investigation methodology worldwide |
 | **Volatility Order** | Hierarchy of evidence sources from most to least transient; volatile evidence must be captured first |
 | **OSINT** | Open Source Intelligence — intelligence gathered from publicly available sources without interacting with systems under investigation |
-| **Faraday Bag** | RF-shielded enclosure that blocks all wireless signals; used to prevent remote wipe of mobile devices post-seizure |
+| **RF isolation / jammer** | Means of blocking wireless or mobile-network communication where lawful and appropriate, used to reduce risks such as remote wipe |
 | **Static Acquisition** | Bit-for-bit copy of powered-off storage; the default forensic acquisition method when no volatile data is at risk |
 | **Live Acquisition** | Forensic acquisition of a running system's memory or state; requires careful documentation of any modifications made |
 | **Cold-Boot Attack** | Technique using temperature reduction to extend RAM data retention for analysis after power-off |
@@ -267,12 +256,12 @@ Before finalising:
 
 ## Summary
 
-- Multiple international frameworks (ACPO, NIST, ISO 27037) converge on the same five phases; adherence to a recognised framework is what makes results **legally defensible**.
+- Multiple international frameworks (ACPO, NIST, ISO) cover similar concepts, but may use four phases, five phases, merged phases, or different names.
 - **Phase 1 (Identification)**: Use OSINT (Spiderfoot, Maltego, Shodan) before touching any device; follow the **volatility order**.
 - **Phase 2 (Collection)**: Immediately isolate all devices; photograph in situ; start the **chain of custody record** at first contact.
 - **Phase 3 (Acquisition)**: Never examine originals; use hardware write blockers; hash with SHA-256 or better; choose **live acquisition** when encrypted storage or volatile data makes shutdown risky.
 - **Phase 4 (Examination)**: Distinguish **integrity** (hash verification) from **authenticity** (contextual corroboration); reconstruct the **timeline** from multiple independent sources; identify and counter **anti-forensics** techniques; respect strict **scope limitations**.
-- **Phase 5 (Presentation)**: Tailor the report to the audience; preserve **all draft versions**; perform an independent QA technical review to establish repeatability before submission.
+- **Phase 5 (Presentation)**: Tailor the report to the audience; keep claims tied to the underlying evidence; perform a double-check before submission.
 
 > 📝 *The practical USB drive acquisition procedure is covered in [03b_Forensic-USB-Drive-Acquisition.md](03b_Forensic-USB-Drive-Acquisition.md).*  
 > 📝 *An end-to-end case study applying all five phases is in [Digital-Forensics-Case-Study.md](06_Digital-Forensics-Case-Study.md).*

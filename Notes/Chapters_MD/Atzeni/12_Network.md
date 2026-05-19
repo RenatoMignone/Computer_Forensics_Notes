@@ -19,6 +19,8 @@ Network investigations identify digital footprints such as IP addresses, domains
 
 Collection can include PCAPs, logs, screenshots, web archives, metadata exports, and OSINT snapshots. Preservation must include timestamps, source information, and defensible capture methods.
 
+Because online evidence can change outside the investigator's control, Atzeni stresses snapshot-style preservation. A screenshot, downloaded page, metadata export, or archived web resource should be timestamped, signed where appropriate, and put into the chain of custody.
+
 ---
 
 ## 2. Tools and Sources
@@ -31,6 +33,7 @@ Collection can include PCAPs, logs, screenshots, web archives, metadata exports,
 | **IPinfo / Whois / RIPE** | IP ownership, geolocation, ASN, and abuse contacts. |
 | **DNSDumpster / Shodan / Censys** | Domain topology and exposed services. |
 | **VirusTotal** | Threat intelligence and malicious infrastructure correlation. |
+| **Wayback Machine / web archives** | Historical versions of pages or deleted online material. |
 
 ---
 
@@ -47,6 +50,8 @@ Social media evidence may include:
 - fake profile detection;
 - emotional or motivational signals.
 
+Analysis often becomes graph-oriented: accounts, domains, IP addresses, repositories, organisations, posts, timestamps, and service providers are correlated to reconstruct relationships and timelines. Third-party cooperation may be required when useful metadata is held by a network administrator, email provider, social platform, or other service provider.
+
 ---
 
 ## 4. Anti-Forensics
@@ -55,7 +60,16 @@ Social media evidence may include:
 
 Attackers may use encryption, tunnelling, packet manipulation, traffic shaping, decoys, polymorphic malware, or anonymisation. The goal is to hide payload, intent, origin, destination, or the pattern of behaviour.
 
-Countermeasures include deep packet inspection where possible, encrypted traffic analysis, behavioural analytics, comprehensive logging, WORM storage, and threat intelligence.
+Examples discussed in the lectures include:
+- **encrypted protocols** such as TLS, SSH, IPsec, and VPNs;
+- **tunnelling**, where one protocol or full packet stack is carried inside another encrypted channel;
+- **covert channels**, such as data hidden in DNS queries or unused protocol fields;
+- **IP spoofing** and packet manipulation to obscure the origin of traffic;
+- **traffic shaping**, delays, slow scans, and decoy traffic to defeat real-time detection and later forensic reconstruction;
+- **honeypots and honeynets**, which can be useful for defenders but may also complicate interpretation of attacker behaviour;
+- **polymorphic or metamorphic malware**, which may change payloads or rewrite itself to resist signature-based detection.
+
+Countermeasures include deep packet inspection where possible, encrypted traffic analysis, behavioural analytics, comprehensive logging, WORM storage, and threat intelligence. Atzeni emphasises that no single countermeasure is sufficient; investigators usually combine traffic inspection, anomaly detection, whitelisting, tamper-resistant logs, and shared indicators of compromise.
 
 ---
 

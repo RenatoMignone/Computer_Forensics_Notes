@@ -59,6 +59,8 @@ A report must declare:
 
 This matters because tool output can vary across versions and configurations. The expert must be prepared to explain tool validation and known limitations.
 
+Vaciago also discusses **generative AI** as a useful drafting and role-playing aid for forensic reports. It can help test readability, produce alternative structures, and simulate the perspective of a judge or counterparty, but the expert remains responsible for checking the result, removing generic repetition, and adding the human and legal judgment that the tool cannot supply by itself.
+
 ---
 
 ## 5. Facts, Interpretations, Timelines, and Probability
@@ -79,7 +81,9 @@ The report should build a coherent timeline and use calibrated language such as 
 
 The ultimate audience is not the forensic expert community but the judge. A good report uses a clear structure, a readable executive summary, a glossary for technical terms, and accessible language.
 
-The lab then asks students to apply these rules to a digital alibi scenario inspired by the Garlasco case, with one side defending the alibi and the other challenging it as artificial.
+The lab then asks students to apply these rules to a digital alibi scenario inspired by the Garlasco case, with one side defending the alibi and the other challenging it as artificial. The emphasis is methodology and persuasiveness of presentation, not reproducing the real evidence: students may invent exhibits, but simple or overly convenient evidence weakens the exercise.
+
+For the in-class work, students should work in small groups rather than alone when possible. The best in-class work may receive a small bonus; separate optional homework must deepen a related topic rather than simply repeat the class exercise.
 
 ---
 
@@ -91,6 +95,7 @@ The lab then asks students to apply these rules to a digital alibi scenario insp
 | **Scope** | The precise boundary of what the expert analysed and did not analyse. |
 | **Replicability** | The ability of another qualified expert to repeat the procedure and obtain the same result. |
 | **Probabilistic Language** | Carefully calibrated language expressing the strength of a forensic conclusion without overstating certainty. |
+| **Transparency** | Declaring tools, methods, limitations, and AI assistance clearly enough that the work can be challenged and checked. |
 
 ---
 
@@ -100,6 +105,7 @@ The lab then asks students to apply these rules to a digital alibi scenario insp
 - Limitations should be admitted and explained, not hidden.
 - Chain of custody and unique evidence identification are essential.
 - Tools, versions, and parameters must be declared.
+- AI can support drafting and adversarial review, but the expert must verify and humanise the result.
 - Facts must be separated from interpretation and conclusions.
 - Timelines should combine technical and real-world events.
 - Reports must be understandable to judges and robust under cross-examination.

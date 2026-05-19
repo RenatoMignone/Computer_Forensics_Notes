@@ -155,7 +155,7 @@ Hash verification after write-blocked acquisition is treated as part of the atom
 
 ### 3.1 Pre-Analysis: OSINT (Open Source Intelligence)
 
-Before physically attending a scene or interacting with any device, a good investigator performs OSINT — gathering intelligence exclusively from **publicly available, freely accessible sources** without interacting with the target systems.
+Before physically attending a scene or interacting with any device, a good investigator performs OSINT — gathering intelligence from **open sources** that can be accessed without disturbing the suspect's evidence.
 
 > 📎 *Slide reference: `05_Scene-Assessment-and-Data-Source-Identification.pdf` — OSINT and Pre-Analysis*
 
@@ -175,7 +175,7 @@ Before physically attending a scene or interacting with any device, a good inves
 - Query a domain's Whois record to find out its registration history, registrar, and linked name servers.
 - Query DNS to discover IP addresses and mail server infrastructure.
 - Combine IP geolocation data with social media activity to correlate the suspect's usual physical work locations with network infrastructure used.
-- Use `nmap` to enumerate open ports and services on a network node to understand what software the suspect runs.
+- Use `nmap` or similar tools, where the investigation context allows it, to understand exposed services on a network node.
 
 ---
 
@@ -209,7 +209,7 @@ The investigation approach must adapt to the specific context of each case. Thre
 - If the suspect **is** the system administrator, or the owner of the organisation, care must be taken not to alert them through official channels that could lead to evidence being destroyed.
 
 #### 3.3.3 Active Network Connections
-Where safe to do so, documenting active network connections at the time of seizure provides highly volatile evidence:
+Where safe to do so, documenting active network information at the time of seizure provides highly volatile evidence:
 - Open TCP/UDP connections
 - VPN tunnels
 - Currently active authenticated sessions (cloud, email, intranet)
@@ -220,17 +220,11 @@ Where safe to do so, documenting active network connections at the time of seizu
 
 ### 3.4 Volatility-Based Prioritisation
 
-The general principle is: **acquire the most volatile data first**, as its loss is irreversible once power is cut. The broader volatility hierarchy (from most to least transient):
-
-| Order | Source | Notes |
-|-------|--------|-------|
-| 1 | CPU registers, CPU cache | Lost on power-off |
-| 2 | RAM (system memory) | Lost on power-off; cold-boot attack extends retention |
-| 3 | Active network connections and routing tables | Disappear on disconnect/power-off |
-| 4 | Running processes | Lost on power-off |
-| 5 | Open files and handles; temporary files | Temp files may be deleted on shutdown |
-| 6 | Persistent storage (HDD, SSD) | Survives power-off; degraded only if overwritten |
-| 7 | Remote logs and cloud data | Controlled by third parties; may be purged on a schedule |
+The general principle is: **acquire the most volatile data first**, as its loss is irreversible once power is cut. In this lecture, Atzeni highlighted:
+- **Central memory (RAM)** as the first major volatile source.
+- **Active connections and network context**, which may disappear quickly.
+- **Background cloud sync and temporary-file activity**, which may silently modify local storage.
+- **Deleted files, slack space, and reserved sectors**, which may remain available until overwritten.
 
 Also note: **background processes** on a running system may be silently modifying persistent storage (cloud sync daemons, automatic temp-file creation by productivity applications, system indexing). Minimising the time between identifying a device and beginning write-blocked acquisition reduces this risk.
 
@@ -252,7 +246,7 @@ Evidence can reside in three principal locations:
 | **Organisational remote** (server still under the investigating organisation's control) | Manageable with internal cooperation |
 | **Cloud** (third-party multinational provider) | Highly challenging: different jurisdiction, provider may decline to cooperate swiftly, suspect can revoke access at any time |
 
-For cloud evidence specifically, a key tactic is **live acquisition of cloud session tokens from RAM** before the suspect is alerted. Once the suspect terminates their session or changes credentials, even a court order directed at the provider may take weeks and may ultimately fail due to jurisdictional complexity.
+For cloud evidence specifically, a key tactic may be to acquire live evidence while the suspect's device still has an active connection. Once the suspect interrupts the connection or access is otherwise lost, obtaining the same data may require provider cooperation or suspect cooperation and may ultimately be impossible.
 
 > *"Even with powerful technical means, access to cloud evidence without either provider cooperation or suspect cooperation might be finally not possible."*
 
@@ -267,7 +261,6 @@ The investigative perimeter should not be limited to the primary workstation or 
 | USB drives | File copy/transfer artefacts; file system metadata; deleted files in unallocated space |
 | Network-Attached Storage (NAS) | Full directory listings; network share access logs |
 | **Printers and scanners** | Memory buffers holding last-printed or last-scanned documents; print job logs |
-| Smart TVs / IoT devices | HDMI-over-IP session logs; streaming history; connected device logs |
 
 Printers and scanners are highlighted as a "funny but real" example: they may retain the last few pages in memory and can produce significant evidence.
 
@@ -307,7 +300,7 @@ Scene Arrival
   └─ Photograph all devices in situ before touching
   └─ Assess suspect skill level → decide on live vs immediate shutdown
   └─ Capture volatile data (RAM, active connections) if applicable
-  └─ Isolate devices (Faraday bag for mobile; network disconnect for workstations)
+  └─ Isolate devices (signal blocking for mobile where appropriate; network disconnect for workstations)
 
 Identification & Collection
   └─ Document every item: model, serial, firmware
@@ -336,10 +329,9 @@ Examination → Presentation
 | **`noload` / `norecovery`** | Linux mount options that suppress ext3/ext4 journal replay, preventing silent metadata writes during read-only mounting |
 | **OSINT** | Open Source Intelligence — intelligence derived from publicly available sources without actively probing target systems |
 | **Investigative perimeter** | The complete set of physical and logical resources that may contain evidence relevant to the investigation |
-| **Volatility order** | The hierarchy of evidence sources from most ephemeral (CPU registers, RAM) to most persistent (cloud logs), used to determine acquisition sequence |
+| **Volatility order** | The prioritisation of evidence sources by how quickly they can disappear or be modified |
 | **SOP (Standard Operating Procedure)** | A documented, stepwise procedure derived from a recognised forensic standard; defines exactly how an investigation must be conducted in a way that is court-compliant |
-| **Temporal anomaly** | An absence, gap, or inconsistency in a timeline that may indicate tampering, deleted logs, or a device in a different time zone |
-| **Faraday bag** | An RF-shielded enclosure that blocks all wireless signals, preventing remote wipe of seized mobile devices |
+| **Temporal anomaly** | An absence, gap, or inconsistency in a timeline that may indicate missing or unusual evidence |
 
 ---
 

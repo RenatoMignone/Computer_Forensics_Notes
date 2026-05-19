@@ -30,7 +30,7 @@ Contemporary experts in the case did not just read report outputs. They created 
 ### 2.2 Super Timelines (Plaso)
 - **Timeline:** Basic list of file creation/modification/access (MAC times) from the file system.
 - **Super Timeline:** Aggregates data from the file system, OS journals, application logs, browser history, and file internal metadata into a single temporal graph.
-- **Case Impact:** In high-profile cases, a super timeline allows for millisecond-level reconstruction of activity, which can break or support a "digital alibi."
+- **Case Impact:** In high-profile cases, a super timeline allows investigators to focus on narrow time windows and test whether a "digital alibi" is technically consistent.
 
 ---
 
@@ -58,13 +58,12 @@ The Garlasco case highlighted critical procedural errors that "tampered" with th
 | **Super Timeline** | A forensic technique involving the aggregation of all possible temporal artifacts into a single, unified chronological view. |
 | **Digital Alibi** | Evidence from digital devices used to prove a suspect's presence or activity elsewhere at a specific time. |
 | **348 vs 359/360** | Italian legal codes; 348 refers to general police activity, while 359/360 mandates high-standard technical expertise. |
-| **PRNU** | Photo Response Non-Uniformity; a way to uniquely "fingerprint" a digital camera sensor based on its unique noise pattern. |
 
 ---
 
 ## Summary
 - Forensic experts must maintain a "zero-trust" attitude toward tools and authority, verifying all results through testing.
-- Virtual Machines are the gold standard for testing investigative hypotheses on specific hardware configurations.
+- Virtual Machines are an important way to test investigative hypotheses in an environment close to the original device.
 - Metadata is fragile; the Garlasco case demonstrated how simple acts (opening and saving a file) by untrained officers can destroy a digital alibi.
 - A "Super Timeline" is superior to a standard timeline as it includes application-level events and journal logs.
 - The distinction between a general police search and a specialized technical forensic examination is legally critical for the admissibility of evidence.

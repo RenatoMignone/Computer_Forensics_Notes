@@ -17,7 +17,7 @@ The workflow has two major phases:
 
 ## 1. Memory Dumps
 
-> 📎 *Slide reference: `15_OS.pdf` — Memory dump*
+> 📎 *Slide reference: `16_volatile.pdf` — Memory dump*
 
 A memory dump is a point-in-time capture of RAM. It may contain process state, open files, network connections, decrypted data, and traces of malware.
 
@@ -45,51 +45,44 @@ LiME must be compiled for the target kernel and architecture. This is not cosmet
 
 ---
 
-## 4. Volatility Requirements
+## 4. Volatility and Memory Analysis
 
 > 📎 *Slide reference: `16_volatile.pdf` — Volatility technical requirements*
 
-Volatility parses memory dumps by understanding the target operating system's internal structures.
+Volatility is the main example used in the lecture for memory-dump analysis. It can analyze memory snapshots from Linux, Windows, and macOS systems, but only when the analysis context is configured for the operating system being examined.
 
-Volatility 2 uses profiles, such as Windows build profiles. Volatility 3 uses symbol tables:
-- Windows symbols can be obtained through Microsoft's symbol infrastructure;
-- Linux and macOS analysis may require building an ISF file from target debug symbols.
-
-Without the correct symbols or profile, offsets are wrong and plugin output becomes unreliable.
+Atzeni mentions both Volatility 2 and Volatility 3, and also mentions Rekall as a less common fork of Volatility. The important forensic point is that memory structures depend on the OS and kernel version; if the tool interprets those structures incorrectly, the analysis can become unreliable.
 
 ---
 
 ## 5. Process Analysis
 
-The Volatility workflow uses multiple process views:
-- `pslist`, which walks the ordinary active process list;
-- `pstree`, which reconstructs parent-child relationships;
-- `psscan`, which scans raw memory for process structures.
+Memory forensics can reconstruct process state and compare process relationships. A suspicious case is a process without a plausible parent, or process structures that do not match the expected hierarchy of the operating system.
 
-Comparing these views is important. A process found by `psscan` but absent from `pslist` may indicate unlinking or hiding behavior typical of rootkits.
+This is useful for both accidental malfunction and malware investigation: inconsistencies in process trees, runtime state, memory use, or kernel structures can indicate corruption, concealment, or injected behaviour.
 
 ---
 
-## 6. DLLs, Handles, and Injection
+## 6. Code, Data, and Injection
 
-Memory analysis can inspect loaded libraries, handles, mutexes, registry keys, and suspicious memory regions.
+Memory analysis can inspect code and data that may not exist on disk. This matters because modern malware may be fileless, may hide persistence outside normal storage artifacts, or may decrypt only selected parts of itself during execution.
 
 Key techniques include:
-- comparing loader lists against VAD regions;
-- looking for DLLs present in memory but absent from normal loader structures;
-- using `malfind` to locate executable, non-file-backed, suspicious memory areas;
-- dumping suspicious regions for reverse engineering.
+- comparing in-memory state with files, logs, and configuration stored on disk;
+- identifying modified libraries or unexpected executable content;
+- using Volatility plugins such as `malfind` to locate suspicious memory regions;
+- checking for high-entropy encrypted regions that should not normally be encrypted.
 
-These techniques help detect process hollowing, reflective DLL injection, and shellcode injection.
+These techniques help detect code injection or concealed malware behaviour, especially when the disk view alone looks clean.
 
 ---
 
 ## 7. Network and Timeline Analysis
 
-Memory may retain active or recently closed network connections. By linking connections to owning PIDs, the examiner can pivot from a suspicious network endpoint to a concrete process.
+Memory may retain active network connections, decrypted network content, session keys, credentials, passwords, passphrases, or tokens. By linking connections and decrypted material to a process, the examiner can pivot from a suspicious network endpoint to concrete runtime evidence.
 
-Volatility timelines can aggregate timestamps from processes, DLLs, registry keys, and file handles. The resulting timeline should be correlated with:
-- Windows Event Logs or Sysmon;
+The resulting timeline should be correlated with:
+- Windows Event Logs;
 - filesystem MAC times;
 - packet captures;
 - proxy and DNS logs;
@@ -103,10 +96,10 @@ Volatility timelines can aggregate timestamps from processes, DLLs, registry key
 |------|------------|
 | **RAM** | Volatile memory holding active runtime state. |
 | **LiME** | Linux Memory Extractor, used for live memory acquisition. |
-| **VAD** | Windows Virtual Address Descriptor tree describing a process's virtual memory regions. |
-| **psscan** | Volatility process scanner that can find hidden or unlinked process structures. |
 | **malfind** | Volatility plugin for suspicious executable memory regions and injection indicators. |
-| **ISF** | Intermediate Symbol Format used by Volatility 3 to describe kernel structures. |
+| **Rekall** | Memory-analysis framework derived from Volatility and mentioned as a less common alternative. |
+| **Crash Dump** | Memory snapshot produced after a system crash, primarily for debugging but sometimes useful in investigations. |
+| **Entropy Analysis** | Technique for flagging unusually encrypted or compressed memory regions that may hide malware content. |
 
 ---
 
@@ -114,7 +107,7 @@ Volatility timelines can aggregate timestamps from processes, DLLs, registry key
 - Memory can contain evidence unavailable on disk.
 - Acquisition must be fast, documented, and integrity-preserving.
 - LiME, Fmem, AVML, and crash dumps represent different acquisition paths.
-- Volatility requires correct target profiles or symbols.
-- Comparing multiple process views can reveal hidden processes.
-- DLL, handle, VAD, and network analysis can expose injection and malware behavior.
+- Volatility-style analysis requires correct interpretation of the target OS and kernel memory structures.
+- Process relationships and inconsistent runtime structures can reveal concealed or abnormal behaviour.
+- Process, memory-region, entropy, and network analysis can expose injection and malware behavior.
 - Memory timelines must be correlated with external logs and filesystem evidence.

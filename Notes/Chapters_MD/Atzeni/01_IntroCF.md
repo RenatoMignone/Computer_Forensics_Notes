@@ -68,7 +68,7 @@ These examples show that the idea of applying systematic, reproducible methods t
 
 | Milestone | Significance |
 |-----------|--------------|
-| **Morris Worm (1988)** | First major computer forensic case; analysis of logs, network traffic, and email |
+| **Morris Worm** | Foundational computer-forensics case involving analysis of logs, network activity, and email |
 | **IACIS founding** | International Association of Computer Investigative Specialists — early body establishing investigative guidelines |
 | **IOCE** | International Organisation on Computer Evidence — developed foundational standards for digital evidence handling |
 | **EnCase tool** | First widely-usable forensic platform providing acquisition, storage, and analysis in one tool; very expensive, but still available in newer versions |
@@ -80,14 +80,13 @@ These examples show that the idea of applying systematic, reproducible methods t
 
 **Mobile devices:**
 - Always carried by suspects — contain enormous volumes of personal, location, and communication data
-- Modern operating systems protect data even with user cooperation (full-disk encryption by default)
-- Highly fragmented device ecosystem (hundreds of models, firmware variants)
+- Modern operating systems can make acquisition difficult without the user's cooperation
+- Highly fragmented device ecosystem: even devices under the same OS family may require different tools and configurations
 
 **Cloud computing:**
-- Data is **off-device** — cannot be physically seized from the subject's premises
-- Access requires cooperation from cloud providers, often governed by foreign law
-- Data may be distributed across multiple jurisdictions
-- Provider records (audit logs, timestamps) are the primary evidence source
+- Data is **off-device** — it may simply not exist on the seized laptop or phone
+- Access generally requires cooperation from the cloud provider or from the user, both of which raise trust and legal issues
+- Provider-side infrastructure is normally not directly seizable by the investigator
 
 > 📎 *Slide reference: `01_introCF.pdf` — Digital Forensics Milestones*
 
@@ -101,12 +100,12 @@ The field of computer forensics continues to evolve alongside emergent technolog
 
 | Challenge | Description |
 |-----------|-------------|
-| **Cloud forensics** | Evidence distributed across multi-tenant infrastructure in multiple jurisdictions; provider cooperation required |
+| **Cloud forensics** | Evidence may be outside the seized device and may require provider or user cooperation |
 | **Mobile forensics** | Fragmented ecosystem; operating systems protect data even with user cooperation |
 | **Generative AI** | New AI technologies are having a large impact on computer forensics |
 | **Organised cybercrime** | Highly structured groups and criminal organisations with billions in income; units working for states, terrorist organisations, and gangs with tens or hundreds of members |
 | **Blockchain** | Emerging complication for forensic analysis |
-| **Quantum cryptography** | May break existing cryptographic assumptions in the next 10–15 years |
+| **Quantum cryptography** | Mentioned as an emerging concern that could affect assumptions behind technologies such as blockchain |
 
 > 📎 *Slide reference: `01_introCF.pdf` — Digital Forensics: Modern Challenges [inferred]*
 
@@ -133,6 +132,6 @@ The field of computer forensics continues to evolve alongside emergent technolog
 - The discipline descends from a tradition of forensic science dating back 4,000 years, with structured modern practices emerging in the 19th century through fingerprinting and crime laboratories.
 - **DNA profiling**, crime labs, and AI-assisted analysis represent the evolutionary arc from physical to biological to digital evidence.
 - Key institutional milestones — IACIS, IOCE, EnCase, the mobile and cloud eras — each reshaped how digital evidence is gathered and processed.
-- **Mobile and cloud** computing present the most significant current forensic challenges: data is encrypted, off-device, multi-jurisdictional, and legally complex to obtain.
+- **Mobile and cloud** computing present major forensic challenges: data may be hard to extract from the device, may be off-device entirely, and may require provider or user cooperation.
 - Emerging challenges — AI-generated evidence, blockchain forensics, quantum threats — will define the next generation of the discipline.
-- The foundational case study (Morris Worm, 1988) is covered in [`01b_MorrisWorm.md`](01b_MorrisWorm.md).
+- The foundational Morris Worm case study is covered in [`01b_MorrisWorm.md`](01b_MorrisWorm.md).

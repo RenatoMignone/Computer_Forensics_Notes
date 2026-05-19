@@ -48,7 +48,7 @@ The central legal problem is whether the production, possession, distribution, o
 
 ## 4. Article 615-ter: Unauthorized Access
 
-Article 615-ter criminalizes unauthorized access to a protected computer or telecommunication system, or remaining in it against the will of the person entitled to exclude the actor.
+In the lecture, Article 615-ter is introduced as the unauthorized-access offence relevant to protected computer systems.
 
 In the laboratory scenario, the prosecution can argue that a spyware platform is designed precisely to enter protected systems. The defence can argue that the company sells a tool, often to public authorities, and that the legality of a concrete access depends on authorization, purpose, and operational use.
 
@@ -58,7 +58,7 @@ The article is therefore not only a technical question of whether access occurre
 
 ## 5. Article 615-quater: Access Codes and Means of Access
 
-Article 615-quater concerns the unlawful procurement, reproduction, dissemination, communication, or delivery of codes, passwords, or other means suitable for accessing protected systems, when done to obtain profit or cause damage.
+In Vaciago's framing, Article 615-quater raises the risk that producing, importing, possessing, or distributing malware-like access tools may itself be treated as criminally relevant.
 
 Vaciago connects this to the possession and distribution of malware or access-enabling tools. A company producing such tools may be accused not only of technical development but also of creating or distributing means suitable for unlawful access.
 
@@ -97,8 +97,8 @@ For the laboratory, students must therefore discuss not only the tool itself but
 
 | Term | Definition |
 |------|------------|
-| **Article 615-ter c.p.** | Italian offence of unauthorized access to a protected computer or telecommunication system. |
-| **Article 615-quater c.p.** | Italian offence concerning unauthorized possession or distribution of access codes or other means suitable for access. |
+| **Article 615-ter c.p.** | Unauthorized-access offence used in the lab scenario against the malware-producing company. |
+| **Article 615-quater c.p.** | Offence Vaciago connects to production, import, possession, or distribution of malware-like access tools. |
 | **Mens rea** | Subjective element: awareness and will regarding the conduct that constitutes the offence. |
 | **Participation in a crime** | Liability risk arising from contribution to another actor's criminal conduct. |
 | **Lawful-interception tool** | A technical system intended to support authorized investigative interception or remote access. |

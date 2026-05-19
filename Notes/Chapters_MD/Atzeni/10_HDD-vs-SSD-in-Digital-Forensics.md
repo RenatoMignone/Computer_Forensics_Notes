@@ -29,7 +29,9 @@ An **SSD** uses a **Flash Translation Layer (FTL)**. The FTL maps logical addres
 | **Garbage Collection** | Controller-level background process that reorganises and erases NAND blocks independently of host commands. |
 | **Wear Levelling** | Spreads writes across cells to avoid premature failure, moving data without OS-level visibility. |
 
-Write blockers cannot stop internal controller processes. They protect against host writes, but not against firmware-level activity.
+Write blockers cannot stop internal controller processes. They protect against host writes, but not against firmware-level activity. Atzeni stresses that an SSD may continue controller-level cleanup even after the host machine is powered off, so "switched off" does not have the same evidentiary meaning as it did with an HDD.
+
+The lecture also distinguishes possible TRIM behaviours: a read after TRIM may expose previous or relocated content, return a deterministic manufacturer-defined value, or return zeros. These behaviours change what a forensic tool can observe even if physical NAND remnants may still exist.
 
 ---
 
@@ -52,7 +54,7 @@ On HDDs, deleted data often remains at the same physical location until overwrit
 
 ## 5. Advanced Techniques and Chain of Custody
 
-Advanced acquisition may involve **factory access mode**, **chip-off forensics**, or attempts to inspect **over-provisioning areas**. These techniques are controller-specific, risky, and often ineffective when self-encrypting drives are involved.
+Advanced acquisition may involve **chip-off forensics** or attempts to reason about **over-provisioning areas**. These techniques are controller-specific, risky, and often ineffective when self-encrypting drives are involved. Atzeni describes chip-off as a desperate or very carefully controlled attempt: removing the NAND can damage the evidence, and if the drive encrypts data internally, bypassing the controller may destroy the practical recovery path.
 
 Documentation should record the SSD model or manufacturer-specific behaviour, TRIM behaviour, encryption state, and any relevant over-provisioning considerations where possible.
 

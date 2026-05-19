@@ -16,7 +16,7 @@ This chapter collects the laboratory and toolset material from Lectures 13 and 1
 To be admissible in a legal trial, a digital forensics workspace must adhere to strict qualitative and procedural requirements.
 
 ### 1.1 Gold Standard Attributes
-- **Accuracy:** Tools must be state-of-the-art and verified to introduce zero errors in the acquisition or analysis phase.
+- **Accuracy:** Tools must be state-of-the-art, checked, certified where possible, and chosen to introduce essentially no errors in acquisition or analysis.
 - **Verifiability:** Every step taken by a tool must be transparent and verifiable by an independent third party.
 - **Reproducibility (Determinism):** If another investigator re-runs the same analysis on the same original evidence using the same tools, the output **must** be identical.
 - **Usability vs. Speed:** A tool must be straightforward enough to allow for rapid acquisition before evidence is deleted by normal background services or an attacker’s "kill switch."
@@ -35,7 +35,7 @@ Modern AI (Large Language Models) introduces significant risks to forensic stand
 
 ### 2.1 Forensic Uncertainty (The Heisenberg Analogy)
 The act of observing or reading a digital system inevitably perturbs it.
-- **Example:** Booting a laptop changes swap files, registry entries, and access timestamps.
+- **Example:** Booting or inspecting a live system can change runtime state, logs, and storage metadata.
 - **Action:** Minimize interaction with the "live" original. Use hardware **Write Blockers** and perform analysis only on a bitstream copy.
 
 ### 2.2 The Trusted Environment
@@ -84,7 +84,8 @@ A lab must ensure **Availability** even during infrastructure attacks or power f
 ### 4.1 Auditing Actors (Humans and AI)
 Modern investigations involve complex interactions. To maintain admissibility, the lab must audit:
 - **Investigator Actions:** A complete trail of every command and file access to defeat claims of evidence tampering.
-- **AI/LLM Agents:** When using "Forensic Co-workers" or AI assistants, their prompts and outputs must be logged. This ensures the "Black Box" nature of AI does not compromise the legal chain of custody.
+- **AI/LLM Agents:** If autonomous agents or AI assistants are used, the lab must preserve enough application-specific logs to reconstruct their actions and correlate their outputs with deterministic tools.
+- **WORM Logging:** Write-once/read-many storage is useful for audit logs because later alteration or deletion is technically constrained.
 
 ### 4.2 Network Isolation and Capturing
 - **Air-Gapping:** No physical/wireless connection to the internet for workstations.
@@ -110,6 +111,11 @@ Forensics is not a linear waterfall. It follows a loop: **Acquisition → Analys
 A laboratory's effectiveness often depends on small details:
 - **The Adapter Arsenal:** Must include legacy and obsolete adapters (IDE, Mini-USB, SCSI) because the lack of a proper plug can kill an investigation at the crime scene.
 
+### 5.4 Portable and Virtualised Forensic Environments
+Atzeni also highlights portable operating systems and forensic distributions as practical lab tools. General security distributions such as **Kali** may be useful, while forensic-focused distributions such as **CAINE**, **SIFT**, and **Tsuruji** are configured with investigation-oriented defaults, such as easier read-only mounting of attached storage.
+
+Virtualisation supports isolated sandbox experiments. It lets investigators start quickly from a controlled machine image, attach evidence as a virtual disk, and repeat invasive malware experiments without rebuilding the whole environment by hand.
+
 ---
 
 ## 6. Mobile Forensic Acquisition and UFED
@@ -117,12 +123,12 @@ A laboratory's effectiveness often depends on small details:
 Mobile devices present the most frequent and complex challenge in modern labs due to hardware-level encryption and proprietary systems.
 
 ### 6.1 Bypassing Operating System Mediation
-Traditional logical acquisition (via standard USB connection) only retrieves data that the OS "allows" the investigator to see. To get a full bit-by-bit physical image, specialized tools are required to bypass or jailbreak the system.
+Traditional logical acquisition through a normal smartphone connection retrieves only a limited subset of data mediated by the mobile operating system. Specialised mobile acquisition tools automate model-specific interaction procedures and can reach more protected operating-system, application, and media content than a normal USB transfer.
 
 ### 6.2 Universal Forensic Extraction Device (UFED)
 - **UFED-style mobile acquisition tools:** Specialized suitcase-style tools provide hardware interfaces and software procedures for interacting with many smartphone models.
-- **Vulnerability-Based Access:** UFEDs leverage known and proprietary exploits to escalate privileges on the smartphone, effectively **jailbreaking** it to access locked filesystems.
-- **Credential Recovery:** These tools can extract authentication tokens for cloud services (Google, iCloud, WhatsApp, Snapchat), allowing for the legal retrieval of remote backups and live cloud data.
+- **Model-Specific Workflows:** UFEDs guide the examiner through supported procedures for particular Android or iOS models instead of requiring manual reverse engineering of each device.
+- **Cloud-Aware Acquisition:** When legal authority and credentials are available, modern UFED-style tools can interact with cloud-backed applications such as Google Drive, iCloud, Instagram, Facebook, WhatsApp, Messenger, or Snapchat through their authentication mechanisms.
 
 ---
 

@@ -12,7 +12,7 @@ This lecture continues the file system forensics discussion by moving from the u
 
 ## 1. Lab Organisation and Evaluation
 
-The lecture begins with practical information for the forensic labs. Groups should contain four to six students, submit one report per group, and provide both an end-of-lab draft and, optionally, a more refined version during the following week.
+The lecture begins with practical information for the forensic labs. Groups should contain four to six students, submit one report per group, and provide an end-of-lab draft. A more refined version can be submitted during the following week when the group wants to improve or extend the first draft.
 
 The reports must also include self-evaluation, describing each member's contribution to tool usage, reporting, creativity, and other relevant dimensions.
 

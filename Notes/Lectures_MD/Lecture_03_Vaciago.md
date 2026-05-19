@@ -166,7 +166,7 @@ A **false positive** in a digital forensics analysis can destroy a person's life
 - Subject to human verification
 - Documented with a clear methodology (SHAP, LIME, or equivalent explainability frameworks)
 
-**Key principle**: current generative AI tools are prohibited in formal legal proceedings (criminal, civil, labour law) because their outputs cannot be sufficiently explained and verified under current standards.
+**Key principle**: AI cannot be used as the exclusive basis for a forensic or legal decision. The lecture emphasised the need for meaningful human oversight and for a demonstrable methodology explaining how AI output was controlled.
 
 > 📎 *Slide reference: `Slides/Vaciago/0_Introduction.pdf`, slide: GDPR Article 22 & Automated Decisions*
 
@@ -266,7 +266,7 @@ For evidence to be usable in legal proceedings it must satisfy:
 
 | Requirement | Meaning |
 |-------------|---------|
-| **Admissible** | Gathered lawfully with appropriate legal grounds (e.g., a prosecutor or court order); without legal grounds, evidence gathered from a device is inadmissible even if it clearly incriminates the subject. Italian **Law 48/2008** explicitly provides that evidence gathered in violation of digital forensics procedure is inadmissible in court |
+| **Admissible** | Gathered lawfully with appropriate legal grounds (e.g., a prosecutor or court order); without legal grounds, evidence gathered from a device is inadmissible even if it clearly incriminates the subject. The lecture refers to Italian law since 2008 requiring respect for digital-forensics procedures |
 | **Authentic** | Free from tampering; every handling step must guarantee the evidence has not been altered |
 | **Reliable and believable** | Must be understandable to the judge; the forensic expert's duty is to explain technical findings in plain, credible language — *"you must be able to explain the case to my mother"* |
 | **Proportional** | The investigation must be limited to what is relevant to the case; personal information outside the scope must be excluded and protected |
@@ -376,7 +376,7 @@ Their public profiles stem from their ability to explain complex forensic concep
 | **OSINT** | Open Source Intelligence — gathering information from publicly available sources |
 | **Digital Evidence** | Any information of evidential value, whether memorised or sent in digital format (SWGDE definition) |
 | **SWGDE** | Scientific Working Group for Digital Evidence — body that produced the preferred definition of digital evidence |
-| **Admissibility** | Legal requirement that evidence be gathered lawfully with appropriate legal authority; violated evidence may be excluded under Italian Law 48/2008 |
+| **Admissibility** | Legal requirement that evidence be gathered lawfully with appropriate legal authority; improperly acquired evidence may be challenged or excluded |
 | **Proportionality** | Legal requirement that a forensic investigation use only information relevant to the case |
 | **Big Five** | Council of Europe's five principles for digital forensics: data integrity, chain of custody, specialist support, training, legality |
 | **NIST** | US national standard defining the four phases of digital forensics: collection, examination, analysis, reporting |
@@ -396,4 +396,4 @@ Their public profiles stem from their ability to explain complex forensic concep
 - The **Big Five** principles (Council of Europe) and **NIST phases** provide the technical and procedural foundation for sound forensic practice.
 - **NIST** uniquely includes a risk management dimension, essential for making documented trade-offs under court-imposed deadlines.
 - Corporate forensics is a rapidly growing domain where companies resolve issues (insider threats, data exfiltration) internally through HR and policy.
-- AI-assisted tools must be transparent and verifiable; current generative AI is generally prohibited from formal legal outputs due to explainability gaps.
+- AI-assisted tools must be transparent and verifiable; they cannot replace human responsibility or become the exclusive basis of legal conclusions.

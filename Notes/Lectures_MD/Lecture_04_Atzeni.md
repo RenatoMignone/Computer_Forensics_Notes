@@ -94,17 +94,11 @@ Knowing whether the suspect is technically sophisticated informs the investigati
 ### Volatility – Prioritising Evidence
 Evidence sources have varying **volatility** — the speed at which they can change, be overwritten, or become inaccessible.
 
-**General volatility order (most volatile first):**
-1. CPU registers and cache
-2. **RAM / main memory** — lost on power-off; may contain running processes, encryption keys, active network connections
-3. **Network state** — open connections, listening ports (lost within seconds to minutes)
-4. **Running processes and logged-in users**
-5. File system **temporary files** and **recently deleted files** (can be overwritten quickly)
-6. Hard drive / SSD data (longer-lived but can be overwritten)
-7. Remote logs, cloud data (may be retained for days to months)
-8. Backups, archival media (most stable)
-
-**Practical implication**: a running system should be treated differently from a powered-off one. If encryption keys are known to exist in RAM, powering off the device will destroy them.
+The lecture did not define a complete fixed volatility ladder, but stressed the practical ordering problem:
+- **RAM / main memory** is extremely volatile and may require special handling, including cryogenic preservation in rare, resource-intensive cases.
+- **Hidden sectors, deleted files, and temporary files** can be overwritten by ordinary system activity.
+- A **powered-off device** should generally be left powered off and acquired without starting the operating system.
+- A **running device** may require a context-specific decision, because live interaction can preserve some volatile information while also modifying the system.
 
 > 📎 *Slide reference: `Slides/Atzeni/03_investigation_phases.pdf`, slide: Evidence Volatility*
 
@@ -179,7 +173,7 @@ Isolation actions include:
 
 #### Remote Wipe Prevention
 Modern mobile devices support **remote wiping** — the ability to erase all content via a remote command. To prevent this:
-- Use a **Faraday bag or RF jammer** to block wireless and cellular signals immediately upon seizure
+- Use signal-blocking measures such as an **RF jammer** where appropriate to block wireless and cellular communication immediately upon seizure
 - This prevents the device owner from issuing a remote wipe command
 
 > 📎 *Slide reference: `Slides/Atzeni/03_investigation_phases.pdf`, slide: Collection & Isolation*
@@ -196,12 +190,12 @@ At the beginning of the collection phase, the **chain of custody record** must b
 
 | Field | Description |
 |-------|-------------|
-| Date and time of collection | Exact timestamp (including timezone) |
+| Date and time of collection | Exact timestamp |
 | Device identifier | Make, model, serial number, unique identifiers |
-| Physical condition | Photographs and written description of the device state |
+| Physical condition | Written description and, where useful, photographs of the device state |
 | Collector identity | Full name of the person performing the action |
 | Physical location | Where the collection occurred |
-| Witnesses present | Names of all personnel present during the action |
+| Personnel present | Names of personnel involved or present during the action |
 | Transfer events | Every subsequent movement of the evidence with identities and timestamps |
 
 **Common historical error**: collecting multiple USB drives or mobile phones of the same manufacturer/model without noting their individual serial numbers — making it impossible during examination to associate data with a specific device.
@@ -221,7 +215,6 @@ Hardware write blockers are typically deployed during the **collection-to-acquis
 | **OSINT** | Open Source Intelligence — intelligence gathered from publicly available sources |
 | **Isolation** | Severing all physical and logical connections to evidence to prevent modification or destruction |
 | **Remote wipe** | Feature allowing a device owner to delete all data on a device via remote command |
-| **Faraday bag** | RF-shielding bag that blocks all wireless signals, preventing remote wiping or communication |
 | **Covert investigation** | An investigation phase conducted without alerting the suspect |
 | **Spiderfoot** | Open-source OSINT tool for correlating publicly available information about a target |
 | **Maltego** | Commercial OSINT visualisation and correlation tool |

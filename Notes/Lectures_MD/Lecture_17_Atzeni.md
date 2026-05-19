@@ -20,7 +20,7 @@ Metadata is often handled differently by various communication layers:
 
 ### 1.2 Magic Numbers and File Integrity
 - **Extension Spoofing:** Changing `.exe` to `.txt` is a common tactic to hide malware.
-- **The "Magic Number" Defense:** Forensic tools ignore the extension and check the first few bytes (e.g., `89 50 4E 47` for a PNG). 
+- **The "Magic Number" Defense:** Forensic tools should not rely only on the extension; they also check the identifying bytes inside the file.
 - **Caution:** A sophisticated attacker can manipulate magic numbers for specific payloads, though this often prevents the file from opening normally.
 
 ---
@@ -34,7 +34,7 @@ Metadata is often handled differently by various communication layers:
 
 ### 2.2 GUID Partition Table (GPT)
 - **Modern Standard:** Part of the UEFI specification.
-- **Redundancy:** GPT mirrors the partition header (LBA 1 and the last sector of the disk). If the primary header fails, the system auto-restores from the backup.
+- **Redundancy:** GPT keeps redundant partition information so the system can fall back to a backup copy if the primary information is corrupted.
 - **Integrity:** Uses CRC32 checksums to detect and reject corrupted headers.
 - **Compatibility:** Includes a "Protective MBR" in sector zero so legacy tools don't assume the disk is empty and overwrite it.
 
@@ -49,9 +49,9 @@ FAT (File Allocation Table) uses a **Linked List** metaphor.
 3.  **The Chain:** The OS follows this chain (e.g., Cluster 29 → 30 → 33) until it hits an **EOF (End of File)** marker.
 
 ### 3.2 Forensic Deletion
-- **Process:** When a file is deleted in FAT, the OS simply marks the clusters as "available" in the table and changes the first character of the filename to a special hex value.
+- **Process:** When a file is deleted in FAT, the OS mainly updates metadata, marking the related space or chain as available.
 - **Data Persistence:** The actual bytes on the disk (the clusters) are **not erased**. They remain until a new file overwrites them.
-- **Recovery:** Forensic tools can "relink" these chains to recover deleted documents.
+- **Recovery:** Forensic tools can inspect the device directly and recover the remaining content when it has not yet been overwritten.
 
 ---
 

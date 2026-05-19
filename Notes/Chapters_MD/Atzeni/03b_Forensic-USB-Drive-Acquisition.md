@@ -14,7 +14,7 @@ This chapter provides a hands-on, tool-level walkthrough of acquiring a forensic
 
 ## 1. `dd` — The Standard Unix Copy Utility
 
-`dd` is the foundational Unix bit-copy tool. It is present on every Linux and macOS system with no installation required, making it a universal fallback when specialised tools are unavailable.
+`dd` is the foundational Unix-style bit-copy tool. It is a common fallback on Unix-like forensic systems when specialised tools are unavailable.
 
 ### Key Parameters
 
@@ -44,16 +44,15 @@ dd if=/dev/sdb of=/media/evidence/usb_image.dd bs=512
 
 ## 2. `dc3dd` — Enhanced Forensic Copy Tool
 
-`dc3dd` was created to address `dd`'s forensic shortcomings. It is open-source and available in standard Linux forensic distributions (Kali, CAINE).
+`dc3dd` is one of the `dd`-style forensic tools Atzeni mentions as embedding hash calculation into the copy workflow.
 
 | Feature | `dd` | `dc3dd` |
 |---------|------|----------|
 | Simultaneous hashing during copy | ❌ | ✅ (source + dest, multiple algorithms) |
 | Hash log file output | ❌ | ✅ |
 | Per-block error logging | ❌ | ✅ |
-| Split output files | ❌ | ✅ |
-| Progress display | Partial | ✅ |
-| Scrubbing (wipe destination before write) | ❌ | ✅ |
+| Additional forensic logging | ❌ | ✅ |
+| Error-related information | Limited | ✅ |
 
 ### `dc3dd` Example Command
 
@@ -79,19 +78,16 @@ dc3dd if=/dev/sdb hof=/media/evidence/usb_image.dd \
 
 ## 3. FTK Imager
 
-**FTK Imager** is a widely-used GUI-based forensic acquisition and preview tool. It is widely accepted in courts and used by law enforcement agencies worldwide.
+**FTK Imager** is presented in the lecture as a famous and widely used GUI-based forensic acquisition tool.
 
 ### Key Features
 
 | Feature | Description |
 |---------|-------------|
-| **Multiple image formats** | Supports `.dd` (raw), `.E01` (EnCase evidence format), `.AFF` (Advanced Forensic Format), `.L01` |
-| **Integrated hash verification** | Computes MD5 and SHA-256 of source and image simultaneously; produces a hash report |
-| **Drive preview** | Browse the file system and view files in the source device **without mounting** it — no atime modification |
-| **Physical and logical acquisition** | Can acquire an entire physical drive, a single partition, or selected folders |
-| **Memory acquisition** | Can capture a RAM dump of a running Windows system |
-| **Chain of custody fields** | GUI prompts for examiner details, case number, and evidence item description before acquisition begins |
-| **Export hash report** | Produces a signed hash report document suitable for court submission |
+| **Multiple forensic formats** | Supports famous and widespread acquisition formats |
+| **Integrated hash support** | Can assist with verifying the image produced |
+| **GUI workflow** | Useful when a visual interface is preferred over command-line tools |
+| **Practical adoption** | Used in real forensic investigations |
 
 > 📎 *Slide reference: `03b_Forensic-USB-Drive-Acquisition.pdf` — FTK Imager*
 
@@ -103,12 +99,12 @@ The following components constitute a minimal forensic USB acquisition lab:
 
 | Component | Specification / Purpose |
 |-----------|------------------------|
-| **Forensic workstation** | A clean, investigator-controlled machine booted from a trusted forensic OS (e.g., CAINE, Tsuruji) or a verified, imaged Windows installation |
+| **Forensic workstation** | A clean, investigator-controlled machine, ideally running a forensic distribution such as Kali, Tsurugi, or CAINE |
 | **Hardware write blocker** | Interposed between the target USB drive and the workstation to prevent any write commands reaching the source |
-| **Target USB drive** | The evidence item; must NOT be connected to any machine before the write blocker is in place |
-| **Destination storage** | A separate drive or network share with capacity at least equal to the target; pre-wiped and hashed to prove it was blank before acquisition; stored under the same evidentiary controls as the target after acquisition |
+| **Target USB drive** | The evidence item; should not be connected to an ordinary machine before the write blocker is in place |
+| **Destination storage** | Dedicated forensic storage with adequate capacity, low error rates, good speed, and controlled use |
 
-> ⚠️ *Do not connect the target USB directly to the OS without a write blocker. USB mass storage drivers on Linux, Windows, and macOS all write metadata (Last Mount, NTFS journal replay, device registration) on connection, even in read-only mode unless explicitly blocked at the kernel level.*
+> ⚠️ *Do not connect the target USB directly to an ordinary OS without a write blocker. Atzeni stresses that normal mounting can modify timestamps and metadata, and even read-only mounting is less defensible than a hardware write blocker in an important case.*
 
 > 📎 *Slide reference: `03b_Forensic-USB-Drive-Acquisition.pdf` — Lab Setup*
 
@@ -207,7 +203,7 @@ In addition to the general chain of custody fields (see [03_investigation_phases
 | Using **MD5 alone** for the acquisition hash | Vulnerable to collision attacks; defence can argue hash was falsified | Always use SHA-256 or higher; use dual algorithms for critical evidence |
 | Not recording **pre-acquisition hash of the source** | Cannot prove the image was unmodified at acquisition time | The source hash is recorded **before** the imaging tool runs, not after |
 | **Automounting**: OS auto-mounts the USB before the write blocker is in place | Automatic metadata writes contaminate the original | Disable automount in the forensic OS before connecting any evidence device |
-| Not hashing or **pre-wiping the destination** | Cannot prove the destination was blank (could argue planted data) | Wipe and hash the destination before use; document the pre-wipe hash |
+| Using non-dedicated destination media | Raises the risk of errors, contamination, or claims that the acquisition device was compromised | Use storage dedicated to forensic work, and ideally dedicated to the specific investigation in important cases |
 
 > 📎 *Slide reference: `03b_Forensic-USB-Drive-Acquisition.pdf` — Common Pitfalls*
 
@@ -219,7 +215,7 @@ In addition to the general chain of custody fields (see [03_investigation_phases
 |------|------------|
 | **`dd`** | Standard Unix bit-copy utility; no built-in hashing or error logging |
 | **`dc3dd`** | Enhanced `dd` with integrated hashing, error logging, and split output; open-source |
-| **FTK Imager** | Commercial GUI forensic acquisition and preview tool; widely accepted in courts |
+| **FTK Imager** | GUI forensic acquisition tool described in lecture as famous and widely used |
 | **Hardware write blocker** | Physical device that prevents any write commands from reaching the source evidence drive |
 | **`.dd` format** | Raw bit-for-bit image; no metadata container; simplest format; directly mountable |
 | **`.E01` format** | EnCase evidence format; includes embedded metadata (hash, case info) and compression |
@@ -233,7 +229,7 @@ In addition to the general chain of custody fields (see [03_investigation_phases
 
 - **`dd`** is universal but requires manual, separate hashing steps — not recommended when specialised tools are available.
 - **`dc3dd`** performs integrated, simultaneous hashing of source and destination during the copy, making it a significantly stronger forensic tool than plain `dd`.
-- **FTK Imager** is the standard GUI tool; its chain of custody form, hash report, and non-mounting file browser make it practical for both field and lab use.
-- The **hardware write blocker** is non-negotiable — connecting evidence media directly to the OS without one will modify the source.
+- **FTK Imager** is a famous GUI tool used in real investigations and useful when a visual workflow is preferable.
+- The **hardware write blocker** is the preferred protection for an important acquisition — connecting evidence media directly to an ordinary OS can modify the source.
 - The eight-step procedure ensures: clean destination, confirmed device, pre-acquisition source hash, imaging, post-acquisition verification, source re-hash confirmation, and physical sealing.
-- **Pre-wipe and hash the destination** before acquisition; **disable automount** on the forensic workstation; **never assume the device path** — always verify with `lsblk`.
+- Use dedicated forensic destination storage; avoid ordinary mounting/automounting of the source; **never assume the device path** — always verify with tools such as `lsblk` and `dmesg`.

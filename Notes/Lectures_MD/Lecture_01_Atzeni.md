@@ -6,7 +6,7 @@
 ---
 
 ## Overview
-This lecture introduces the course structure, grading scheme, and expected prerequisites. The main content covers the historical roots of forensic science and its evolution into digital forensics, culminating in a detailed case study of the Morris Worm (1988) as a foundational milestone in the field.
+This lecture introduces the course structure, grading scheme, and expected prerequisites. The main content covers the historical roots of forensic science and its evolution into digital forensics, culminating in a detailed case study of the Morris Worm as a foundational milestone in the field.
 
 ---
 
@@ -123,7 +123,7 @@ The concept of forensic investigation is approximately **4,000 years old**:
 
 | Milestone | Significance |
 |-----------|-------------|
-| **Morris Worm (1988/1989)** | First major computer forensic case; involved analysis of logs, network traffic, and email |
+| **Morris Worm** | Early major computer forensic case; involved analysis of logs, network activity, and email |
 | **IACIS founding** | International Association of Computer Investigative Specialists – early body establishing guidelines |
 | **IOCE** | International Organisation on Computer Evidence – developed foundational standards |
 | **EnCase tool** | First widely-usable forensic tool providing acquisition, storage, and analysis in one platform; very expensive, but still available today in newer versions |
@@ -144,7 +144,7 @@ The concept of forensic investigation is approximately **4,000 years old**:
 > 📎 *Slide reference: `Slides/Atzeni/01b_Cybersecurity-History-MorrisWorm.pdf`*
 
 ### Context
-The Morris Worm (November 1988) is considered the **first major cybersecurity attack** and the **first significant computer forensic case**. It was created by **Robert Tappan Morris**, a graduate student at a prestigious US university and son of NSA cryptographer Robert Morris.
+The Morris Worm is presented in the lecture as the **first major cybersecurity attack** and the **first significant computer forensic case**. It was created by **Robert Tappan Morris**, a graduate student at a prestigious US university and son of NSA cryptographer Robert Morris.
 
 Morris's stated intent was to *test* whether a self-propagating network worm was feasible — not to cause damage. The worm was released onto the ARPANET (the precursor to the internet), which at the time primarily connected US universities.
 
@@ -219,6 +219,6 @@ Robert Tappan Morris was convicted under the **Computer Fraud and Abuse Act (CFA
 
 - The CFCCA course integrates **legal and technical perspectives** on digital forensics, reflecting the real-world entanglement of cybersecurity, compliance, and law.
 - Forensic science has roots dating back **4,000 years**, with structured approaches emerging in the 19th century (fingerprinting, crime labs).
-- Computer forensics emerged as a distinct discipline through key events like the **Morris Worm (1988)**, the growth of networked computing, and the digitisation of everyday life.
+- Computer forensics emerged as a distinct discipline through key events like the **Morris Worm**, the growth of networked computing, and the digitisation of everyday life.
 - The Morris Worm illustrates foundational concepts: **vulnerability exploitation**, **unintended consequences of probabilistic self-replication**, **coordinated incident response**, and the **monoculture risk**.
 - Modern challenges include **mobile forensics**, **cloud storage**, **encryption**, **AI-generated evidence**, and the rise of **highly organised cybercrime** with state-level resources.

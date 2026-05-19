@@ -1,5 +1,5 @@
 CFCCA side-event and non-slide-course-material index
-Last updated: 2026-05-18
+Last updated: 2026-05-19
 
 Purpose
 This file lists lecture material that should remain traceable, but should not be treated as ordinary slide-backed chapter content unless explicitly stated. These items may appear in the per-lecture notes because they happened during the lecture. Student presentations, homework feedback, administrative explanations, and guest/professional digressions should generally not be merged into Chapters_MD topic notes.
@@ -101,3 +101,17 @@ Lecture 24 - Atzeni - Continuation of Linux privilege-escalation homework presen
 - Type: student homework presentation continuation
 - Relevant section: Student Homework Continuation
 - Chapter handling: do not merge the student presentation into Chapters_MD/Atzeni/12_Network.md.
+
+Lecture 26 - Vaciago - Homework feedback and malware-production laboratory framing
+- Transcript: Notes/Lectures_txt/Lecture_26_Vaciago_08-05_.txt
+- Lecture note: Notes/Lectures_MD/Lecture_26_Vaciago.md
+- Type: homework feedback / legal laboratory framing
+- Relevant sections: Homework Feedback and Use of AI; Laboratory Scenario: Malware Producers
+- Chapter handling: homework feedback stays lecture-only; Articles 615-ter/615-quater, mens rea, and participation-in-crime concepts may remain in the dedicated legal chapter.
+
+Lecture 28 - Atzeni - Student presentations on video carving and case studies
+- Transcript: Notes/Lectures_txt/Lecture_28_Atzeni_13-05_.txt
+- Lecture note: Notes/Lectures_MD/Lecture_28_Atzeni.md
+- Type: student presentations / technical demonstrations
+- Relevant sections: Student Presentation: File Carving for Video Recovery; Student Presentation: Case Studies and Emerging Evidence
+- Chapter handling: do not merge student presentation details into Chapters_MD unless Atzeni's own technical explanation supports the chapter topic.

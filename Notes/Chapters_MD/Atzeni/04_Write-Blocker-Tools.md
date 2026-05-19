@@ -68,23 +68,23 @@ Standalone units are physically larger owing to their embedded compute hardware.
 
 ### 2.2 Leading Commercial Products
 
-#### Tableau (Guidance Software / OpenText)
+#### Tableau
 
 | Aspect | Detail |
 |--------|--------|
 | **Industry standing** | De facto standard in litigation environments; routinely cited by name in investigation reports as a mark of professional credibility. |
-| **Legal standing** | Certified under specific forensic standards; courts recognise the brand by name. |
+| **Legal standing** | Citing the exact Tableau model in documentation is presented as professionally credible and helpful in legal scrutiny. |
 | **Product range** | T8i, T35, and many others — each model supports a defined set of interface types (SATA, IDE, USB, SAS, PCIe/NVMe, FireWire, Fibre Channel, Ethernet). Model selection depends on the drive interfaces present in the investigation. |
 | **Quality standard** | Highest among commercial hardware write blockers. |
 
-#### WiebeTech / RealTech
+#### WiebeTech / similar pure write blockers
 
 | Aspect | Detail |
 |--------|--------|
 | **Product type** | Predominantly pure (non-standalone) hardware write blockers. |
 | **Price** | Generally lower than Tableau equivalents. |
 | **Target audience** | Private labs; smaller forensic operations. |
-| **Quality standard** | Very high; the slight quality differential with Tableau does not render them technically unreliable — the gap relates mainly to certification breadth and brand recognition in court settings. |
+| **Quality standard** | Atzeni describes them as technically very good, while Tableau has the stronger professional/legal reputation. |
 
 #### Logicube
 
@@ -101,7 +101,7 @@ Different models cover different physical interfaces. The exact model used, not 
 |---------------|------|----------|-----|-----|-----------|
 | T8i | ✅ | ❌ | ✅ | ❌ | ❌ |
 | T35 | ✅ | ✅ | ✅ | ✅ | ❌ |
-| (full list per official Tableau datasheets) | — | — | — | — | — |
+| (illustrative only) | — | — | — | — | — |
 
 If the investigation report cites "T8i" but the opposing expert has an IDE drive to re-test with, the acquisition cannot be reproduced with the documented tool — breaking the chain.
 
@@ -138,7 +138,7 @@ mount -o ro,noload /dev/sdb1 /mnt/evidence
 | Journal-commit metadata may be written to the device | No writes occur |
 | `ro` flag does not prevent all journal-related writes | Evidence integrity preserved |
 
-The `noload` option (also accessible as `norecovery` on XFS) is the forensically correct choice. This is just one example of the depth of OS knowledge required to use a software write blocker correctly — which is why courts are sceptical of software-only approaches.
+The `noload` option is the example Atzeni uses to show the depth of OS knowledge required to use a software write blocker correctly — which is why software-only approaches are much harder to defend.
 
 ### 3.3 Legal Standing of Software Write Blockers
 
@@ -191,7 +191,7 @@ Most forensic standards require the examiner to reference the SOP under which th
 
 > *"Digital evidence was acquired using a Tableau T35 write blocker (S/N: XXXX, firmware v3.1.4) in accordance with Lab SOP-ACQ-004, compliant with ISO/IEC 27037:2012."*
 
-This single sentence accomplishes three goals: it identifies the tool (with enough specificity to reproduce the acquisition); it ties the action to a documented, auditable procedure; and it cites the governing standard.
+This kind of sentence identifies the tool with enough specificity to support reproducibility and ties the action to a documented procedure.
 
 ### 5.3 Photographic Evidence
 

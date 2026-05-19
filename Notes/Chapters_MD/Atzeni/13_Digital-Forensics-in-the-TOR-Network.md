@@ -17,6 +17,8 @@ TOR is an anonymity network designed for privacy and free expression, but it is 
 
 TOR separates application behaviour from anonymity infrastructure. Applications route traffic through a local proxy-like daemon, while the daemon manages circuits, cryptography, relay selection, and directory consensus.
 
+Forensic traces of TOR use may include the TOR daemon, TOR Browser or other TOR-enabled applications, local SOCKS proxy activity, and default ports such as `9050` for the proxy interface and `9051` for the control interface. These traces are indicators, not final proof by themselves.
+
 ---
 
 ## 2. Onion Routing and Cryptography
@@ -45,7 +47,9 @@ Guard persistence mitigates relay-level attacks but not a broad adversary observ
 
 Known TOR relays can be detected by cross-referencing captured IPs with public TOR node lists. This approach becomes weaker when traffic uses non-public TOR nodes that are not available in ordinary public lists.
 
-The lecture also discusses traffic correlation, relay jurisdiction, and guard discovery attacks as possible investigative approaches.
+The lecture also discusses traffic correlation, relay jurisdiction, and guard discovery attacks as possible investigative approaches. A powerful adversary that can observe a significant share of entry and exit traffic may correlate timing and volume because TOR is designed as a low-latency network, not as a high-delay mix network.
+
+Public TOR relay lists can help identify ordinary relay use, but the lecture notes that manually configured or non-public nodes can weaken this simple detection method. In real investigations, TOR evidence is usually corroborative: Atzeni stresses that major cases often depend first on host-level mistakes, seized devices, or other evidence sources, with TOR analysis then enlarging or supporting the case.
 
 ---
 
@@ -66,5 +70,5 @@ The lecture also discusses traffic correlation, relay jurisdiction, and guard di
 - The daemon manages circuits and hides complexity from applications.
 - Three-hop circuits separate origin and destination knowledge.
 - Persistent guards reduce repeated exposure to malicious entry relays.
-- Public relay lists can identify ordinary TOR use, but not bridge use.
+- Public relay lists can identify ordinary TOR use, but not manually configured or non-public relays.
 - Traffic correlation remains a major weakness against powerful adversaries.

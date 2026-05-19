@@ -23,8 +23,8 @@ Digital forensics is not a monolithic discipline. It operates across three subst
 | **Corporate / Internal Forensics** | Incident response; insider threat; regulatory compliance | Employment contracts; internal policies; data protection law (GDPR) | Company internal functions and external consultants |
 
 ### Key Differences in Practice
-- **Criminal forensics** has the most stringent chain of custody requirements and the strictest admissibility rules — evidence must meet criminal procedure standards. Results must be repeatable by a defence expert.
-- **Civil forensics** operates under a lower evidential standard (balance of probabilities vs. beyond reasonable doubt); European civil procedure generally requires forensic evidence to be produced by a court-appointed expert.
+- **Criminal forensics** has the strongest procedural framework and, according to Vaciago, the best-developed competence in computer forensics.
+- **Civil forensics** can involve many kinds of disputes, but it does not have the same criminal-procedure framework for evidence acquisition.
 - **Corporate forensics** is the most flexible but also the most ethically complex — employees have privacy rights even in a corporate environment; GDPR directly constrains how employee data may be collected and examined.
 
 > 📎 *Slide reference: `1_Definition.pdf` — Three Domains*
@@ -40,12 +40,12 @@ Standardisation in digital forensics defines what constitutes a technically vali
 | **ISO/IEC 27037:2012** | ISO/IEC JTC 1/SC 27 | Guidelines for identification, collection, acquisition, and preservation of digital evidence |
 | **ISO/IEC 27001** | ISO/IEC JTC 1/SC 27 | Information security management system (ISMS) standard; forms the basis for cybersecurity compliance certification |
 | **NIST SP 800-86** | US National Institute of Standards & Technology | Guide to integrating forensic techniques into incident response; four-phase model |
-| **ACPO Guidelines** | UK Association of Chief Police Officers | Four forensic principles; heavily influential in UK courts and beyond |
+| **ACPO Guidelines** | UK policing guidance | Mentioned as one possible reference model for forensic procedure |
 
 ### The Standardisation Challenge
 International standards in digital forensics face a structural tension:
 - **Technology evolves faster than standards**: A cloud forensics standard published today may be obsolete when a new cloud architecture is adopted in 18 months
-- **Jurisdiction fragmentation**: What is acceptable evidence procedure in Italy may not satisfy a US federal court; cross-border investigations require simultaneous compliance with multiple frameworks
+- **Jurisdiction fragmentation**: different legal systems use different investigative and evidentiary rules, which complicates cross-border work
 - **Certification gaps**: Unlike established professions, there is no universal mandatory certification for digital forensic practitioners; multiple competing frameworks exist without a single globally recognised accreditor
 
 > *This fragmentation creates a perverse incentive: an investigator who follows best practice in one jurisdiction may inadvertently violate another jurisdiction's rules, leading to evidence exclusion.*
@@ -67,7 +67,7 @@ OSINT (Open Source Intelligence) — gathering intelligence from publicly availa
 | Step | Actor | Action | Legal Instrument Required |
 |------|-------|--------|--------------------------|
 | **1. Identify the IP** | Investigator | An IP address is associated with a specific crime event (log, timestamp) | None — IP is in an existing log |
-| **2. Identify the ISP** | Investigator | WHOIS/ARIN/RIPE database lookup resolves the IP to its owning ISP | None — databases are public |
+| **2. Identify the ISP** | Investigator | Public registry information resolves the IP to the responsible provider or operator | None — public information |
 | **3. Identify the subscriber** | ISP (compelled) | ISP's customer records map the IP + timestamp to an account holder (name, address) | **Court order / data preservation order** — ISPs cannot disclose subscriber data without legal basis |
 | **4. Identify the individual** | Police / investigator | Account holder may not be the suspect (e.g., shared Wi-Fi, compromised router) — further investigation required | Physical search, seizure, digital forensics |
 
@@ -87,12 +87,12 @@ Where might the relevant evidence reside? Vaciago presents a **four-level hierar
 | **Level 2** | Mobile phone / tablet | Call logs, messages, location data, app data, cloud sync artefacts | Physical seizure; mobile forensic tools such as UFED |
 | **Level 3** | ISP / network provider logs | Connection logs, IP assignment records, DNS queries, traffic metadata | Formal legal request (court order, data preservation notice); subject to retention law |
 | **Level 3b** | Bank and digital payment providers (Stripe, PayPal) | Transaction records, linked accounts, device/IP metadata | Formal legal request; "follow the money" — financial data can corroborate device and IP evidence |
-| **Level 4** | Cloud services | Email (Gmail, Outlook 365), cloud storage (Drive, OneDrive, iCloud), social media, collaborative tools | Formal cross-border legal procedures or compelled production via US parent company; complex and time-consuming |
+| **Level 4** | Cloud services | Email, cloud storage, social media, collaborative tools | Cooperation from the provider or formal cross-border legal procedures; complex and time-consuming |
 
 ### Progression Implications
 - Level 1 and Level 2 evidence is **directly accessible** once a seizure warrant is obtained — the investigator has physical custody
 - Level 3 evidence depends on **data retention policy** in the relevant jurisdiction; if the investigation begins after the retention window, the data is gone
-- Level 4 evidence is subject to **cross-border legal procedures** which can take months to years; cloud providers may also challenge requests or provide only partial responses
+- Level 4 evidence is subject to **cross-border legal and provider-cooperation problems**; the lecture stresses that large US platforms may decide whether and how to cooperate.
 
 > 📎 *Slide reference: `1_Definition.pdf` — Evidence Location Model*
 
@@ -107,8 +107,8 @@ Mobile devices represent one of the richest sources of digital evidence and one 
 | Challenge | Description |
 |-----------|-------------|
 | **Encryption** | Modern smartphones (iOS and Android) are encrypted at rest by default; without the passcode, the physical image is largely unreadable |
-| **Remote wipe** | Remote wipe capability is standard; device must be placed in a Faraday bag immediately upon seizure to prevent the command |
-| **Multiple connectivity interfaces** | Bluetooth, Wi-Fi, cellular, and NFC must all be blocked simultaneously |
+| **Remote wipe / remote control** | Networked devices can be modified remotely, so investigators must think about isolation and timing before acquisition |
+| **Multiple connectivity interfaces** | Phones combine several communication channels, making acquisition more complex than a simple laptop seizure |
 | **Storage architecture** | Internal flash storage architecture differs from conventional hard drives; standard acquisition tools may not apply directly |
 
 ### UFED (Universal Forensic Extraction Device)
@@ -116,7 +116,7 @@ UFED is presented as a specialized mobile-forensics tool for phone acquisition:
 
 | Feature | Detail |
 |---------|--------|
-| **Extraction** | Requires a hardware/software setup and may require physical interaction with the phone |
+| **Extraction** | Requires a specialised hardware/software setup and may require physical interaction with the phone |
 | **Cost / effort** | Requires significant budget, time, tools, and technical capacity compared with simpler laptop acquisition |
 
 > *The lecture frames mobile forensics as a budget-intensive area because phones, especially iPhones, require specialized tools and procedures.*
@@ -137,9 +137,9 @@ The approach to criminal prosecution differs fundamentally between the United St
 | **Forensic investment driver** | **Commercial and civil litigation**: major technology and IP disputes drive demand for private-sector forensic firms | **Criminal justice system** drives most forensic demand; private forensic firms also active in corporate and civil matters |
 
 ### Why the Model Affects Forensic Practice
-- In the **US adversarial model**, forensic experts are retained by one side; their role is to support the retaining party's case. Expert credibility is tested through cross-examination.
-- In the **Italian inquisitorial model**, the court-appointed expert is formally neutral; their report goes to the judge without being filtered through adversarial advocacy. Party-retained experts can challenge the court expert's findings.
-- **This creates different quality pressures**: US forensic reports must withstand aggressive cross-examination; Italian court-appointed reports must satisfy the technical judge and survive scrutiny from party experts.
+- In the **US model**, Vaciago links the stronger forensics market to litigation culture, budget, and private-sector demand.
+- In the **Italian/EU model**, computer forensics is more strongly connected to criminal investigations and public authorities.
+- **This creates different quality pressures**: US practice has a large private market, while Italian practice is shaped heavily by criminal-procedure needs and public investigative competence.
 
 > 📎 *Slide reference: `1_Definition.pdf` — Prosecution Models*
 
@@ -158,7 +158,7 @@ The approach to criminal prosecution differs fundamentally between the United St
 | **IP Tracing** | 4-step process: identify IP → resolve to ISP → obtain subscriber data (via court order) → identify individual |
 | **Evidence Location Model** | Multi-level hierarchy: personal device → mobile → ISP logs + financial providers → cloud; defines escalating access complexity |
 | **UFED** | Universal Forensic Extraction Device; specialized hardware/software tool for mobile-phone forensic acquisition |
-| **Remote Wipe** | Command sent over network to wipe a device's storage; requires immediate Faraday isolation on seizure |
+| **Remote Wipe** | Remote command that may alter or erase device data, creating an acquisition and isolation problem |
 | **Follow the money** | Investigative principle: bank accounts and digital payment providers (Stripe, PayPal) often hold corroborating evidence |
 | **Compulsory Prosecution** | Legal system (e.g., Italy) in which prosecutors are obligated by law to open investigations for all reported crimes |
 | **Discretionary Prosecution** | Legal system (e.g., US) in which prosecutors have broad discretion to decide whether to bring charges |
@@ -171,5 +171,5 @@ The approach to criminal prosecution differs fundamentally between the United St
 - International standards (ISO/IEC 27037, **ISO/IEC 27001**, NIST SP 800-86, ACPO) provide the normative framework, but **standardisation is structurally challenged** by rapid technological change and jurisdictional fragmentation.
 - **Suspect identification** in digital investigations typically proceeds through OSINT + IP address tracing (4 steps), with a court order required at step 3 to compel ISP subscriber disclosure.
 - The **digital evidence location model** maps evidence across device → mobile → ISP/financial providers → cloud. **Bank and payment providers** (Stripe, PayPal) are important evidence sources: "follow the money" is a core investigative principle. Level 4 (cloud) requires formal cross-border procedures.
-- **Mobile forensics** is technically demanding: encryption, remote wipe risk, and cloud-only storage require immediate Faraday isolation and tools like UFED — at significant cost.
+- **Mobile forensics** is technically demanding: encryption, remote-control risks, cloud-connected storage, and specialised tools like UFED create significant cost and expertise requirements.
 - The **US adversarial model** and **EU inquisitorial model** create different forensic quality pressures: US experts must withstand cross-examination; Italian court-appointed experts must satisfy the formal judicial expert role.

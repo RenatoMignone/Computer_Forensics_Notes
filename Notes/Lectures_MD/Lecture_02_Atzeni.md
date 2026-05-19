@@ -178,17 +178,13 @@ Hash functions are the **primary tool** for proving that evidence has not been m
 
 - A hash (digest) must be computed **before and after** any acquisition or manipulation
 - Hashes must be compared to confirm integrity
-- **Multiple hash algorithms** should be used simultaneously for increased robustness
 - **MD5 is NOT recommended** as a standalone algorithm (collision vulnerabilities, short digest)
-- Preferred: **SHA-256 or SHA-512** (SHA-2 family)
-
-#### Why Multiple Algorithms?
-Using two or more algorithms simultaneously makes it computationally infeasible for an attacker to produce a file that matches both hashes simultaneously.
+- Preferred: a current SHA-family algorithm such as **SHA-256**
 
 #### Command-line tools for hashing:
-- `sha256sum` / `sha512sum`
+- `sha256sum`
 - `hashdeep` — batch hashing of multiple files
-- `dc3dd` / `dcfldd` — enhanced versions of `dd` that integrate hashing into the copy process
+- `dc3dd` — enhanced `dd`-style tool that integrates hashing into the copy process
 
 ### Forensic Imaging Tools
 A **forensic image** is a bit-for-bit copy of a storage device produced using forensically sound tools. It preserves:
@@ -201,8 +197,7 @@ A **forensic image** is a bit-for-bit copy of a storage device produced using fo
 | **EnCase** | Industry-standard commercial tool; expensive but widely used and accepted in courts |
 | **FTK Imager** | Supports popular forensic formats; commonly used in real investigations |
 | **dd** | Classic Unix bit-by-bit copy command; available on any Linux/macOS system |
-| **dc3dd / dcfldd** | Enhanced dd with built-in hashing, logging, and error handling |
-| **Autopsy / Sleuth Kit** | Open-source forensic analysis platform |
+| **dc3dd** | Enhanced `dd`-style tool with built-in hashing |
 
 > 📎 *Slide reference: `Slides/Atzeni/02_terms.pdf`, slides: Forensic Imaging & Tools*
 
@@ -217,7 +212,7 @@ A forensic investigator must **never** use tools found on the suspect's own syst
 The hierarchy of trust (from lowest to highest):
 1. Tool on the **suspect's machine** using the suspect's OS libraries — vulnerable to both compiled and library-level tampering
 2. Tool on investigator's **USB drive**, but relying on the suspect system's shared libraries — partial trust
-3. **Full live Linux distribution** booted from the investigator's own media (e.g., Kali, Tsuruji, Caine) — fully trusted environment, best practice
+3. A complete operating environment under the investigator's control, such as a live system booted from trusted media — strongest option when the case context allows it
 
 > 📎 *Slide reference: `Slides/Atzeni/02_terms.pdf`, slide: Tools & Trust*
 

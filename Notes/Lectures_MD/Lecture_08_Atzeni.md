@@ -177,6 +177,43 @@ The attempt to destroy evidence using `eraser.exe` is itself forensically signif
 
 ---
 
+## 6. Legal Handling, Recommendations, and Reporting
+
+Atzeni closed the case study by distinguishing the technical reconstruction from what would be needed in a real legal assessment.
+
+### 6.1 Chain of Custody and Evidence Handling
+
+Even a technically sound conclusion can fail in court if the evidence was handled incorrectly. Investigators must preserve and document the **chain of custody** and avoid altering original evidence:
+
+- Work on copies of forensic images rather than on originals.
+- If an image must be flashed to a physical USB device for experimentation, first create another copy of the image.
+- Use properly configured and legally admissible **write blockers** when copying or examining storage.
+- Maintain enough documentation to prove that the evidence remained reliable throughout the investigation.
+
+### 6.2 Alternative Explanations
+
+The investigator must organize findings so that competing explanations become unlikely. For example, the defense might argue that John created the Triton archive as a legitimate backup for the organization. The evidence presentation therefore needs to address not only what happened, but why alternative benign explanations do not fit the overall timeline.
+
+### 6.3 Organisational Recommendations
+
+Atzeni listed simple mitigation measures that Shockwave Analytics could adopt after the incident:
+
+- Role-based access control so engineers can access only the project parts needed for their work.
+- Restrictions on external devices such as USB drives.
+- Monitoring and alerting for anomalous behaviour, such as multi-gigabyte outbound transfers after midnight.
+- Data loss prevention controls for sensitive information.
+- Alerting channels that notify security administrators quickly when suspicious access or transfer attempts occur.
+
+### 6.4 Presentation of Results
+
+The final presentation must be adapted to the audience:
+
+- A CEO needs few technical details and a clear mitigation/budget picture.
+- A legal attorney needs the damages and the evidence that identifies the suspect.
+- Technical appendices can provide deeper details for audiences able to evaluate them.
+
+---
+
 ## Key Concepts & Definitions
 
 | Term | Definition |
@@ -186,6 +223,8 @@ The attempt to destroy evidence using `eraser.exe` is itself forensically signif
 | **eraser.exe** | Secure deletion tool run by John Matthews in an attempt to destroy traces; the attempt was unsuccessful |
 | **MFT (Master File Table)** | NTFS structure recording metadata for every file and directory; retains records of deleted files and is a primary forensic artefact |
 | **Consciousness of guilt** | Legal concept: deliberate post-crime attempts to destroy evidence are themselves indicative of knowing wrongdoing |
+| **Chain of custody** | Documented handling of evidence so that its integrity and admissibility can be defended in court |
+| **Write blocker** | Hardware/software control used to read storage while preventing writes to the original evidence |
 | **Anti-forensics** | Techniques used to hinder forensic investigation; here: file deletion and use of `eraser.exe` |
 | **Exfiltration** | Unauthorised transfer of data outside an organisation's control |
 | **Project Triton** | The machine learning engine and intellectual property at the centre of the Shockwave Analytics insider theft |
@@ -200,4 +239,6 @@ The attempt to destroy evidence using `eraser.exe` is itself forensically signif
 - The exfiltration used two redundant channels (USB + personal Gmail encrypted archive), which doubled the available forensic evidence.
 - `eraser.exe` was run post-exfiltration but failed to remove traces from prefetch files, MFT, Windows registry, and firewall logs.
 - The anti-forensics attempt itself constitutes **consciousness of guilt** — a legally significant indicator of intentional wrongdoing.
+- A real case would also require careful chain of custody, work on copied images, write blockers, and audience-specific reporting.
+- Post-incident recommendations include role-based access control, USB restrictions, anomaly monitoring, DLP, and alerting.
 - Forensic reconstruction answered all five questions: **who** (John Matthews, alone), **where** (company premises), **when** (two-day window in final work week), **how** (encrypted 7-Zip archive via USB + Gmail), **why** (financial and career motivation).

@@ -150,6 +150,8 @@ This project welcomes contributions! Follow this step-by-step workflow to add ne
 | 23 | [Lecture_23_Atzeni.md](Notes/Lectures_MD/Lecture_23_Atzeni.md) | Network Forensics, OSINT & Social Media | `12_Network.pdf` |
 | 24 | [Lecture_24_Atzeni.md](Notes/Lectures_MD/Lecture_24_Atzeni.md) | Network Anti-Forensics & Attack Obfuscation | `12_Network.pdf` |
 | 25 | [Lecture_25_Atzeni.md](Notes/Lectures_MD/Lecture_25_Atzeni.md) | TOR & Cloud Forensics | `13_Digital-Forensics-in-the-TOR-Network.pdf`, `14_Cloud.pdf` |
+| 27 | [Lecture_27_Atzeni.md](Notes/Lectures_MD/Lecture_27_Atzeni.md) | Cloud Forensics Effects & Acquisition Strategy | `14_Cloud.pdf` |
+| 28 | [Lecture_28_Atzeni.md](Notes/Lectures_MD/Lecture_28_Atzeni.md) | Video Carving, OS Forensics & Memory Acquisition | `15_OS.pdf`, `16_volatile.pdf` |
 
 ### Prof. Vaciago – Legal Track
 
@@ -162,6 +164,7 @@ This project welcomes contributions! Follow this step-by-step workflow to add ne
 | 16 | [Lecture_16_Vaciago.md](Notes/Lectures_MD/Lecture_16_Vaciago.md) | Guest Expert Insights & Garlasco Case Study | N/A (side event) |
 | 19 | [Lecture_19_Vaciago.md](Notes/Lectures_MD/Lecture_19_Vaciago.md) | The 10 Rules for a Digital Forensic Report | `5_Rules_Digital_Forensics.pdf` |
 | 22 | [Lecture_22_Vaciago.md](Notes/Lectures_MD/Lecture_22_Vaciago.md) | Digital Alibi Feedback & Hacking Team Case | `5_Rules_Digital_Forensics.pdf`, `6_Hacking_Team_Case.pdf` |
+| 26 | [Lecture_26_Vaciago.md](Notes/Lectures_MD/Lecture_26_Vaciago.md) | Malware Production, Mens Rea & Criminal Liability | `Articoli_Codice_Penale.pdf` |
 
 ---
 
@@ -187,7 +190,9 @@ Chapter notes aggregate content **across multiple lectures** per topic, using th
 | [Chapters_MD/Atzeni/11_Data-Sanitisation-Techniques.md](Notes/Chapters_MD/Atzeni/11_Data-Sanitisation-Techniques.md) | ✅ Complete | Data Sanitisation Techniques | Lecture 21 |
 | [Chapters_MD/Atzeni/12_Network.md](Notes/Chapters_MD/Atzeni/12_Network.md) | ✅ Complete | Network Forensics | Lectures 21, 23 & 24 |
 | [Chapters_MD/Atzeni/13_Digital-Forensics-in-the-TOR-Network.md](Notes/Chapters_MD/Atzeni/13_Digital-Forensics-in-the-TOR-Network.md) | ✅ Complete | TOR Network Forensics | Lecture 25 |
-| [Chapters_MD/Atzeni/14_Cloud.md](Notes/Chapters_MD/Atzeni/14_Cloud.md) | ✅ Complete | Cloud Forensics | Lecture 25 |
+| [Chapters_MD/Atzeni/14_Cloud.md](Notes/Chapters_MD/Atzeni/14_Cloud.md) | ✅ Complete | Cloud Forensics | Lectures 25 & 27 |
+| [Chapters_MD/Atzeni/15_OS.md](Notes/Chapters_MD/Atzeni/15_OS.md) | ✅ Complete | Operating System Forensics | Lecture 28 |
+| [Chapters_MD/Atzeni/16_volatile.md](Notes/Chapters_MD/Atzeni/16_volatile.md) | ✅ Complete | Volatile Memory Forensics | Lecture 28 |
 
 ### Prof. Vaciago – Legal Track
 
@@ -199,6 +204,7 @@ Chapter notes aggregate content **across multiple lectures** per topic, using th
 | [Chapters_MD/Vaciago/3_Law_48_08.md](Notes/Chapters_MD/Vaciago/3_Law_48_08.md) | ✅ Complete | Italian Law 48/2008 | Lecture 12 |
 | [Chapters_MD/Vaciago/5_Rules_Digital_Forensics.md](Notes/Chapters_MD/Vaciago/5_Rules_Digital_Forensics.md) | ✅ Complete | Forensic Report Writing Rules | Lectures 19 & 22 |
 | [Chapters_MD/Vaciago/6_Hacking_Team_Case.md](Notes/Chapters_MD/Vaciago/6_Hacking_Team_Case.md) | ✅ Complete | Hacking Team Case | Lecture 22 |
+| [Chapters_MD/Vaciago/Articoli_Codice_Penale.md](Notes/Chapters_MD/Vaciago/Articoli_Codice_Penale.md) | ✅ Complete | Articles 615-ter and 615-quater | Lecture 26 |
 
 ### Side Events and Presentations
 

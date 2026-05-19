@@ -6,7 +6,7 @@
 ---
 
 ## Introduction
-The Morris Worm (November 1988) is universally recognised as the **first major cybersecurity attack** and the founding case study of computer forensics as a discipline. Released onto ARPANET by graduate student Robert Tappan Morris, it was not intended to cause damage — yet it crashed approximately 6,000 machines, disconnected large segments of what would become the internet, and caused an estimated $10 million in damage. Its investigation pioneered techniques still in use today: log analysis, network traffic reconstruction, and the use of email as digital evidence. Its legal outcome produced one of the first federal prosecutions under the Computer Fraud and Abuse Act.
+The Morris Worm is presented in the lecture as one of the first major worms and as a milestone for computer forensics. Released onto ARPANET by graduate student Robert Tappan Morris, it was not intended to cause damage — yet it crashed approximately 6,000 machines, disconnected large segments of what would become the internet, and caused an estimated $10 million in damage. Its investigation involved techniques still central today: log analysis, network activity reconstruction, and examination of email exchanges. Its legal outcome was one of the first applications of the Computer Fraud and Abuse Act to a digital scenario.
 
 ---
 
@@ -18,9 +18,9 @@ The Morris Worm (November 1988) is universally recognised as the **first major c
 - Expert in Unix systems and network programming
 
 ### Intent vs. Outcome
-Morris's stated purpose was **research**: to measure whether a self-replicating program could propagate across a network and, if so, how far. This was not an attempt to steal data, issue ransom demands, or cause visible damage.
+Morris's stated purpose in the lecture was exploratory: he wanted to test the possibility of creating a worm. This was not presented as an attempt to steal data, issue ransom demands, or deliberately attack the network.
 
-The worm was released onto **ARPANET** — the precursor to the internet, at the time connecting primarily US universities and a small number of foreign research institutions.
+The worm was released onto the network infrastructure connected to **ARPANET** — the precursor to the internet, at the time connecting mostly US universities and some foreign universities.
 
 > The distinction between intended purpose and actual outcome became a central issue in both the forensic investigation and the criminal prosecution.
 
@@ -32,7 +32,7 @@ The worm was released onto **ARPANET** — the precursor to the internet, at the
 
 | Component | Detail |
 |-----------|--------|
-| **Target OS** | Unix BSD 4 (written in C) |
+| **Target OS** | Unix BSD 4 systems (the worm was written in C) |
 | **Propagation mechanism** | Two-stage: small "grappling hook" downloader deployed first; fetched and executed the main worm binary |
 | **Binary size** | A few kilobytes — fits on a single floppy disk |
 | **Original artefact** | Preserved at the Computer History Museum |
@@ -45,13 +45,13 @@ The two-stage architecture — a small initial dropper fetching a larger payload
 
 ## 3. Vulnerabilities Exploited
 
-The worm exploited **four independent vulnerabilities**. Compromising any single one was sufficient to gain a foothold; using all four maximised propagation speed and coverage.
+The worm exploited several weaknesses that were common in Unix environments at the time:
 
 | Vulnerability | Technical Description | Why It Worked |
 |---------------|-----------------------|---------------|
 | **sendmail debug mode** | The `sendmail` daemon was shipped with a remote debugging interface enabled. This allowed an attacker to send a specially crafted SMTP command and execute arbitrary code on the target. | Misconfiguration: debug mode should never be enabled in production |
 | **finger daemon buffer overflow** | The `fingerd` daemon did not validate input length. Sending a string longer than the allocated buffer overwrote the function return address on the stack, allowing execution of attacker-controlled code. | Classic stack-based buffer overflow |
-| **rexec / rsh trust relationships** | `rexec` and `rsh` authenticated users based solely on the **source IP address** of the connection. A host listed in a `.rhosts` file was trusted without password. | IP-based authentication is trivially spoofable |
+| **rexec / rsh trust relationships** | `rexec` and `rsh` could authenticate remote execution based on the source machine. | IP- or host-based trust was acceptable in that era but is unsafe in modern networks |
 | **Weak / predictable passwords** | The worm tried obvious passwords: the username itself and the username reversed. Many accounts had trivial passwords set. | Many administrators and users had set trivial passwords |
 
 > 📎 *Slide reference: `01b_Cybersecurity-History-MorrisWorm.pdf` — Vulnerabilities Exploited*
@@ -68,7 +68,7 @@ Morris anticipated that system administrators might respond by running a decoy p
 
 ### Why This Was Catastrophic
 On a densely connected network with exponential propagation:
-- A machine could be infected **7, 14, or more times simultaneously**
+- A machine could be infected multiple times simultaneously
 - Each instance competed for CPU and memory
 - The result was a **fork bomb effect**: processes multiplied until machines were completely unresponsive
 - System crashes became widespread within hours
@@ -86,7 +86,7 @@ On a densely connected network with exponential propagation:
 |--------|-------|
 | **Machines infected** | ~6,000 (approx. 2,000 in the first 15 hours) |
 | **Network impact** | ARPANET backbone segments physically disconnected for days to prevent recontamination |
-| **Availability** | Infected machines rendered completely unusable; some required OS reinstallation |
+| **Availability** | Infected machines became completely unusable until disinfected |
 | **Economic damage** | Estimated ~$10,000,000 USD |
 
 > *"They were like dead in the water."* — Clifford Stoll
@@ -102,16 +102,15 @@ The Morris Worm triggered the **first major coordinated digital forensic respons
 ### Evidence Sources Used
 | Source | What It Revealed |
 |--------|-----------------|
-| **System logs** | Which hosts were contacted; timestamps of infection attempts; process creation records |
-| **Network traffic captures** | Reconstruction of the worm's propagation graph across ARPANET |
-| **Email records** | Communications between Morris and colleagues during development were recovered and used as evidence (establishing **email as a category of digital evidence**) |
+| **System logs** | Traces useful for understanding infected hosts and activity around the infection |
+| **Network activity** | Reconstruction of how the worm propagated across connected hosts |
+| **Email exchanges** | Communications before and during the infection were part of the investigation |
 
 
 ### Methodological Firsts
-- First coordinated multi-institutional forensic analysis of a network incident
-- First use of **email as digital evidence** in a criminal prosecution
-- First example of **log correlation** across multiple systems to reconstruct an attack timeline
-- First demonstration that digital evidence is **volatile and perishable** — machines had to be preserved quickly before administrators overwrote logs
+- A foundational example of digital investigation around a network incident
+- Early use of **logs, network activity, and email exchanges** as investigative sources
+- A clear demonstration that coordinated incident response matters: Atzeni stresses that an earlier coordinated response could have reduced the spread
 
 > 📎 *Slide reference: `01b_Cybersecurity-History-MorrisWorm.pdf` — The Forensic Investigation [inferred]*
 
@@ -119,17 +118,14 @@ The Morris Worm triggered the **first major coordinated digital forensic respons
 
 ## 7. Legal Outcome
 
-Robert Tappan Morris was charged and convicted under the **Computer Fraud and Abuse Act (CFAA)** — one of the earliest federal applications of this law.
+Robert Tappan Morris was charged and convicted under the **Computer Fraud and Abuse Act (CFAA)** — described in the lecture as one of the earliest federal applications of this law to a digital scenario.
 
 **Sentence:**
 - 3 years' probation
 - 100 hours community service
 - $10,000 fine
 
-**Key legal arguments:**
-- Defence argued lack of intent to cause harm
-- Prosecution argued that the damage was a foreseeable consequence of releasing self-replicating code onto a production network
-- The court sided with prosecution; the **lack of malicious intent did not negate legal liability** for the damage caused
+The lecture stresses the contrast between Morris's lack of intent to attack the internet and the serious consequences that nevertheless followed. It does not reconstruct the detailed courtroom arguments.
 
 > 📎 *Slide reference: `01b_Cybersecurity-History-MorrisWorm.pdf` — Legal Outcome*
 
@@ -140,14 +136,14 @@ Robert Tappan Morris was charged and convicted under the **Computer Fraud and Ab
 | Impact | Description |
 |--------|-------------|
 | **First CERT** | Computer Emergency Response Team (CERT/CC) established at Carnegie Mellon University, initially funded by DARPA — the first institution dedicated to coordinating responses to internet security incidents |
-| **CFAA jurisprudence** | Set foundational legal precedent that damaging computer systems is a federal crime regardless of intent |
-| **Monoculture lesson** | All 6,000 infected machines shared the same Unix BSD 4 architecture and vulnerabilities — a single set of exploits cascaded globally; the risk of platform monoculture remains relevant today |
+| **CFAA jurisprudence** | Early application of a federal law developed for the growing digital scenario |
+| **Monoculture lesson** | If many systems share the same vulnerable architecture, a single weakness can affect the whole connected environment |
 | **Security culture shift** | Universities and organisations began taking network security seriously; led to increased investment in patch management, access controls, and log monitoring |
 | **Password hygiene** | Highlighted the critical importance of non-trivial passwords, prompting early password policy initiatives |
 | **Popular culture** | Referenced in several books |
 
 ### The Monoculture Risk — Ongoing Relevance
-The 1988 lesson: if all systems run the same software with the same vulnerabilities, a single exploit can propagate universally. Modern equivalents:
+The lesson Atzeni draws from the Morris Worm: if all systems run the same software with the same vulnerabilities, a single exploit can propagate widely. Modern equivalents:
 - Widespread use of a single cloud provider's services
 - Homogeneous corporate endpoint environments (all Windows with the same patch level)
 - Widely-deployed open-source libraries with a single critical vulnerability
@@ -160,10 +156,10 @@ The 1988 lesson: if all systems run the same software with the same vulnerabilit
 
 | Term | Definition |
 |------|------------|
-| **Morris Worm** | First major internet worm (1988); first significant computer forensic case; created by Robert Tappan Morris at a prestigious US university |
-| **ARPANET** | Predecessor to the internet; primarily connected US universities and military/government research institutions |
+| **Morris Worm** | One of the first major internet worms and a foundational computer-forensics case; created by Robert Tappan Morris at a prestigious US university |
+| **ARPANET** | Predecessor to the internet; the lecture describes it as mostly connecting US universities and some foreign universities |
 | **Buffer overflow** | Vulnerability in which input data exceeds allocated memory, overwriting adjacent memory and potentially enabling arbitrary code execution |
-| **rexec / rsh** | Unix remote execution commands that authenticate solely by source IP address — no password required from trusted hosts |
+| **rexec / rsh** | Unix remote execution commands that could rely on machine-based trust rather than strong modern authentication |
 | **Fork bomb** | A condition in which a process continuously creates copies of itself, exhausting system resources until the system crashes |
 | **CERT/CC** | Computer Emergency Response Team / Coordination Center — first institution established to coordinate internet security incident response; founded at CMU in response to the Morris Worm |
 | **CFAA** | Computer Fraud and Abuse Act — US federal law addressing unauthorised access to computer systems; applied in Morris's prosecution |
@@ -175,10 +171,10 @@ The 1988 lesson: if all systems run the same software with the same vulnerabilit
 
 ## Summary
 
-- The Morris Worm (1988) was the **first internet worm** — not a targeted attack but a research experiment that caused unintended, catastrophic damage.
+- The Morris Worm was presented as one of the first worms and a foundational computer-forensics case — not a targeted attack but an experiment that caused unintended, catastrophic damage.
 - It exploited **four vulnerabilities simultaneously**: sendmail debug mode, finger daemon buffer overflow, rexec/rsh trust, and weak passwords.
 - The **1-in-7 replication probability** — designed as a safety measure against countermeasures — inadvertently turned the worm into a fork bomb, crashing ~6,000 machines and causing ~$10M in damage.
-- The forensic investigation established foundational precedents: **email as evidence**, **log correlation** for timeline reconstruction, and the critical importance of **evidence preservation speed**.
-- Morris was convicted under the **CFAA**, demonstrating that absence of malicious intent does not eliminate criminal liability for foreseeable damage.
-- Direct consequences include the founding of **CERT/CC** and the first serious application of the CFAA in a federal prosecution.
+- The forensic investigation highlighted the value of **logs, network activity, and email exchanges** in reconstructing a digital incident.
+- Morris was convicted under the **CFAA**, one of the early applications of that law to a digital scenario.
+- Direct consequences include the founding of **CERT/CC** and an early application of the CFAA in a federal prosecution.
 - The **monoculture lesson** — that homogeneous platforms amplify single-exploit impact — remains one of the most cited security principles derived from this incident.

@@ -51,6 +51,8 @@ The lecture compares several ways to remove recoverable data:
 
 Atzeni stresses that sanitisation must be verified. A procedure that writes data or issues an erase command must check that the expected operation succeeded.
 
+Verification may include statistical checking of a percentage of the device, full verification for high-security contexts, or hash-based checking against expected values for a fully overwritten device. Controller status and logs are useful to monitor failures, but they may not be sufficient alone. In litigation, a trusted third party may certify the operation, and the report should preserve who performed it, when, with which equipment, and with what result.
+
 ---
 
 ## 4. Important Terms
@@ -66,11 +68,13 @@ Several technical terms shape the sanitisation discussion:
 
 ## 5. Network Forensics Introduction
 
-The lecture then begins network forensics. Atzeni defines the field through the acquisition and analysis of network traffic and related artifacts, often as a complement to host and file system evidence.
+The lecture then begins network forensics. Atzeni defines the strict field as acquisition and analysis of network traffic, but also uses a broader sense that includes network traces, public online artifacts, and OSINT/SOCMINT-style information about people, organisations, domains, and services.
 
 > 📎 *Slide reference: `12_Network.pdf` — Network forensics*
 
 Modern network investigation must consider encryption through TLS, SSH, IPsec, and VPNs. Even when payload inspection is unavailable, packet captures may preserve useful lower-layer information, timing, addresses, and encrypted sessions that could become readable if keys are later recovered.
+
+Public network traces can also support an investigation: social media activity, forum posts, job ads, domain-registration history, public repositories, old website snapshots, and IP-address metadata may help reconstruct behaviour, identify possible tools or infrastructure, and refine hypotheses.
 
 ---
 
@@ -84,6 +88,8 @@ The lecture mentions practical tools and formats:
 
 Network evidence can be correlated with host logs, file system artifacts, and service-provider information to refine investigative hypotheses.
 
+Because online information can change outside the investigator's control, acquisition must preserve the observed state. Examples include timestamped screenshots, digitally signed captures, downloaded pages or metadata, and a documented chain of custody. The analysis phase may then build graphs linking accounts, IP addresses, domains, organisations, services, and events, sometimes requiring cooperation from network administrators, social platforms, email providers, or other third parties.
+
 ---
 
 ## Key Concepts & Definitions
@@ -95,6 +101,7 @@ Network evidence can be correlated with host logs, file system artifacts, and se
 | **Degaussing** | Use of a strong magnetic field to destroy data on magnetic media. |
 | **PCAP** | Packet capture format used to store network traffic. |
 | **Deep Packet Inspection** | Inspection of packet contents, limited when payloads are encrypted. |
+| **OSINT** | Use of publicly available online information to support investigative hypotheses. |
 
 ---
 
@@ -104,5 +111,6 @@ Network evidence can be correlated with host logs, file system artifacts, and se
 - NIST distinguishes Clear, Purge, and Destroy levels of sanitisation.
 - Overwriting, degaussing, crypto-erase, firmware commands, remote wipe, and physical destruction apply to different media and assurance levels.
 - Sanitisation must be verified to be forensically defensible.
-- Network forensics starts from traffic captures, logs, and related network artifacts.
+- Network forensics starts from traffic captures, logs, public traces, and related network artifacts.
 - Encryption limits payload inspection but does not make network captures useless.
+- Network evidence should be captured with timestamps, signatures, and chain-of-custody documentation because online content can change quickly.

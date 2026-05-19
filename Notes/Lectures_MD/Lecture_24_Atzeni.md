@@ -48,7 +48,6 @@ Attackers may manipulate packet metadata or timing.
 | Technique | Purpose |
 |-----------|---------|
 | **IP spoofing** | Hide or falsify the apparent origin. |
-| **Fragmentation** | Disrupt reconstruction or inspection. |
 | **Slow scanning** | Spread reconnaissance over long time windows to avoid detection. |
 | **Noise generation** | Blend malicious packets into large volumes of benign traffic. |
 | **Decoy traffic** | Overload analyst attention and monitoring systems. |
@@ -65,6 +64,9 @@ Countermeasures include:
 - behavioural analytics;
 - tamper-resistant logging such as WORM storage;
 - threat intelligence feeds;
+- honeypots or honeynets to study current attacker behaviour;
+- whitelisting and careful network shaping where the defender controls the infrastructure;
+- expert review supported by automated or AI-based detection;
 - correlation across host, network, and malware artifacts.
 
 ---
@@ -89,3 +91,4 @@ Countermeasures include:
 - Slow, distributed activity is harder to detect than obvious high-volume attacks.
 - Decoy traffic can conceal a more important intrusion.
 - Behavioural analytics and threat intelligence are needed when signatures are insufficient.
+- Honeypots, whitelisting, tamper-resistant logs, and expert review can help counter network anti-forensics.

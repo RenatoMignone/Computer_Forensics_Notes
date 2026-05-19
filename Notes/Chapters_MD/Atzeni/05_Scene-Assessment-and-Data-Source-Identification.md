@@ -21,14 +21,14 @@ The core intellectual challenge of this chapter is not technical but strategic: 
 
 ### 1.1 Purpose
 
-**Open Source Intelligence (OSINT)** is intelligence gathered from publicly available sources without actively probing or interacting with the target systems. Conducting OSINT before attending a scene allows the investigator to:
+**Open Source Intelligence (OSINT)** is intelligence gathered from publicly available sources. Conducting OSINT before attending a scene allows the investigator to:
 
 - Understand the suspect's technical infrastructure.
 - Identify the likely boundaries of the investigative perimeter.
 - Form initial hypotheses about which data sources to prioritise.
 - Reduce the risk of making incorrect assumptions on arrival.
 
-OSINT is strictly **passive** with respect to the target: no packets are sent to the suspect's systems, no accounts are accessed without authorisation, and no interaction takes place that could alert the subject or trigger countermeasures.
+The lecture's examples range from mostly passive lookups (Whois, DNS, social media) to active checks such as `nmap`; active probing must be authorised and chosen carefully because it can alert the subject or alter the environment.
 
 > 📎 *Slide reference: `05_Scene-Assessment-and-Data-Source-Identification.pdf` — Pre-Analysis and OSINT*
 
@@ -49,7 +49,7 @@ OSINT is strictly **passive** with respect to the target: no packets are sent to
 | **LinkedIn** | Employment history, skills, professional connections, "open to opportunities" / "in transition" language that may indicate intent to change organisations | Increasingly restricted by API limitations |
 | **X (formerly Twitter), Facebook** | Public statements, associations, location check-ins, timestamps | Declining usefulness as platforms restrict automated access |
 
-#### Network Topology (Passive)
+#### Network Topology (Authorised Active Checks)
 
 - `nmap` against the suspect's network ranges to enumerate open ports, services, and OS fingerprints; useful for understanding what software and systems the suspect runs.
 
@@ -59,7 +59,7 @@ OSINT is strictly **passive** with respect to the target: no packets are sent to
 
 OSINT effectiveness is **declining** for social media sources due to:
 
-1. **API monetisation**: major platforms (X, Reddit, Meta) have moved data access behind paid commercial APIs, limiting what automated tools can retrieve.
+1. **Paid or restricted access**: many platforms have moved automated access behind paid or limited APIs, reducing what tools can retrieve.
 2. **Declining personal content**: as influencer and advertising content displaces personal posts, the signal-to-noise ratio for investigative purposes decreases.
 3. **Increased privacy awareness**: suspects and targets are more likely to configure accounts as private.
 
@@ -71,7 +71,7 @@ Despite these trends, OSINT remains valuable, particularly for infrastructure re
 
 ### 2.1 The Perimeter Concept
 
-The **investigative perimeter** is the complete set of physical and logical resources that may contain evidence relevant to the investigation. Defining it upfront — even if it later requires revision — prevents both **under-collection** (missing critical sources) and **over-collection** (examining data the warrant does not authorise, which can invalidate findings).
+The **investigative perimeter** is the set of physical and logical resources that may contain evidence relevant to the investigation. Defining it upfront — even if it later requires revision — prevents missing critical sources and helps keep the work within the allowed scope.
 
 The analogy to risk analysis is explicit: just as risk analysis begins with defining the scope of what is being assessed, forensic investigation begins with defining the boundary of what will be examined.
 
@@ -110,8 +110,8 @@ No single investigative procedure applies to all cases. Three major contextual f
 
 | Skill Level | Implication |
 |-------------|-------------|
-| **Low-skill suspect** | It is generally safe to briefly review the running environment (active connections, running processes) before shutdown. The risk of triggered countermeasures is low. |
-| **High-skill suspect** | The device may have active countermeasures: dead-man's switches that trigger a wipe on unexpected input, encrypted volumes that auto-lock on VPN disconnect, scripts monitoring for analyst tool signatures. Approach with extreme caution; any interaction may be destructive. |
+| **Low-skill suspect** | A focused live review of active connections or system state may be reasonable if the context supports it. |
+| **High-skill suspect** | The device may be modified or monitored; even normal-looking interaction may trigger countermeasures or produce manipulated results. |
 
 ### 3.2 Suspect Role within the Target Organisation
 
@@ -177,15 +177,15 @@ This is a further argument for minimising the time between identifying a device 
 |----------|----------------|-----------|
 | **Local (seized device)** | Fully under investigator control once seized | Straightforward with write blocker |
 | **Organisational server** (under investigative organisation's control) | Accessible with internal cooperation | Manageable |
-| **ISP / carrier records** | Network-layer metadata; IP address assignments; call records | Requires legal request; usually cooperative within 24–72 h in many jurisdictions |
-| **Cloud provider** (multinational) | Data is under a foreign company's jurisdiction; may span multiple countries | Most challenging: provider may decline, legal process takes weeks, jurisdiction conflicts may arise |
+| **ISP / carrier records** | Network-layer metadata; IP address assignments; call records | May require formal request or legal process |
+| **Cloud provider** (multinational) | Data is under provider control and may be outside the investigator's direct reach | Most challenging: provider cooperation, user cooperation, and jurisdiction can all become obstacles |
 
-For cloud evidence, the optimal tactic is to capture **live session tokens from RAM** before the suspect is informed of the investigation. Once aware, the suspect can:
+For cloud evidence, a live system may preserve access or context that is lost once the suspect is informed of the investigation. Once aware, the suspect can:
 - Revoke active sessions.
 - Change credentials.
 - Delete cloud-stored files.
 
-After revocation, even a valid court order directed at the provider may take weeks to process — and may ultimately fail due to jurisdictional complexity or provider policy.
+After revocation, access may be technically difficult or impossible without provider or suspect cooperation.
 
 > *"Even with powerful technical means, attempting to access cloud evidence without either provider cooperation or suspect cooperation might be finally not possible."*
 
@@ -218,7 +218,7 @@ Before any device is moved, unplugged, or interacted with:
 - **Photograph every device in situ** — its physical position, screen state (on or off), cable connections, orientation.
 - Photograph the **screen contents** if the device is on (may show logged-in user, active applications, last accessed files).
 - Use video to document the physical environment as a whole before individual items are bagged.
-- All photographs must be **timestamped** by the camera and logged in the chain-of-custody record.
+- Photographs should be tied to the chain-of-custody record so the documented actions can be checked later.
 
 This photographic documentation is typically required by forensic Standard Operating Procedures and forms part of the official investigation file submitted in legal proceedings.
 
@@ -305,7 +305,7 @@ Phase 2 — Volatile Data Capture (if devices are live)
     If suspect is skilled: extreme caution; consider immediate controlled shutdown
 
 Phase 3 — Isolation
-├── Mobile devices → Faraday bag immediately (block remote wipe)
+├── Mobile devices → RF isolation or lawful jamming where appropriate (block remote wipe)
 ├── Wired devices → network cable disconnection
 └── Document each isolation step with timestamp
 
@@ -329,13 +329,13 @@ Phase 5 — Asset Inventory Construction
 
 | Term | Definition |
 |------|------------|
-| **OSINT** | Open Source Intelligence — intelligence gathered from publicly available sources without actively probing the target |
+| **OSINT** | Open Source Intelligence — intelligence gathered from publicly available sources; active checks such as `nmap` require authorisation and care |
 | **Investigative perimeter** | The complete set of physical and logical resources potentially containing evidence; defined before the investigation begins and updated as new sources are discovered |
 | **Volatility order** | The sequence in which evidence sources must be acquired, from most transient (CPU registers, RAM) to most persistent (archived logs, cloud data) |
-| **Dead-man's switch** | A countermeasure configured by a technically skilled suspect that triggers destructive action (e.g., secure wipe) when an unexpected event occurs (power loss, loss of network, input from unknown device) |
+| **Suspect countermeasure** | A destructive or misleading behaviour configured by a technically skilled suspect and triggered by investigator interaction |
 | **DHCP lease log** | A record from the DHCP server of which IP address was assigned to which MAC address at what time; critical for correlating IP-level log entries to specific devices |
-| **Faraday bag** | An RF-shielded enclosure that blocks all wireless signals; used to prevent remote wipe commands from reaching a seized mobile device |
-| **Cloud session token** | An authentication credential held in RAM on a live system that grants access to a cloud account; capturing it during live acquisition may allow investigators to access cloud evidence before the suspect revokes access |
+| **RF isolation / jammer** | A way to prevent wireless or mobile-network communication, including remote wipe commands, where lawful and appropriate |
+| **Live cloud session/context** | Active state on a running device that may still allow lawful access to cloud evidence before the suspect revokes it |
 | **Network topology diagram** | A visual map of all nodes, connections, IP/MAC addresses, and data flows in the suspect's network environment; used for anomaly detection and cross-referencing |
 | **Asset inventory** | A structured record of every evidence item, including identity, location, custody history, and technical specifications |
 | **SOP (Standard Operating Procedure)** | A documented, stepwise procedure derived from a recognised forensic standard that prescribes exactly how the scene assessment and collection must be conducted to remain court-compliant |
@@ -347,9 +347,9 @@ Phase 5 — Asset Inventory Construction
 - **OSINT precedes scene arrival**: use Whois, DNS, social media (LinkedIn, Facebook, X), and `nmap` to map the suspect's infrastructure and skill level before touching any device.
 - The **investigative perimeter** has a physical dimension (devices, locations) and a logical dimension (networks, cloud, ISP records); both must be explicitly defined to avoid under-collection or over-collection.
 - The approach must adapt to the **skill level of the suspect** and the **cooperative or adversarial stance** of parties with access to infrastructure (system administrators, cloud providers).
-- Evidence must be acquired in **volatility order**: RAM and active connections before persistent storage; cloud session tokens before the suspect is alerted.
-- **Cloud evidence** is the most challenging category: session tokens should be captured from live RAM; after suspect awareness, access may be permanently revoked.
+- Evidence must be acquired in **volatility order**: RAM and active connections before persistent storage; live cloud context may need attention before the suspect is alerted.
+- **Cloud evidence** is one of the most challenging categories: active access may disappear after suspect awareness, and provider or user cooperation may be needed.
 - **Peripheral devices** (especially printers and scanners) are recurring overlooked sources: they may retain last-used document memory and print/scan job logs.
-- **Documentation starts at first physical contact**: photographs in situ, Faraday bag for mobile devices, chain-of-custody record from moment of seizure.
+- **Documentation starts at first physical contact**: photographs in situ, appropriate isolation for mobile devices, chain-of-custody record from moment of seizure.
 - A **network topology diagram** and **asset inventory database** should be built from the identification phase onward to enable anomaly detection and cross-source correlation.
-- The entire process must follow a documented **Standard Operating Procedure** compliant with a recognised forensic standard (ISO/IEC 27037, NIST SP 800-86, ACPO) to ensure court admissibility.
+- The entire process should follow a documented **Standard Operating Procedure** tied to the applicable forensic standard or organisational procedure.

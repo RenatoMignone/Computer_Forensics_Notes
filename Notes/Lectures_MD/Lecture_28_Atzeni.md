@@ -54,6 +54,8 @@ Atzeni defines OS forensics as analysis of data stored or processed by an operat
 
 The operating system is important because it connects user activity, application execution, storage, processes, memory, and network activity.
 
+Atzeni also mentions integrated forensic suites such as Autopsy as useful teaching examples: they combine modules for different evidence types and help reconstruct unified timelines, although he notes that performance and stability may limit their use in real investigations.
+
 ---
 
 ## 4. Rootkit Investigation
@@ -108,7 +110,7 @@ The lecture introduces several tools and approaches:
 - **LiME**, a Linux kernel module for live memory acquisition;
 - **Fmem**, which exposes physical memory through a special device file such as `/dev/fmem`;
 - **AVML**, which can acquire Linux memory and transfer it to external locations, including cloud storage;
-- crash dump utilities such as `kdump`, originally intended for debugging but sometimes useful for forensic analysis.
+- crash dump utilities, originally intended for debugging but sometimes useful for forensic analysis.
 
 LiME can write memory to a local file or stream it over the network to a forensic workstation. This can reduce direct interaction with the target storage. However, LiME must be compiled for the target kernel and system context, because memory structures depend on the operating system version.
 
@@ -120,16 +122,16 @@ LiME can write memory to a local file or stream it over the network to a forensi
 
 Once a dump is acquired, analysis tools parse the memory image. Volatility is presented as the main framework, with Rekall mentioned as another memory forensics framework.
 
-Volatility can analyze Windows, Linux, macOS, and Android memory images, but it needs correct knowledge of the target's kernel structures. Volatility 2 relies on profiles; Volatility 3 uses symbol tables, including Windows PDB symbols or generated Linux/macOS ISF files.
+Volatility can analyze memory images from major operating systems when it is configured with the correct knowledge of the target system. Atzeni notes that Volatility 3 is current, while Volatility 2 is still used in some legacy contexts. Rekall is described as a fork or related framework that is also used for memory analysis.
 
 Common analysis goals include:
 - listing processes;
 - detecting hidden processes;
-- inspecting DLLs and loaded modules;
+- checking loaded libraries or modules against expected state;
 - identifying code injection;
-- extracting files and handles;
+- recovering credentials, keys, or plaintext that only exists in memory;
 - reconstructing network connections;
-- building timelines from memory artifacts.
+- cross-checking memory structures against logs, configuration files, and storage artifacts.
 
 ---
 

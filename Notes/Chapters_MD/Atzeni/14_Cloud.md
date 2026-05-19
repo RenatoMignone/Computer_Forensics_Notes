@@ -1,7 +1,7 @@
 # Chapter 14 – Cloud Forensics
 **Professor:** Atzeni
 **Reference Slides:** [`Slides/Atzeni/14_Cloud.pdf`](../../Slides/Atzeni/14_Cloud.pdf)
-**Covered in Lectures:** [Lecture 25](../../Lectures_MD/Lecture_25_Atzeni.md)
+**Covered in Lectures:** [Lecture 25](../../Lectures_MD/Lecture_25_Atzeni.md), [Lecture 27](../../Lectures_MD/Lecture_27_Atzeni.md)
 
 ---
 
@@ -76,6 +76,8 @@ Atzeni also highlights that management operations may be logged by default while
 
 The practical consequence is that cloud investigations require provider-specific technical knowledge before the emergency begins. It is not enough to know that "logs exist"; the examiner must know which logs exist, what they record, how long they are retained, and whether data-plane events were enabled.
 
+Lecture 27 adds a practical limitation: the investigator often acts only as a cloud customer, not as the administrator of the hosting system. API quotas, contractual limits, shared investigation resources, and provider-specific command-line or browser tools can slow identification, collection, and acquisition.
+
 ---
 
 ## 6. Redundancy and Primary Copies
@@ -101,6 +103,8 @@ However, virtualisation also creates scale problems. Multiple snapshots and larg
 
 The examiner must separate suspect-owned assets from shared resources involving unrelated users, and must request hypervisor-level logs from the CSP when guest-level evidence is not enough.
 
+Examples discussed in Lecture 27 include VM and disk export features in VMware, VirtualBox, and QEMU, plus cloud-aware forensic tools such as FTK Imager and Magnet AXIOM that can acquire supported cloud objects when credentials or API keys are available.
+
 ---
 
 ## 8. Volatility and Automation
@@ -108,6 +112,16 @@ The examiner must separate suspect-owned assets from shared resources involving 
 Cloud resources may disappear quickly: containers, serverless functions, temporary disks, and auto-scaled VMs can exist for seconds or minutes. When direct acquisition is too late, the examiner may need to reconstruct activity from logs, snapshots, deltas, and provider monitoring.
 
 Cloud APIs also create a positive possibility: acquisition can be automated. Scripts and cloud-aware forensic tools can rapidly collect many objects, snapshots, or logs when credentials and authorisation are available.
+
+When data has already disappeared, the examiner may need to infer the missing interval by comparing earlier and later snapshots, logs, deltas, and monitoring records. This inference must be clearly documented because it is weaker than direct acquisition.
+
+---
+
+## 9. Time, Integrity, and Trust Issues
+
+Cloud evidence may carry provider-generated integrity checks or signatures, but Atzeni stresses that this still requires trust in the provider's internal process. After acquisition, the investigator can hash and sign the acquired object; before acquisition, however, the court may still have to rely on the CSP's statement that its keys, logs, and internal checks were uncompromised.
+
+Virtualisation can also affect timeline reconstruction. If a virtual machine is delayed by physical host load, data-center conditions, or network load, its internal clock may drift from the bare-metal clock by seconds or even minutes. This can matter when a case depends on fine-grained event ordering.
 
 ---
 
@@ -123,6 +137,8 @@ Cloud APIs also create a positive possibility: acquisition can be automated. Scr
 | **Primary Copy** | Authoritative or actively used version of a cloud object or VM instance. |
 | **Replica** | Redundant copy created for availability, backup, recovery, or performance. |
 | **Snapshot** | Point-in-time logical capture of a virtual machine, disk, or storage resource. |
+| **API Quota** | Provider or contract limit on how often cloud resources can be queried or exported. |
+| **Clock Drift** | Difference between VM time and physical/reference time, relevant to timeline reconstruction. |
 
 ---
 
@@ -135,4 +151,5 @@ Cloud APIs also create a positive possibility: acquisition can be automated. Scr
 - Jurisdiction and provider-controlled signatures must be documented carefully.
 - Primary-copy identification prevents both over-collection and weak evidentiary selection.
 - Virtualisation helps snapshotting but can create very large analysis workloads.
+- Provider signatures, API outputs, and VM timestamps must be treated as cloud-mediated evidence, not as direct physical observation.
 - Presentation must clearly explain what was acquired directly, what came from the CSP, and what remained uncertain.

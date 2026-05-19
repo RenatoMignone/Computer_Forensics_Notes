@@ -41,14 +41,14 @@ The organization of partitions on a disk is defined by one of two major standard
 
 ### 3.1 Master Boot Record (MBR)
 - **Sector Zero:** The first 512 bytes contain the boot code and the partition table.
-- **Limits:** Max 4 primary partitions and a 2TB capacity limit.
+- **Limits:** Historically limited to 4 primary partitions and roughly 2TB per partition because of the addressing scheme.
 - **Fragility:** If sector zero is physically or logically damaged, the OS cannot identify any partition structure.
 
 ### 3.2 GUID Partition Table (GPT)
 Part of the modern UEFI standard, designed for reliability and scale.
 - **Redundancy:** GPT mirrors its header at both the beginning (LBA 1) and the end of the disk. If the primary header is corrupted, the system restores it from the backup.
 - **Integrity (CRC32):** Every header includes a Cyclic Redundancy Check to detect tampering or hardware errors.
-- **Scalability:** Supports up to 128 partitions and disks larger than 2TB.
+- **Scalability:** Removes the historical MBR limit of four primary partitions and supports larger modern disks.
 - **Retrocompatibility:** Includes a **Protective MBR** in Sector Zero to prevent legacy tools from seeing the disk as empty and overwriting GPT data.
 
 ---
@@ -80,6 +80,7 @@ Mounting attaches a storage device to a **Mount Point** in the directory tree.
 - **The "ReadOnly" Rule:** 
     - Always use the `-o ro` flag.
     - Use `blockdev --setro` to lock the device at the kernel level.
+    - When inspecting untrusted file systems, consider mount options such as `noexec`, `nosuid`, and `nodev` to prevent execution, privilege escalation through setuid bits, or special-device interpretation.
     - Preferred: Use a hardware **Write Blocker**.
 
 ### 5.2 Unmounting and Buffering
@@ -124,35 +125,51 @@ Forensic tools can inspect below the user-visible file abstraction and recover e
 
 Tools such as **Foremost** automate this process by scanning raw bytes for known file patterns and reconstructing recoverable content.
 
+Atzeni also mentions **PhotoRec** as another carving tool. Its advantage is that it can work more directly on the storage device, whereas Foremost is historically used more often on a forensic image supplied as input. In practice, using both can be useful because implementations differ.
+
 ---
 
 ## 9. NTFS and the Master File Table
 
-NTFS is more robust than FAT because it is organised around the **Master File Table (MFT)** and an attribute-based model.
+NTFS is more robust than FAT because it is organised around an attribute-based model and richer metadata. The lecture uses it as the example of a modern file system where reliability, security, indexing, and recovery structures make analysis more powerful but also more complex.
 
 | NTFS Component | Forensic Value |
 |----------------|----------------|
-| **MFT Record** | Stores file metadata and references to file content. |
-| **Resident Attribute** | Attribute stored inside the MFT record. |
-| **Non-Resident Attribute** | Attribute stored outside the MFT record, referenced by pointers. |
-| **Log File** | Supports transaction recovery and may reveal recent operations. |
-| **Bitmap** | Tracks allocated and unallocated clusters. |
+| **Attributes and metadata** | Preserve more information about file state than FAT does. |
+| **Indexes and recovery structures** | Improve performance and robustness, but require file-system-specific interpretation. |
+| **Access-control metadata** | Can preserve richer permission information than simple portable file systems. |
+| **Journaling/recovery data** | Can help reconstruct operations or explain inconsistencies after a crash or improper removal. |
 
-NTFS deletion marks records and clusters as not in use, but the data may remain available to forensic-level tools until overwritten.
+As with other file systems, deletion and copying must be interpreted through the file system's own rules. A normal copy may lose or rewrite metadata, while forensic-level inspection tries to preserve and compare the original metadata.
 
 ---
 
-## 10. Forensic Copying and System vs Forensic Views
+## 10. Application-Level Metadata and Metadata Tools
+
+Metadata is not only stored by the file system. Application formats such as Office/OpenDocument archives and image formats can contain internal metadata. The lecture highlights **ExifTool** as a tool originally associated with EXIF image metadata and now useful for many standardised file types.
+
+Forensic analysis should compare multiple views of the same object:
+- system-level tools such as `stat`;
+- forensic-level tools such as `istat` from The Sleuth Kit;
+- hex-level inspection of file signatures and magic numbers;
+- application metadata tools such as `exiftool`.
+
+This is useful because metadata can be wrong, incomplete, or deliberately manipulated. Inconsistencies between the extension, magic number, filesystem metadata, and application metadata are red flags for deeper analysis.
+
+---
+
+## 11. Forensic Copying and System vs Forensic Views
 
 An ordinary file copy does not preserve all metadata. A forensic copy must preserve byte-level structure and be verified through hashes.
 
 Typical tools include:
 ```bash
 dd if=/dev/sda of=image.dd
-dc3dd if=/dev/sda of=image.dd hash=sha256
 ```
 
-Investigators should compare OS-mediated outputs such as `stat` or PowerShell `Get-Item` with forensic-level inspection such as `istat` or `fsutil`. Inconsistencies can reveal corruption, manipulation, or anti-forensic activity.
+DD-like forensic tools may also compute hashes during the same acquisition step, reducing the gap between copying and integrity verification.
+
+Investigators should compare OS-mediated outputs such as `stat` with forensic-level inspection such as `istat`. Inconsistencies can reveal corruption, manipulation, or anti-forensic activity.
 
 ---
 
