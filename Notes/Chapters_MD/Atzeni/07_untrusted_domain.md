@@ -6,7 +6,7 @@
 ---
 
 ## Introduction
-For a digital forensics investigation to be scientifically sound and legally admissible, the analysis must be conducted within a **Trusted Environment**. However, the vast majority of environments investigators examine are **Untrusted Domains**—systems potentially compromised by targeted malware, misconfigurations, or physical attacks. This chapter explores the myriad of ways a system can be compromised, detailing the expansive "Man-in-the-Something" attack family, supply chain vulnerabilities, and the advanced operational capabilities of Advanced Persistent Threats (APTs). 
+For a digital forensics investigation to be scientifically sound and legally admissible, the analysis must be conducted within a **Trusted Environment**. However, the vast majority of environments investigators examine are **Untrusted Domains**—systems potentially **compromised** by targeted malware, misconfigurations, or physical attacks. This chapter explores the myriad of ways a system can be compromised, detailing the expansive "Man-in-the-Something" attack family, supply chain vulnerabilities, and the advanced operational capabilities of Advanced Persistent Threats (APTs). 
 
 ---
 

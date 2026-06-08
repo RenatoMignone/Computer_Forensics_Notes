@@ -2,6 +2,7 @@
 **Professor:** Vaciago  
 **Guest Expert:** Paolo Dal Checco  
 **Source Lecture:** [Lecture 16](../Lectures_MD/Lecture_16_Vaciago.md)  
+**Reference Slides:** [`Slides/Vaciago/Caso-Garlasco-digital-forensics-timeline.pdf`](../Slides/Vaciago/Caso-Garlasco-digital-forensics-timeline.pdf)  
 **Classification:** Guest expert lecture / professional case discussion
 
 ---
@@ -9,6 +10,8 @@
 ## 1. Introduction to the Garlasco Case
 
 The murder of Chiara Poggi in Garlasco (2007) is a quintessential example of the transition from traditional to digital investigative paradigms in Italy. It serves as a warning on how **procedural errors** in the handling of digital evidence can permanently obscure the truth.
+
+> 📎 *Slide reference: `Caso-Garlasco-digital-forensics-timeline.pdf` — Digital forensics timeline reference package*
 
 ---
 

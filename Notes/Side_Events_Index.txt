@@ -1,5 +1,5 @@
 CFCCA side-event and non-slide-course-material index
-Last updated: 2026-05-19
+Last updated: 2026-06-08
 
 Purpose
 This file lists lecture material that should remain traceable, but should not be treated as ordinary slide-backed chapter content unless explicitly stated. These items may appear in the per-lecture notes because they happened during the lecture. Student presentations, homework feedback, administrative explanations, and guest/professional digressions should generally not be merged into Chapters_MD topic notes.
@@ -56,6 +56,7 @@ Lecture 16 - Vaciago with Paolo Dal Checco - Guest expert lecture on Garlasco an
 - Transcript: Notes/Lectures_txt/Lecture_16_Vaciago_01-04_.txt
 - Lecture note: Notes/Lectures_MD/Lecture_16_Vaciago.md
 - Side-event note: Notes/Side_Events_MD/Lecture_16_Guest_Paolo_Dal_Checco_Garlasco.md
+- Reference slide package: Notes/Slides/Vaciago/Caso-Garlasco-digital-forensics-timeline.pdf
 - Type: guest lecture / professional case discussion
 - Relevant sections: Professional Ethics and Tool Verification; Advanced Investigative Techniques; Digital Alibi; Career Path of a Forensic Expert
 - Chapter handling: isolated under Side_Events_MD, not Chapters_MD.
@@ -115,3 +116,24 @@ Lecture 28 - Atzeni - Student presentations on video carving and case studies
 - Type: student presentations / technical demonstrations
 - Relevant sections: Student Presentation: File Carving for Video Recovery; Student Presentation: Case Studies and Emerging Evidence
 - Chapter handling: do not merge student presentation details into Chapters_MD unless Atzeni's own technical explanation supports the chapter topic.
+
+Lecture 29 - Vaciago - Malware-production homework feedback and professional discussion
+- Transcript: Notes/Lectures_txt/Lecture_29_Vaciago_15-05.txt
+- Lecture note: Notes/Lectures_MD/Lecture_29_Vaciago.md
+- Type: homework presentations / feedback / professional discussion
+- Relevant sections: Sentinel Case; Company A / Company B; Red-Team Engagement; Professional Digital Forensics Discussion
+- Chapter handling: keep homework feedback and professional/career discussion out of Chapters_MD.
+
+Lecture 31 - Atzeni - Student presentations before anti-forensics
+- Transcript: Notes/Lectures_txt/Lecture_31_Atzeni_22-05.txt
+- Lecture note: Notes/Lectures_MD/Lecture_31_Atzeni.md
+- Type: student homework presentations / technical demonstrations
+- Relevant sections: Kubernetes Copy-Fail Vulnerability; Encrypted Containers and Evidence Substitution; Anti-Forensics lecture
+- Chapter handling: student presentations remain lecture-only; Atzeni's own anti-forensics lecture backs Chapters_MD/Atzeni/17_anti_forensics.md.
+
+Lecture 32 - Vaciago - Bonus-point administration and TechMed laboratory
+- Transcript: Notes/Lectures_txt/Lecture_32_Vaciago_26-05.txt
+- Lecture note: Notes/Lectures_MD/Lecture_32_Vaciago.md
+- Type: course administration / official laboratory
+- Relevant sections: Course Administration and Bonus Points; Corporate Forensics; TechMed Case Scenario
+- Chapter handling: administrative bonus-point material stays lecture-only; TechMed substantive lab content backs Chapters_MD/Vaciago/07_TechMed_Forensics_Law.md.

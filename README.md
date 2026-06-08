@@ -90,7 +90,7 @@ This project welcomes contributions! Follow this step-by-step workflow to add ne
     ├── Lectures_MD/          # Per-lecture structured Markdown notes (one file per lecture)
     │   ├── Lecture_01_Atzeni.md
     │   ├── ...
-    │   └── Lecture_25_Atzeni.md
+    │   └── Lecture_33_Atzeni.md
     │
     ├── Chapters_MD/          # Per-chapter notes grouped by topic and professor
     │   ├── Atzeni/
@@ -104,7 +104,7 @@ This project welcomes contributions! Follow this step-by-step workflow to add ne
     ├── Lectures_txt/         # Raw audio transcriptions (source material only)
     │   ├── Lecture_01_Atzeni_24-02_.txt
     │   ├── ...
-    │   └── Lecture_25_Atzeni_06-05_.txt
+    │   └── Lecture_33_Atzeni_27-05.txt
     │
     └── Slides/               # Official course slide PDFs (organized by professor)
         ├── Atzeni/
@@ -120,7 +120,7 @@ This project welcomes contributions! Follow this step-by-step workflow to add ne
 | `Notes/Chapters_MD/` | Per-topic thematic chapter notes | **Yes** | Aggregated & synthesized from lecture transcriptions |
 | `Notes/Side_Events_MD/` | Full notes for guest sessions and non-slide side events | **Yes** | Isolated from slide-backed chapter notes |
 | `Notes/Side_Events_Index.txt` | Quick map of presentations, labs, homework feedback, and admin material | **Yes** | Maintained during audits |
-| `Notes/Lectures_txt/` | Raw lecture transcriptions | **Yes** | Transcribed from video audio |
+| `Notes/Lectures_txt/` | Raw lecture transcriptions | No | Transcribed from video audio; source material only |
 | `Notes/Slides/` | Official course slide PDFs | No | Downloaded from Portale della Didattica |
 | `Notes/AI_Context.md` | Project metadata and conventions | **Yes** | Updated as lectures are added |
 
@@ -151,7 +151,10 @@ This project welcomes contributions! Follow this step-by-step workflow to add ne
 | 24 | [Lecture_24_Atzeni.md](Notes/Lectures_MD/Lecture_24_Atzeni.md) | Network Anti-Forensics & Attack Obfuscation | `12_Network.pdf` |
 | 25 | [Lecture_25_Atzeni.md](Notes/Lectures_MD/Lecture_25_Atzeni.md) | TOR & Cloud Forensics | `13_Digital-Forensics-in-the-TOR-Network.pdf`, `14_Cloud.pdf` |
 | 27 | [Lecture_27_Atzeni.md](Notes/Lectures_MD/Lecture_27_Atzeni.md) | Cloud Forensics Effects & Acquisition Strategy | `14_Cloud.pdf` |
-| 28 | [Lecture_28_Atzeni.md](Notes/Lectures_MD/Lecture_28_Atzeni.md) | Video Carving, OS Forensics & Memory Acquisition | `15_OS.pdf`, `16_volatile.pdf` |
+| 28 | [Lecture_28_Atzeni.md](Notes/Lectures_MD/Lecture_28_Atzeni.md) | Video Carving, OS Forensics & Memory Acquisition | `15_OS.pdf` |
+| 30 | [Lecture_30_Atzeni.md](Notes/Lectures_MD/Lecture_30_Atzeni.md) | Memory Forensics, LiME, Volatility & Malware Indicators | `15_OS.pdf`, `16_volatile.pdf` |
+| 31 | [Lecture_31_Atzeni.md](Notes/Lectures_MD/Lecture_31_Atzeni.md) | Kubernetes Forensics & Anti-Forensics | `17_anti_forensics.pdf` |
+| 33 | [Lecture_33_Atzeni.md](Notes/Lectures_MD/Lecture_33_Atzeni.md) | Autopsy, Timelines & LLMs | `18_autopsy.pdf`, `19_LLM.pdf` |
 
 ### Prof. Vaciago – Legal Track
 
@@ -165,6 +168,8 @@ This project welcomes contributions! Follow this step-by-step workflow to add ne
 | 19 | [Lecture_19_Vaciago.md](Notes/Lectures_MD/Lecture_19_Vaciago.md) | The 10 Rules for a Digital Forensic Report | `5_Rules_Digital_Forensics.pdf` |
 | 22 | [Lecture_22_Vaciago.md](Notes/Lectures_MD/Lecture_22_Vaciago.md) | Digital Alibi Feedback & Hacking Team Case | `5_Rules_Digital_Forensics.pdf`, `6_Hacking_Team_Case.pdf` |
 | 26 | [Lecture_26_Vaciago.md](Notes/Lectures_MD/Lecture_26_Vaciago.md) | Malware Production, Mens Rea & Criminal Liability | `Articoli_Codice_Penale.pdf` |
+| 29 | [Lecture_29_Vaciago.md](Notes/Lectures_MD/Lecture_29_Vaciago.md) | Malware-Production Homework Feedback & Professional Digital Forensics | N/A (side events) |
+| 32 | [Lecture_32_Vaciago.md](Notes/Lectures_MD/Lecture_32_Vaciago.md) | Corporate Forensics & TechMed Data Breach Laboratory | `07_TechMed_Forensics_Law.pdf` |
 
 ---
 
@@ -191,8 +196,11 @@ Chapter notes aggregate content **across multiple lectures** per topic, using th
 | [Chapters_MD/Atzeni/12_Network.md](Notes/Chapters_MD/Atzeni/12_Network.md) | ✅ Complete | Network Forensics | Lectures 21, 23 & 24 |
 | [Chapters_MD/Atzeni/13_Digital-Forensics-in-the-TOR-Network.md](Notes/Chapters_MD/Atzeni/13_Digital-Forensics-in-the-TOR-Network.md) | ✅ Complete | TOR Network Forensics | Lecture 25 |
 | [Chapters_MD/Atzeni/14_Cloud.md](Notes/Chapters_MD/Atzeni/14_Cloud.md) | ✅ Complete | Cloud Forensics | Lectures 25 & 27 |
-| [Chapters_MD/Atzeni/15_OS.md](Notes/Chapters_MD/Atzeni/15_OS.md) | ✅ Complete | Operating System Forensics | Lecture 28 |
-| [Chapters_MD/Atzeni/16_volatile.md](Notes/Chapters_MD/Atzeni/16_volatile.md) | ✅ Complete | Volatile Memory Forensics | Lecture 28 |
+| [Chapters_MD/Atzeni/15_OS.md](Notes/Chapters_MD/Atzeni/15_OS.md) | ✅ Complete | OS Forensics & Memory Acquisition | Lectures 28 & 30 |
+| [Chapters_MD/Atzeni/16_volatile.md](Notes/Chapters_MD/Atzeni/16_volatile.md) | ✅ Complete | Volatility & Volatile Memory Analysis | Lecture 30 |
+| [Chapters_MD/Atzeni/17_anti_forensics.md](Notes/Chapters_MD/Atzeni/17_anti_forensics.md) | ✅ Complete | Anti-Forensics | Lecture 31 |
+| [Chapters_MD/Atzeni/18_autopsy.md](Notes/Chapters_MD/Atzeni/18_autopsy.md) | ✅ Complete | Autopsy | Lecture 33 |
+| [Chapters_MD/Atzeni/19_LLM.md](Notes/Chapters_MD/Atzeni/19_LLM.md) | ✅ Complete | Digital Forensics and Generative AI | Lecture 33 |
 
 ### Prof. Vaciago – Legal Track
 
@@ -205,6 +213,7 @@ Chapter notes aggregate content **across multiple lectures** per topic, using th
 | [Chapters_MD/Vaciago/5_Rules_Digital_Forensics.md](Notes/Chapters_MD/Vaciago/5_Rules_Digital_Forensics.md) | ✅ Complete | Forensic Report Writing Rules | Lectures 19 & 22 |
 | [Chapters_MD/Vaciago/6_Hacking_Team_Case.md](Notes/Chapters_MD/Vaciago/6_Hacking_Team_Case.md) | ✅ Complete | Hacking Team Case | Lecture 22 |
 | [Chapters_MD/Vaciago/Articoli_Codice_Penale.md](Notes/Chapters_MD/Vaciago/Articoli_Codice_Penale.md) | ✅ Complete | Articles 615-ter and 615-quater | Lecture 26 |
+| [Chapters_MD/Vaciago/07_TechMed_Forensics_Law.md](Notes/Chapters_MD/Vaciago/07_TechMed_Forensics_Law.md) | ✅ Complete | TechMed Corporate Forensics Laboratory | Lecture 32 |
 
 ### Side Events and Presentations
 
@@ -236,7 +245,11 @@ These are indexed separately from chapter notes so that student presentations, h
 - Anti-forensics: encryption, timestomping, Tor, fileless malware
 - Cloud forensics: provider dependency, snapshots, redundancy, volatile resources
 - Operating system and volatile memory forensics
+- LiME, Volatility profiles/symbols, plugins, and malware indicators
 - Video carving and structure-aware recovery
+- Anti-forensics and anti-anti-forensics
+- Autopsy, NSRL known-file filtering, and forensic timelines
+- LLM-assisted forensic triage and admissibility risks
 - Timeline construction and cross-source correlation
 - Report writing for technical, legal, and executive audiences
 
@@ -254,6 +267,8 @@ These are indexed separately from chapter notes so that student presentations, h
 - Freezing procedures and ISP cooperation
 - Malware-production liability under Articles 615-ter and 615-quater
 - Mens rea and participation in a crime
+- Corporate forensics, workplace-control limits, and internal investigations
+- TechMed case: BEC fraud, malware exfiltration, data breach, and organisational remediation
 - Tor and the erosion of IP address as evidence
 - GDPR vs the US CLOUD Act
 - Freedom of speech: First Amendment (US) vs Article 595 Italian Penal Code

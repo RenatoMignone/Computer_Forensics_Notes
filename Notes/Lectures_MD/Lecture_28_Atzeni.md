@@ -1,7 +1,7 @@
 # Lecture 28 – Video Carving, OS Forensics, and Memory Acquisition
 **Professor:** Atzeni
 **Course:** Computer Forensics and Cybercrime Analysis (CFCCA)
-**Reference Slides:** `Slides/Atzeni/15_OS.pdf`, `Slides/Atzeni/16_volatile.pdf`
+**Reference Slides:** `Slides/Atzeni/15_OS.pdf`
 
 ---
 
@@ -118,7 +118,7 @@ LiME can write memory to a local file or stream it over the network to a forensi
 
 ## 8. Volatility and Rekall
 
-> 📎 *Slide reference: `16_volatile.pdf` — Volatility workflow*
+> 📎 *Slide reference: `15_OS.pdf` — Volatility workflow*
 
 Once a dump is acquired, analysis tools parse the memory image. Volatility is presented as the main framework, with Rekall mentioned as another memory forensics framework.
 
